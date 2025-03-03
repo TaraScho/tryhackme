@@ -4,19 +4,41 @@ on:
   push:
     paths:
       - 'tryhackme-room-writeups/**'
+    branches:
+      - main
 
 jobs:
   sync:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Push updated TryHackMe dir to corresponding blog directory
-        uses: Tara-Cloud/push-files-to-another-repository@v1.0.6
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source-files: 'tryhackme-room-writeups/'
-          destination-username: 'Tara-Cloud'
-          destination-repository: 'vercel-personal-site'
-          destination-directory: 'src/pages/blog/tryhackme/'
-          destination-branch: 'main'
-          commit-email: 'tara.schoenherr@gmail.com'
+      - name: Checkout TryHackMe repo
+        uses: actions/checkout@v3
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Clone Astro Repo
+        run: |
+          git clone https://x-access-token:${{ secrets.THM_SYNC_PAT }}@github.com/TaraScho/tc-homepage-astro.git tc-homepage-astro
+
+      - name: Sync Files
+        run: |
+          rsync -av --delete tryhackme-room-writeups/ tc-homepage-astro/src/pages/blog/tryhackme/tryhackme-room-writeups/
+
+      - name: Commit and Push Changes
+        run: |
+          set -e  # Exit on error
+          cd tc-homepage-astro
+
+          # Check for changes before adding/committing
+          if git diff --quiet; then
+            echo "No changes detected, skipping commit."
+            exit 0
+          fi
+
+          git add .
+          git commit -m "Sync TryHackMe writeups from TryHackMe MD Repo"
+          git push origin main
