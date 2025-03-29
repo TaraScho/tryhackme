@@ -1,8 +1,13 @@
 ---
+layout: ../../../../../layouts/MarkdownLayout.astro
 roomName: The Quest for Least Privilege
+title: 'THM - The Quest for Least Privilege'
+description: 'Walkthrough of the Try Hack Me AWS Quest for Least Privilege room'
 learningPath: Attacking and Defending AWS
 pubDate: Tod
-img: https://fakeimg.pl/640x360
+image:
+  url: '/blog-images/quest-for-least-privilege.png'
+  alt: 'Cloud graphic with AWS The Quest for Least Privilege room name and TryHackMe logo.'
 ---
 
 Coming soon

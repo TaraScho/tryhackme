@@ -1,0 +1,664 @@
+# tactiq.io free youtube transcript
+# TryHackMe Attacking and Defending AWS: Resource Policies and Service Control Policies
+# https://www.youtube.com/watch/4rOt0KxK1WM
+
+00:00:00.080 hi everyone it's Tara welcome to the
+00:00:02.159 channel I'm about to play another try
+00:00:04.520 hackme room in the attacking and
+00:00:06.000 defending ABS learning path this next
+00:00:08.480 room up is an IM room focused on
+00:00:10.880 resource policies and service control
+00:00:12.840 policies so I'm excited to keep going
+00:00:15.000 hopefully you've been enjoying the
+00:00:16.440 videos so far and let's get started with
+00:00:18.840 the next
+00:00:21.020 [Music]
+00:00:28.400 room so this is the resource policies
+00:00:31.720 and scps room scps stands for service
+00:00:35.360 control policies which are attached to
+00:00:37.719 accounts in AWS organizations and this
+00:00:40.600 room already has nine likes which I
+00:00:42.200 think maybe is the most I have seen in
+00:00:44.360 this learning path so maybe it's going
+00:00:46.239 to be particularly good let's go check
+00:00:48.039 it out the first task is called other
+00:00:50.800 policy types while 80% of the time when
+00:00:53.600 working with AWS you'll be using I am
+00:00:55.800 policies there are two other types of
+00:00:57.680 policies you need to know about they use
+00:01:00.120 the same statement structure as an I am
+00:01:01.800 policy but are attached to resources or
+00:01:03.920 accounts to affect how access is
+00:01:06.320 authorized you all should have heard the
+00:01:08.720 way I just tried to pronounce authorized
+00:01:10.280 a minute ago all right so this is just
+00:01:12.240 an introduction to the room we don't
+00:01:13.560 need to uh solve anything or answer
+00:01:15.960 question we just hit completed to move
+00:01:17.520 on and then task two is about accessing
+00:01:20.840 the environment we've gone over this a
+00:01:23.360 couple of times now so we know we need
+00:01:26.159 to scroll to the top of the room check
+00:01:27.840 out the cloud details looks like we
+00:01:30.479 don't have anything we need to generate
+00:01:32.439 here so we should be good to go our
+00:01:34.360 environment is active let's see oh and
+00:01:37.880 now that I'm thinking through it and
+00:01:40.159 with the environment State being active
+00:01:42.200 probably the reason we aren't seeing
+00:01:43.479 this generate button down here is
+00:01:45.439 because when we press generate in the AM
+00:01:47.040 principles room it generated everything
+00:01:48.640 we need for this whole module okay that
+00:01:50.479 makes sense all right so scroll back
+00:01:53.159 down and let me just verify at the
+00:01:56.200 command line that I still have my
+00:01:57.520 profile configured so let's see yep
+00:02:00.000 awesome so I see my try half me bucket
+00:02:01.640 so I know I'm still good there so I'm
+00:02:03.360 going to hit completed because I am good
+00:02:05.360 to go on environment configuration and
+00:02:08.679 let's move on to task three which is
+00:02:10.639 really almost like the task one of this
+00:02:12.440 room but okay task three is about
+00:02:15.080 resource policies so we learned about IM
+00:02:17.959 principles we learned about IM
+00:02:19.160 permissions now we're going to learn
+00:02:20.280 about resource policies IM policies are
+00:02:23.400 attached to a specific principle and
+00:02:25.519 Define the resources that the principal
+00:02:27.879 can act on whereas resource policies are
+00:02:30.920 attached to a resource and Define the
+00:02:33.200 principles that can act on the resource
+00:02:35.239 so far what we have been seeing for the
+00:02:36.879 most part has been I am policies which
+00:02:38.959 are attached to the who of I am like the
+00:02:41.040 user or the role and then they give that
+00:02:43.040 principal permissions whereas resource
+00:02:45.560 policies are attached to the resource
+00:02:47.680 itself and then Define different
+00:02:49.840 principles that can use the resource and
+00:02:52.400 the probably like the most common
+00:02:53.480 example of this and I see it's first on
+00:02:55.159 their list here too is S3 storage
+00:02:57.519 buckets so it's very common that you'll
+00:02:59.280 see an s S3 bucket has a resource-based
+00:03:01.519 policy attached to the bucket and then
+00:03:03.840 that policy says this is who's allowed
+00:03:05.560 to access this bucket and this is what's
+00:03:07.920 used to create what's called public S3
+00:03:09.920 buckets which are very frequently used
+00:03:12.000 for website hosting or hosting assets
+00:03:14.440 for websites and you can make a bucket
+00:03:16.120 public by attaching a resource policy to
+00:03:18.360 it that just allows anyone to have
+00:03:20.319 access to that bucket so that would be
+00:03:21.959 an example versus attaching to thousands
+00:03:24.000 of different users a permission policy
+00:03:25.920 that says they can access this bucket
+00:03:27.319 instead we can attach one policy to the
+00:03:28.959 bucket that says everyone can access it
+00:03:31.280 think carefully before you do that
+00:03:33.040 specific thing but that's one example of
+00:03:34.959 what a resource policy is and other ads
+00:03:37.840 resources that can have resource-based
+00:03:39.480 policies attached to them are KMS keys
+00:03:42.159 so that's Key Management Service
+00:03:43.560 encryption Keys sqsq simple notification
+00:03:47.480 service topics AWS Lambda functions
+00:03:50.560 secret manager secrets and I am roles so
+00:03:53.200 yes an assume rule trust policy like
+00:03:55.200 we've seen before is an example of a
+00:03:57.480 resource-based policy because we attach
+00:03:59.439 it to to the role and the assume role
+00:04:01.640 trust policy says here's who's allowed
+00:04:03.360 to use this role here's who's allowed to
+00:04:05.280 come check out this role and create a
+00:04:07.319 session with it the command to apply a
+00:04:10.000 resource policy varies based on the
+00:04:11.920 service S3 buckets are one of the most
+00:04:14.400 common use cases for resource policies
+00:04:16.600 for demonstration purposes we've created
+00:04:18.399 a public S3 bucket in another try hackme
+00:04:20.798 account that bucket is creatively named
+00:04:23.199 try hacky public bucket that is very
+00:04:25.240 lovely and creative and this is a good
+00:04:27.160 opportunity for a reminder so remember
+00:04:29.000 if you're newer AWS that S3 bucket names
+00:04:31.720 have to be unique globally so now that
+00:04:33.840 we know that tryhackme has already made
+00:04:35.639 a bucket called tryhackme public bucket
+00:04:37.960 none of us can make a S3 bucket called
+00:04:40.199 try hack me public bucket remember that
+00:04:42.080 S3 bucket names are unique identifiers
+00:04:44.199 within AWS and the bucket policy for the
+00:04:47.199 bucket is as follows so it looks like
+00:04:49.560 this is a resource-based policy we can
+00:04:51.479 tell that right away even if we didn't
+00:04:53.600 know from The trackme Narrative because
+00:04:55.280 we can see there's a principle in it so
+00:04:56.840 that would indicate it's a
+00:04:57.960 resource-based policy and the juicy part
+00:05:01.680 here is the statements we've got two
+00:05:04.000 statements here as part of the policy
+00:05:05.759 the first one is called make object
+00:05:07.520 readable and the effect here is allow
+00:05:10.759 the principal is everyone so this is
+00:05:12.520 what makes it a public S3 bucket the
+00:05:14.960 action is get object and then this part
+00:05:17.800 is very important the resource the get
+00:05:20.720 object applies to every single object in
+00:05:23.360 this S3 bucket and the way we can see
+00:05:25.759 that is because this is the S3 bucket
+00:05:28.479 itself and then this slash star this
+00:05:31.400 wild card is saying every single object
+00:05:33.960 in the bucket this what it means this
+00:05:35.319 would match every single object key that
+00:05:37.919 is possibly stored in this bucket and
+00:05:40.680 then the second part of the policy the
+00:05:43.759 statement ID is make bucket attributed
+00:05:47.000 world I think maybe that's supposed to
+00:05:48.039 say make bucket attributes World
+00:05:50.160 readable and the effect is allow the
+00:05:52.600 principal once again is everyone and the
+00:05:55.880 action is get and the action is is get
+00:05:59.960 star so this would be any of the get
+00:06:02.080 actions in S3 like read actions and then
+00:06:05.240 S3 list bucket which would allow you to
+00:06:08.120 list all the objects that are in the
+00:06:09.680 bucket and the resource is the try
+00:06:13.960 hackme public bucket itself and there's
+00:06:16.000 a very key distinction here between
+00:06:18.160 these two examples of resources in a
+00:06:20.039 policy so this resource Clause gives
+00:06:23.759 permission for the S3 bucket but would
+00:06:26.639 not give you any permission to access
+00:06:28.400 the objects in the bucket
+00:06:30.479 this resource is necessary to give
+00:06:33.560 permission to access the objects within
+00:06:35.759 the bucket itself and let me tell you
+00:06:37.680 that if you are studying for any AWS
+00:06:39.680 certification exams ever this is a very
+00:06:42.319 common question that I've seen on AWS
+00:06:44.639 certification exams I've probably seen
+00:06:46.120 it like four or five times on live exams
+00:06:49.080 that I've taken and then practice exams
+00:06:51.160 I've seen it tons of times to have an S3
+00:06:53.319 bucket be truly public you have to give
+00:06:56.199 permission to objects in the bucket you
+00:06:58.520 need to have something here that's
+00:06:59.879 saying what objects in the bucket that
+00:07:01.960 the principal can access if you just
+00:07:04.319 have the bucket name like this you're
+00:07:06.160 giving permission for the bucket itself
+00:07:07.759 to learn things about that bucket but
+00:07:09.639 you'll never be able to get any objects
+00:07:11.240 out of it so keep that in mind if you're
+00:07:12.639 trying to pass an AWS certification
+00:07:14.599 that's like a common gotcha here is you
+00:07:16.720 need to give permission to the objects
+00:07:18.560 in the bucket it's not satisfactory to
+00:07:20.400 just give permission to the bucket
+00:07:21.720 itself and looks like this is probably
+00:07:24.680 just saying the same thing in a more
+00:07:26.440 condensed manner but in the case of S3
+00:07:29.120 there are two AWS resources involved the
+00:07:31.520 bucket and the objects in the bucket the
+00:07:34.120 first statement allows anyone so that's
+00:07:36.639 the principal star we talked about to
+00:07:38.400 get object on all the objects in the
+00:07:41.520 bucket and the second statement applies
+00:07:44.319 only to the bucket itself and that's
+00:07:46.599 indicated by the bucket name here and
+00:07:49.080 allows anyone to get the attributes of
+00:07:50.840 the bucket which is the S3 getar and
+00:07:53.919 that star that wild card will match
+00:07:56.080 different things like get bucket policy
+00:07:58.479 get like bucket object versioning I
+00:08:00.120 can't list them well off the top of my
+00:08:01.440 head but there's a bunch of different
+00:08:02.639 attributes that are accessed with the S3
+00:08:04.840 get API action and that wild card will
+00:08:07.280 match all of them and then to list the
+00:08:09.759 objects in the bucket we have S3 list
+00:08:11.879 bucket so we can give it a try run this
+00:08:14.879 command from your attack box or Cloud
+00:08:16.759 shell session
+00:08:18.000 so always obate always the rebel I am
+00:08:20.879 actually not going to bother to spin up
+00:08:22.680 the attack box or a cloud shell and I'm
+00:08:25.319 just going to do these commands locally
+00:08:27.000 and if you watch some of my other AWS
+00:08:29.319 room walkthroughs then you might
+00:08:31.159 remember the reason I can do this is
+00:08:33.159 because I have configured a profile for
+00:08:36.200 the AWS CLI locally with my tryhackme
+00:08:39.919 user credentials what I'm going to do is
+00:08:42.479 run all these AWS commands using that
+00:08:46.000 profile so I'm going to do AWS default
+00:08:48.800 profile so for my little session here
+00:08:50.480 I'm going to make my default profile try
+00:08:53.720 hack me which is the profile I created
+00:08:55.560 earlier and if you wanted to see how I
+00:08:57.240 did that you can go back and watch some
+00:08:59.000 of the earlier AWS room walkthroughs and
+00:09:01.640 if I have time I'll maybe write some
+00:09:03.200 instructions as well and Link them below
+00:09:05.440 okay and even though I went ahead and
+00:09:06.640 set up my profile there I actually don't
+00:09:08.560 think we would need that specific
+00:09:10.440 profile to run this command because
+00:09:12.240 looks like we're going to run AWS S3 API
+00:09:15.279 get bucket policy status and then the
+00:09:17.440 bucket we're going to Target the try
+00:09:18.920 hackme public bucket and why we are
+00:09:22.480 going to be able to do this is
+00:09:24.519 irrelevant to the try hackme profile
+00:09:26.640 anybody should be able to run this
+00:09:28.079 command and get a resp resp because this
+00:09:31.120 resource policy right allows all of
+00:09:33.480 these get actions on this bucket to
+00:09:36.839 anyone so let's go ahead and run this
+00:09:42.880 command so satisfying when you run a
+00:09:45.160 command and you get that output on the
+00:09:46.560 first time so let's see policy status it
+00:09:50.160 is a public bucket so they weren't lying
+00:09:51.800 to us so that's good so there's that and
+00:09:54.079 then we can try and list the files in
+00:09:55.920 the bucket and remember the reason we'll
+00:09:57.560 be able to list the files in the bu
+00:09:59.120 bucket is because we have this S3 list
+00:10:01.680 bucket permission anyone in the world
+00:10:03.160 can do this S3 list bucket API call so
+00:10:06.600 let's do
+00:10:11.000 that all right so looks like we have one
+00:10:14.360 object in the bucket which is a PNG file
+00:10:17.040 an image called My God full of stars so
+00:10:19.920 now you know of course we have to see
+00:10:21.680 what this image is even though I wonder
+00:10:23.399 that's probably what what we're going to
+00:10:24.680 be doing later on in the try hackme room
+00:10:27.200 as well but I can't wait I'm nosy as h I
+00:10:29.240 have to know now what this image is so
+00:10:30.640 let's do M S3 object and CD S3 object
+00:10:36.320 and again I'm going rogue here this is
+00:10:38.079 not part of the try hackme lab I
+00:10:39.800 literally just want to see uh what this
+00:10:43.399 picture is so we can get that picture
+00:10:46.399 down from S3 because remember anybody in
+00:10:49.120 the world has permission to get the
+00:10:51.240 object we can run AWS
+00:10:54.240 S3 copy and then I think we can do it in
+00:10:57.639 either order so we can do
+00:11:00.399 S3 um I'm forgetting exactly how you do
+00:11:03.959 this S3 and then try hack me public
+00:11:07.720 bucket so that's the public name or
+00:11:09.600 that's the bucket name and then we need
+00:11:12.360 the object key which we know um from our
+00:11:15.079 list objects command so that should be
+00:11:19.120 the object in S3 and then let's just
+00:11:21.240 copy it right here to our local
+00:11:22.560 directory and let's see if I got that
+00:11:24.680 right okay brilliant so now we can do
+00:11:28.440 open
+00:11:29.720 and let me
+00:11:32.079 uh all right and I'm sure this is like a
+00:11:34.800 reference that everybody watching this
+00:11:36.600 gets that I just not cool enough to get
+00:11:38.639 but that is the image that's in that
+00:11:40.120 public S3 bucket very fun very nice
+00:11:44.079 let's get back to what we're actually
+00:11:45.480 supposed to be doing in this lab here so
+00:11:48.000 resource policy so we were just learning
+00:11:49.600 about uh a resource policy applied to a
+00:11:51.720 S3 bucket to make it a public bucket and
+00:11:54.360 resource policies can also be applied to
+00:11:57.240 control whom can invoke a l of function
+00:11:59.600 so we're going to cover Lambda in a
+00:12:00.959 future module big fan of Lambda but we
+00:12:03.839 can learn about it now so we're going to
+00:12:05.360 try executing this Lambda function and
+00:12:07.959 then look at the output all right cool
+00:12:10.279 so let me clear up this clean that up
+00:12:13.480 and real quick I'm pausing the walk
+00:12:15.320 through cuz I added a quick Pro tip on
+00:12:17.199 the screen here after I was done
+00:12:18.920 recording if you want to run these
+00:12:20.920 commands locally like I am make sure you
+00:12:23.199 have JQ installed and you can install it
+00:12:25.440 using the link on the screen all right
+00:12:27.560 so let's go ahead and try and invoke
+00:12:29.000 this Lambda function so we've got AWS
+00:12:30.959 Lambda invoke and looks like the
+00:12:33.040 function name is try hackme time so
+00:12:36.519 we'll invoke that from the CLI and the
+00:12:39.519 status code we got returned to 200
+00:12:41.360 status code which should mean we
+00:12:43.240 successfully invoked the function and
+00:12:44.680 got a response so that would indicate
+00:12:47.160 that whatever resource based policy is
+00:12:48.959 attached to this Lambda function we do
+00:12:50.720 indeed have permission to invoke it and
+00:12:54.519 let's try looking at the policy for the
+00:12:56.680 Lambda function so this is the resource
+00:12:58.399 based polic policy attached to the
+00:13:00.160 Lambda function and looks like and they
+00:13:02.600 gave us the example command so we could
+00:13:04.279 even get the policy right now ourselves
+00:13:06.360 very nice okay so it looks like this is
+00:13:08.360 a policy that has two statements first
+00:13:11.560 of all we have one statement that has an
+00:13:13.480 effect of allow for anybody to get the
+00:13:16.959 Lambda policy which is that command we
+00:13:18.880 just
+00:13:19.600 ran AWS Lambda get policy so we have
+00:13:23.040 permission to get that policy and looks
+00:13:26.600 like anyone in the world can get that
+00:13:28.240 policy on that Lambda then to invoke the
+00:13:31.000 Lambda function the reason why we were
+00:13:32.680 able to do that is because we have this
+00:13:35.399 second statement that says effect allow
+00:13:39.000 anybody to invoke the Lambda
+00:13:42.560 function on this triack me time Lambda
+00:13:46.160 function if and then here we have a
+00:13:48.600 condition so that's a little bit
+00:13:49.639 different here we have a condition that
+00:13:51.800 says if your account is part of an AWS
+00:13:54.920 organization and the organization ID is
+00:13:58.040 this so so our tryhackme account is part
+00:14:02.240 of this AWS principal organization and
+00:14:05.160 that is why this condition evaluates to
+00:14:07.440 true and we're able to invoke the Lambda
+00:14:09.440 function but if we were to try to invoke
+00:14:11.720 the Lambda function from an account
+00:14:13.920 outside of these try hackme accounts
+00:14:16.720 that are part of this organization then
+00:14:18.440 we wouldn't have permission to do that
+00:14:19.800 so that's an example of how they're
+00:14:21.639 using a condition in a resource policy
+00:14:24.360 as well so we can see the resource
+00:14:26.279 policy for this function allows anyone
+00:14:27.920 to run Lambda get policy anyone in the
+00:14:29.880 whole world can run Lambda get policy
+00:14:34.079 and all members of this specific AWS
+00:14:36.920 organization can run Lambda invoke
+00:14:39.600 function that's a very good example I
+00:14:41.079 like that I like the way that they
+00:14:42.399 formatted that okay and now to the fun
+00:14:45.160 part and now to the extra juicy part the
+00:14:47.759 questions let's see what they got for us
+00:14:50.000 try running the S3 API command get
+00:14:52.519 bucket ownership controls against the
+00:14:54.720 try hackme public bucket what is the
+00:14:56.880 object ownership value set to so we
+00:14:58.959 should be able to do AWS S3 API and then
+00:15:03.560 looks like the command is get bucket
+00:15:06.079 ownership and control let's just do copy
+00:15:08.199 and
+00:15:09.240 then um I think it needs the flag like
+00:15:12.199 this tac tac bucket and then we want
+00:15:14.790 [Music]
+00:15:17.000 the try hackme public bucket and let's
+00:15:20.440 see if I got this
+00:15:23.360 right okay awesome so it says object
+00:15:26.480 ownership bucket owner preferred let's
+00:15:29.040 see if that's correct I think it
+00:15:32.959 is all right cool so for object
+00:15:35.160 ownership in that try hackme public
+00:15:36.759 bucket the object ownership is set to
+00:15:38.600 bucket owner preferred and then try
+00:15:41.240 invoking the Lambda function try ha me
+00:15:43.000 quote in the same account what's the
+00:15:45.240 quote returned from the function so same
+00:15:48.040 account I'm thinking is referring to
+00:15:49.560 when we invoke this other function a
+00:15:51.519 minute ago so we could probably reuse
+00:15:54.720 most of this command so let's just paste
+00:15:57.880 that I guess I could could have just
+00:15:59.160 scrolled up in my history but I didn't
+00:16:00.759 think of it till right that moment try
+00:16:02.480 invoking the Lambda function try hack me
+00:16:04.160 quote so they're telling us here that
+00:16:07.480 try invoking the Lambda function try
+00:16:09.199 hack me quote in the same account what's
+00:16:11.480 the quote return from the function so
+00:16:14.360 when we target a Lambda function with
+00:16:16.160 this command the function name argument
+00:16:18.720 here we're sending the RN of the Lambda
+00:16:21.000 function as the argument and you might
+00:16:23.959 remember from an earlier room that the
+00:16:25.880 AR always has the same format it's just
+00:16:28.600 certain values that are changing so for
+00:16:30.839 example uh this part of the r is the
+00:16:33.079 region and it doesn't say this but I
+00:16:34.759 guess we're just going to have to uh
+00:16:36.279 like presume for now for our first try
+00:16:39.160 that the new Lambda function is in the
+00:16:42.000 same region and then they did tell us
+00:16:43.800 it's the same account so that part stays
+00:16:45.680 the same this part that says this part
+00:16:48.120 that says function stays the same the
+00:16:49.920 only thing that needs to change is the
+00:16:51.920 function name in the R so they told us
+00:16:55.839 that the one we want to Target now
+00:16:57.319 instead of time you want quote and I
+00:17:00.639 think if my memory serves me correctly
+00:17:02.680 what's going on here is that we're uh
+00:17:04.760 like saving the output to a file and
+00:17:07.119 then we're cading that file so let's
+00:17:09.799 just change the name to be accurate here
+00:17:12.359 and then we'll make the response um a
+00:17:14.240 little bit more parsable so let's see if
+00:17:15.799 we got this right and if we can invoke
+00:17:17.439 this other Lambda
+00:17:19.439 function we successfully invoked the
+00:17:21.880 Lambda function and got that 200 status
+00:17:23.919 code back and let's see what kind of
+00:17:26.240 output we got all right what's the quote
+00:17:29.720 returned from the
+00:17:32.520 function so the Lambda function returned
+00:17:34.919 most heard comment at reinvent dude
+00:17:37.360 Lambda is the coolest ever wner
+00:17:39.919 rogals 2014 which I think 2014 was
+00:17:43.240 pretty close to the first reinvent if
+00:17:45.559 not the first reinvent I'm not 100% sure
+00:17:47.640 about that maybe I'll look it up later
+00:17:48.760 so that I won't be spreading fake news
+00:17:50.600 on my video but anyway let's see so we
+00:17:52.640 want the quote is our flag and most
+00:17:56.880 heard comment at reinvent so it starts
+00:17:59.440 with the
+00:18:00.559 four what's the quote all right so let's
+00:18:03.520 see if it
+00:18:04.880 wants so we know it starts with um a
+00:18:07.840 fourl word and then a felter word which
+00:18:10.679 like most heard and it says what's the
+00:18:12.760 quote so let's
+00:18:14.520 try this perhaps oh but it could be this
+00:18:18.039 dude oh but there but there's no comma
+00:18:20.320 so let's try the whole
+00:18:23.960 thing and let's see if that's
+00:18:27.000 correct o all right Boo w w no um most
+00:18:32.400 heard
+00:18:34.320 comment let me let's delete this so we
+00:18:37.200 can see our little input guide
+00:18:39.840 here most most heard comment
+00:18:45.480 at I think maybe part of what's
+00:18:47.640 Happening Here is this gets cut off so
+00:18:49.240 we can't see the whole thing so I'm just
+00:18:52.240 going to try giving it the entire output
+00:18:54.200 instead of just the quote and if you
+00:18:56.799 don't know who Warner Vogal is he is the
+00:18:59.240 CTO of Amazon and he's like speaks at
+00:19:01.520 reinvent a lot and really smart and very
+00:19:03.200 iconic and famous so this is his quote
+00:19:05.520 and he must have heard a lot of people
+00:19:07.280 saying Lambda is the coolest ever
+00:19:09.200 which is very cool I agree with that all
+00:19:11.080 right so let's post the whole thing even
+00:19:14.520 though this is so bothersome because
+00:19:16.400 look at this there's no quote at the
+00:19:18.840 beginning there is a quote at the end if
+00:19:20.840 this is right but we got it that's what
+00:19:23.559 they wanted and now we'll move on to
+00:19:25.400 task four which is about service control
+00:19:27.280 policies service control policies are
+00:19:29.440 associated with AWS organizations or are
+00:19:31.880 a function of AWS organizations is what
+00:19:33.919 it says here so when you hear scps or
+00:19:36.600 service control policies think AWS
+00:19:39.200 organizations they exist outside of your
+00:19:41.520 AWS account and then they're applied by
+00:19:44.039 the parent organizations management
+00:19:45.880 account if your account is a member of
+00:19:47.799 an AWS organization like ours as we saw
+00:19:50.360 earlier with the Lambda resource policy
+00:19:53.280 then you might have a service control
+00:19:55.120 policy or more than one service control
+00:19:57.120 policy applied to your account via that
+00:19:59.720 organization and a service control
+00:20:01.799 policy is applied to every principal in
+00:20:04.400 the account so every user every role
+00:20:06.120 every I am principal in the account
+00:20:08.080 including the root user so this is the
+00:20:10.280 only way you could have limitations of
+00:20:12.520 the permissions of a root user in an AWS
+00:20:15.000 account is if that AWS account is part
+00:20:17.400 of an AWS organization the root user
+00:20:19.360 could have a SCP that restricts the root
+00:20:21.720 user permissions service control
+00:20:23.679 policies are typically leveraged by
+00:20:25.559 Enterprise security or compliance teams
+00:20:27.440 to ensure that the corporate directives
+00:20:29.400 for cloud usage bind to even account
+00:20:31.960 administrators across an AWS
+00:20:33.880 organization again just getting across
+00:20:35.520 that point of this is the way that you
+00:20:37.280 would put restrictions even on
+00:20:39.039 administrators in an account is to use
+00:20:41.360 service control policies and to enforce
+00:20:43.600 the same standards on every principle in
+00:20:45.640 the account service control policies
+00:20:47.400 could be for example configured to
+00:20:49.039 prevent disabling cloud trail which is
+00:20:51.159 the AWS auditing service you don't want
+00:20:53.159 anybody to be able to turn off cloud
+00:20:55.200 trail in any account in the organization
+00:20:57.080 you could use a service control policy
+00:20:59.080 to apply that restriction another use
+00:21:01.960 case that give us an example here is you
+00:21:03.440 could use service control policies to
+00:21:05.400 prevent using AWS services that a legal
+00:21:08.000 department has not yet vetted so you
+00:21:10.600 could have a service control policy at
+00:21:12.320 the root of your organization that only
+00:21:14.600 approves certain services to be used in
+00:21:16.679 the organization and then wait until
+00:21:18.520 legal has vetted a new service to add it
+00:21:21.000 to the service control policy so it's
+00:21:22.799 again just like that control at scale
+00:21:25.360 that enforcement of rules and
+00:21:27.039 permissions at scale
+00:21:28.600 then there's one more example they could
+00:21:30.200 also limit actions to specific roles for
+00:21:32.840 example only the global network
+00:21:34.400 administrator role in an organization
+00:21:36.320 would be the only person would be the
+00:21:38.080 only I am principal allowed to manage
+00:21:40.279 VPC route tables which is a good example
+00:21:43.320 users in an AWS account cannot view the
+00:21:45.799 service control policies applied to the
+00:21:47.720 account if you're just the meager
+00:21:49.840 peasant account in the organization
+00:21:51.640 there's no way for you to see what
+00:21:53.120 service control policies are applied to
+00:21:54.720 your account until recently AWS didn't
+00:21:58.240 even tell a user that was denied an
+00:22:00.520 action if a SCP was the reason that
+00:22:02.640 action was denied so they must have just
+00:22:04.320 got like a generic access denied type
+00:22:06.799 error however some AWS error messages
+00:22:10.279 will now indicate if an SCP denied an
+00:22:13.240 action okay cool I didn't know that here
+00:22:15.320 is our question for task four this like
+00:22:17.000 short and sweet what are the last four
+00:22:19.279 words of the aor message you get when
+00:22:21.200 you attempt to disable guard Duty with
+00:22:23.559 this command all right cool so they gave
+00:22:25.000 us an example command here and I imagine
+00:22:27.760 this is is probably an action by design
+00:22:30.080 that our service control policy on our
+00:22:32.080 organization and try hackme doesn't let
+00:22:34.400 us do so the command here is AWS guard
+00:22:37.240 Duty delete detector and then detector
+00:22:40.159 ID and then there's a nested command
+00:22:42.840 here so the nested command is AWS guard
+00:22:45.200 Duty list detectors query detector IDs
+00:22:48.880 output text so we're going to get the
+00:22:50.679 output of the list detectors ID which is
+00:22:54.039 going to be the ID we're going to give
+00:22:57.240 as an argument for our delete detector
+00:22:59.880 command which is all probably irrelevant
+00:23:02.120 because it's I don't think going to work
+00:23:03.919 but if you're curious that's what's
+00:23:05.360 going on in this command and let's see
+00:23:07.440 what we
+00:23:09.240 get all right so we got an error
+00:23:11.559 occurred access denied exception when
+00:23:14.240 calling the delete detector operation
+00:23:17.000 and this would be like I would say a
+00:23:18.200 pretty generic error message in AWS so I
+00:23:20.799 think that's maybe what was being
+00:23:22.840 referred to with the like until recently
+00:23:25.720 AWS didn't even tell a user that was did
+00:23:28.200 action if it was a SCP they just saw
+00:23:29.960 maybe something generic like this and
+00:23:32.679 then the part that gets more specific is
+00:23:34.799 that our user is not authorized to
+00:23:37.400 perform delete detector on this guard
+00:23:40.000 Duty resource and the reason why is
+00:23:41.880 because there's an explicit deny and
+00:23:43.679 where That explicit deny is is in the
+00:23:46.120 service control policy so let's see what
+00:23:49.039 was the last four words with an explicit
+00:23:52.320 deny again just emphasizing that service
+00:23:54.840 control policy is applied to that whole
+00:23:56.600 organization or a unit within the
+00:23:58.279 organization and because our account is
+00:24:00.960 part of that organization or
+00:24:02.640 organizational unit we have an explicit
+00:24:05.400 deny in this service control policy that
+00:24:07.159 is overruling any allow we might have
+00:24:09.720 anywhere else all right so let's see
+00:24:12.039 with an explicit deny I think is the
+00:24:14.120 flag here let's hit submit all right and
+00:24:17.039 that was the correct answer so now we
+00:24:19.559 can move on to task five which is the
+00:24:21.480 summary task and this is just wrapping
+00:24:23.559 up the room for us and says now that you
+00:24:26.240 know about I am principles how a policy
+00:24:29.039 is formed and how service control
+00:24:31.039 policies and resource policies inter and
+00:24:33.840 how service control policies and
+00:24:35.360 resource policies interact let's dive
+00:24:38.039 into how authentication Works in AWS in
+00:24:41.080 the Next Room which is going to be
+00:24:42.640 focused on I am credentials I'm overall
+00:24:45.240 having a lot of fun with this if you
+00:24:46.559 couldn't tell and I thought that SCP and
+00:24:48.919 resource policy room was quite good I
+00:24:50.679 like the way they presented that
+00:24:51.720 information to wrap up task five we just
+00:24:54.279 need to answer the question below but
+00:24:56.279 there is no question talk to me about
+00:24:58.080 AWS credentials they're just getting us
+00:25:00.320 hyped up for the next room so we could
+00:25:01.960 hit completed and that completes the
+00:25:04.919 resource policies and service control
+00:25:06.600 policies focused room and I'm excited to
+00:25:09.440 dive into this I am credentials room
+00:25:11.080 probably tomorrow thank you so much for
+00:25:13.000 watching I hope you enjoyed it and I
+00:25:14.679 look forward to seeing you in the next
+00:25:16.520 attacking and defending AWS Room
+00:25:18.559 walkthrough

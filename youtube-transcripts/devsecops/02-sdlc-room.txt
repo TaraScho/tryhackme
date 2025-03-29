@@ -1,0 +1,1366 @@
+# tactiq.io free youtube transcript
+# TryHackMe *New* DevSecOps Learning Path - SDLC (Software Development Lifecycle) Room Walkthrough
+# https://www.youtube.com/watch/hermtE12KI8
+
+00:00:00.240 hi everyone it's Tara welcome to the
+00:00:02.560 channel I have just started going
+00:00:04.759 through the new Dev seg Ops learning
+00:00:07.480 path on try hackme I'm so excited about
+00:00:09.639 it if you watch my other video where I
+00:00:11.599 kind of went over like an overview of
+00:00:12.799 the learning path you might have noticed
+00:00:14.200 I was really on one because I'm just so
+00:00:16.760 excited about this learning path and I
+00:00:18.640 think the rooms are going to be really
+00:00:19.680 fun in this video I walk through the
+00:00:22.400 second room on the learning path which
+00:00:24.240 is about uh it's an intro to the
+00:00:25.920 software development life cycle stlc and
+00:00:29.240 these first like introduction rooms in
+00:00:31.359 the module are really just more uh it's
+00:00:33.160 a lot of reading a lot of background
+00:00:34.640 information a lot of context so we
+00:00:36.280 haven't gotten too much the hands on
+00:00:38.280 stuff yet but in this video we Define
+00:00:40.719 what stlc is go through the different
+00:00:42.559 phases of the software development life
+00:00:44.280 cycle uh talk a little bit about how
+00:00:46.760 devops comes into play and then there is
+00:00:49.000 one like little fun Hands-On exercise at
+00:00:51.079 the end where you practice allocating
+00:00:53.320 resources to different phases of the
+00:00:54.879 software development life cycle so all
+00:00:56.800 that to say this is my walkthrough of
+00:00:59.000 the stlc room and try hack me and I hope
+00:01:02.079 you enjoy the
+00:01:04.519 [Music]
+00:01:11.920 video here we have my dashboard in try
+00:01:15.040 hack me I'm very excited to announce I
+00:01:16.720 finally cracked the top 200,000 so
+00:01:19.360 that's exciting and the next room in the
+00:01:22.360 dev SEC Ops learning path is a room
+00:01:24.400 about the software development life
+00:01:26.079 cycle so let's just go ahead and jump
+00:01:28.759 into this next room
+00:01:30.479 this room is called sdlc an introduction
+00:01:33.320 to the software development life cycle
+00:01:35.799 this is another free room so if you
+00:01:38.040 don't have a try hackme subscription you
+00:01:39.560 could still go to this room and follow
+00:01:41.479 along if you'd like and I'll make sure
+00:01:42.799 to put a link in the video description
+00:01:45.320 this room focuses on the software
+00:01:46.799 development life cycle sdlc framework
+00:01:49.040 its phases and its components we're
+00:01:51.159 going to learn about sdlc framework what
+00:01:53.520 it is why it matters learn about the
+00:01:55.600 different phases in the stlc learn how
+00:01:58.000 to instill security into to the sdlc and
+00:02:01.360 then understand the security sdlc phases
+00:02:04.960 and processes and I noticed the next
+00:02:06.840 room after this is about secure stlc so
+00:02:10.758 kind of be interesting to see how these
+00:02:12.840 two different rooms are structured but
+00:02:14.720 with that we will hit complete for the
+00:02:16.440 intro and jump into task two all right I
+00:02:21.440 just saw something that makes me think
+00:02:23.120 uh we're sticking with our Little Star
+00:02:25.440 Wars theme in this room so that'll be
+00:02:27.080 fun task two stlc what is software
+00:02:30.440 development life cycle the software
+00:02:32.360 development life cycle is a set of
+00:02:33.840 practices that make up a framework to
+00:02:35.640 standardize building software
+00:02:37.239 applications so if you didn't guess by
+00:02:39.640 the name it's about software development
+00:02:41.760 sdlc defines the tasks to perform at
+00:02:44.720 each software development stage this
+00:02:46.879 methodology aims to improve the quality
+00:02:48.760 of the software and the development
+00:02:50.360 process to exceed customer expectations
+00:02:52.959 and meet deadlines and cost estimates so
+00:02:54.760 it's just basically supposed to make
+00:02:56.440 everything better and for example with
+00:02:58.800 customer demand and computing power
+00:03:00.800 increases which raises software cost and
+00:03:03.280 developer dependence stlc provides a way
+00:03:05.720 to measure and improve the development
+00:03:07.400 process by providing insights and
+00:03:09.280 analyzing each stage maximizing
+00:03:11.360 efficiency and reducing cost so having
+00:03:13.080 the different stages helps measure and
+00:03:15.400 improve development process overall to
+00:03:17.440 make improvements and solve
+00:03:19.799 problems how does stlc work and remember
+00:03:23.159 we can click here and see a little
+00:03:24.840 definition of stlc if we want of the
+00:03:26.840 different terms the software development
+00:03:29.040 life cycle provides the guidance
+00:03:30.680 required to create a software
+00:03:32.280 application it does this by splitting
+00:03:34.239 these tasks into phases that form the
+00:03:36.080 software development life cycle
+00:03:37.840 standardizing the tasks within each
+00:03:39.640 phase increases the efficiency of the
+00:03:41.519 development process each phase divides
+00:03:44.280 into granular tasks that can be measured
+00:03:46.640 and tracked so the smaller we can break
+00:03:48.200 things up the better we can measure and
+00:03:49.720 track them I think is the idea here this
+00:03:51.799 introduces the capability of monitoring
+00:03:54.280 to ensure projects stay on track the aim
+00:03:56.959 of sdlc is to establish repeatable
+00:03:59.319 process es and predictable outcomes from
+00:04:01.840 which future projects can benefit sdlc
+00:04:04.480 phases are usually divided into six to
+00:04:06.959 eight phases and the phases are like I
+00:04:09.879 said we're rocking this Star Wars theme
+00:04:11.480 again planning defining requirements
+00:04:14.640 designing and prototyping software
+00:04:17.040 development testing deployment and then
+00:04:20.000 operations and maintenance after the
+00:04:21.440 software is deployed and I don't know if
+00:04:23.360 anyone watching would agree with this
+00:04:24.800 but I always feel like one of the
+00:04:26.520 underrated hardest parts of software
+00:04:29.680 development is this one right here the
+00:04:31.240 defining requirements stage I feel like
+00:04:33.440 when you work with people who are really
+00:04:35.080 really good at this especially if you're
+00:04:36.919 working with customers and external
+00:04:38.320 stakeholders people on the team who are
+00:04:40.080 really good at getting defined
+00:04:41.720 requirements that's like such a
+00:04:43.759 superpower in my opinion all right so
+00:04:46.440 here's a description of each of these
+00:04:48.720 phases planning the planning phase
+00:04:51.160 encompasses all aspects of project and
+00:04:53.160 product management this includes
+00:04:54.880 resource allocation project scheduling
+00:04:57.240 cost estimation Etc requirements
+00:05:00.039 definition is part of the planning to
+00:05:01.720 determine what the application is
+00:05:03.120 supposed to do and its requirements for
+00:05:05.199 example a social media application would
+00:05:07.160 require the ability to connect with a
+00:05:09.000 friend and like I said this one if you
+00:05:10.880 get this one right uh it makes
+00:05:12.520 everything else so much easier and
+00:05:14.479 sometimes your stakeholders might not
+00:05:16.280 even really understand the requirements
+00:05:17.840 yet themselves and that's something you
+00:05:19.120 have to navigate so getting defined
+00:05:20.680 requirements is really
+00:05:22.600 important design and prototyping so that
+00:05:25.639 establishes how the software application
+00:05:27.199 will actually work what kind of
+00:05:28.759 programming language text stack you're
+00:05:30.280 going to use how methods for the
+00:05:32.440 components to communicate with each
+00:05:33.800 other the architecture you're going to
+00:05:35.440 use for the application for example in
+00:05:37.680 this phase you would decide oh maybe
+00:05:38.919 we're going to use a serverless
+00:05:39.880 architecture or maybe we're going to use
+00:05:41.680 these type of servers in this type of
+00:05:43.080 configuration that's the design phase
+00:05:45.199 software development intels actually
+00:05:47.000 building the program writing the code
+00:05:48.880 and then documenting the program as
+00:05:50.600 you're building it testing that's pretty
+00:05:53.199 obvious in that part you test it so you
+00:05:55.840 ensure different components work and can
+00:05:57.919 interact with each other and each
+00:05:59.800 function works correctly different parts
+00:06:01.680 of the application work seamlessly
+00:06:03.160 together and performance-wise there's no
+00:06:05.039 lags in processing Etc deployment in
+00:06:07.960 this stage the application or project is
+00:06:09.919 actually made available to the users in
+00:06:12.240 production and operations and
+00:06:14.360 maintenance this is where Engineers
+00:06:16.319 respond to issues in the application or
+00:06:18.199 bugs and flaws reported by users and
+00:06:20.840 sometimes plan additional features in
+00:06:22.960 future releases nobody will be a better
+00:06:25.800 tester than your actual end user and
+00:06:28.319 companies can choose to rearrange by
+00:06:30.800 splitting or unifying these into six to
+00:06:33.880 eight phases so that was seven on the
+00:06:35.599 list we went over for example we could
+00:06:37.599 merge the testing phase with the
+00:06:39.039 development phase in scenarios where
+00:06:40.720 security is introduced into every
+00:06:42.680 development step as developers fix bugs
+00:06:45.639 during testing it can depend on the
+00:06:47.639 software development model software
+00:06:49.360 development has evolved as we saw in the
+00:06:51.599 intro to devc Ops room and the different
+00:06:54.240 sdlc models include waterfall agile and
+00:06:57.520 devops which are the ones we learned
+00:06:59.120 about in saw in the uh previous room
+00:07:01.919 amongst other models all right and then
+00:07:04.759 the question here is how many phases can
+00:07:07.160 an sdlc have and I think they just told
+00:07:10.000 us the answer to that was 6 to8 so let's
+00:07:13.199 see if that's right and the diagram we
+00:07:16.240 saw had seven so sometimes it's not
+00:07:18.360 exactly like this the phases can be
+00:07:20.639 combined or uh parsed apart even farther
+00:07:23.599 it depends I suppose and then let's see
+00:07:27.280 task three is called SD DC phases part
+00:07:31.360 one all right we got some more reading
+00:07:33.840 here the first phases focus on breaking
+00:07:36.800 down the project or application before
+00:07:39.120 moving on to the development of the
+00:07:40.919 application seems like this section
+00:07:42.599 focuses on the phases that happened
+00:07:45.039 prior to actually coding the application
+00:07:47.960 so first you do the planning and the
+00:07:51.400 planning phase can also be known as the
+00:07:52.960 feasibility stage where you're going to
+00:07:54.720 figure out is this even possible that
+00:07:57.360 like feasibility like could we even
+00:07:59.080 actually build this is it possible are
+00:08:00.879 there limitations in place that would
+00:08:02.280 block this from actually happening and I
+00:08:04.680 have to comment here I have definitely
+00:08:06.120 been in situations before on like
+00:08:08.720 software development projects where the
+00:08:11.159 feasibility stage did not happen right
+00:08:12.960 at the beginning like it should have and
+00:08:14.720 feasibility analysis was not as well
+00:08:17.280 considered during planning as it should
+00:08:18.639 have been and that causes a lot of
+00:08:20.879 heartache and problems down the road so
+00:08:22.840 I definitely think thinking of the
+00:08:24.479 planning stage as a feasibility stage is
+00:08:27.560 a really good mindset you want to be
+00:08:30.000 realizing something isn't possible or
+00:08:32.000 isn't feasible when you're all the way
+00:08:34.719 uh down here actually already writing
+00:08:36.399 the code
+00:08:37.760 um but no matter how good you are I do
+00:08:40.360 think that probably happens sometimes to
+00:08:41.919 everyone regardless the scope and
+00:08:44.800 purpose of the application are
+00:08:46.680 determined that's part of the planning
+00:08:48.760 software development is planned and
+00:08:50.320 implemented Additionally the planning
+00:08:52.200 phase helps to keep the project focused
+00:08:54.040 on its original purpose while setting
+00:08:56.200 boundaries here the system's problem and
+00:08:58.600 scope are finded and I think that means
+00:09:00.760 the system of what you're developing and
+00:09:03.399 the requirements for its upcoming design
+00:09:05.279 can be determined the process of
+00:09:07.279 devising an effective outline for the
+00:09:08.880 forthcoming development cycle should
+00:09:11.160 enable issues to be caught before they
+00:09:12.920 have a detrimental effect on the process
+00:09:15.360 and help them identify the resources
+00:09:17.200 they need to make their plan happen the
+00:09:19.360 planning stage can be crucial if the
+00:09:21.160 goal is to have a product ready for
+00:09:22.800 Market by a specific date so start with
+00:09:25.440 a good plan hopefully you can be on
+00:09:27.279 track to your goal next is requirements
+00:09:29.680 definition A System's requirements stage
+00:09:31.959 involves defining the Prototype ideas
+00:09:34.160 and Gathering all the necessary details
+00:09:36.480 this may be in the form of making a list
+00:09:38.480 of all the requirements for a prototype
+00:09:40.440 system prototypes being evaluated
+00:09:42.760 against Alternatives other possibilities
+00:09:45.200 identifying the end users needs through
+00:09:47.600 research and Analysis and I don't know
+00:09:49.360 if we're going to see it here but you
+00:09:50.600 always hear the phrase user stories a
+00:09:52.680 lot when you're talking about
+00:09:53.760 requirements and that would be like as
+00:09:55.640 an end user I can create an account as
+00:09:57.880 an end user I can add a friend as an end
+00:10:00.480 user I can add items to my car as an end
+00:10:02.920 user I can check out all those kind of
+00:10:05.320 things um and when your requirements
+00:10:07.200 Gathering you're figuring out what are
+00:10:09.040 the specific requirements that this
+00:10:10.839 product needs for the end user to be
+00:10:12.760 able to use it that's one thing the end
+00:10:14.560 user using the product is part of it and
+00:10:16.600 then requirements Gathering is also
+00:10:18.440 about like what kind of traffic does
+00:10:20.440 this system need to be able to handle
+00:10:22.519 what kind of scalability do we need
+00:10:24.480 where in the world do we need
+00:10:25.560 infrastructure deployed the technical
+00:10:27.399 requirements around things like capacity
+00:10:29.240 would be part of a good requirements
+00:10:31.000 planning stage as well and let's see oh
+00:10:34.640 I I forgot there was more three here
+00:10:36.120 this probably all going to this say the
+00:10:37.360 same stuff okay planning for the
+00:10:39.200 application defining the requirements to
+00:10:41.320 determine what it should do and its
+00:10:42.800 needs an application that uses social
+00:10:44.839 media for example would require you to
+00:10:46.560 connect with a friend or in some
+00:10:48.760 inventory programs there is a search
+00:10:50.519 feature so a search feature would be an
+00:10:52.519 example of requirement defining the
+00:10:54.560 resources needed to build the project
+00:10:56.320 according to the requirements is also
+00:10:57.880 critical for example example software
+00:10:59.880 may be developed to control a Custom
+00:11:01.720 Manufacturing machine a device is
+00:11:03.760 required for the process it's common for
+00:11:05.800 developers to produce a document known
+00:11:07.440 as a software requirement specification
+00:11:09.880 or
+00:11:11.560 SRS the next of these pre-development
+00:11:14.519 phases is design and prototyping so it's
+00:11:17.519 necessary for developers to outline the
+00:11:19.480 details of the overall application
+00:11:21.399 including its attributes such as
+00:11:23.040 interfaces for users interfaces between
+00:11:25.639 systems requirements for different
+00:11:27.480 networks and instances of the databases
+00:11:30.200 that the application is going to rely on
+00:11:32.480 and then the software requirement
+00:11:34.040 specification docs we just talked about
+00:11:35.880 would be converted into logical
+00:11:37.880 structures implemented in programming
+00:11:39.560 languages plans for operating training
+00:11:41.720 and maintaining the system will be drawn
+00:11:43.480 up to ensure developers know what they
+00:11:45.560 need to do through the life cycle here
+00:11:47.440 are a few examples okay good so example
+00:11:50.120 one an architecture specifies how codes
+00:11:52.480 are written industry practices the
+00:11:54.399 overall design in any templates or
+00:11:56.160 boiler plates used within the program in
+00:11:59.079 put is received and processed by the
+00:12:00.720 software through the user interface
+00:12:02.600 which defines how the software interacts
+00:12:04.200 with customers defining a platform means
+00:12:06.480 choosing which media will run the
+00:12:08.519 software it is not only about
+00:12:10.440 programming languages but it's also
+00:12:11.800 about solving problems in performing
+00:12:13.519 tasks in an application a communication
+00:12:16.720 method specifies how an application
+00:12:19.480 communicates with other assets such as a
+00:12:21.839 central server or other instances of the
+00:12:24.120 application application security
+00:12:26.120 measures may include SSL traffic
+00:12:28.000 encryption password protection and user
+00:12:30.600 credential storage so you'd be
+00:12:32.399 considering all these things I guess
+00:12:33.600 during this design phase a document
+00:12:36.000 called an architecture design review or
+00:12:38.040 Ard is typically created by engineers
+00:12:40.639 and developers at this stage to ensure
+00:12:43.600 that all teams working in different
+00:12:45.160 areas are on the same page in the case
+00:12:47.680 of a API endpoint for example front end
+00:12:50.519 and backend developers and teams
+00:12:52.120 handling authentication and
+00:12:53.480 authorization would be involved in that
+00:12:55.760 architecture design review process okay
+00:12:58.639 good example and then lastly software
+00:13:01.839 development so that's when it starts
+00:13:03.240 getting juicy the code is actually
+00:13:04.880 getting written and an application is
+00:13:06.680 developed based on all the
+00:13:07.880 specifications and designs that you did
+00:13:09.720 in these earlier phases software
+00:13:11.880 developers appreciate instructions and
+00:13:14.120 explanations playbooks and guides for
+00:13:16.279 the application can be documented as
+00:13:18.079 part of the documentation process
+00:13:20.199 developers will use compilers debuggers
+00:13:22.360 and interpreters to adhere to coding
+00:13:24.920 guidelines established by an
+00:13:26.199 organization a very effective initiative
+00:13:28.480 to OTE secure coding would be
+00:13:30.279 incorporating code hygiene code best
+00:13:32.519 practices and Security in playbooks all
+00:13:35.639 right and then the first question here
+00:13:37.199 what phase focuses on determining the
+00:13:39.279 first idea for a prototype so that's
+00:13:42.040 probably one of the top ones here yeah
+00:13:45.480 okay so requirements definition is about
+00:13:47.839 defining the prototype's ideas and
+00:13:49.839 getting all the necessary details so
+00:13:51.519 let's see if it's requirements
+00:13:57.759 definition
+00:14:00.320 this like really lagging for some reason
+00:14:02.680 so the hype and anticipation is just
+00:14:04.560 building in such a dramatic manner all
+00:14:07.040 right what stage is also known as the
+00:14:08.959 feasibility stage so I think we learned
+00:14:11.720 that's the planning stage right because
+00:14:13.040 I went on like my little Rampage about
+00:14:14.440 it okay so planning phase I noticed the
+00:14:17.680 answer is two words let's see if this is
+00:14:22.880 right might be planning stage let's try
+00:14:27.680 that
+00:14:29.320 yeah okay so planning stage and then
+00:14:32.519 when do you outline the user interfaces
+00:14:34.880 and network requirements so that was
+00:14:36.639 that a third stage which is called
+00:14:40.120 design and
+00:14:42.399 prototyping all
+00:14:47.839 right okay so that's task three nothing
+00:14:50.360 too crazy here just reading and trying
+00:14:52.120 to get up to speed on all these
+00:14:53.959 different important Concepts next is
+00:14:57.160 Task four which is going to cover the
+00:14:58.759 other phases of the life
+00:15:01.240 cycle stlc phases part two the final
+00:15:04.839 phases focus on testing the application
+00:15:06.800 before release and then maintaining its
+00:15:08.680 healthy operability afterwards so it's
+00:15:11.920 critical to test an application before
+00:15:13.800 making it available to
+00:15:17.920 users I don't know why that made me
+00:15:19.839 laugh but it really did okay during the
+00:15:21.839 testing stage developers will review
+00:15:23.880 their software using automated tooling
+00:15:26.279 like source code scanners the Project's
+00:15:28.279 goal is to meet the previously defined
+00:15:29.920 quality standards that we set up during
+00:15:31.720 the planning and requirement stages
+00:15:33.720 testing is an essential pillar in moving
+00:15:36.160 towards a more secure development life
+00:15:38.199 cycle right because you want to catch
+00:15:40.040 anything you can before it makes it to
+00:15:41.839 production where end users are
+00:15:43.399 interacting with it and to introduce
+00:15:46.120 testing effectively in the stlc it has
+00:15:49.000 to go through its own software testing
+00:15:50.839 life cycle phases sometimes there are
+00:15:53.160 dedicated teams as part of a testing
+00:15:55.000 function for example a QA team with the
+00:15:57.600 quality analysis Engineers testing
+00:15:59.440 engineers and I've never gotten to work
+00:16:01.120 on a project with a QA team so I don't
+00:16:03.360 know I'm not very knowledgeable about
+00:16:04.920 that but hopefully like will learn some
+00:16:06.480 more about it and then the most notable
+00:16:09.000 phases when introducing testing are test
+00:16:11.639 case design and development test
+00:16:13.680 environment setup and test execution
+00:16:16.360 okay so let me catch that again the most
+00:16:18.639 notable phases for testing test case
+00:16:20.639 design and development test environment
+00:16:23.160 setup and test execution test case
+00:16:26.319 design and development with the test
+00:16:28.120 plan in place testers begin writing and
+00:16:30.399 creating detailed test cases in this
+00:16:33.399 phase the QA team flushes out the
+00:16:35.160 details of the structured test they will
+00:16:37.480 run so you want to achieve like as much
+00:16:39.240 as what's called test coverage as you
+00:16:40.959 can and you write different test cases
+00:16:43.440 to basically try to test all the
+00:16:45.160 different components of your application
+00:16:47.199 past way the application could interact
+00:16:49.639 Etc so you want detailed different test
+00:16:52.199 cases you don't just want to test One
+00:16:54.399 path you want to catch your edge cases
+00:16:56.440 everything like that when concep izing
+00:16:58.920 test cases the tester's goal should be
+00:17:01.079 validate functionality within the
+00:17:02.600 allotted time and scope you have for
+00:17:04.280 testing especially the core
+00:17:05.720 functionalities test cases should be
+00:17:07.760 simple well understood by any team
+00:17:10.119 member and unique from other test cases
+00:17:12.799 test cases must be identifiable and
+00:17:14.959 repeatable as developers will add new
+00:17:17.319 functionality to the product over time
+00:17:19.839 requiring tests to run again they can't
+00:17:22.439 change the test environment for future
+00:17:24.240 tests especially when validating
+00:17:26.199 configurations test cases might also
+00:17:28.439 require maintenance or updates over time
+00:17:30.120 to validate both new and existing
+00:17:32.360 functionality once test cases are ready
+00:17:34.799 a test team lead or peer can review them
+00:17:37.360 or check and update automated test
+00:17:39.640 scripts and then usually your testing is
+00:17:41.840 automated um and probably part of your
+00:17:44.080 cicd
+00:17:45.760 pipeline test environment setup the test
+00:17:48.480 environment provides the setting where
+00:17:50.120 the actual testing occurs testers must
+00:17:52.640 access bug reporting capabilities in the
+00:17:54.600 application architecture to support the
+00:17:56.320 product once ready testers establish
+00:17:58.480 Lish the test environment's parameters
+00:18:00.200 including the hardware software test
+00:18:02.240 data Frameworks configurations and the
+00:18:04.360 network for example most of a products
+00:18:06.480 users might be on an Android device use
+00:18:09.320 a specific version of a Chrome browser
+00:18:11.240 and have a certain amount of processing
+00:18:12.880 power on their devices so these are the
+00:18:15.520 types of parameters that you would then
+00:18:17.640 include when you're setting up the test
+00:18:19.600 environment and you may have heard the
+00:18:21.000 joke about like testing in prod you
+00:18:23.000 don't want to be testing new code in
+00:18:25.480 your production environment where your
+00:18:26.799 actual application runs you want to have
+00:18:28.760 a separate test environment set up and
+00:18:31.080 you want to have that test environment
+00:18:33.120 be as similar to the production
+00:18:36.039 environment as possible and this kind of
+00:18:37.720 like saying you want to be testing it in
+00:18:39.440 a way that's most similar to how your
+00:18:40.799 users actually interact with it um so
+00:18:44.000 the more you can have your test
+00:18:45.360 environment the same as your production
+00:18:47.880 environment but just with test data
+00:18:49.480 instead of real customer data and stuff
+00:18:51.200 like that the better but sometimes it's
+00:18:53.280 cost prohibitive to have two fully
+00:18:56.480 formed environments so a lot of times
+00:18:57.799 especially in the Cloud your test
+00:18:59.559 environment might model the exact
+00:19:01.840 architecture of your production
+00:19:03.000 environment but have smaller cheaper
+00:19:05.320 resources for example so smaller server
+00:19:07.679 smaller database just like a cheaper
+00:19:09.720 kind of Shadow version of your
+00:19:11.520 production environment and then test
+00:19:14.159 execution so in the test execution stage
+00:19:17.360 testers execute all the test cases that
+00:19:19.440 we wrote and designed in the test case
+00:19:21.760 design phase for example QA engineers
+00:19:24.640 and automated scripts run several
+00:19:26.360 functional and non-functional tests
+00:19:28.440 testers will identify and Report
+00:19:30.159 detailed bugs from test case execution
+00:19:32.760 and then log the system performance to
+00:19:35.039 compare to what the requirements are
+00:19:37.159 often testers retest the product as part
+00:19:39.559 of regression testing as developers make
+00:19:41.720 fixes to ensure new flaws don't make it
+00:19:44.320 into production with all of these tests
+00:19:46.840 piling up in the test execution phase
+00:19:49.360 it's essential to use test automation to
+00:19:51.360 achieve the test coverage and velocity
+00:19:53.080 you need developer velocity is a metric
+00:19:55.240 that helps us understand and estimate
+00:19:57.320 how much development are our team can
+00:19:58.840 perform in a given time frame all right
+00:20:02.120 and then deployment is after we test it
+00:20:04.600 we actually deploy the software so after
+00:20:07.320 testing the overall design for the
+00:20:09.000 software starts to come together and
+00:20:10.840 different modules or configurations are
+00:20:13.320 integrated into the primary source code
+00:20:15.880 after this stage the software is
+00:20:17.600 theoretically ready for market and
+00:20:19.440 provided to end users many companies
+00:20:21.799 automate the deployment phase using
+00:20:23.400 tools we will later see in the dev
+00:20:25.039 secops pathway these tools focus on what
+00:20:27.480 you call software deployment tools or
+00:20:30.080 release management the focus is on
+00:20:32.200 automating software rollouts so that the
+00:20:33.960 team can deploy new applications on all
+00:20:36.679 machines or just selected ones there's a
+00:20:38.320 lot of different ways to deploy software
+00:20:41.039 sometimes you do like blue green or
+00:20:42.760 Canary deployment and you just deploy to
+00:20:44.559 a certain set of users at first the
+00:20:45.919 changes to see how it goes there's a
+00:20:47.880 whole world out there of ways you can
+00:20:49.600 deploy software
+00:20:52.159 and let's see and deploying new
+00:20:54.400 applications on all machines or just
+00:20:55.799 selected ones this is particularly
+00:20:58.120 important if a new package requires
+00:21:00.120 actions to deploy correctly for example
+00:21:02.080 a reboot of the machine so if you have
+00:21:03.960 to reboot your servers for example to
+00:21:05.799 deploy your update you can't you don't
+00:21:07.880 want to be probably rebooting every
+00:21:09.760 server at once making the update to
+00:21:11.000 every server at once because then your
+00:21:12.120 application's going to be offline
+00:21:14.159 popular software deployment tools are
+00:21:15.720 netlify and Argo CD so I think netlify
+00:21:18.200 I've used before Argo CD I've never used
+00:21:20.559 and during the deployment phase a new
+00:21:22.360 feature on the company's website can be
+00:21:24.520 released or in case of mobile
+00:21:26.120 development download a new application
+00:21:28.159 like the App Store you go download a new
+00:21:29.720 version of the application on a
+00:21:31.000 smartphone that's because they've
+00:21:32.400 deployed a new release furthermore
+00:21:34.880 automating the deployment processes also
+00:21:37.039 allows the capability to roll back a
+00:21:38.799 deployment making it easier to go back
+00:21:40.919 if there are unforeseen circumstances
+00:21:43.039 with the deployment that's a huge
+00:21:44.880 benefit of cicd continuous deployment is
+00:21:47.400 the more often you're deploying if you
+00:21:49.240 do have to roll back you can roll back
+00:21:51.480 to a closer State rather than like all
+00:21:53.720 the way back to the beginning and seven
+00:21:55.600 operations and maintenance always a
+00:21:57.000 challenge develop velers must now move
+00:21:59.120 into maintenance mode and begin
+00:22:00.480 practicing any activities required to
+00:22:02.480 handle issues that the end users might
+00:22:04.679 report as they start actually using the
+00:22:06.440 software furthermore developers are
+00:22:08.760 responsible for implementing changes the
+00:22:10.440 software might need after deployment in
+00:22:12.720 this phase users discover bugs that
+00:22:15.440 weren't found during testing for example
+00:22:18.080 handling residual bugs that could not be
+00:22:20.159 patched before launch or resolving new
+00:22:22.600 issues raised during user reports so
+00:22:25.360 sometimes you maybe don't have the
+00:22:26.400 luxury of time to fix all the bugs that
+00:22:28.679 you know are there before you have to
+00:22:30.559 make a release so you prioritize the
+00:22:32.880 bugs that absolutely have to be fixed
+00:22:34.279 and then even after the software has
+00:22:35.600 been released you still have a backlog
+00:22:37.919 of bugs you know you need to address so
+00:22:40.200 that would be part of this phase here
+00:22:42.640 and developers now focus more on
+00:22:44.200 stability and uptime then developer
+00:22:46.360 velocity and the operations team now has
+00:22:48.600 a stake in developer velocity and their
+00:22:50.440 traditional role of maintaining uptime
+00:22:53.320 when it comes to the specific part of
+00:22:54.760 operations in devops this often means
+00:22:57.720 that
+00:22:58.720 they so I think maybe this they means
+00:23:01.520 operations team here they enable
+00:23:03.520 self-service for developers to promote
+00:23:05.480 developer velocity where developers seek
+00:23:07.400 their Solutions operations teams work
+00:23:10.240 closely with developers to provide
+00:23:11.679 OnDemand access to secure compliant
+00:23:13.679 tooling and environments they
+00:23:15.679 standardize tooling and processes across
+00:23:17.640 the business the best way to enable a
+00:23:19.679 sustainable self-service model and
+00:23:21.600 Empower teams to work autonomously is by
+00:23:23.720 standardizing the tooling tools and
+00:23:25.960 techniques that are standardized and
+00:23:27.480 well mented enable organizational unity
+00:23:29.960 and greater collaboration this reduces
+00:23:32.360 the friction developers and operations
+00:23:34.360 teams experience when sharing
+00:23:36.240 responsibilities and then lastly it says
+00:23:38.440 they and I I'm so sorry I can't figure
+00:23:40.480 out like I think they is the operations
+00:23:43.039 team but if I have that wrong somebody
+00:23:44.919 tell me because I'm not quite
+00:23:47.400 understanding but I guess I could be
+00:23:49.520 wrong but I'm thinking this they means
+00:23:51.279 the operations team again the oper they
+00:23:53.880 are bringing extensible automation to
+00:23:55.760 traditional operations tasks Dev Dev Ops
+00:23:58.200 teams oh so maybe means devops teams
+00:24:00.200 devops teams focus on empowering other
+00:24:02.159 teams through self-service and
+00:24:03.600 collaboration standard operations tasks
+00:24:05.919 like resolving incidents updating
+00:24:07.640 systems or scaling infrastructure still
+00:24:10.000 need to be addressed when development
+00:24:11.960 and devops work closely together teams
+00:24:14.080 automate the repeatable tasks and drive
+00:24:16.480 consistency across the organization
+00:24:18.559 that's the dream and devops teams can
+00:24:21.120 track and monitor metrics thanks to
+00:24:23.080 consistency and automation of tasks for
+00:24:25.679 example by automating the creation of
+00:24:27.320 your virtual machines in the cloud
+00:24:28.880 through terraform which terraform is
+00:24:30.399 infrastructure as code if you've done
+00:24:32.360 the intro to Dev secc Ops room that we
+00:24:33.960 talked about that a little bit and you
+00:24:35.840 can log activity for virtual machines
+00:24:38.399 created in accessed you can extend this
+00:24:40.720 further by creating alerts for how the
+00:24:42.480 service accounts and roles are used to
+00:24:45.039 develop infrastructure from a security
+00:24:46.760 and compliance point of view as
+00:24:48.880 operations teams shift towards greater
+00:24:50.880 automation X as code becomes the new
+00:24:54.159 normal and I think the X stands in for
+00:24:56.679 things like infrastructure code
+00:24:58.120 configuration as code Etc as example I
+00:25:01.600 think this is supposed to say an example
+00:25:03.080 of this would be vagrant or anible the
+00:25:05.520 code controlling operation systems must
+00:25:07.320 be stored versioned secured and
+00:25:09.159 maintained all right so that was task
+00:25:11.600 four which phase focuses on handling
+00:25:14.480 issues or bugs reported by the end user
+00:25:17.039 so that was Operation and maintenance I
+00:25:18.799 think
+00:25:19.960 yep why spell when we live in the future
+00:25:24.279 so let's do that okay which phase
+00:25:27.120 involves releasing new versions of the
+00:25:29.320 software so that was deployment I
+00:25:36.200 think and what phase ensures software
+00:25:38.600 meets the standards defined in the
+00:25:40.200 requirements phase so that was
+00:25:43.360 testing let's
+00:25:45.679 see I guess I could have just I had to
+00:25:48.080 scroll that far I guess I could have
+00:25:49.279 just typed testing but that's okay so
+00:25:52.120 let's see testing and that is Task four
+00:25:56.000 which was completes the overview of the
+00:25:57.440 different SCC phases and I just want to
+00:25:59.360 scroll back up really quick because I
+00:26:01.279 did really like maybe it was under here
+00:26:03.960 because I did really like this graphic
+00:26:06.000 the seven phases of software development
+00:26:08.240 life cycle so I'm going to try to
+00:26:09.520 remember this but this like one I'm
+00:26:11.559 beyond just the content I also dislike
+00:26:13.360 it because I like this glowing blue is
+00:26:15.320 like one of my favorite colors okay all
+00:26:17.240 right so that was task four done and now
+00:26:19.360 I'm going to move on to task
+00:26:22.559 five task five is called Keep Calm this
+00:26:25.440 links to nassan post that's I think
+00:26:27.399 pretty
+00:26:28.159 wellknown but it's about a framework
+00:26:29.559 called the CMS framework and CMS as
+00:26:32.840 explained in the linked at lassan post
+00:26:34.679 I'll link below in the video to is a
+00:26:36.600 framework that assesses a company's
+00:26:38.240 ability to adopt devops processes the
+00:26:41.039 acronym was coined by jez Humble
+00:26:43.240 co-author of the devops handbook which
+00:26:45.000 stands for culture automation lean
+00:26:47.399 measurement and sharing can we just take
+00:26:49.240 a minute to say jez humble is an
+00:26:51.799 incredible name I'm like so jealous that
+00:26:53.520 that is that person's name so anyway
+00:26:56.080 what's the point okay so call stands for
+00:26:58.279 culture automation lean measurement and
+00:27:00.640 sharing culture as we talked about in
+00:27:03.159 the intro to devc Ops room devops isn't
+00:27:05.399 simply a process or a different approach
+00:27:07.120 to development it needs to be a culture
+00:27:08.919 change there needs to be cultural buyin
+00:27:11.000 for any devops adoption to be successful
+00:27:13.360 an organization will have to make a
+00:27:15.360 culture shift rather than slower full
+00:27:17.640 release approach of the waterfall model
+00:27:19.679 teams will have to adopt new strategies
+00:27:21.880 to break projects into smaller tasks
+00:27:24.039 that can be completed and then presented
+00:27:25.840 in a series of sprints the culture shift
+00:27:28.360 is required for all employees including
+00:27:30.799 not only the development teams but also
+00:27:33.000 QA product management and operations and
+00:27:35.679 if you're not familiar with the term
+00:27:37.320 Sprints so that's like an agile term I
+00:27:39.600 mean I think that's how the context I
+00:27:41.039 know it in it's an agile term and
+00:27:42.840 usually Sprints are um short
+00:27:45.240 concentrated periods of work so weekl
+00:27:47.279 long Sprints two week long Sprints and
+00:27:48.960 you're trying to hit a certain
+00:27:50.760 development Milestone by the end of your
+00:27:52.559 Sprint so again instead of like the
+00:27:54.399 waterfall methodology of developing the
+00:27:56.000 whole program and then releasing it
+00:27:57.519 usually you have a two-e Sprint and a
+00:27:59.279 lot in a lot of organizations your goal
+00:28:01.159 at the end of the Sprint might be able
+00:28:02.360 to be might be to release a new feature
+00:28:04.679 or something like that all right and
+00:28:06.200 then we have automation automation which
+00:28:09.360 is the a in columns a large part of
+00:28:11.399 devops is the focus on automation since
+00:28:13.640 we are breaking projects into smaller
+00:28:15.159 components it would be inefficient to
+00:28:16.760 then manually integrate these components
+00:28:18.480 into the final solution thus it is
+00:28:20.600 better to spend some time creating
+00:28:22.399 automated processes that can ensure that
+00:28:24.760 new feature Integrations can occur in a
+00:28:26.600 reliable and rep able manner this is
+00:28:28.760 usually started on the continuous
+00:28:30.120 delivery side of things for new teams
+00:28:32.200 but as teams mature it will also move to
+00:28:34.360 continuous integration and automation is
+00:28:36.120 like one of my favorite topics I think
+00:28:37.640 it's so fun it feels so good when you
+00:28:39.799 think of something you could automate
+00:28:41.120 and then you automate it and then it
+00:28:42.720 works like uh that's one of my favorite
+00:28:44.600 things to do in software development
+00:28:46.240 there's a famous like joke and
+00:28:47.600 expression that I'm totally guilty of
+00:28:49.679 which is like why I do in 5 minutes what
+00:28:52.200 you could take 10 hours to automate
+00:28:53.640 that's very much me like I love
+00:28:55.399 automating things all right mature c
+00:28:57.600 teams can also look to automate the
+00:29:00.039 configuration itself through tools such
+00:29:01.880 as configuration as code this means that
+00:29:04.440 the configuration of the application
+00:29:05.840 itself is defined in code which would
+00:29:08.120 alter build instructions depending on
+00:29:09.960 the environment that the application is
+00:29:11.399 built for this streamlines the process
+00:29:13.679 of building production ready code and
+00:29:15.600 configuration parameters could be used
+00:29:17.240 to reduce the Robos of Errors for
+00:29:19.159 example or remove developer bypasses
+00:29:21.799 before code is built for the production
+00:29:23.799 environment so you could use different
+00:29:25.399 variables to automate your build so that
+00:29:28.440 you're building the software differently
+00:29:30.080 for different environments the L is lean
+00:29:32.840 by implementing devops we want to make
+00:29:34.440 sure that tasks are broken as small as
+00:29:36.720 possible this allows teams to create
+00:29:38.760 initial versions of applications sooner
+00:29:41.080 the common principle is that we are
+00:29:42.760 constantly improving our software but it
+00:29:45.000 is more valuable to get a version of our
+00:29:46.640 application into the hands of the users
+00:29:48.559 earlier rather than having to wait years
+00:29:50.640 until the product is fully perfected you
+00:29:53.080 want to just get the product in the
+00:29:54.760 hands of the end users so they can start
+00:29:56.080 using it and they you can start start
+00:29:57.480 getting more real active feedback from
+00:29:59.200 the actual audience this we start with a
+00:30:01.480 lean first version that is constantly
+00:30:03.600 improved with time another term that's
+00:30:05.480 similar to lean first version that you
+00:30:07.360 hear sometimes is MVP minimum viable
+00:30:10.080 product and that's the same idea as soon
+00:30:12.039 as you have something that you can
+00:30:13.320 release just release it and then keep
+00:30:15.000 building even with that first version
+00:30:16.880 out there keep building keep improving
+00:30:18.440 upon it this method also allows our user
+00:30:20.799 base to provide feedback and a wish list
+00:30:22.640 of features for the application so we
+00:30:24.480 can build our application with a lot
+00:30:26.200 more input from the users the m stands
+00:30:29.600 for measurement when implementing devops
+00:30:32.440 it is important to have some sort of
+00:30:34.039 measure of Effectiveness these metrics
+00:30:36.240 are important since they will help us
+00:30:37.600 make small changes to our processes and
+00:30:39.600 ensure that we are constantly improving
+00:30:41.799 in the next task we will elaborate on
+00:30:43.760 how devops handles measurement and
+00:30:45.799 essential metrics to see constant
+00:30:47.679 Improvement and monitoring last is
+00:30:49.880 sharing in an effective devops pipeline
+00:30:52.320 there is a shared responsibility for the
+00:30:54.440 overall application between all teams
+00:30:56.559 including develop Vel mment in
+00:30:58.200 operations understanding that all team
+00:31:00.000 members are required to deliver the
+00:31:01.519 final solution and share in
+00:31:02.919 responsibility to do so will result in a
+00:31:05.720 better product for users and then for
+00:31:09.039 task five there's just this question
+00:31:11.000 just testing our retention I think and
+00:31:13.440 the question is what does CMS stand for
+00:31:15.840 the acronym so the first was culture
+00:31:18.240 right because we talked about um devops
+00:31:20.279 is a cultural shift not just a process
+00:31:22.480 you can put in place a was
+00:31:24.799 automation L was lean and that idea of
+00:31:27.559 just getting the product in front of
+00:31:28.840 users as soon as possible M was I think
+00:31:32.320 M was measurement right is either
+00:31:34.159 measurement or moning I think the m is
+00:31:35.440 measurement and then s is sharing like
+00:31:38.200 we can see on the screen here all right
+00:31:40.639 let's see if I got this
+00:31:42.480 right okay so that's the comms framework
+00:31:45.360 whoop whoop we got it right and the
+00:31:47.200 comms framework comms stands for culture
+00:31:49.440 automation lean measurement and sharing
+00:31:52.399 and if you want to really learn more
+00:31:53.519 about it um you can read the blog post
+00:31:56.600 as well with that on to task six which
+00:31:59.360 is about devops metrics so this will be
+00:32:01.600 useful for some of like the measurement
+00:32:03.200 we just talked about it is crucial to
+00:32:05.279 understand what metrics devops Engineers
+00:32:07.279 gather before you can advise and
+00:32:09.080 introduce security as seen in the intro
+00:32:11.639 to devc Ops room gaining common ground
+00:32:14.279 to build perspective and empathy is
+00:32:16.080 crucial for buyin and instilling
+00:32:17.919 security so we want to understand the
+00:32:19.799 metrics that are really important to the
+00:32:21.120 dev SE Ops engineer so we have empathy
+00:32:23.960 for what their priorities are and goals
+00:32:26.399 are all right so devops metrics during
+00:32:28.960 the process of manually creating
+00:32:30.279 infrastructure deployments are blocked
+00:32:32.320 there may be too many errors in the live
+00:32:34.279 application indicating that the security
+00:32:36.559 test automation needs to be improved or
+00:32:38.679 is taking too much computing power and
+00:32:41.000 time understanding how and where to find
+00:32:43.200 Improvement requires metrics to measure
+00:32:45.120 your resources here are the essential
+00:32:47.559 metrics gathered by engineers and the
+00:32:49.799 questions it aims to answer so I think
+00:32:52.679 these are the questions that we are
+00:32:54.480 hoping these metrics will help us answer
+00:32:56.440 meantime production or mttp what is the
+00:32:59.559 turnaround time for a newly committed
+00:33:01.720 source code so when this new source code
+00:33:03.679 is committed to the repository how long
+00:33:05.760 does it take for it to actually make it
+00:33:07.120 to production frequency of deployment
+00:33:09.880 what is the frequency of deployment of
+00:33:11.639 releases the average lead time how long
+00:33:14.039 does it take to develop build test and
+00:33:16.159 deploy a new feature speed of deployment
+00:33:19.080 a new release is deployed into
+00:33:20.720 production how long does it take so the
+00:33:22.720 frequency is how often you're deploying
+00:33:24.840 the new features and then speed is when
+00:33:26.159 you do deploy a new feature how long
+00:33:27.760 does it take to get into production and
+00:33:30.360 then deployment agility you can measure
+00:33:33.159 deployment agility by combining
+00:33:34.600 deployment speed and frequency
+00:33:36.519 production failure rate how often do
+00:33:38.240 failures occur in production hopefully
+00:33:39.960 not very often and mttr stands for mean
+00:33:43.159 time to recover when a failure does
+00:33:45.240 occur in production how long does it
+00:33:47.200 take to recover from that failure and
+00:33:48.799 have all systems a go again so you want
+00:33:51.360 mttr to be short to be a small window of
+00:33:53.639 time mttp one critical devops metric to
+00:33:56.679 track is the meantime to production mttp
+00:33:59.559 is the length of time between when a
+00:34:00.960 code change is committed and when it is
+00:34:03.240 in a deployed State a pre-release test
+00:34:05.960 for instance is passed when all code
+00:34:07.679 requirements have been met test
+00:34:09.480 Automation and working in small batches
+00:34:11.399 are good ways to improve mttp time
+00:34:14.760 developers can receive fast feedback on
+00:34:16.520 the code they commit by following these
+00:34:18.480 practices identifying flaws and fixing
+00:34:20.960 them as quickly as possible so when
+00:34:22.639 you're making changes the application
+00:34:24.399 and you're committing those changes to
+00:34:25.679 the source code you want lot of small
+00:34:27.719 commits rather than few big commits
+00:34:30.040 let's see and then we have failure rate
+00:34:32.079 when a code change goes into production
+00:34:34.079 a certain percentage of code changes
+00:34:36.040 require hot fixes or other remediation
+00:34:38.320 measures it does not measure failures
+00:34:41.040 caught during testing and fixes before
+00:34:43.239 the code is deployed so if a failure
+00:34:44.879 happens in a testing environment or like
+00:34:47.000 a staging environment or something like
+00:34:48.239 that it wouldn't contribute to your
+00:34:49.320 failure rate the same practices that
+00:34:51.760 enable shorter mttp times correlate with
+00:34:54.679 reducing change failure rates all the
+00:34:56.918 these practices make bugs much easier to
+00:34:59.079 identify and remediate right because if
+00:35:00.640 you have a smaller commit it's less of a
+00:35:02.599 needle in a hyack to figure out the
+00:35:04.320 source of your bug or your problem and
+00:35:07.000 tracking and Reporting failure rates are
+00:35:08.960 essential for ensuring new code releases
+00:35:11.480 meet security requirement deployment
+00:35:13.599 frequency understanding how often new
+00:35:15.640 code is deployed into production is
+00:35:17.480 critical to devop success deployment
+00:35:20.320 frequency defers to mtgp as it measures
+00:35:23.240 when it's released into pre-production
+00:35:24.920 staging environment and Reserves
+00:35:26.839 deployment to refer to code changes
+00:35:29.320 released into production all right let
+00:35:30.760 me read that again deployment frequency
+00:35:33.440 defers to mttp mean times to production
+00:35:36.800 as it measures when it's released into a
+00:35:39.079 pre-production staging environment so
+00:35:41.079 deployment frequency the metric defers
+00:35:43.200 to mttp when it me when it's measuring
+00:35:45.280 release into pre-production staging
+00:35:47.200 environment and then reserves the term
+00:35:49.800 deployment to refer to code changes
+00:35:52.040 released into production all right this
+00:35:53.800 sense is like scrambling me a little bit
+00:35:55.319 if I'm being honest but um I'm I'm sure
+00:35:57.040 it will make sense as we keep going
+00:35:58.720 teams can deploy changes on demand and
+00:36:01.240 often many times in a day the ability to
+00:36:03.800 deploy on demand requires a deployment
+00:36:05.760 pipeline that incorporates automated
+00:36:07.839 testing and feedback mechanisms as
+00:36:09.920 mentioned in the previous tasks
+00:36:11.640 minimizing the need for human
+00:36:13.280 interaction so the idea is you have a
+00:36:15.440 cicd pipeline that you're using and when
+00:36:18.200 your developer commits code makes a
+00:36:20.440 commit that triggers the pipeline
+00:36:22.359 automatically without a human having to
+00:36:23.880 do anything and then the code goes
+00:36:25.520 through the pipeline and all those tests
+00:36:27.160 run automatically as part of going
+00:36:28.960 through the pipeline is what we're
+00:36:30.200 getting at here and then mttr when a
+00:36:34.160 partial or Total Service Interruption
+00:36:36.040 occurs the mean time to recovery or the
+00:36:38.240 mttr is measured keeping track of this
+00:36:40.839 metric is crucial if a failure occurs a
+00:36:43.280 fix must be deployed as soon as possible
+00:36:45.359 or the changes that cause the failure
+00:36:47.319 must be rolled back in most cases this
+00:36:49.640 involves monitoring system Health
+00:36:51.119 continuously and alerting operations in
+00:36:53.440 the event of a failure you also want to
+00:36:55.400 be like backing up data back up
+00:36:56.920 configurations the operations team have
+00:36:59.400 the necessary processes tools and
+00:37:00.920 permissions to resolve incidents so
+00:37:03.480 that's part of how you can have a faster
+00:37:04.839 mttr is know that the relevant teams
+00:37:07.960 have good Tooling in place and the
+00:37:10.319 necessary permissions that they're going
+00:37:11.400 to need to get in and solve the problem
+00:37:13.839 when a failure occurs and then lastly
+00:37:16.240 communicating risk you can demonstrate
+00:37:18.560 improvement over time by measuring any
+00:37:20.319 of these metrics and you'll have the
+00:37:21.800 evidence to support and get Buy in from
+00:37:23.960 the business and the teams risk means
+00:37:26.240 very different across teams so different
+00:37:28.119 teams have different risks that they
+00:37:30.040 prioritize and care about for Dev SEC
+00:37:32.319 Ops Engineers risk means the likelihood
+00:37:34.520 of a vulnerability being exploited and
+00:37:36.440 its impact on your systems whereas for a
+00:37:38.720 devops engineer a significant risk would
+00:37:41.040 be a high rate of production failure for
+00:37:43.280 example by understanding other teams
+00:37:45.040 definitions of risk and just really
+00:37:47.280 understanding what other teams care
+00:37:48.560 about a Dev seops engineer can find
+00:37:51.359 common ground and build a better
+00:37:52.960 perception of security risk for other
+00:37:54.640 teams so it's all about that empc that
+00:37:56.920 we learned about in the first room what
+00:37:59.760 two metrics are used to measure
+00:38:02.400 deployment agility okay so that was like
+00:38:05.880 deployment speed and oh oops this is why
+00:38:08.800 I don't try to spell and
+00:38:11.680 deployment frequency except I wonder if
+00:38:14.359 I'm supposed to switch these because I
+00:38:15.599 noticed the input guide had the long
+00:38:18.400 word first so hold on let me that try
+00:38:23.960 that all right let's try it like this
+00:38:27.400 nope deployment
+00:38:30.640 frequency
+00:38:34.400 oh deploy oh so deployment speed
+00:38:39.760 and let's see if that's right yeah okay
+00:38:42.800 deployment speed and frequency and
+00:38:44.319 remember those are combined together to
+00:38:45.720 get the deployment agility and then what
+00:38:49.480 is an essential rate for engineers and
+00:38:51.280 production environments to know if code
+00:38:53.079 meets security requirements so that's
+00:38:56.119 the failure rate I
+00:38:58.000 think okay and then what is the measure
+00:39:00.720 for recovery time after a failure so
+00:39:02.760 that's mttr mean time to recover or
+00:39:05.640 recovery I'm not sure all right so that
+00:39:08.599 is Task six and then the last task to
+00:39:10.760 wrap up this room is Task seven
+00:39:13.160 production of the droids so looks like
+00:39:15.319 we have another static website to uh use
+00:39:18.200 here I love the way try me is like has
+00:39:20.359 such good design here where it just
+00:39:22.040 opens so nice for you in the side panel
+00:39:24.040 now that we understand the principles of
+00:39:25.680 the software development life cycle it's
+00:39:27.200 time to put them to the test launch the
+00:39:29.640 static site attached to this task you
+00:39:31.839 have been placed in control of a Droid
+00:39:33.839 production factory oh my God let me just
+00:39:35.880 tell you I'm the least qualified person
+00:39:38.040 to manage a Droid production factory but
+00:39:40.760 I will give it my best the Empire has
+00:39:43.119 provided you with a round of seed
+00:39:44.480 funding of $1 million however the Empire
+00:39:47.359 expects a great return of double the
+00:39:49.160 initial investment so it's all about the
+00:39:51.640 funds using these funds you are tasked
+00:39:54.280 with hiring developers and deciding how
+00:39:55.920 many spr
+00:39:57.079 these developers will have to build
+00:39:58.800 droids for this task phase it is
+00:40:01.160 important to remember the mythical man
+00:40:03.200 month principle also called Brooks law
+00:40:05.599 that say adding human resources to a
+00:40:07.920 late software project will make it later
+00:40:11.119 so be careful as adding more developers
+00:40:13.440 might decrease the efficacy of your
+00:40:15.200 Sprints so it's not always a solution
+00:40:17.000 just to add more people once you have
+00:40:18.920 decided on the number of developers and
+00:40:20.520 Sprints it's time to allocate these
+00:40:22.000 Sprints to the various sdlc phases as
+00:40:25.200 you add Sprints pick careful attention
+00:40:27.400 to how this will affect your Factory's
+00:40:29.319 Effectiveness once you believe you have
+00:40:31.240 found the optimal split of Sprints there
+00:40:33.760 is nothing left to do but start the
+00:40:35.599 production machine oh this like so fun
+00:40:37.839 okay while the challenge is to double
+00:40:39.760 the investment with some smart thinking
+00:40:41.599 you might be able to achieve even more
+00:40:43.200 than that think you have achieved a high
+00:40:45.119 score share it on Discord or LinkedIn oh
+00:40:47.760 wow okay so let's see what we're trying
+00:40:49.280 to do so we've got $1
+00:40:52.960 million the cost of a developer per
+00:40:55.200 Sprint is $3,000
+00:40:57.160 and we want to figure out the optimal
+00:40:59.040 number of developers and the optimal
+00:41:01.040 number of Sprints I'll be honest I don't
+00:41:05.000 all right so all right so we probably
+00:41:08.280 want to think about dedicating Sprints
+00:41:11.000 to each of these phases that we learned
+00:41:13.119 about let's go back to this diagram so
+00:41:15.119 we've got it'll be really small here but
+00:41:17.319 that's okay so we've got planning
+00:41:20.640 defining requirements designing and
+00:41:22.520 prototyping software development testing
+00:41:25.240 deployment operations and maintenance
+00:41:28.200 and I think we're just focused maybe on
+00:41:31.040 getting up to
+00:41:34.960 deployment oh we no we're in control of
+00:41:37.240 the production
+00:41:38.839 factory
+00:41:41.720 okay so it's kind of hard I think the
+00:41:44.599 hardest part is to figure out how many
+00:41:46.520 developers to have for a Sprint I guess
+00:41:48.960 we're just going to need to start
+00:41:49.960 experimenting so let's start with a team
+00:41:52.440 of five developers because I've been in
+00:41:55.000 the AWS rooms lately we're talking about
+00:41:57.119 the two Pizza teams where you have a
+00:41:58.440 smaller team that owns a product and
+00:42:00.680 let's have a lot of Sprints the reason
+00:42:03.200 why I want to have a lot of Sprints
+00:42:04.800 rather than just have a ton of
+00:42:05.800 developers is because we've been
+00:42:07.160 learning right the more small and
+00:42:08.720 modular the work is the better so maybe
+00:42:11.440 we'll just focus on having a lot of
+00:42:12.880 Sprints all right so we can
+00:42:15.440 do uh all right so I've spent
+00:42:18.800 $150,000 because I have my five
+00:42:20.760 Developers for 10 Sprints let's add more
+00:42:25.520 and our goal is to
+00:42:27.440 develop let's add some more how many
+00:42:30.520 Sprints do I have 40
+00:42:34.119 50 all right and I still have $250,000
+00:42:37.359 this is crazy
+00:42:41.240 okay and oh where do I see the efficacy
+00:42:43.920 of my
+00:42:52.559 Sprint oh I see so we'll choose the
+00:42:55.040 Sprints here and then we allocate them
+00:42:57.160 to the phrases on the page Okay cool so
+00:42:59.280 we're up to 50 Sprints which is quite a
+00:43:01.160 lot if you had week long Sprints that
+00:43:03.160 would be up almost like that would
+00:43:04.800 pretty much be a year so let's add a few
+00:43:07.839 more developers to use up the rest of
+00:43:09.760 our money I wish I could split my
+00:43:11.040 developers into different teams all
+00:43:13.720 right so now I have six developers and I
+00:43:16.040 have 50 Sprints let's take away two more
+00:43:19.280 Sprints so that everyone can have a nice
+00:43:20.720 winter holiday and let's see if that
+00:43:23.400 lets me afford one more developer all
+00:43:25.280 right let's do that so now I still have
+00:43:27.720 $113,000 I don't know we'll see so I'm
+00:43:30.599 going to start with seven developers and
+00:43:32.640 47 Sprints I feel like I'm like in in an
+00:43:35.079 interview having to explain my logic all
+00:43:37.000 right so now we can allocate um the
+00:43:39.440 remaining Sprints so we have all the
+00:43:42.119 phases and I still don't see where I can
+00:43:45.640 see the efficacy of my
+00:43:47.839 Sprint game metrics lower Limit Oh so we
+00:43:51.000 can see these different metrics okay
+00:43:52.599 cool this is very creative so for
+00:43:55.240 planning
+00:43:57.079 we have 47 Sprints so let's see what
+00:43:59.119 happens if we start if we start with um
+00:44:02.960 five Sprints so let's do two months for
+00:44:05.480 planning so let's do I'm gonna in my
+00:44:07.760 head my head Cannon is that these are
+00:44:09.160 week long Sprints so let's do two months
+00:44:11.839 for
+00:44:14.319 planning actually let's do six months
+00:44:17.000 per six so actually let's do a month and
+00:44:20.280 a half for
+00:44:21.880 planning and then let's do another month
+00:44:25.000 for
+00:44:26.559 designing for defining requirements for
+00:44:29.640 design and prototyping I'm already down
+00:44:32.280 to 37 for design and prototyping let's
+00:44:35.839 do five Sprints to start for software
+00:44:40.760 development let's
+00:44:42.839 do oh you know what I feel like I'm
+00:44:45.319 getting very waterfly here because I'm
+00:44:47.040 doing all this planning and design now
+00:44:49.319 I'm like going to take a long time
+00:44:50.359 before I actually get to deployment so
+00:44:51.800 let me make this
+00:44:54.480 shorter let's do that that so that's our
+00:44:57.079 beginning let's do
+00:44:59.160 that now we can start developing the
+00:45:02.359 software so let's do few Sprints to for
+00:45:05.599 initial development let's
+00:45:11.200 do oh and I forgot I can be seeing
+00:45:13.440 what's going on down here all right cool
+00:45:15.240 and then let's do deployment
+00:45:19.359 um so and then let's do two weeks for
+00:45:23.680 deployment operation and maintenance so
+00:45:26.520 maintenance let's start with five
+00:45:29.440 here okay and let's see what I have
+00:45:32.680 going on here here's my metrics lower
+00:45:35.359 limits rate of new bugs upper
+00:45:39.040 limit upper
+00:45:43.079 limit okay start game so that's what I
+00:45:45.480 do when I'm ready to
+00:45:54.880 test
+00:45:58.800 so we still have 24 so we still have 24
+00:46:01.400 Sprints almost half of our Sprints so
+00:46:04.079 let's crank this back up to
+00:46:07.599 six let's crank this back up well let's
+00:46:10.800 do minus one let's crank this back
+00:46:15.480 up to
+00:46:18.599 five that's going to be like our project
+00:46:20.880 kickoff after we understand the
+00:46:22.640 requirements we can do design and
+00:46:23.960 prototyping let's make this Hy
+00:46:27.280 do more testing and then more deployment
+00:46:32.480 I don't know I don't really know if
+00:46:33.680 there's like a method to the madness
+00:46:35.040 here um but we haven't used all our
+00:46:36.920 Sprints yet so I'm going to add more
+00:46:40.040 requirement definition because I do
+00:46:42.520 think that's very like very important um
+00:46:45.119 and where did we learn that the
+00:46:46.119 feasibility study is so that's right
+00:46:48.119 here design and prototyping maybe we so
+00:46:51.720 maybe we just need more of this to be uh
+00:46:53.760 the actual software development
+00:46:57.720 so and we're left with
+00:47:01.160 five
+00:47:08.319 okay all right so now let's see how
+00:47:10.520 these metrics are looking so our upper
+00:47:13.079 limit of rate of new bugs is 5% I feel
+00:47:15.359 like in the context of this game that's
+00:47:17.040 pretty good our Droid production rate
+00:47:21.119 is 100 to 153 our percentage of
+00:47:24.839 defective droids is low so it seems like
+00:47:26.640 our quality here is pretty good and our
+00:47:29.240 production cost is expensive and we're
+00:47:32.440 our upsell percentage is pretty low I
+00:47:35.000 would say so I don't know I'm supposed
+00:47:37.559 to be doing math here but I'm certainly
+00:47:39.359 not going to so let's see maybe if we
+00:47:42.280 take five away here what that H what
+00:47:45.480 happens so if we take away five our
+00:47:48.880 production rate is
+00:47:52.000 less so let's do let's start the game
+00:47:55.240 and let's see what
+00:48:06.240 happens all right so we had two
+00:48:08.640 defective droids out of 101 that's
+00:48:11.160 pretty good I would say we have we did
+00:48:13.440 run a profit so that's good as well so
+00:48:15.880 let's see what happens in
+00:48:17.800 February defective again money out so we
+00:48:21.319 made money again I and our goal I think
+00:48:23.200 is to get to a million dollars by the
+00:48:24.640 end of the year so it looks like we're
+00:48:25.800 on track for
+00:48:28.400 that funds at start of the month yep so
+00:48:30.880 we're doing okay you guys we're doing
+00:48:32.599 really good look at this um so now we're
+00:48:35.599 already up to 7
+00:48:37.640 $777,000 and it's only marched I feel
+00:48:39.640 like that's pretty darn good we're on
+00:48:40.720 track here and then I wonder if there's
+00:48:42.839 going to be like a curve ball coming in
+00:48:44.000 the factory he is going to burn down or
+00:48:45.200 something um uh oh so what happened here
+00:48:49.960 now we lost money how did we do that 183
+00:48:52.960 so we had to spend more money here for
+00:48:54.839 some reason I don't know why let's see
+00:48:56.440 what happens
+00:48:57.760 next and I don't see and I still don't
+00:49:02.280 see all right so now we made money again
+00:49:05.079 that's
+00:49:05.960 good okay we just broke a million that's
+00:49:09.559 good that's good I'm so excited I wish
+00:49:11.799 this I wish this was real I wish this
+00:49:13.079 was my real factory and okay we're
+00:49:16.520 really killing it now
+00:49:18.640 August let's see if we can get to 2
+00:49:20.920 million I think we just did right this 2
+00:49:23.240 million what if I'm counting my decimals
+00:49:25.319 wrong but I don't think I am okay and
+00:49:27.480 then
+00:49:28.319 October November December how'd we
+00:49:32.240 do all right awesome so we did quite
+00:49:34.680 good we made2 and a half million dollar
+00:49:37.280 and I wish I could go can I go back and
+00:49:39.680 see my uh Factory what my optimal
+00:49:43.000 Factory rates were I guess not anyway
+00:49:44.799 good job us and here is the flag that we
+00:49:47.760 can paste to finish the room I'm like
+00:49:50.359 actually very excited I didn't think
+00:49:51.480 that was going to go so well so that was
+00:49:53.359 a lot of fun that little game I enjoyed
+00:49:55.200 that a lot even though I clearly had no
+00:49:56.720 idea what I was doing if you could tell
+00:49:58.280 as I floundered so the next room in this
+00:50:00.720 devops learning path is SS DLC so that's
+00:50:04.000 the secure software development life
+00:50:05.640 cycle thank you very much for watching
+00:50:07.480 the walkthrough of this room I know
+00:50:08.799 these first introductory rooms are just
+00:50:10.040 a lot of reading so I'm looking forward
+00:50:11.559 to getting farther along in the learning
+00:50:13.720 path where we'll actually be doing some
+00:50:15.319 Hands-On hacking type stuff I'll be
+00:50:17.960 jumping into this next room soon and
+00:50:19.720 thank you so much for watching

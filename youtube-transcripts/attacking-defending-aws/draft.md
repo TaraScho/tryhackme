@@ -1,13 +1,8 @@
 ---
-layout: ../../../../../layouts/MarkdownLayout.astro
 roomName: AWS Cloud 101
-title: 'THM - AWS Cloud 101'
-description: 'Walkthrough of the Try Hack Me AWS Cloud 101 room'
 learningPath: Attacking and Defending AWS
-pubDate: Tod
-image:
-  url: '/blog-images/aws-cloud-101.png'
-  alt: 'Cloud graphic with AWS Cloud 101 room name and TryHackMe logo.'
+pubDate: Mar
+img: https://fakeimg.pl/640x360
 ---
 
 My first ever attempt to write up a TryHackMe room, let's see how it goes. This recap is about the first room in the **[Attacking and Defending AWS](https://tryhackme.com/path/outline/attackinganddefendingaws)**. I'm a big TryHackMe fan (though I rarely have enough time to play with it these days), and I'm also an obsessive AWS/AWS security person. When the THM made the Attacking and Defending AWS learning path available to individual customers a couple of years ago I was very excited to try it out. I made a series of videos walking through the rooms and I've been wanting to make some write-ups to go along with them. This is the first one!
@@ -137,7 +132,7 @@ In the last task, you get hands on with a little website showing different rooms
 **Software Engineering Questions**
 
 - The software engineering team mentioned that the complete team is housed in California (USA). Therefore they need a high-availability server in that region. In case AWS is selected as a cloud service provider, what would be the naming convention for that region? `us` (Find this in Task 4)
-- Which of the following service will be used to route traffic based on users' geolocation? `Route 53`
+- Which of the following service will be used to route traffic based on users’ geolocation? `Route 53`
 - In line with Jeff Bezos's model at Amazon, each developer of our software team will expose the data to other members through a service interface called? `API` (Find this in Task 7)
 
 **Finance Question**

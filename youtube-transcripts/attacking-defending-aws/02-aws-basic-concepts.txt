@@ -1,0 +1,1323 @@
+# tactiq.io free youtube transcript
+# TryHackMe Room Walkthrough: AWS Basic Concepts
+# https://www.youtube.com/watch/OKIMxLTA-G8
+
+00:00:00.120 hi everyone welcome back this video is
+00:00:02.600 the second video in my series of
+00:00:04.440 walkthroughs of the try hackme attacking
+00:00:07.120 and defending AWS learning path you
+00:00:09.679 don't have to watch the videos in any
+00:00:11.240 particular order this is the second room
+00:00:14.000 in the learning path let's
+00:00:16.840 [Music]
+00:00:22.680 [Music]
+00:00:24.279 go all right so here is the AWS basic
+00:00:27.679 concepts room learn basic concepts
+00:00:29.599 relevant to AWS the room has a few
+00:00:31.960 learning objectives we're going to learn
+00:00:33.399 about basic Technologies associated with
+00:00:35.440 the AWS platform these Technologies
+00:00:38.040 represent foundational concepts for how
+00:00:40.120 you interact with AWS and AWS Services
+00:00:42.800 we're going to learn about the basic
+00:00:45.000 security boundary an AWS account and the
+00:00:47.800 root user account that's associated with
+00:00:50.000 each AWS account the I am identity and
+00:00:53.239 access management infrastructure
+00:00:54.680 inherent to using AWS what is an AWS
+00:00:57.879 region and why that matters when you
+00:00:59.480 interact with services so we learned a
+00:01:01.160 little bit about regions in the first
+00:01:02.559 room I guess we're going to touch back
+00:01:03.760 on that and learn more how AWS
+00:01:06.360 organizations can streamline operations
+00:01:08.560 through Central management of many AWS
+00:01:10.720 accounts I use organizations to manage
+00:01:13.439 all my AWS accounts so I do like this
+00:01:15.759 topic what is a virtual private Cloud
+00:01:18.360 VPC and why you will almost inevitably
+00:01:21.400 need one or many when using AWS in my
+00:01:24.000 experience I somehow always end up
+00:01:25.680 needing many this information will help
+00:01:28.240 you become familiar with core ad
+00:01:30.040 services and features using this
+00:01:31.640 information you'll be better prepared to
+00:01:33.479 understand and troubleshoot new
+00:01:34.600 challenges as they arise in your Cloud
+00:01:36.159 Journey all right so in here we just
+00:01:38.320 click completed to say we are ready to
+00:01:40.119 start the room and let's go now that we
+00:01:43.399 made it through that introduction task
+00:01:45.000 we're getting into the actual basic
+00:01:46.520 concepts which is the point of the room
+00:01:48.360 so for task two the first basic concept
+00:01:50.799 is AWS account and root user let's see
+00:01:54.159 what this is all abouts account is a
+00:01:56.280 container for your AWS resources AWS
+00:01:59.399 accounts are are designated by a
+00:02:00.799 12-digit number known as an account ID
+00:02:04.000 each AWS account ID is unique and can
+00:02:06.200 never be reused so that's important to
+00:02:07.920 remember account IDs are unique
+00:02:09.479 identifiers an account is a security
+00:02:11.640 boundary in association with AWS
+00:02:13.879 identity and access management learning
+00:02:16.280 AWS IM is an entire module by itself
+00:02:18.680 literally there's a module about it in
+00:02:20.000 the learning path but it is key to
+00:02:22.400 understand that AWS or root user
+00:02:24.800 credentials are the only way to access
+00:02:26.680 the AWS control plane even when using
+00:02:29.080 single sign on and third party identity
+00:02:31.080 providers the permissions are granted to
+00:02:33.360 an AWS IM user or role so even if you're
+00:02:36.440 accessing an AWS account using some sort
+00:02:38.400 of Federated identity like you've signed
+00:02:40.159 in through active directory or something
+00:02:42.040 like that on the back end you're
+00:02:43.959 assuming a role or you're assuming some
+00:02:46.159 sort of I am principle within AWS and I
+00:02:48.959 bet we're going to learn more about that
+00:02:49.959 later point is you're not doing anything
+00:02:51.400 in AWS without I am identity and access
+00:02:54.000 management being involved
+00:02:55.959 somehow and that brings us to looks like
+00:02:58.599 the AWS account rout root user to sign
+00:03:01.120 up for an AWS account AWS users provide
+00:03:03.480 a root user email address an email
+00:03:05.959 address can only be used as the root
+00:03:07.560 user email address for one AWS account
+00:03:10.080 so your email cannot be the root email
+00:03:12.080 for more than one AWS account although
+00:03:14.239 there's something called email plus
+00:03:15.720 addressing that you can use to get
+00:03:17.080 around this a little bit so if you
+00:03:18.360 haven't heard of that you can Google
+00:03:19.799 email plus addressing or something like
+00:03:21.799 that but that's what I personally use to
+00:03:23.560 be able to create multiple AWS accounts
+00:03:25.640 that use the same email and the root
+00:03:28.120 user is considered an IM super user and
+00:03:30.760 has complete administrative permissions
+00:03:32.840 against the AWS account generally AWS
+00:03:35.920 customers are recommended not to use the
+00:03:37.879 adabas account root user credentials
+00:03:40.040 unless performing a task that only the
+00:03:42.120 root user can perform you really want to
+00:03:44.159 avoid having your root user account be
+00:03:46.360 your day-to-day activity account you
+00:03:48.519 want to be logging in as the root user
+00:03:50.560 as rarely as possible by default root
+00:03:53.000 users do not have multiactor
+00:03:54.599 authentication enforced furthermore root
+00:03:57.360 accounts that do not have MFA enabled or
+00:03:59.879 a phone number set are susceptible to a
+00:04:02.360 weak password reset workflow attack this
+00:04:05.040 is commonly the case for AWS accounts
+00:04:06.959 created automatically using the adabs
+00:04:08.680 organization service which we're going
+00:04:10.159 to discuss more later yes so obviously
+00:04:13.079 having MFA set up on your adabs account
+00:04:15.159 is essential also think about it it's
+00:04:17.560 essential that whatever email account
+00:04:19.440 you are using as your root email for
+00:04:21.918 your AWS account whatever email you've
+00:04:24.199 used to set up the ads account you need
+00:04:26.280 to make sure that email account itself
+00:04:28.360 has all those best practice security
+00:04:30.000 things set up like multiactor
+00:04:31.280 authentication because if a bad actor
+00:04:33.440 were to confirm ASE that email account
+00:04:35.520 that is the root email for the ads
+00:04:38.039 account they're one step closer to
+00:04:39.600 compromising the ads environment so MFA
+00:04:42.120 everywhere strong passwords everywhere
+00:04:44.199 that's really important
+00:04:46.479 and oh okay sorry jump the gun if an
+00:04:50.000 attacker gains control of the email
+00:04:51.520 inbox for an AWS root user without MFA
+00:04:54.680 or a phone number on the account the
+00:04:56.240 attacker will be able to send a password
+00:04:58.160 reset email and complete a takeover of
+00:05:00.639 the targeted database account so having
+00:05:02.840 MFA and the phone number on the AWS
+00:05:04.919 account is a great protective measure
+00:05:06.880 and then make sure your email is secure
+00:05:08.759 as possible as well if you have access
+00:05:11.160 to an email inbox or are looking to
+00:05:13.160 Target email addresses as potential root
+00:05:15.240 users you can use tools like Quiet Riot
+00:05:17.919 to enumerate valid root user email
+00:05:20.240 addresses and they have a link to Quiet
+00:05:22.000 Riot here and Quiet Riot is an
+00:05:23.520 enumeration tool that you can use I
+00:05:26.120 think I believe in all three Cloud
+00:05:28.360 providers let me double check that but
+00:05:30.560 you can use it to enumerate Cloud
+00:05:32.319 principles without you yourself being
+00:05:34.120 authenticated let's see so yeah
+00:05:36.000 unauthenticated enumeration of AWS Azure
+00:05:38.720 and gcp principes so the big three Cloud
+00:05:41.080 providers I wonder hopefully we'll get
+00:05:42.960 to use this tool later in the learning
+00:05:44.840 path which should be very fun anyway
+00:05:46.840 here are our questions for task two how
+00:05:49.639 many digits are in an AWS account ID so
+00:05:52.240 that is 12
+00:05:53.639 digits and remember those are unique
+00:05:56.319 account ID identifiers does AWS require
+00:05:58.880 customers to enforce MFA by default for
+00:06:01.039 root user credentials at the time this
+00:06:03.120 was written I'm sure the answer was nay
+00:06:05.120 so that's what I'm going to put but
+00:06:06.720 there have been a lot of changes around
+00:06:08.479 this rolling out recently so I'm making
+00:06:10.000 this in early 2024 this recording and
+00:06:13.240 AWS has started to require MFA in
+00:06:16.520 different circumstances I'm not sure off
+00:06:18.240 the top of my head but I'll link below
+00:06:20.000 to some of the announcements and stuff
+00:06:21.360 but AWS is starting to actually enforce
+00:06:23.560 requirements on every account related to
+00:06:25.280 MFA which is a good move forward because
+00:06:27.440 everyone should have that set up it's a
+00:06:28.880 no-brainer
+00:06:30.160 so we'll hit submit on nay whoop whoop
+00:06:32.199 our answer is correct and we will move
+00:06:33.800 on to task three for task three our next
+00:06:36.120 basic concept is identity and access
+00:06:38.039 management or I am in AWS and this is
+00:06:41.000 fundamental to All Things AWS really
+00:06:43.759 identity and access management or I am
+00:06:45.800 specifically means the capabilities and
+00:06:47.960 features of the IM Am engine and service
+00:06:49.919 of AWS this is the underlying system
+00:06:52.960 built by AWS to determine how I am
+00:06:55.280 principles are granted access to
+00:06:57.280 specific Services resources and
+00:06:59.639 capabilities in AWS essentially I am
+00:07:02.800 principles are the identities that AWS
+00:07:05.160 recognizes as having privileges in
+00:07:07.120 relation to AWS resources in the AWS I
+00:07:10.240 Am engine boy I just said AWS a lot of
+00:07:13.560 times and I'm someone who talks about
+00:07:15.560 AWS all the time anyway but that was a
+00:07:17.680 lot even for me if you didn't understand
+00:07:19.960 much of that yet that's okay because
+00:07:21.280 this is really just like a basic
+00:07:23.520 introduction and then we're going to
+00:07:24.520 learn a lot and then we're going to
+00:07:25.960 learn about each of these Concepts in
+00:07:27.440 more detail based on what saw in the
+00:07:29.919 learning path you can typically think of
+00:07:32.120 I am principles as like the who even
+00:07:34.400 though I am principles aren't
+00:07:35.560 necessarily always one to one with a
+00:07:37.720 human user but you can think of
+00:07:39.479 principles as the who who is allowed to
+00:07:41.319 do something who is getting permission
+00:07:42.759 to do something and then you can use the
+00:07:44.960 following policy evaluation logic from
+00:07:46.919 AWS to determine whether and what type
+00:07:48.879 of access an AWS IM am principal has to
+00:07:51.680 a specific AWS service and resource the
+00:07:54.960 policy evaluation logic image starts
+00:07:56.919 with the implicit deny so I've seen this
+00:07:59.000 image many times and there's a great
+00:08:00.759 YouTube video where one of the IM smees
+00:08:02.759 from AWS walks through this policy
+00:08:04.599 evaluation logic and does a much better
+00:08:06.520 job of it than I would ever be able to
+00:08:07.840 do so I'll maybe link that in the video
+00:08:09.680 description it's a great supplement to
+00:08:11.360 this image here and try hack me I'll
+00:08:14.120 make a quick attempt to walk through the
+00:08:15.360 diagram but you should really watch that
+00:08:16.800 YouTube video because she does a
+00:08:18.039 masterful job here's the idea whenever
+00:08:20.759 request is made in AWS we go through
+00:08:23.000 this policy evaluation logic and as we
+00:08:25.479 walk through the policy evaluation logic
+00:08:27.520 chart I want to give an example
+00:08:29.759 if you're at all familiar with AWS
+00:08:31.400 you're probably familiar with S3 buckets
+00:08:33.479 AWS S3 buckets which is object storage
+00:08:36.039 in the cloud when you use S3 you have
+00:08:38.440 different buckets that have different
+00:08:39.919 objects in them and let's pretend we
+00:08:42.279 have an S3 bucket and it has one object
+00:08:44.920 in it and we have a user who is trying
+00:08:48.000 to download that object from the S3
+00:08:50.440 bucket so let's pretend that that is the
+00:08:52.360 request it's a get object request to S3
+00:08:55.720 so whenever that request happens for
+00:08:57.440 something to happen in AWS we go through
+00:08:59.519 this policy evaluation logic so the user
+00:09:01.880 has made a request to download the
+00:09:03.760 object from our S3 bucket and the
+00:09:06.160 decision starts with deny I operates on
+00:09:09.160 what's called implicit deny what
+00:09:10.920 implicit deny means is that whenever a
+00:09:13.079 request is made in AWS the default
+00:09:15.920 decision is to deny that request so
+00:09:18.519 unless there's some reason in later on
+00:09:20.600 in this flowchart to approve this
+00:09:22.360 request to download the S3 object we're
+00:09:24.920 going to deny it but before we deny the
+00:09:26.959 request we're going to go through this
+00:09:28.320 logic and double check if maybe we
+00:09:29.720 should allow it instead so we're going
+00:09:31.480 to evaluate all the applicable policies
+00:09:34.160 first of all is there an explicit deny
+00:09:36.440 if there is an explicit deny anywhere in
+00:09:38.680 any of these different policies
+00:09:40.040 Downstream it's automatic deny a deny in
+00:09:42.880 any policy overrides any other allow
+00:09:45.360 that might exist then we're going to
+00:09:47.399 check if the principal's account is a
+00:09:49.279 member of an organization with an
+00:09:51.120 applicable SCP which stands for service
+00:09:53.200 control policy so remember the principal
+00:09:55.959 is the who the who that's making the
+00:09:57.880 request the entity that's making the
+00:09:59.360 request in our example here the
+00:10:01.839 principal is the user that's trying to
+00:10:03.480 download the S3 object so we're going to
+00:10:06.279 check is that account that the user is
+00:10:08.240 coming from a member of an organization
+00:10:09.920 with a service control policy and does
+00:10:12.200 that service control policy have an
+00:10:13.839 allow in it if there's no allow in the
+00:10:16.160 service control policy it's a deny if
+00:10:18.839 there is an allow in the service control
+00:10:20.680 policy we can move on and keep
+00:10:23.200 evaluating does the requested resource
+00:10:25.839 have a resource-based policy this is the
+00:10:28.120 reason I chose three as in our example
+00:10:30.480 so some AWS Services have resource-based
+00:10:33.200 policies and some do not S3 is an AWS
+00:10:36.279 service that does have a resource-based
+00:10:37.920 policy and buckets have a policy
+00:10:40.320 attached to them that can have different
+00:10:41.920 rules in it so we check if the S3 bucket
+00:10:44.880 has a resource-based policy attached to
+00:10:47.000 it it might not if there is a
+00:10:48.920 resource-based policy attached to it we
+00:10:51.360 check if there's an allow in that
+00:10:52.880 resource based policy and then some more
+00:10:54.519 complicated stuff happens that's kind of
+00:10:55.920 out of scope for this but if there is no
+00:10:58.240 resource based policy policy or if
+00:10:59.800 there's no allow in the resource based
+00:11:01.639 policy and remember if there's no deny
+00:11:03.720 in the resource based policy then we
+00:11:05.880 check if the principal has an identity
+00:11:07.760 based policy and this is the kind of the
+00:11:09.720 most basic building block you hear about
+00:11:11.560 with I am we're going to check the
+00:11:13.399 policies attached to the user and if the
+00:11:16.440 user is a member of a group we would
+00:11:18.000 also check the policies attached to that
+00:11:20.040 user group and we're going to see is
+00:11:22.440 there anything in the policies attached
+00:11:24.160 to the user that allows them to access
+00:11:26.800 this bucket and download the object
+00:11:28.440 we're going to check if the user has an
+00:11:30.240 identity based policy attached to them
+00:11:31.800 or if they're maybe in a group that has
+00:11:33.519 policies attached if they don't have any
+00:11:36.120 policies attached to them the user
+00:11:37.839 doesn't have permission to do anything
+00:11:39.959 the implicit deny kicks in because the
+00:11:42.360 default if you don't have an allow for
+00:11:44.040 anything is so you're denied however if
+00:11:46.600 they do have an identity based policy
+00:11:48.399 attached to them then we evaluate that
+00:11:50.480 policy we check if there's an allow in
+00:11:53.000 the identity based policy if there's not
+00:11:55.639 they're denied if there is we move on to
+00:11:58.480 check if the principal has a permissions
+00:12:00.200 boundary I'm not going to get into
+00:12:01.880 detail about what a permissions boundary
+00:12:03.399 is here I imagine we might learn about
+00:12:05.040 it later but just know that's another
+00:12:06.440 thing we have to check and then is the
+00:12:08.839 principal a session principal so this is
+00:12:11.720 another thing I'm not going to dive all
+00:12:13.120 the way into right now but just know
+00:12:14.560 that's another check you do if we're
+00:12:15.920 looking at a session principal or not if
+00:12:17.959 they're not a session principal we'll do
+00:12:19.680 an allow this is pretty complicated if
+00:12:21.880 you're brand new to AWS I am a few of
+00:12:24.279 the most important things to take away
+00:12:26.040 here the decision starts with a deny
+00:12:28.560 it's an implicit deny always an I am you
+00:12:30.880 need to have an allow to be able to do
+00:12:32.680 something and remember that an explicit
+00:12:35.000 deny so that means a deny written into
+00:12:37.040 any of these policies over rules and
+00:12:39.399 allow anywhere else requests are denied
+00:12:41.839 by default and explicit deny trumps all
+00:12:45.120 if you can remember those two things
+00:12:46.680 that's a pretty good start and you can
+00:12:48.320 always come back and refer to this
+00:12:49.680 diagram as you're learning this more
+00:12:51.760 maybe we'll be able to refer back to it
+00:12:53.320 in some of the future rooms in this
+00:12:54.560 learning path anyway let's close out of
+00:12:56.720 that and see what else is going on I am
+00:12:58.480 Rolla okay this is a great topic AWS IM
+00:13:01.440 roles are AWS principles that have
+00:13:03.440 permissions in relation to AWS services
+00:13:05.800 and resources IM roles are notable
+00:13:08.320 because of a feature known as assume
+00:13:10.760 role or switch role these terms mean
+00:13:13.279 that other identities recognized by AWS
+00:13:15.480 IM are allowed to gain the privilege of
+00:13:17.399 a particular IM role which identities
+00:13:20.040 are allowed to assume or switch to a
+00:13:22.040 role is determined by what is known as
+00:13:24.000 the assume role trust policy that is
+00:13:26.440 attached to each IM role so role is
+00:13:29.320 designed to be used temporarily you can
+00:13:31.880 think of it as kind of being like
+00:13:32.839 checked out taken off the shelf used to
+00:13:34.880 do something for a limited amount of
+00:13:37.079 time and then put back they're assumed
+00:13:39.079 by human users and they're often assumed
+00:13:41.240 programmatically by your software that's
+00:13:43.079 running in the cloud and the assume roll
+00:13:45.519 trust policy determines who's allowed to
+00:13:47.600 check that rooll out take it off the
+00:13:49.040 shelf and use it to do something this is
+00:13:51.320 what the assume roll trust policy looks
+00:13:53.360 like I would have to assume that we're
+00:13:56.079 going to see a lot of these trust
+00:13:57.959 policies to come as we learned more
+00:13:59.480 about I am so we can see in this above
+00:14:02.320 example the role maintenance role is in
+00:14:05.040 this AWS account with the unique ID of
+00:14:07.240 all these ones and this maintenance role
+00:14:10.560 would be allowed to assume whatever
+00:14:12.759 other role this trust policy is attached
+00:14:16.079 to perhaps the maintenance role needs to
+00:14:18.279 go into another account and do something
+00:14:20.120 the other account has a role in there
+00:14:21.959 that the maintenance role is allowed to
+00:14:23.600 assume for example numerous types of ads
+00:14:26.360 principles can be specified in an
+00:14:28.240 assumed Ro policy including Federated
+00:14:30.519 identities and Federated identities
+00:14:32.240 means you're using an identity from
+00:14:34.240 somewhere else to have permissions in
+00:14:36.600 another domain like a really common
+00:14:38.480 example would be you log in somewhere
+00:14:40.759 with your Microsoft active directory and
+00:14:43.240 then you're able to use that identity
+00:14:44.880 you have through active directory to
+00:14:47.199 authenticate somewhere else and have
+00:14:48.519 permissions in some other domain and
+00:14:50.880 maybe that's about and maybe that's what
+00:14:52.560 we're about to get into more here
+00:14:54.199 Federated identities and identity
+00:14:56.399 providers AWS IM supports reports the
+00:14:59.040 use of security assertion markup
+00:15:00.800 language which is saml and open ID
+00:15:03.440 connect oidc to Federate identities from
+00:15:06.800 third-party identity providers such as
+00:15:08.959 Azure active directory Ping Identity
+00:15:11.040 OCTA Facebook and other saml or oidc
+00:15:14.560 providers this means that identities
+00:15:16.680 registered with these thirdparty
+00:15:18.040 providers can be provisioned access to
+00:15:20.120 AWS IM roles with privileges inside of
+00:15:23.160 AWS accounts in 2017 AWS furthered this
+00:15:27.199 integration with organization
+00:15:29.160 and identity Center which used to be
+00:15:31.480 called AWS SSO or single sign on looks
+00:15:34.360 like we have a section about I am
+00:15:35.839 identity Center here I'm a huge fan of
+00:15:37.360 identity Center I use it to manage
+00:15:39.639 access to all my adabs accounts and it's
+00:15:42.120 good for security it's also just a lot
+00:15:43.800 more convenient if you have more than
+00:15:45.480 one ad ofs account I think it's a great
+00:15:47.440 product if you want to ever set it up I
+00:15:49.680 do have two videos on my Channel about
+00:15:51.319 how I set it up but first let's learn
+00:15:53.160 what it is identity Center allows
+00:15:55.040 organizations to provision access across
+00:15:57.199 AWS accounts and applications hosted as
+00:16:00.160 part of an organization inside an AWS
+00:16:03.279 organization AWS identity Center will
+00:16:05.720 allow customers to provision third-party
+00:16:07.959 identity provider access to specific
+00:16:10.000 permission sets in a single adabas
+00:16:12.440 account an organizational unit which
+00:16:14.399 remember might include multiple adabas
+00:16:16.240 accounts or organization rout the root
+00:16:19.120 account at the top of the tree
+00:16:21.079 furthermore I don't know that word
+00:16:22.800 corrects me furthermore using
+00:16:24.639 capabilities such as system for
+00:16:26.120 cross-domain identity management
+00:16:27.800 customers can automatically update which
+00:16:29.680 permission sets a user has based on user
+00:16:32.279 attributes or group membership in the
+00:16:34.519 originating identity provider this means
+00:16:37.720 that organizations can seamlessly manage
+00:16:40.440 access to AWS from The Source identity
+00:16:42.600 provider without the manual overhead
+00:16:45.240 associated with I am provisioning all
+00:16:47.720 right that was a lot if you just got a
+00:16:49.319 whiff of the concepts you're just
+00:16:50.440 starting to learn about it that's
+00:16:51.680 totally fine so let's see what this
+00:16:54.279 diagram is all about it'll be a single
+00:16:56.160 sign on use cases and remember as as was
+00:16:58.800 just mentioned single sign on is what
+00:17:00.639 identity Center used to be called so
+00:17:02.399 this is probably a diagram from the AWS
+00:17:04.640 docs before that uh name change occurred
+00:17:08.400 this is talking about identity Center is
+00:17:10.000 what it's currently called now so you
+00:17:11.919 can see here the example is an on
+00:17:14.160 premise Microsoft active directory where
+00:17:17.359 some sort of Enterprise has on premise
+00:17:19.720 users and groups that they're already
+00:17:21.359 using Microsoft active directory to
+00:17:23.359 manage in their Data Center and they're
+00:17:25.439 using something called the active
+00:17:26.679 directory connector to use those users
+00:17:29.600 and groups in their AWS identity Center
+00:17:32.240 setup as well and they're going to use
+00:17:34.320 those users and groups to manage
+00:17:36.000 permissions to the different AWS
+00:17:37.600 accounts in their AWS organization so
+00:17:39.880 permission management is one piece of it
+00:17:41.559 and then they're also going to use
+00:17:43.440 identity Center or adws SSO at the time
+00:17:46.760 to take all those users in groups and
+00:17:48.600 use them to manage single sign on access
+00:17:51.000 to the ads accounts so that's how users
+00:17:53.080 can Federate into the ads accounts and
+00:17:55.360 do things is using the active directory
+00:17:57.200 identities they're going to use it to
+00:17:58.880 manage single sign on access to
+00:18:01.080 different Cloud applications they're
+00:18:02.679 using so Dropbox slack Office 365 are
+00:18:05.960 the examples given and then they can
+00:18:07.799 also use it to set up single sign on
+00:18:09.720 access to custom applications they use
+00:18:12.159 that use samle so as long as the
+00:18:14.240 application uses samle they can use
+00:18:16.600 identity Center to manage SSO all based
+00:18:20.120 on these identities that the Enterprises
+00:18:22.480 already using in their on premise
+00:18:24.320 Microsoft active directory and again I
+00:18:26.679 think we're going to see more of this
+00:18:27.679 later so don't if it's a little complex
+00:18:29.440 just for starting out and look this note
+00:18:32.520 says the same thing this task is only
+00:18:34.320 meant to explain the basics of AWS
+00:18:36.360 please see the room dedicated to I am
+00:18:37.960 for an in-depth look at these
+00:18:39.080 Technologies so we'll learn more as the
+00:18:40.880 path continues now let's see here are
+00:18:43.880 our questions for task three what logic
+00:18:46.440 can be used to determine the access of
+00:18:48.600 an AWS IM principle so that would be
+00:18:51.600 policy evaluation logic based on what
+00:18:53.799 I'm seeing for these little asteris I
+00:18:55.559 think it'll just be policy evaluation if
+00:18:58.320 if I can spell
+00:18:59.760 it who whoop so policy evaluation logic
+00:19:03.400 is used to determine the access of an
+00:19:05.240 ads am principle and
+00:19:08.600 then and then what policy determines if
+00:19:11.480 an I am principal has the ability to
+00:19:13.919 gain the Privileges of a particular IM
+00:19:16.760 am role so that's the assume Ro trust
+00:19:19.760 policy we saw earlier up here um assume
+00:19:23.720 Ro trust policy let's see which parts of
+00:19:26.720 that they are wanting for the answer so
+00:19:29.120 we'll scroll down back here and we're
+00:19:31.039 looking
+00:19:32.320 for um God I can't even tell what that
+00:19:35.440 is so let's just say let's try assume R
+00:19:37.600 because it looked like it was no
+00:19:39.720 spaces okay awesome so the assume Ro
+00:19:43.360 trust policy or you'll sometimes just
+00:19:44.840 hear it called the trust policy
+00:19:46.600 determines if an AM principal is able to
+00:19:50.039 uh is able to assume and then use a
+00:19:52.559 particular I am rle that is Task three
+00:19:55.320 well done so that's task three completed
+00:19:58.480 and I was gonna just continue on to task
+00:20:00.760 four but try have me just let me know
+00:20:02.880 that my street got extended for another
+00:20:04.559 day and that made me look up at the
+00:20:06.360 clock and realize that it's just turned
+00:20:08.400 midnight and I'm really old so I can't
+00:20:10.880 stay up late like that anymore so I am
+00:20:13.240 going to pause this for now and pick it
+00:20:15.600 back up tomorrow so I will see you soon
+00:20:17.200 for task four okay I'm back it's not
+00:20:20.280 midnight anymore it's daytime now so
+00:20:21.880 that's good and I'm going to keep
+00:20:23.360 working through this AWS basic concepts
+00:20:25.559 room task four is basic concept AWS
+00:20:29.039 region this starts with global versus
+00:20:31.080 regional service AWS services are
+00:20:33.400 considered either Global or Regional a
+00:20:35.200 global Service means that the service
+00:20:36.640 supports a central control plane and
+00:20:38.440 data plane uh which trackme describes
+00:20:41.039 here as Management apis in parenthesis
+00:20:43.320 that does not resolve to a specific AWS
+00:20:45.559 region if you're not familiar with these
+00:20:47.000 terms control plane and data plane these
+00:20:49.799 are networking terms and one way I've
+00:20:51.760 always heard this described is that
+00:20:53.799 control planes make the decisions and
+00:20:56.520 data planes actually move traffic and
+00:20:59.280 data around based on the decisions made
+00:21:01.240 by the control plane or like the
+00:21:03.039 metaphor I guess that I've always heard
+00:21:04.679 is you could think of the control plane
+00:21:06.120 is like the brain and then the data
+00:21:07.960 plane is like the arms carrying out the
+00:21:10.159 commands that the brain makes as data is
+00:21:12.360 moved around also here in try hackme
+00:21:15.120 there's links to looks like Wikipedia
+00:21:18.279 about these terms so here's the
+00:21:19.840 Wikipedia for control plane and I assume
+00:21:21.840 the Wikipedia for data plane so you
+00:21:23.720 could come in here and read more to get
+00:21:26.360 up to speed if needed the way I think
+00:21:28.480 about control plane versus data plane
+00:21:30.159 within the context of AWS Services
+00:21:32.039 typically is control plane events are
+00:21:34.080 going to be more like management
+00:21:35.559 administrative events versus data plane
+00:21:37.440 events or more day-to-day operations how
+00:21:39.799 data is handled S3 service is a really
+00:21:41.960 good example of this control plane
+00:21:43.440 events within S3 would be things like
+00:21:45.559 creating an S3 bucket deleting an S3
+00:21:47.720 bucket making a request to get a list of
+00:21:49.640 all the S3 buckets you have whereas data
+00:21:52.080 plane would actually be like putting an
+00:21:53.880 object into your S3 bucket or reading an
+00:21:56.200 object from your S3 bucket or those
+00:21:58.159 day-to-day data events the point here
+00:22:00.400 being that Global Services have one
+00:22:03.039 central control plane and data plane and
+00:22:05.559 when you make requests those resolve to
+00:22:07.640 that central control plane and data
+00:22:08.919 plane whereas with a regional service
+00:22:10.919 the requests that you make the events
+00:22:12.520 they're going to resolve to a control
+00:22:14.640 plane and a data plane in that region to
+00:22:17.679 those Regional data centers the example
+00:22:20.120 they give here for instance us east1
+00:22:21.679 resolves to Northern Virginia data
+00:22:23.200 centers in the United States and they
+00:22:24.799 have their own Us east1 control plane
+00:22:26.760 and data plane this is a valuable
+00:22:28.559 concept for organizations with data
+00:22:30.039 sovereignty requirements but it also
+00:22:31.840 serves as redundancy capability for
+00:22:33.960 organizations to architect multi-region
+00:22:35.840 workloads we can find a list of all the
+00:22:37.679 regional ads Services linked here and we
+00:22:40.400 could open that but really all almost
+00:22:43.000 every ads service is going to be a
+00:22:44.559 regional service so it's probably easier
+00:22:46.440 to look at the notable Global Services
+00:22:48.960 that have the global control plane and
+00:22:50.559 Associated data plane these are the big
+00:22:53.080 ones to keep in mind cloudfront which is
+00:22:55.480 content delivery so cloudfront allows aw
+00:22:58.039 has customers to expose resources to the
+00:23:00.000 public internet Route 53 which is the
+00:23:02.600 domain registar and does DNS
+00:23:05.279 organizations ads organizations is a
+00:23:07.679 global Service and then I am identity
+00:23:09.880 and access management I IM determines
+00:23:12.279 what services and resources identities
+00:23:14.320 can access and we're going to learn much
+00:23:16.480 more about that coming up I'm sure then
+00:23:19.200 this part gets kind of Juicy because
+00:23:20.480 they start talking about security token
+00:23:22.400 service STS and it says here STS is a
+00:23:24.880 key service to understanding AWS
+00:23:26.600 security as allows AWS and thirdparty
+00:23:29.440 identities to retrieve temporary access
+00:23:31.559 credentials uniquely STS is both a
+00:23:34.360 global and regional service meaning that
+00:23:36.679 there are both Global API endpoints you
+00:23:38.640 can make requests to and Regional API
+00:23:41.320 endpoints and then this is the part
+00:23:42.960 that's a little tricky to remember just
+00:23:44.559 like try hackme says describes here
+00:23:46.159 counterintuitive which is true STS
+00:23:48.159 tokens vended from a regional endpoint
+00:23:50.120 are valid in all ads regions whereas
+00:23:52.200 tokens vended from the global endpoints
+00:23:54.360 are only valid in regions enabled by
+00:23:56.600 default and only only some of the
+00:23:58.400 regions are enabled by default looks
+00:24:00.960 like we're going to talk about default
+00:24:02.120 regions more but before we go there says
+00:24:04.000 it also says here a similar case good to
+00:24:06.440 be aware of the name space for S3
+00:24:08.240 buckets is global this is one of the
+00:24:09.760 first things people usually learn in AWS
+00:24:11.600 is that S3 buckets have to be unique
+00:24:14.000 globally so when you name your S3
+00:24:15.600 buckets you have to be creative there
+00:24:16.960 can never be two S3 buckets with the
+00:24:19.039 same name and S3 buckets are stored
+00:24:21.960 regionally even though it is a global
+00:24:23.600 Service sometimes this confuses people
+00:24:25.440 when you're creating an S3 bucket for
+00:24:26.840 the first few times even though the name
+00:24:28.720 is unique globally S3 buckets do
+00:24:30.880 actually live in a region the data lives
+00:24:32.760 somewhere so you select a region when
+00:24:34.200 you create an S3 bucket your bucket
+00:24:36.679 itself is associated with a specific
+00:24:38.679 region then this part default regions
+00:24:41.240 until 2017 all AWS customers had a
+00:24:43.960 default region of Us East one I don't
+00:24:46.720 even live closest to us East one but I
+00:24:48.559 do tend to default to us east1 just
+00:24:50.600 because people think of that as like the
+00:24:52.799 default AWS region another reason I do
+00:24:55.520 that is because you always hear when new
+00:24:58.159 features new services but really new
+00:24:59.840 features within existing services are
+00:25:01.520 being rolled out you can pretty much bet
+00:25:03.200 on the fact they'll come to us east1
+00:25:05.360 first or they will at least be available
+00:25:06.919 in usc1 in the first round of releases
+00:25:09.840 so that's why I kind of tend to be loyal
+00:25:11.200 to US1 I never want to miss out on the
+00:25:12.840 new stuff but that's not necessarily
+00:25:15.559 rooted in fact that's just my emotional
+00:25:17.360 feelings anyway it's talking about the
+00:25:19.880 implication being for long standing AWS
+00:25:22.399 customers AWS assumes customer
+00:25:24.200 identities are using US east1 unless
+00:25:26.480 another region has been EXP licitly
+00:25:28.880 declared and over time this caused a
+00:25:31.840 disportionate amount of AWS customer
+00:25:33.600 resources to be deployed in us east1 now
+00:25:36.640 Us East 2 and US West 2 are the default
+00:25:39.919 regions for new accounts beyond having a
+00:25:41.919 default region for provisioning
+00:25:43.279 resources certain ads regions are
+00:25:45.440 disabled for customer use by default and
+00:25:47.919 there's a list here of the regions that
+00:25:49.880 are disabled by default this might not
+00:25:51.840 be up to date anymore so I would
+00:25:53.080 recommend probably finding the original
+00:25:55.159 Source but the regions that are disabled
+00:25:57.520 by by default are not accessible using
+00:26:00.200 STS Global API endpoint credentials if
+00:26:03.360 you wanted to use one of those disabled
+00:26:04.960 regions to deploy resources you would
+00:26:07.200 have to manually opt into the region and
+00:26:09.399 then you would have to use one of the
+00:26:11.080 regional STS API endpoints to retrieve
+00:26:13.720 credentials okay so here are the
+00:26:16.240 questions for task four what AWS service
+00:26:19.039 has both Global and Regional API
+00:26:21.200 endpoints that's what we were just
+00:26:22.120 talking about so that would be STS which
+00:26:24.159 stands for security token service and if
+00:26:26.520 your adws account was created prior to
+00:26:28.679 2017 what is your account's default
+00:26:30.679 region so that would be us East one the
+00:26:33.440 OG
+00:26:36.679 region okay so now let's move on to
+00:26:39.080 basic concepts ads organizations I'm a
+00:26:42.000 proud I'm a proud ads organization user
+00:26:44.960 so hopefully I'll be able to get some of
+00:26:46.480 this but let's see what's going on all
+00:26:49.200 right so we're going to get a little bit
+00:26:50.320 of an origin story so this is talking
+00:26:52.159 about
+00:26:53.080 2017 the beginnings of AWS organizations
+00:26:56.120 I had never even SP spun up an ec2
+00:26:58.480 instance in 2017 it's talking about how
+00:27:00.679 adabas had been around for a decade with
+00:27:02.600 only the concept of an account to
+00:27:04.240 centralized management of a company's
+00:27:05.640 adabs resources and for large
+00:27:07.720 organizations managing everything in one
+00:27:09.799 account was challenging and inflexible
+00:27:12.200 furthermore managing each team or
+00:27:13.880 Department in separate accounts wasn't
+00:27:15.480 scaling well so in 2017 AWS tries to
+00:27:18.880 solve this by introducing the
+00:27:20.600 organization service and remember we
+00:27:22.720 learned above organization Service as an
+00:27:24.600 example of one of the Global Services
+00:27:26.640 AWS organization allows customers to
+00:27:28.799 centralize and standardize key AWS
+00:27:31.039 security and operational management
+00:27:33.640 capabilities at its core I think of AWS
+00:27:36.240 organizations as being a service that
+00:27:38.159 helps you manage multiple AWS Accounts
+00:27:40.440 at
+00:27:41.320 scale here we see a key value of
+00:27:43.840 organizations is the concept of workload
+00:27:45.880 segmentation by collecting accounts
+00:27:47.600 under an AWS organization customers can
+00:27:49.679 track various accounts while segmenting
+00:27:52.399 individual workloads so for example
+00:27:54.799 segmenting applications from networking
+00:27:56.640 infrastructure into different accounts
+00:27:58.760 which with separate security boundaries
+00:28:00.919 I personally I'm a huge fan of the
+00:28:03.159 multiple ads account model I do like
+00:28:05.679 separation of concerns I like to have a
+00:28:07.480 different account for different projects
+00:28:09.679 fortunately for me I'm not responsible
+00:28:11.279 for managing some big organization with
+00:28:13.039 a bunch of accounts in it but if that
+00:28:14.919 was in like some Enterprise scenario
+00:28:16.480 where I was the AWS administrator I
+00:28:18.480 would very much want lots of accounts
+00:28:20.799 with each team having their own separate
+00:28:22.399 account separate security boundary and I
+00:28:24.399 would want to get as granular as
+00:28:25.840 possible with it this is what really
+00:28:27.080 sums right here organizations lets you
+00:28:29.000 avoid having one account that too many
+00:28:31.120 people have access to that all your
+00:28:32.519 stuff is in and there's no separation
+00:28:35.039 okay I had to go get my little Cloud
+00:28:36.679 themed drink and now I'm back so let's
+00:28:38.919 keep reading organizational Roots
+00:28:41.279 organization units and account inside an
+00:28:44.440 AWS organization all AWS accounts are
+00:28:46.960 collected in a parent container known as
+00:28:49.600 an organization route the hierarchy in
+00:28:52.399 the below image can be summarized as
+00:28:54.440 follows and then we have some nice bll
+00:28:56.159 points that I think are Illustrated ated
+00:28:57.760 in this architecture diagram so let's
+00:28:59.840 take a look here first of all we have
+00:29:01.760 the parent container which is the
+00:29:03.200 organization itself and from what I can
+00:29:05.279 tell this is like a pretty traditional
+00:29:07.200 EDS organization setup so let's step
+00:29:10.320 through these bullets and kind of point
+00:29:12.159 out what's what an organizational unit
+00:29:14.840 is a subc container under an
+00:29:16.480 organization route that may include
+00:29:18.399 multiple ads C so every organization has
+00:29:21.679 this root AWS count here at the top of
+00:29:24.039 the tree and then you can divide Nest
+00:29:27.120 account into organizational units so in
+00:29:29.720 this diagram we have an foundational
+00:29:31.600 organizational unit a prod
+00:29:33.640 organizational unit of production
+00:29:35.640 preprod organizational unit a staging
+00:29:37.760 organizational unit and then a Sandbox
+00:29:39.640 organizational unit and organizational
+00:29:43.000 units can contain other nested
+00:29:45.240 organizational units see infrastructure
+00:29:47.799 organizational unit and security
+00:29:49.240 organizational unit as examples so in
+00:29:51.600 the foundational organizational unit
+00:29:53.919 there are functions that I think are
+00:29:56.000 thought of here as like Foundation
+00:29:57.640 functions of the Enterprise or whatever
+00:30:00.080 so the infrastructure organizational
+00:30:01.640 unit is a nested OU in the foundational
+00:30:04.080 U that contains multiple accounts and
+00:30:07.120 then the security organizational unit is
+00:30:09.480 another nested organizational unit that
+00:30:12.320 contains multiple accounts as well that
+00:30:14.960 leads us perfectly to the next point an
+00:30:16.519 organizational unit can contain one or
+00:30:18.159 more AWS account and there are several
+00:30:20.679 examples of that in this diagram the
+00:30:22.880 infrastructure organizational unit
+00:30:24.320 contains two AWS accounts here so these
+00:30:26.559 right here at the bottom level are the
+00:30:27.799 different AWS accounts the security OU
+00:30:30.600 has two accounts the prod OU has two
+00:30:33.919 accounts pre you has two accounts in
+00:30:36.640 fact it seems to me that they all have
+00:30:38.000 two accounts so organizational units can
+00:30:40.159 have one to n accounts I'm sure there's
+00:30:42.519 a limit but they can have multiple
+00:30:43.840 accounts is the point and an ads account
+00:30:46.559 can contain one or more user accounts so
+00:30:49.240 we don't see that in this diagram but
+00:30:51.000 for example the network account might be
+00:30:53.519 used by a network infrastructure team
+00:30:55.639 perhaps there's four workers on that
+00:30:57.880 team those four workers might each have
+00:31:00.200 their own IM user account that they use
+00:31:02.480 to log into this AWS Network account
+00:31:05.639 that is part of the Enterprises AWS
+00:31:08.440 organization overall a very good diagram
+00:31:10.679 gets the main points across and next is
+00:31:12.559 the organizational management account
+00:31:14.399 organizational management accounts are
+00:31:15.840 the primary account associated with any
+00:31:17.639 specific ads organization inside each
+00:31:20.399 organization management account are a
+00:31:22.120 set of rules that can be used to access
+00:31:24.080 any account in the
+00:31:25.840 organization by default this role is
+00:31:28.200 named organization account access role
+00:31:30.200 and has full admin privileges against
+00:31:32.799 the associated child account so this
+00:31:35.360 root account has access to a set of IM
+00:31:38.440 roles that allow full administrative
+00:31:40.519 privileges in each of these child
+00:31:42.039 accounts using the Management console to
+00:31:43.760 switch role or the CLI to assume role
+00:31:46.399 any IM am principal with privileges to
+00:31:48.159 assume these roles may be able to
+00:31:49.600 perform administrative activities across
+00:31:52.000 the whole organization then it gets more
+00:31:54.159 into single sign on configurations and
+00:31:56.480 how to manage different identity
+00:31:57.840 providers for access to ads accounts
+00:31:59.840 which is a topic I really like I think
+00:32:01.399 we're going to get into that in more
+00:32:02.600 detail further down in the learning path
+00:32:05.519 and it also makes mention Enterprises
+00:32:08.120 and other organizations use AWS IM
+00:32:10.080 identity Center to access child account
+00:32:11.799 roles I actually use I am identity
+00:32:13.840 Center to access all my own adabs
+00:32:16.399 accounts that I use for personal
+00:32:17.760 projects or whatever and I'm a big fan
+00:32:19.519 of identity Center I think everyone
+00:32:20.720 should set it up I have a video about it
+00:32:22.200 if anyone wants to go learn more now we
+00:32:24.519 move on to organization policies
+00:32:27.200 organization policies such as scps which
+00:32:29.919 stands for service control policy allow
+00:32:32.279 AWS customers to place restrictions on
+00:32:34.159 each child account in an AWS
+00:32:35.880 organization scps specifically allow AWS
+00:32:38.840 customers to place highly customized
+00:32:40.720 security and access restrictions on the
+00:32:43.080 organizational route organizational
+00:32:45.200 units or individual accounts by default
+00:32:48.159 ads organizations attaches an SCP named
+00:32:51.360 P full access to each account which
+00:32:53.480 allows subscription to all adab best
+00:32:55.360 services and then each each root
+00:32:57.720 organizational unit and child account
+00:32:59.760 can have up to five scps attached and
+00:33:02.679 you can use scps to do restrictions such
+00:33:06.080 as only allowing approved ads Services
+00:33:09.039 denying root user access requiring the
+00:33:11.840 use of imds V2 which is the instance
+00:33:14.760 metadata service and you want to be
+00:33:16.279 using V2 You're vulnerable if you're
+00:33:18.320 using the first version of it deny
+00:33:20.639 ability to create IM access Keys would
+00:33:22.840 be something you could enforce via
+00:33:24.159 service control policy Regional
+00:33:26.279 restrictions you could make sure that
+00:33:28.039 your account users can only deploy
+00:33:30.080 resources in specific ads regions you
+00:33:32.600 can take away the ability to leave the
+00:33:34.399 organization so this is basically a list
+00:33:36.159 of some great service control policy
+00:33:37.880 best practices for organizations like I
+00:33:39.760 said I think we're going to put this
+00:33:40.960 knowledge into practice hopefully later
+00:33:42.639 on in the learning path now one notable
+00:33:45.679 thing here organization policies do not
+00:33:47.679 apply to the organization management
+00:33:49.320 account this means that for IM users and
+00:33:51.600 roles in the organization management
+00:33:53.120 account service control policy
+00:33:54.760 restrictions are not going to be
+00:33:56.000 effective we move on to a list of other
+00:33:58.880 capabilities that the ads organization
+00:34:00.760 service has I'm not going to read
+00:34:02.720 through all of them but hopefully if
+00:34:04.440 you're interested this learning path
+00:34:05.559 you're doing it yourself later on
+00:34:07.080 definitely really take the time to read
+00:34:08.599 through this especially if you're just
+00:34:09.800 learning ads because these are a lot of
+00:34:11.639 great services and features to know
+00:34:13.719 about I see one on here that we talked
+00:34:16.040 about earlier I am identity Center which
+00:34:17.719 I use I really like some of the
+00:34:19.560 different Security Services that you can
+00:34:21.239 use at the organizational level so I am
+00:34:23.480 access analyzer which helps you identify
+00:34:25.520 when you're giving somebody to much
+00:34:27.280 access versus I policies firewall
+00:34:30.239 manager guard Duty which is an ads
+00:34:32.480 Security Service cloud trail which is
+00:34:34.719 when my favorite AWS Services which is
+00:34:36.679 where you log different control plane
+00:34:38.520 activities so those management events we
+00:34:40.719 talked about earlier that happen via
+00:34:42.239 control plane cloud trail logs all of
+00:34:44.639 those API calls for you so you can go
+00:34:46.359 back and audit what's been going on the
+00:34:48.760 list goes on and on so this is really an
+00:34:50.359 awesome list I recommend you read the
+00:34:51.918 whole thing as there are so many
+00:34:54.119 capabilities oh try hack me has the same
+00:34:56.040 mindset I do as there are so many
+00:34:57.520 different capabilities we will not go
+00:34:59.000 into detail regarding the specifics of
+00:35:01.040 each service however it's important to
+00:35:02.839 understand as a Defender and attacker
+00:35:05.160 the native security tools ads offers and
+00:35:07.440 how they impact the attack life cycle
+00:35:10.359 okay here are our questions for task
+00:35:12.240 five what year was ads organizations
+00:35:14.680 made GA for ads customers so they said
+00:35:17.160 that was 2017 which I would not have
+00:35:19.000 known brilliant what is the sub
+00:35:20.920 container for accounts in ads
+00:35:22.800 organizations so that will be an
+00:35:25.800 organizational unit if I can spell it
+00:35:29.040 correctly oh my God so every time I try
+00:35:31.760 and spell anything it will be very
+00:35:33.079 embarrassing for me so let's hit submit
+00:35:35.720 okay and then what AWS organizations
+00:35:37.680 account does service control policies
+00:35:39.480 not apply to so that would be the
+00:35:41.000 management account or you could think
+00:35:42.599 about it like the root
+00:35:44.640 account uh oh so I got that wrong what'
+00:35:47.119 I
+00:35:48.079 do what's
+00:35:51.839 my
+00:35:54.240 um management accounts Maybe
+00:35:58.000 no all right let's do a copy and
+00:36:10.800 paste what ads organization's account
+00:36:14.319 does service control policies not apply
+00:36:18.359 to or oh okay organization management I
+00:36:22.280 bet is what we're looking for
+00:36:24.880 here okay sorry had to see me struggle
+00:36:27.680 let's see if that's correct excellent so
+00:36:30.280 I'm going to take a break here and then
+00:36:31.720 I'm going to come back and Tackle task
+00:36:33.240 six task six is another basic concept
+00:36:36.440 virtual private Cloud VPC so VPC when
+00:36:39.560 you think about networking in the cloud
+00:36:41.319 it's all about vpc's virtual private
+00:36:43.359 clouds at the core a virtual private
+00:36:46.000 cloud or VPC is a software defined
+00:36:47.920 Network topology that represents aws's
+00:36:51.040 traditional Network infrastructure
+00:36:52.839 offering for customers vpcs allow ads
+00:36:56.240 users to to restrict the connectivity to
+00:36:58.000 sensitive resources designed to be
+00:36:59.680 isolated or segmented from other
+00:37:01.359 workloads and critically from the public
+00:37:03.480 internet so VPC is like your own little
+00:37:06.280 software defined Network within the
+00:37:07.880 cloud that has logical isolation from
+00:37:10.319 the public internet and from other ads
+00:37:12.359 customers vpcs that's your little
+00:37:14.079 isolated area of the cloud to use the
+00:37:17.000 following networking components are
+00:37:18.560 commonly found in an ads customer VPC
+00:37:21.560 internet gateway which allows
+00:37:22.960 communication between the VPC and the
+00:37:24.680 public internet egress only gateways
+00:37:27.280 which allow outbound traffic to the
+00:37:28.720 internet but restrict incoming traffic
+00:37:30.720 from the Internet carrier gateways which
+00:37:33.119 are used to establish direct
+00:37:34.400 communication with Telecom carrier
+00:37:36.440 networks n Nat gateways so Nat gateways
+00:37:39.960 Nat stands for Network address
+00:37:41.560 translation and Nat gateways allow
+00:37:43.880 private subnets to connect to services
+00:37:46.280 outside the VPC now AWS has a managed
+00:37:49.480 Nat Gateway service and then you can
+00:37:50.960 also roll your own n Gateway DHCP so if
+00:37:54.040 you're not a networking person DHCP
+00:37:55.920 stands for dyn Dynamic host
+00:37:57.119 configuration protocol and DHCP servers
+00:38:00.079 typically assign IP addresses to
+00:38:03.160 resources instead of having to assign IP
+00:38:05.440 addresses manually so by default all ec2
+00:38:08.240 instances VMS in a non-default VPC
+00:38:11.119 receive unresolvable host names assigned
+00:38:13.119 by adabs and then you can update those
+00:38:14.800 to leverage custom domains DNS by
+00:38:18.240 default adabs provides DNS resolution to
+00:38:20.560 vpcs Via the Route 53 resolver which is
+00:38:22.880 a global ads DNS service and then public
+00:38:25.720 and elastic IP addressing ads maintains
+00:38:28.599 over 100 million public ipv4 IP
+00:38:31.280 addresses and I'm sure all this content
+00:38:33.079 was written long before this ever
+00:38:34.400 happened but AWS is actually going to
+00:38:35.720 start charging money for ipv4 addresses
+00:38:38.640 I think they're kind of trying to push
+00:38:39.760 people to use IPv6 IP addresses but
+00:38:43.040 anyway this is talking about how you can
+00:38:44.480 use public IP addresses and elastic IP
+00:38:47.560 addresses to associate with your
+00:38:49.319 resources so that you can have that IP
+00:38:51.440 address and you can allocate it where
+00:38:53.240 you want to use it and then here we have
+00:38:55.119 an example of a typical ads networking
+00:38:57.960 architecture so the outermost box here
+00:39:00.640 is the ads region within that region we
+00:39:02.920 have a VPC so vpcs are within regions
+00:39:05.680 and then within the VPC we have what I
+00:39:07.760 assume are subnets sub networks and this
+00:39:11.280 lock here probably indicates that these
+00:39:13.400 are private sub networks and the subnets
+00:39:15.400 are in different availability zones
+00:39:17.520 which is a very common architecture and
+00:39:19.599 then within the subnets is where the ec2
+00:39:22.119 instances are running and then it talks
+00:39:23.800 about a virtual private Gateway and
+00:39:25.680 using a VPN connection so that's just an
+00:39:28.040 example it doesn't really have a lot of
+00:39:29.280 detail but that's some of the components
+00:39:30.839 you're seeing there next section is
+00:39:32.480 default bpc service capabilities this is
+00:39:35.240 talking about different service
+00:39:36.560 capabilities that are configured by
+00:39:38.160 default in each AWS PC using link local
+00:39:41.680 addresses and a link local address just
+00:39:43.720 means you can only communicate with that
+00:39:45.160 address from within that subnet so in
+00:39:47.319 your VPC link local addresses that are
+00:39:49.800 only usable within your own subnet these
+00:39:52.079 are services available by default in the
+00:39:54.480 VPC that you can either configure work
+00:39:56.960 with use or you can decide to disable
+00:39:59.160 them so first is DNS resolver so that's
+00:40:02.280 Route 53 resolver that we talked about
+00:40:04.160 earlier and you can disable that if you
+00:40:06.079 want and you could use your own DNS
+00:40:07.560 server instead Amazon timey sync service
+00:40:10.280 which I've never really actually used
+00:40:11.640 this but time sync service can be used
+00:40:14.160 to do time synchronization for your ec2
+00:40:17.160 instances Microsoft KMS service which I
+00:40:19.800 believe is something to do with Windows
+00:40:21.839 licensing I I'm not very knowledgeable
+00:40:23.720 about that but that's there if you want
+00:40:25.440 the KMS service ec2 instance metadata
+00:40:28.160 service this is a topic you hear about
+00:40:29.640 quite a lot in Cloud security the
+00:40:31.359 metadata service allows ec2 instances to
+00:40:34.760 retrieve information about themselves
+00:40:36.640 for example I believe they could get
+00:40:37.800 information about what availability Zone
+00:40:39.280 they're running in they could get their
+00:40:40.560 IP address the content of the user data
+00:40:43.119 script that runs at startup is available
+00:40:45.000 via the metadata service a lot of
+00:40:46.920 different things and you always want to
+00:40:48.240 make sure that you are using the
+00:40:49.440 metadata service V2 versus V1 so if
+00:40:52.119 you're ever using V1 make sure that you
+00:40:53.680 fix that why do you hear about the
+00:40:55.400 metadata service so often in association
+00:40:57.280 with Cloud security well one of the
+00:40:59.640 things that you can retrieve with the
+00:41:00.960 instance metadata service is instance
+00:41:02.800 metadata credentials and there was a
+00:41:05.119 very famous Cloud hack in 2019 a Capital
+00:41:07.920 One breach which is referenced here and
+00:41:10.400 that's part of what happened in that
+00:41:11.520 attack path where instance metadata
+00:41:13.200 credentials were accessed and then used
+00:41:15.760 for privilege escalation to breach
+00:41:17.280 Capital 1's AWS environment last thing
+00:41:19.440 on this list here ECS task metadata
+00:41:21.520 service so ECS is the elastic container
+00:41:23.880 service which is another compute service
+00:41:25.800 in a
+00:41:27.000 and if you are using ECS to provision
+00:41:29.160 your containers you can use the ECS
+00:41:31.880 metadata service similar to the ec2
+00:41:33.880 metadata service the last section is VPC
+00:41:36.280 endpoints I'm a fan of VPC endpoints
+00:41:38.480 they can be very useful to solve some
+00:41:40.079 problems they are often kind of
+00:41:41.839 expensive but they are very useful VPC
+00:41:44.520 endpoints allow ads customers to
+00:41:46.240 integrate specific ads services with
+00:41:48.119 their VPC without requiring customers to
+00:41:50.079 use an internet gateway knat device VPN
+00:41:52.960 connection or direct connection VPC
+00:41:55.119 endpoints are very useful because
+00:41:56.240 because what you can use a VPC on point
+00:41:57.839 for is in your VPC you can have your
+00:42:00.480 resources so your ec2 instance for
+00:42:02.680 example your virtual machine running and
+00:42:04.640 you can use a vpcm point to talk to the
+00:42:07.640 AWS Services directly without having to
+00:42:10.280 navigate the public internet so your VM
+00:42:12.839 in the private subnet for example does
+00:42:14.440 not have to have access to the public
+00:42:15.760 internet to be able to communicate with
+00:42:17.359 adws Services I'm not sure I see this
+00:42:19.119 here but there's interface VPC end
+00:42:20.760 points and Gateway VPC end points and
+00:42:22.440 it's very interesting topic if you're at
+00:42:23.880 all interested in adabs networking then
+00:42:26.359 says here this task is only meant to
+00:42:27.960 explain the basics of vpcs please see
+00:42:30.480 the room dedicated to vpcs for an
+00:42:32.000 in-depth look so we're going to learn
+00:42:33.240 more about it later here are our looks
+00:42:35.760 like three questions to answer what AWS
+00:42:38.240 service hosts the AWS DNS resolver so
+00:42:41.240 that would be Route
+00:42:44.400 53 what VPC feature was used for
+00:42:47.000 privilege escalation during the 2019
+00:42:49.480 Capital 1 breach so what they are
+00:42:51.359 looking for here is the instance
+00:42:52.720 metadata service looks like they're
+00:42:53.920 looking for the abbreviation
+00:42:57.200 lastly what type of VPC endpoint will
+00:42:59.160 allow for Network traffic inspection
+00:43:01.319 okay so the joke is on me here because I
+00:43:02.960 glazed over this part up above but I
+00:43:05.000 think the answer they're looking for is
+00:43:06.960 Gateway load balancer so let's scroll
+00:43:10.160 back up and see what's going on here
+00:43:12.640 yeah so I I didn't mention this but when
+00:43:14.680 we were talking about VPC endpoints one
+00:43:16.440 of the thing that is mentioned here is
+00:43:18.400 that Gateway load balancer endpoints can
+00:43:20.319 be used for traffic interception and
+00:43:22.800 inspection which is good to know so
+00:43:24.559 let's see if that's the answer
+00:43:27.079 okay perfect let's move on to task seven
+00:43:30.079 which is the summary task and then we
+00:43:31.359 will be done with this
+00:43:32.920 room all right so summary task looks
+00:43:35.359 like maybe we're going to have something
+00:43:36.520 similar to format to the summary in that
+00:43:38.400 first 101 room says in this room you've
+00:43:41.079 learned about core ads services and
+00:43:42.800 features these capabilities are defining
+00:43:44.920 features of AWS as a user and as an
+00:43:47.200 attacker right so you want to know this
+00:43:49.079 whichever side you're on I guess you
+00:43:51.200 should understand the following concepts
+00:43:53.440 how accounts and root users relate to
+00:43:55.520 adabs security at a basic level what AWS
+00:43:58.960 is and some of the key features we're
+00:44:00.359 going to encounter with IM how most
+00:44:02.640 services are Regional and the difference
+00:44:04.480 between Regional and global Service the
+00:44:06.599 wide variety of AWS services that can be
+00:44:08.720 centrally deployed and managed using
+00:44:11.119 organizations how softwar defined
+00:44:13.079 networking allows AWS accounts to create
+00:44:15.040 and interact with network bound
+00:44:16.440 resources in bpcs this has a little bit
+00:44:18.359 to do with when we were talking about
+00:44:20.079 control plane and data plane then we've
+00:44:22.280 got this nice closing line you may never
+00:44:24.559 log in as a root user if you don't have
+00:44:26.800 your own AWS account but you will
+00:44:28.720 encounter these Concepts when working
+00:44:30.400 with AWS so they're just trying to get
+00:44:31.880 us skilled up on the basics
+00:44:35.000 lastly to finish the room oh looks like
+00:44:37.520 we've got another CTF let's have a small
+00:44:40.280 test click the view site button at the
+00:44:42.040 top of the task to launch the static
+00:44:43.680 site in a split view what is the flag
+00:44:45.839 after completing the exercise so let's
+00:44:47.480 see what they've got for us here I
+00:44:48.800 loaded this static site it looks like it
+00:44:51.680 has a few tasks for us use your
+00:44:53.680 knowledge of basic AWS Concepts to click
+00:44:55.440 on the correct interface elements to
+00:44:56.960 perform three tasks all right cool so we
+00:44:59.280 are in an AWS console here task one find
+00:45:03.319 the 12 digit AWS account ID okay so we
+00:45:05.440 can do that by going up here to the top
+00:45:07.440 right corner and we can copy the account
+00:45:09.800 ID right here congrats we found
+00:45:12.640 it continue switch regions from North
+00:45:15.599 Virginia to Asia Pacific so we can do
+00:45:18.280 that right here using this dropdown I
+00:45:20.000 know it's probably a little small hard
+00:45:21.280 to see Asia Pacific and Sydney so looks
+00:45:25.559 like that's AP Southeast
+00:45:27.599 2 awesome and lastly create a VPC with a
+00:45:32.520 cider set as 10.0.0 one16 and tency set
+00:45:37.440 as dedicated all right cool oh
+00:45:40.040 interesting so it did have our work for
+00:45:42.559 it was it always like this it took us
+00:45:44.319 right to the VPC console so we can do
+00:45:46.160 create
+00:45:47.280 VPC
+00:45:49.040 and nice a VPC is an isolated portion of
+00:45:52.200 the AWS Cloud populated by AWS objects
+00:45:54.920 such as ec2 and instances we're going to
+00:45:57.680 do VPC only we don't have to name it so
+00:46:00.960 we won't in this situation we're going
+00:46:03.119 to give it a manual cider input so let's
+00:46:06.160 see if we can copy
+00:46:07.960 this I think we
+00:46:11.400 can um doesn't say anything about IPv6
+00:46:14.839 so we're not going to worry about that
+00:46:16.160 and then tendency we need to change to
+00:46:19.079 dedicated and what dedicated tendency is
+00:46:21.680 about is that with default tendency the
+00:46:24.280 resources you spin up in this VPC so ec2
+00:46:27.760 instances is the classic example ec2
+00:46:30.440 instances that you spin up in this VPC
+00:46:32.880 could be sharing physical Hardware with
+00:46:35.000 ec2 instances for other adabs accounts
+00:46:37.280 and adabs customers dedicated tency
+00:46:39.880 means when you spin up a ec2 instance in
+00:46:42.160 this VPC you are going to have dedicated
+00:46:45.440 Hardware that only your adabs account
+00:46:48.400 resources can use you're not going to
+00:46:49.839 share the underlying Hardware in the
+00:46:51.559 data center and it dedicated tendency is
+00:46:54.200 more expensive for obvious reasons but
+00:46:55.839 but that's what that means oh uh oh we
+00:46:59.040 did our cider wrong what I
+00:47:10.480 do okay I literally can't figure out why
+00:47:13.160 I'm getting this wrong let me scroll up
+00:47:15.480 again and check what's up here 10
+00:47:20.440 10.0.0 10
+00:47:22.800 00116
+00:47:24.480 10116 I Wonder oh ah I bet that's what I
+00:47:28.839 copied an extra space there at the end
+00:47:31.160 let's see let's try now all right
+00:47:33.359 awesome and we've got the flag success
+00:47:35.960 so we'll copy that um what a noob I
+00:47:37.960 could have just used this copy button
+00:47:40.040 and then I won't copy accidental spaces
+00:47:42.440 let's paste the
+00:47:44.319 flag awesome so we have officially
+00:47:46.559 completed the AWS basic concepts room
+00:47:48.720 and next room I'm going to jump right
+00:47:50.319 over to introduction to AWS I'm probably
+00:47:52.839 going to get a drink and then jump right
+00:47:54.160 into it so feel free to come join me
+00:47:55.800 this next room and thanks for watching

@@ -1,0 +1,1207 @@
+# tactiq.io free youtube transcript
+# TryHackMe Walkthrough AWS: Cloud101 - Attacking and Defending AWS Learning Path
+# https://www.youtube.com/watch/hxosqZzXc7g
+
+00:00:00.199 hey everyone it's Tara if you've seen my
+00:00:02.440 channel you know I'm not really like a
+00:00:04.120 pro YouTuber but I've been wanting to
+00:00:05.879 practice making some videos again and I
+00:00:08.200 have the perfect opportunity because I
+00:00:10.440 just got myself a new toy and I'm very
+00:00:12.320 excited about it I subscribed to the new
+00:00:15.120 attacking and defending AWS learning
+00:00:17.279 path that try hackme put out as some of
+00:00:20.000 you might know I'm very obsessed with
+00:00:21.600 AWS I used to work there and I've been
+00:00:24.160 working in cloud and Cloud security
+00:00:25.880 adjacent roles for almost three years
+00:00:28.080 now I also used to use try hack me a lot
+00:00:30.960 back when I was studying cyber security
+00:00:32.640 in school I'm definitely Rusty as a try
+00:00:34.600 hack me player now but I've been wanting
+00:00:35.800 to get back into it anyway so all these
+00:00:37.760 factors have come together perfectly
+00:00:39.800 I've got my subscription to the new
+00:00:41.360 learning path as I play through it I'm
+00:00:43.680 going to try to make some video
+00:00:45.000 walkthroughs just for fun and to try and
+00:00:47.239 get as much as possible out of the
+00:00:48.800 experience in this first video I'm going
+00:00:51.039 to give a quick overview of the
+00:00:53.000 attacking and defending AWS learning
+00:00:54.960 path the different rooms some of the
+00:00:56.719 topics they cover then I'm going to play
+00:00:58.800 through the first room so I hope you
+00:01:00.879 enjoy it and let's see how it
+00:01:04.099 [Music]
+00:01:11.520 goes here I am on try hackme definitely
+00:01:14.680 make sure and clock that nice zero day
+00:01:16.520 streak I've got going on up in the
+00:01:18.080 corner if you want to see what a cool
+00:01:20.079 little hacker I am but you know what now
+00:01:22.040 it's day one so that's exciting here's
+00:01:24.560 the attacking and defending AWS learning
+00:01:27.159 path I believe that tryck me originally
+00:01:29.400 rolled the learning path out for
+00:01:31.000 businesses and then they fairly recently
+00:01:32.720 released it for individual subscribers
+00:01:34.759 to play through as well it is an extra
+00:01:37.240 subscription on top of the trackme
+00:01:39.000 subscription and it's significantly more
+00:01:40.720 expensive than regular trackme which I
+00:01:42.520 also subscribe to so maybe if you're
+00:01:44.399 thinking about it this video will kind
+00:01:45.640 of give you some insight onto if you
+00:01:47.119 want to take the plunge here is the
+00:01:50.479 overview of what all the different rooms
+00:01:52.600 contain so you see we've got some
+00:01:54.320 different learning objectives in this
+00:01:56.000 learning path we are going to identify
+00:01:58.159 enumerate and exploit overly permissive
+00:02:00.719 IM users roles and policies we're going
+00:02:03.399 to be exploring serverless
+00:02:04.759 infrastructure and common attack vectors
+00:02:07.000 present within server list and then
+00:02:09.199 we're going to learn how to exploit
+00:02:10.399 weaknesses in the common AWS services
+00:02:12.599 including S3 ec2 vpcs and more our
+00:02:17.440 prerequisites trackme says we need to
+00:02:19.720 have a basic understanding of cloud and
+00:02:21.879 AWS environments and a broad
+00:02:23.920 understanding of different areas of
+00:02:25.599 cyber security to complete this pathway
+00:02:28.080 here's the juicy stuff so here's actual
+00:02:29.840 learning path looks like we've got it
+00:02:31.599 divided into five different areas and
+00:02:33.879 then within each of these areas there
+00:02:35.560 are different rooms so we've got two
+00:02:38.040 introduction to AWS rooms Cloud 101 and
+00:02:40.720 AWS basic concepts introduction to I am
+00:02:43.840 which is identity and access management
+00:02:46.080 there'll probably be a lot here we're
+00:02:47.599 going to be talking about all the
+00:02:48.840 different fundamentals of I am
+00:02:50.640 principles permissions resource policies
+00:02:53.599 scps the Quest for lease privilege that
+00:02:56.480 sounds very exciting STS credentials Etc
+00:02:59.599 at attacking and defending core Services
+00:03:01.840 let's see what services we're going to
+00:03:03.080 be working with we've got S3 buckets ec2
+00:03:07.040 VPC which is like networking and then
+00:03:09.720 the AWS encryption services so KMS which
+00:03:12.560 is keys and then ACM which is the
+00:03:14.640 certificate manager attacking and
+00:03:17.000 defending server list which I'm
+00:03:18.319 especially excited about so we've got
+00:03:20.120 Lambda Lambda data exfiltration and then
+00:03:23.080 a AWS API Gateway room which I'm really
+00:03:25.720 excited about and hope I'll learn some
+00:03:27.200 new stuff there lastly we've got I am
+00:03:30.319 privilege escalation so I wonder maybe
+00:03:32.040 we're going to kind of use some of what
+00:03:33.720 we learned in these earlier rooms to
+00:03:35.280 really get in here and do some privilege
+00:03:37.319 escalation put your understanding of I
+00:03:39.439 am to practice by covering key Concepts
+00:03:41.360 required to enumerate exploit and
+00:03:43.080 persist across I am sounds very fun it
+00:03:46.120 does say somewhere about how many hours
+00:03:48.400 of content tryck me thinks this is I
+00:03:50.680 suppose I could probably use this
+00:03:51.760 learning scheduler and work backwards
+00:03:53.840 and figure it out but I'm not going to
+00:03:55.159 do that so I'll try I'll try to remember
+00:03:56.920 where it says that and I'll put a link
+00:03:58.360 below this video as well but overall it
+00:04:00.680 looks like good stuff I think it'll be
+00:04:02.040 fun and interesting so let's get started
+00:04:04.319 this is the AWS Cloud 101 room so this
+00:04:06.840 is the first room in the learning path
+00:04:08.720 description says an introduction to AWS
+00:04:11.079 and how cloud has changed Computing for
+00:04:14.400 task one we have an introduction where
+00:04:16.358 we're going to I suspect read the
+00:04:18.199 learning objectives we've got four
+00:04:20.079 learning objectives here we're going to
+00:04:21.680 learn about how current cloud
+00:04:23.240 capabilities evolved from humble
+00:04:24.960 beginnings at AWS and other early
+00:04:27.000 internet companies why Cloud
+00:04:29.080 Technologies have changed how
+00:04:30.479 individuals and corporations interact
+00:04:32.000 with it how business benefits have
+00:04:35.000 helped Drive Cloud adoption and free
+00:04:37.960 resources and documentation that ads has
+00:04:40.000 created for the public this is this
+00:04:41.960 reminds me of my onboarding when I
+00:04:43.720 worked there so this is going to help us
+00:04:45.680 get familiar with AWS even if you
+00:04:47.360 haven't used it before this is your
+00:04:48.639 introduction and we're going to
+00:04:50.639 understand the story The Narrative the
+00:04:52.240 origin story of how Cloud got to where
+00:04:54.280 it is so we can just say completed we
+00:04:57.160 read the learning objectives no answer
+00:04:59.039 here and we're ready to move to task
+00:05:01.680 two task two is called Cloud enters the
+00:05:04.880 scene looks like this room is mostly
+00:05:07.199 going to be like reading and answering
+00:05:08.720 questions which we can do the first part
+00:05:11.000 here is discussion of the on premise
+00:05:12.720 model so this is talking about how since
+00:05:15.000 the 1970s organizations had been hosting
+00:05:17.440 their own it infrastructure and then in
+00:05:19.800 the 1990s there was the.com boom and
+00:05:22.680 businesses got more relying on Internet
+00:05:24.479 connected Services data centers got a
+00:05:26.919 lot bigger and then thirdparty Solutions
+00:05:29.160 popped up to host data centers for
+00:05:31.000 different businesses then came the cloud
+00:05:33.880 I like those quotation marks says here
+00:05:36.400 at first the cloud often just meant
+00:05:38.080 hosting servers in somebody else's data
+00:05:40.039 center rather than managing your own
+00:05:41.800 servers which is still what a lot of
+00:05:43.680 people think of when you think of the
+00:05:44.720 cloud I like this line here while
+00:05:47.520 perceptions persisted for some time that
+00:05:49.400 the cloud was just someone else's
+00:05:51.000 computer this room is designed to cover
+00:05:53.319 some of the unique characteristics of
+00:05:55.120 cloud providers and specifically ads
+00:05:57.479 that actually cracks me up because one
+00:05:58.759 time I was just walking through Boulder
+00:06:00.319 which is near where I'm from and of
+00:06:02.199 course there's a lot of techy people
+00:06:03.560 there and this was a while ago before I
+00:06:05.319 ever went back to school for it so I
+00:06:06.800 didn't know very much about the Cloud
+00:06:07.960 yet I hadn't been assimilated into the
+00:06:09.479 cult yet but I saw this woman wearing
+00:06:12.280 this shirt in downtown Boulder and the
+00:06:14.000 shirt said the cloud is just somebody
+00:06:16.599 else's computer and that stuck with me
+00:06:19.120 for so long like I I saw that shirt and
+00:06:21.280 I was like oh I feel like I understand
+00:06:22.639 what the cloud is now so that's that's
+00:06:24.840 hilarious try hack me is challenging me
+00:06:26.479 on my perception I got think beyond that
+00:06:28.639 the cloud is more than just somebody
+00:06:30.039 else's computer noted okay so now we
+00:06:32.639 have our first question to answer here
+00:06:34.960 what decade did companies start having
+00:06:36.840 widespread Reliance on Internet
+00:06:38.319 connected services so the answer here is
+00:06:41.199 1990s uh where where they were talking
+00:06:43.240 about the dot
+00:06:44.840 boom whoop whoop our answer is correct
+00:06:47.520 moving on to task three task three is
+00:06:50.560 called more scalable so let's see we're
+00:06:53.880 starting with growing demands starting
+00:06:55.759 in the late 1990s websites could not
+00:06:57.879 handle traffic coming their way from the
+00:07:00.039 ever growing worldwide web this the
+00:07:02.960 quotes have already made a return and as
+00:07:05.000 the 2000s started a number of
+00:07:06.560 Technologies came along on the scene to
+00:07:08.680 address these needs first there was
+00:07:10.560 content delivery networks that would
+00:07:12.080 serve static content on behalf of a
+00:07:13.840 website then Along Came AWS ec2 a
+00:07:17.039 virtual machine service that would allow
+00:07:19.199 customers to deploy additional servers
+00:07:21.120 on demand so if you didn't know AWS ec2
+00:07:23.759 is like the basic compute service of AWS
+00:07:26.000 I think AWS ec2 compute is still the
+00:07:28.039 most used AWS service
+00:07:29.840 anyway so we scroll down and we talk
+00:07:32.080 about an evolving approach we got a
+00:07:33.759 diagram and everything all right so the
+00:07:35.960 evolving approach section is talking a
+00:07:37.960 lot about autoscaling and how AWS
+00:07:40.479 released the official autoscaling
+00:07:41.919 feature for ec2 in 2009 and what
+00:07:44.599 autoscaling is all about is being able
+00:07:46.319 to scale your infrastructure so your
+00:07:48.520 servers your storage maybe your database
+00:07:51.440 programmatically in response to
+00:07:52.960 different conditions so the auto part
+00:07:54.919 typically means without a human having
+00:07:56.800 to go in and add another server you're
+00:07:59.360 infrastructure can respond dynamically
+00:08:01.440 based on different conditions different
+00:08:03.080 metrics different triggers and that's
+00:08:05.120 what this section is talking about a
+00:08:06.479 little bit about the history of ec2 and
+00:08:08.520 autoscaling and then this part is pretty
+00:08:10.440 interesting kind of talking about how
+00:08:11.960 autoscaling started with ec2 but now AWS
+00:08:14.479 has a lot of services that further
+00:08:16.440 enable scalability and that's where we
+00:08:18.680 start getting into discussion of cloud
+00:08:20.680 native architecture which is where an
+00:08:22.479 application was architected built
+00:08:24.400 developed knowing it was going to be run
+00:08:26.240 in the cloud and designed to really take
+00:08:28.039 advantage of everything the cloud can do
+00:08:29.919 as compared to a typical on-prem
+00:08:32.279 environment we've got a very nice
+00:08:34.159 diagram here I absolutely love a good
+00:08:35.880 diagram I like how we have like this
+00:08:37.799 green alien aesthetic going on here to
+00:08:40.279 make us feel really techy what's going
+00:08:42.200 on in this diagram is we have different
+00:08:44.560 types of applications containerized or
+00:08:46.640 non-containerized it's okay if you don't
+00:08:48.279 know what that means and they run on
+00:08:50.120 different compute services within AWS
+00:08:52.839 those compute Services take advantage of
+00:08:55.000 autoscaling to maintain application
+00:08:57.360 availability and Define how how to scale
+00:09:00.240 to meet demand when demand to your
+00:09:02.120 application fluctuates those Services
+00:09:04.519 take advantage of Auto scaling to do a
+00:09:06.000 bunch of different things scale your
+00:09:07.760 resources Up and Down based on demand to
+00:09:09.640 your application do proactive health
+00:09:12.160 checks to identify and replace if one of
+00:09:14.680 your servers is unhealthy and I don't
+00:09:16.959 really get this part why this kind of
+00:09:18.160 like an output but basically describing
+00:09:20.240 there's different types of autoscaling
+00:09:21.560 groups so ec2 instances have autoscaling
+00:09:24.279 groups e ECS containers have autoscaling
+00:09:27.160 groups and eks have manag node group I
+00:09:29.720 don't know very much about kubernetes so
+00:09:31.160 I won't sound intelligent if I try and
+00:09:32.560 talk about that this sentence really
+00:09:33.959 seems to sum up what the diagram is
+00:09:35.640 about autoscaling allows scaling any
+00:09:38.200 type of application containerized or
+00:09:40.000 non-containerized and maintains
+00:09:41.959 application availability to meet
+00:09:43.560 customers demands here's the question
+00:09:45.200 for task 3 was ec2 autoscaling the first
+00:09:48.040 autoscaling service in AWS yay or nay
+00:09:51.279 well based on what they described
+00:09:52.920 earlier yay indeed it was the first
+00:09:55.200 autoscaling service and now more
+00:09:56.720 services have built on so oh no no I
+00:10:00.959 already got one wrong it only took me
+00:10:02.279 three tasks all right well maybe let's
+00:10:04.160 see if we can say nay and there will be
+00:10:06.279 an explanation of why we were
+00:10:08.440 wrong whoop whoop our answer is correct
+00:10:11.519 was ec2 autoscaling the first
+00:10:13.040 autoscaling service in
+00:10:25.079 AWS okay so we don't get an explanation
+00:10:27.839 here so let's scroll back up and see
+00:10:29.839 what they said about this says here
+00:10:31.440 while third party's initially created
+00:10:33.680 autoscaling Services AWS released the
+00:10:36.240 official Auto scaling feature for ec2 in
+00:10:38.639 2009 so that makes me think the answer
+00:10:41.200 is yay I'm going to have to go back and
+00:10:43.959 figure out why that is the wrong answer
+00:10:46.880 cuz now I'm confused okay so I'm anal
+00:10:48.760 retentive about stuff like this I just
+00:10:50.399 paused the recording to go do some more
+00:10:52.480 research to try and figure out why the
+00:10:54.279 answer to this question is n because I
+00:10:55.880 don't really get it I read another walk
+00:10:57.959 through I watched Tyler Ram she's great
+00:10:59.720 walkthrough of this room and he had the
+00:11:01.519 exact same thought process I did so that
+00:11:03.000 made me feel a lot better so let's just
+00:11:04.760 move on but if anyone knows why nay is
+00:11:07.360 the answer to this question please let
+00:11:09.000 me know please comment below because I'm
+00:11:11.040 I'm still not getting that one but I
+00:11:12.240 won't get stuck on it let's move on to
+00:11:13.800 task four all right I'm jumping back in
+00:11:15.920 time a little bit because I thought
+00:11:17.240 about this a little bit more this
+00:11:19.399 question was ec2 autoscaling the first
+00:11:21.800 autoscaling service in AWS I think the
+00:11:25.279 reason why the answer is nay is because
+00:11:29.399 they're mentioning up here AWS released
+00:11:32.399 the official autoscaling feature for ec2
+00:11:34.399 in 2009 however third parties initially
+00:11:38.720 created autoscaling services so the
+00:11:41.880 reason why my answer was ec2 autoscaling
+00:11:45.040 the first Auto scaling service in AWS
+00:11:47.160 was wrong was because that was the first
+00:11:49.600 official AWS Auto scaling solution
+00:11:51.839 however there were thirdparty
+00:11:52.920 autoscaling solutions for ec2 that b AWS
+00:11:56.480 uh and were in place okay I feel a lot
+00:11:58.560 better now now that I figured it out and
+00:11:59.959 I think that makes a lot of sense so now
+00:12:01.680 my mental piece is restored and
+00:12:03.200 hopefully we can all move on with our
+00:12:04.639 lives task four is called more reliable
+00:12:07.079 so we had more scalable in task 3 now we
+00:12:09.160 have more reliable I wonder if these
+00:12:10.600 kind of go along with the AWS well
+00:12:12.680 architected framework because this is
+00:12:14.079 all the same Concepts so more reliable
+00:12:16.959 looks like we've got discussion of
+00:12:18.600 legacy on premise pattern Legacy on
+00:12:21.480 premise pattern is discussing how prior
+00:12:23.360 to the cloud failover capabilities for
+00:12:25.720 data centers were manual and highly
+00:12:27.760 customized for the technology stack of a
+00:12:30.000 particular organization this often took
+00:12:32.440 the form of a primary and then a backup
+00:12:34.399 data center that were geographically
+00:12:36.040 separated from each other and this was
+00:12:37.920 very expensive for companies and took a
+00:12:39.680 lot of Maintenance it was hard to
+00:12:41.360 gracefully fail over between the two
+00:12:43.120 physical data centers and there was
+00:12:45.000 always that risk of a prolonged outage
+00:12:46.959 which is not good for your business
+00:12:48.399 objectives just basically describing the
+00:12:50.480 way it was before Cloud how it was
+00:12:52.199 expensive how it was annoying basically
+00:12:53.600 how it sucked then we're contrasting the
+00:12:55.279 legacy on premise patterns to the cloud
+00:12:57.839 patterns talking about how AWS and other
+00:12:59.959 hyperscale Cloud providers meaning I'm
+00:13:01.760 sure like gcp Azure the big cloud
+00:13:04.160 providers out there have a big advantage
+00:13:06.079 in reliability because they can operate
+00:13:07.839 at such a larger scale rather than one
+00:13:10.399 company with a Data Center and then a
+00:13:12.040 backup data center AWS is a huge company
+00:13:15.399 they have so many data centers they can
+00:13:17.240 run them a lot more cheaply they have a
+00:13:18.839 lot more options for failover they can
+00:13:20.839 get a lot of data and insights for
+00:13:22.440 optimizing their systems there are many
+00:13:25.360 many things that AWS and the other big
+00:13:27.279 cloud providers can do that a smaller
+00:13:29.399 company could not do with one two three
+00:13:32.040 data centers now we're going to get into
+00:13:34.320 some of the very fundamental concepts
+00:13:36.000 about AWS which is the AWS Global
+00:13:38.160 footprint says here at the time of
+00:13:40.639 writing AWS claims to have 99
+00:13:42.959 availability zones in over 31 regions I
+00:13:45.480 wonder so we can check on the AWS
+00:13:47.279 website what the current number is I
+00:13:48.480 wonder if that's what this is a linked
+00:13:50.199 to perfect AWS Global infrastructure so
+00:13:53.639 now there are 33 launched regions and
+00:13:56.079 105 availability zones so let's compare
+00:13:58.759 here that might give us kind of some
+00:14:00.120 insight into how long ago this was
+00:14:01.880 written so two new regions and six new
+00:14:04.560 availability zones since this content
+00:14:06.120 was
+00:14:06.959 written let's un let's unpack that let's
+00:14:09.839 unpack what that means region region is
+00:14:13.160 the top level construct here a region is
+00:14:15.839 made up of one or more availability
+00:14:17.759 zones so that's really important to
+00:14:19.320 remember if anyone's watching you're
+00:14:20.839 trying to study for like maybe certified
+00:14:22.560 Cloud practitioner or anything you need
+00:14:23.839 to make sure you know this an
+00:14:25.240 availability zone is part of a region so
+00:14:28.040 a region always has at least one
+00:14:30.440 availability Zone almost always more I
+00:14:33.160 assume and then within availability
+00:14:35.480 zones are the data centers themselves so
+00:14:37.680 an availability zone is one or more
+00:14:39.920 discrete data center with redundant
+00:14:41.839 power networking and connectivity in an
+00:14:43.959 AWS region data centers are separated
+00:14:47.240 within availability zones and
+00:14:48.880 availability zones are separated within
+00:14:50.959 regions and then we've got this diagram
+00:14:53.160 of an example region so in this one
+00:14:55.000 example region we've got availability
+00:14:56.759 Zone a availability Zone B and avail
+00:14:58.759 ability Zone C and then then in each of
+00:15:01.240 these availability zones would be at
+00:15:02.880 least one data center probably more
+00:15:05.160 we're talking about reliability in this
+00:15:06.920 room here right and so when you just
+00:15:08.279 really think about it it makes sense
+00:15:10.240 because there's this redundancy
+00:15:11.800 throughout right data centers are
+00:15:13.639 redundant within an availability Zone
+00:15:15.880 availability zones are redundant within
+00:15:17.480 a region so if one data center was to
+00:15:19.920 get taken out or lose power is the
+00:15:21.800 example they give here or even if a
+00:15:23.279 whole availability Zone was to get taken
+00:15:25.120 out by a natural disaster or something
+00:15:26.920 like that there's that other data Center
+00:15:28.920 or that other availability Zone within
+00:15:30.720 the AWS infrastructure where automatic
+00:15:33.079 failover can occur without you as the
+00:15:35.560 customer even having to worry about it
+00:15:37.319 definitely if you're trying to learn AWS
+00:15:38.880 come into this task and read through it
+00:15:40.399 thoroughly this is a lot of good
+00:15:41.680 information I'm just kind of skimming
+00:15:43.120 over it talks about naming conventions
+00:15:45.600 that'll be very useful just even when
+00:15:46.959 you're working in the console giving
+00:15:48.920 some examples now here's the question
+00:15:51.560 it's asked us how close together in
+00:15:53.120 miles should an availability zones data
+00:15:55.319 centers be I think the answer to this is
+00:15:58.199 60 miles I'm sure it probably already
+00:15:59.839 just set this up here let's see what it
+00:16:01.759 said yes data centers that make up an
+00:16:04.839 availability Zone will all be located
+00:16:06.480 within 60 miles of each other in that
+00:16:08.399 given region so they don't release data
+00:16:10.839 about how many exact data centers there
+00:16:13.000 are or exactly where they are how far
+00:16:15.040 apart they are but this is what you'll
+00:16:16.199 always hear is that they're within 60
+00:16:18.199 miles of each other within an
+00:16:19.680 availability
+00:16:21.240 Zone wonderful no surprises there so
+00:16:24.120 that's correct we'll close that task out
+00:16:26.680 and move on to task five
+00:16:29.120 task five is called distributed around
+00:16:31.480 the world and in space question mark
+00:16:34.360 let's see what this is all about looks
+00:16:36.600 like this section discusses some of the
+00:16:38.680 different implications of what what it
+00:16:40.360 means when you have that Global
+00:16:41.800 infrastructure you're operating in all
+00:16:43.360 these different areas around the world
+00:16:44.759 and I guess in space as well so data
+00:16:47.000 sovereignty and latency the data
+00:16:49.480 sovereignty section is pretty
+00:16:50.720 interesting this is just talking about
+00:16:52.680 how different countries different areas
+00:16:54.839 of the world have different laws around
+00:16:56.800 data and data protection so AWS has to
+00:16:59.319 build their services to be able to be in
+00:17:01.720 all these different regions where
+00:17:02.839 customers have different legal
+00:17:04.240 requirements about how they have to
+00:17:05.799 handle their data where they can store
+00:17:07.400 their data a bunch of things like that
+00:17:09.640 this section also mentions AWS hosts
+00:17:11.599 regions on every continent except
+00:17:13.599 Antarctica so that's pretty interesting
+00:17:15.919 and in many key locations with data
+00:17:18.039 sovereignty requirements it mentions how
+00:17:20.319 AWS China is on a separate partition of
+00:17:22.559 the cloud and what separate partition
+00:17:24.760 means is that basically there's like a
+00:17:26.720 hard boundary between the ch region and
+00:17:29.240 other AWS regions it's completely
+00:17:31.000 separate whereas other commercial
+00:17:32.880 regions like us east1 the European
+00:17:35.440 regions any really any other region
+00:17:37.480 you've probably heard about they are
+00:17:39.240 more
+00:17:40.360 interconnected also has separate
+00:17:42.280 partitions built for different
+00:17:44.440 government use cases as well so that's
+00:17:46.600 what the data sovereignty part is all
+00:17:48.160 about is that data is handled
+00:17:49.960 differently there are different
+00:17:50.960 requirements around different types of
+00:17:52.679 data data in different locations and the
+00:17:54.440 cloud has to be prepared to deal with
+00:17:56.039 all of that and then latency is talking
+00:17:59.080 about how Beyond thinking about data
+00:18:01.240 sovereignty when you're this spread out
+00:18:03.080 around the globe you also have to think
+00:18:05.360 about how quickly data can travel around
+00:18:08.799 so if you're new to all this you can
+00:18:10.520 think of latency as basically how long
+00:18:13.000 something takes when you make a request
+00:18:14.679 to something how long does it take to
+00:18:16.159 get a response as you build an
+00:18:18.400 application one of the big advantages of
+00:18:20.360 the cloud is that the cloud has these
+00:18:22.440 points of presence all around the world
+00:18:24.320 so even if you're a small company and
+00:18:26.600 you operate in one country or one region
+00:18:29.880 you can use the cloud to replicate your
+00:18:31.880 it infrastructure all around the world
+00:18:34.039 to replicate your data all around the
+00:18:35.520 world and that means your customers deal
+00:18:37.679 with much less latency than if you were
+00:18:40.000 just serving data out of one data center
+00:18:42.440 located wherever you're at this section
+00:18:44.720 describes it in much more detail so
+00:18:46.080 hopefully you all have the opportunity
+00:18:47.320 to read it and now we get to these
+00:18:50.240 questions what continent has no AWS
+00:18:53.159 region so they told us that was
+00:18:55.200 Antarctica let's see if I can spell it
+00:18:58.400 nope I can't spell it let's copy and
+00:19:00.000 paste
+00:19:03.480 it so
+00:19:06.280 embarrassing let's try
+00:19:08.320 again okay and then what country has its
+00:19:11.240 own AWS partition hopefully I can spell
+00:19:13.360 this at least so that is
+00:19:15.640 China awesome so that's task five sorted
+00:19:18.520 let's move on to task six task six is
+00:19:21.200 called operational expense versus
+00:19:23.200 Capital expense sometimes you'll hear
+00:19:25.159 people say Opex versus capex if you want
+00:19:27.400 to abbreviate that and sound cool this
+00:19:30.240 is talking about I suppose the business
+00:19:32.720 implications of cloud and how that has
+00:19:34.919 been part of cloud adoption let's see
+00:19:37.080 what this is all about says while this
+00:19:39.240 course is focused on security associated
+00:19:41.440 with AWS it's important to understand
+00:19:43.679 the business value of cloud versus on
+00:19:45.799 premise data centers after all love this
+00:19:49.520 after all companies only use technology
+00:19:51.880 so they can make money we want to
+00:19:55.120 understand the business value of the
+00:19:57.280 cloud is related to the notion of capex
+00:19:59.520 versus op XO they give you the
+00:20:00.799 abbreviations here as well so it's not
+00:20:02.159 breaking news in business a capital
+00:20:05.280 expense is a major purchase of goods or
+00:20:07.559 services intended to be used by a
+00:20:09.360 company over a long period of time in
+00:20:12.280 contrast operating expenses are expenses
+00:20:14.840 incurred as part of day-to-day
+00:20:17.039 operations in the past organizations
+00:20:19.320 were known to pay in excess of a $1,000
+00:20:21.840 per square foot for Data Center buildout
+00:20:24.280 and configuration using that pricing a
+00:20:27.000 1,000 ft data center would cost about $1
+00:20:29.880 million
+00:20:30.880 us with the expensive nature of data
+00:20:33.440 centers Cloud providers saw an
+00:20:34.760 opportunity to create a different
+00:20:35.840 approach essentially every wasted
+00:20:37.440 compute cycle represents poor investment
+00:20:39.679 dollar spent the inefficiency was
+00:20:41.799 dramatic when calculated across
+00:20:43.720 Industries Cloud allows a pay as you go
+00:20:46.320 and reserved capacity model to better
+00:20:48.520 manage it expenses relative to the
+00:20:50.559 organization's it needs basically one of
+00:20:53.559 the points here is instead of building a
+00:20:55.400 huge data center which is a capex the
+00:20:58.520 cloud allows you to pay for computing
+00:21:00.640 and it resources as you go which is a
+00:21:02.600 Opex like a utility and the most
+00:21:05.280 important part probably any Cloud person
+00:21:06.679 would tell you is that most cloud
+00:21:08.159 services are pay as you go so if you
+00:21:10.159 have a whole data center full of servers
+00:21:12.799 and you have times of high demand like
+00:21:15.080 Black Friday is the classic example and
+00:21:16.919 maybe all your servers are worrying and
+00:21:18.480 you're using all of them at full
+00:21:19.559 capacity but then you have times of low
+00:21:21.279 demand like January you're paying a
+00:21:22.919 bunch of money for Server capacity that
+00:21:24.559 you're not using whereas in the cloud
+00:21:26.480 because of that auto scaling we already
+00:21:27.799 talked about you could scale way up for
+00:21:30.039 Black Friday and then as soon as you
+00:21:31.440 don't need that capacity anymore you can
+00:21:33.240 scale your servers down and pay only for
+00:21:35.159 what you're using and that is how the
+00:21:37.120 cloud has ended up saving companies a
+00:21:39.520 lot of money and that's been a huge
+00:21:41.480 driver of adoption to put it simply I we
+00:21:43.840 could go a lot farther into it finally
+00:21:46.000 only spending money on assets that are
+00:21:47.679 currently in use has the advantage of
+00:21:49.320 enhancing operational agility so that's
+00:21:51.559 another huge piece of it it's not just
+00:21:53.120 the saving money part it's also the
+00:21:55.240 ability to Pivot to make changes to your
+00:21:57.360 infrastructure a lot more quickly uh at
+00:21:59.880 at AWS we always used to say fail fast
+00:22:02.400 you can try something you can learn from
+00:22:04.039 it rather than having to build a whole
+00:22:05.480 new data center or whatever you can just
+00:22:07.440 simply change what you've got deployed
+00:22:08.919 in the cloud it's a lot more flexible
+00:22:10.679 and agile anyway let's see what the
+00:22:12.400 question is here is a major purchase
+00:22:15.320 intended to be used by a business over a
+00:22:17.760 long period of time a capital expense or
+00:22:20.240 an operating expense well I believe that
+00:22:22.799 is the definition of a capital expense
+00:22:25.559 let's see how we
+00:22:26.960 do
+00:22:29.159 correct all right so that's me heavily
+00:22:31.080 glossing over the idea of Opex versus
+00:22:34.000 capex let's move on to task s task s is
+00:22:38.039 called API mandate and the two Pizza
+00:22:40.080 team so seeing the two Pizza team thing
+00:22:42.360 I think we're about to get into a little
+00:22:43.640 bit of AWS lore here so the API mandate
+00:22:47.960 this says even prior to the formation of
+00:22:49.640 AWS the CEO of Amazon Jeff Bezos well he
+00:22:52.760 was the CEO of Amazon when this was
+00:22:54.240 written as you probably know he's not
+00:22:55.520 anymore anyway Jeff Bezos issued a
+00:22:57.679 mandate across Amazon that internal
+00:22:59.559 teams would be required to make their
+00:23:01.080 data accessible to all other teams via a
+00:23:03.360 service interface or an API and API
+00:23:06.000 stands for application programming
+00:23:07.400 interface as the legend goes the
+00:23:09.520 specific mandate stated the following
+00:23:11.880 all teams will henceforth expose their
+00:23:14.120 data and functionality through service
+00:23:16.080 interfaces teams must communicate with
+00:23:18.679 each other through these interfaces
+00:23:20.559 there will be no other form of
+00:23:21.919 interprocess communication Allowed no
+00:23:23.840 direct linking no direct reads of other
+00:23:25.640 teams data stores no shared memory
+00:23:28.000 remodel no back doors whatsoever the
+00:23:30.279 only communication allowed is via
+00:23:32.000 service interface calls over the network
+00:23:34.400 it doesn't matter what technology they
+00:23:35.840 use HTTP corpa pubsub custom protocols
+00:23:39.159 doesn't matter all service interfaces
+00:23:41.679 without exception must be designed from
+00:23:43.640 the groundup to be externalizable that
+00:23:46.159 is to say the team must plan and design
+00:23:48.559 to be able to expose the interface to
+00:23:50.799 developers in the outside world no
+00:23:53.120 exceptions anyone who doesn't do this
+00:23:55.080 will be fired thank you have a nice day
+00:23:57.360 and this is a contributed to Jeff Bezos
+00:23:59.480 in 2002 so this is saying Jeff Bezos
+00:24:02.080 said from the very beginning as these
+00:24:03.799 different teams in ads were building out
+00:24:06.039 their systems and designing their
+00:24:07.600 systems they had to design them in such
+00:24:09.640 a way that external entities could
+00:24:12.520 interact with them via like a
+00:24:13.960 traditional
+00:24:15.120 API then it says it turned out that
+00:24:17.679 creating standardized apis to interact
+00:24:19.480 with AWS services and resources is the
+00:24:22.000 key capability to unlock automation for
+00:24:23.960 AWS customers if you're new to the cloud
+00:24:26.320 one thing to understand is that when
+00:24:27.799 whenever you interact with a cloud
+00:24:29.240 provider so be that via the console
+00:24:31.760 clicking around doing click Ops be that
+00:24:33.919 interacting programmatically from the
+00:24:35.559 command line or using an SDK You're
+00:24:38.320 simply making calls to the cloud
+00:24:40.039 provider API to do actions in the cloud
+00:24:42.960 that's what this is getting at is that
+00:24:44.320 from the beginning these teams within
+00:24:45.960 Amazon were taught to build their
+00:24:48.399 systems in such a way that external
+00:24:50.600 entities could easily interact with them
+00:24:52.360 via something like a API call oh okay so
+00:24:55.159 this just kind of says the same thing
+00:24:56.399 except better summarized any customers
+00:24:58.279 who interact with AWS services are
+00:25:00.039 ultimately interacting with service apis
+00:25:02.200 in many cases the very same apis that
+00:25:04.760 AWS employees use and sounds like Jeff
+00:25:07.600 Bezos envisioned that from a very long
+00:25:09.200 time ago before the cloud was even a
+00:25:10.640 thing he designed with that vision in
+00:25:12.640 mind and told people if they didn't get
+00:25:14.120 with it they were going to get fired and
+00:25:15.440 then the two Pizza team thing I have
+00:25:16.960 heard this before this is about a
+00:25:18.799 philosophy Jeff Bezos had within AWS
+00:25:21.279 where he believed teams should save
+00:25:23.399 fairly small so he believed no team
+00:25:26.000 within Amazon and AWS should get so big
+00:25:28.600 that they couldn't be fed with two
+00:25:30.240 pizzas for a team meal and this
+00:25:32.880 philosophy has contributed to a culture
+00:25:34.600 in AWS or at least used to be this
+00:25:36.360 culture where service teams and
+00:25:38.120 individual teams kind of operate like
+00:25:39.799 their own startup so different service
+00:25:41.760 teams thinking about the service they
+00:25:43.080 build and maintain as being like their
+00:25:44.559 own little individual product couple
+00:25:47.399 other things it says here so the reason
+00:25:49.520 Bezos had this philosophy was he
+00:25:51.200 believed smaller teams better foster
+00:25:54.000 collaboration and then it says while
+00:25:57.279 this true that this collaboration likely
+00:25:58.919 led to much of the Innovation we
+00:26:00.279 appreciate from AWS today it also had
+00:26:02.200 another effect AWS has over 300 services
+00:26:05.279 and each of these Services is run by a
+00:26:07.159 different team like we talked about When
+00:26:09.159 developing apis and apis are what you
+00:26:11.440 interact with all the time as the
+00:26:12.679 customer API naming conventions do not
+00:26:16.039 have maybe the kind of consistency that
+00:26:18.080 we would like across different ads
+00:26:19.600 services so this is interesting because
+00:26:21.520 this is the first part of this content
+00:26:22.919 so far where they're taking a little bit
+00:26:24.159 of a dig here but they're saying
+00:26:26.120 unfortunately with the various a s teams
+00:26:28.559 there's a lot of variety in the naming
+00:26:30.039 Convention of AWS service apis when
+00:26:32.240 using services that may have similar
+00:26:33.840 capabilities and users can't rely on
+00:26:35.760 those apis being consistently named so I
+00:26:38.080 wonder if whoever wrote this has been
+00:26:39.720 burned here before but it is a good
+00:26:41.440 point when you're interacting with
+00:26:42.480 things especially programmatically the
+00:26:43.960 naming conventions are really
+00:26:46.600 important oh once again I jumped the gun
+00:26:49.159 says with the need to be precise with
+00:26:50.679 programming grammar these
+00:26:52.120 inconsistencies can leave developers
+00:26:53.720 frustrated and extensive digging through
+00:26:55.520 service documentation all right right
+00:26:57.840 and then it says who announced the API
+00:26:59.679 mandate at AWS that's our question so
+00:27:01.520 the answer there is Jeff Bezos if I can
+00:27:05.279 oh my gosh I can't type four okay submit
+00:27:08.559 whoop that is the correct answer well
+00:27:10.679 done us moving on to task eight task
+00:27:14.159 eight is called free open source
+00:27:16.159 capabilities and there's two sections
+00:27:18.159 built-in advantage and service tools
+00:27:20.559 built-in Advantage starts with when you
+00:27:22.720 use AWS you have access to a large
+00:27:24.600 number of services preconfigured to get
+00:27:26.360 you up and running quickly whether you
+00:27:28.080 need a website a database or a cicd
+00:27:30.399 pipeline ads has capabilities ready to
+00:27:32.320 go for you so this kind of talking about
+00:27:34.039 like one of the things about the cloud
+00:27:35.399 is what's called managed services and
+00:27:37.360 managed Services abstract away sometimes
+00:27:40.320 some of the work for you so you could
+00:27:41.799 just have an outof boox solution you
+00:27:43.159 click you deploy you're ready to go
+00:27:44.519 rather than having to build something
+00:27:46.360 yourself and then beyond these Services
+00:27:49.120 themselves AWS has made large
+00:27:50.559 contributions to the open source
+00:27:51.960 software space these contributions
+00:27:54.120 include a wide variety of tools to
+00:27:55.679 enable ads services along with with
+00:27:57.720 pre-built solutions to General business
+00:28:00.240 it problems then this next paragraph is
+00:28:03.000 giving some examples of those tools that
+00:28:05.559 exist to help you use AWS essentially
+00:28:08.399 the first example they use is cloud
+00:28:09.919 formation which is an infrastructure as
+00:28:11.519 code tool which I'm absolutely obsessed
+00:28:13.159 with sure I'm sure eventually I'll have
+00:28:15.240 some videos about cloud formation but
+00:28:17.120 cloud formation allows you to deploy
+00:28:18.679 your Cloud infrastructure using
+00:28:20.600 predefined yaml or Json uh
+00:28:23.159 infrastructure's code is indicating you
+00:28:24.799 run code and that's what spins up your
+00:28:26.880 infrastructure for you and Beyond
+00:28:28.799 providing the service itself referring
+00:28:30.320 to cloud formation ads provides
+00:28:32.360 reference implementations and Sample
+00:28:34.080 templates for various ads Services then
+00:28:37.279 we read about how in addition to
+00:28:39.320 providing cloud formation which is I
+00:28:40.960 guess is considered an open source tool
+00:28:43.039 based on the section heading here Beyond
+00:28:45.120 providing cloud formation ads also
+00:28:46.960 provides different open-source templates
+00:28:49.120 and reference implementations you can
+00:28:50.840 use to take cloud formation and work
+00:28:54.000 with AWS Services then this is like such
+00:28:56.720 a specific example but one really
+00:28:59.159 specific example here is that there's a
+00:29:00.840 GitHub repository full of ads samples
+00:29:03.000 one of which is a fully functional
+00:29:05.039 Airline booking application so we can go
+00:29:07.919 quickly look over here and we have this
+00:29:09.559 GitHub repository full of Open Source
+00:29:12.200 ads samples I think the point here is
+00:29:14.039 just that AWS has open source tooling
+00:29:15.919 that they've contributed and built and
+00:29:17.399 then service tools one notable type of
+00:29:20.279 Open Source software offered by awss
+00:29:22.880 ecosystem tools so this is more examples
+00:29:25.320 of free tools that you can use to to
+00:29:27.640 work with AWS so they give an example
+00:29:30.360 things like AWS data Wrangler AWS shell
+00:29:33.880 which is the integrated AWS CI and then
+00:29:36.320 AWS Lambda power tools python which
+00:29:38.640 seems like is a library that enhances
+00:29:41.279 AWS Lambda functions functionality as
+00:29:43.840 these tools and capabilities are not
+00:29:45.480 widely advertised adabs customers might
+00:29:47.440 not be familiar with many or all of the
+00:29:49.399 capabilities however as a adabs user you
+00:29:52.279 should research and be aware of AWS
+00:29:54.159 services and example code before you try
+00:29:56.159 and go wild developing your own custom
+00:29:58.440 stuff I guess that's the moral of the
+00:29:59.519 story is do your research as you're
+00:30:01.120 learning the cloud and learn about the
+00:30:02.559 open source tooling that's in place to
+00:30:04.399 help you build faster which is a good
+00:30:06.240 message and the question for task eight
+00:30:09.200 what is AWS native infrastructure as
+00:30:11.440 code tool I think that might be missing
+00:30:13.640 a word but I think the answer is uh the
+00:30:16.799 AWS native infrastructures code tool
+00:30:18.799 that was mentioned in this section is
+00:30:20.720 cloud formation one of my one of my
+00:30:23.080 loves of my lives excellent so cloud
+00:30:25.000 formation is the correct answer this
+00:30:26.880 probably the easiest time I've ever had
+00:30:28.120 in my life with anything to do with
+00:30:29.240 cloud formation and we can move on to
+00:30:31.480 task n task N9 is called serverless and
+00:30:34.440 other low code Solutions which is kind
+00:30:36.919 of interesting because I wouldn't really
+00:30:38.120 describe serverless as a low code
+00:30:40.799 solution so I think this title is a
+00:30:42.159 little bit of a misnomer but I guess
+00:30:43.399 we're going to discuss both topics we've
+00:30:45.760 got two sections in here Genesis of
+00:30:48.080 server lless and then low code noode
+00:30:50.840 Solutions the Genesis of server list
+00:30:53.080 section is talking about some of the
+00:30:54.440 early AWS services that kind of paved
+00:30:56.639 the way for the serverless architecture
+00:30:58.960 that a lot of people use today so
+00:31:00.840 talking about how S3 which stands for
+00:31:02.960 simple storage Service uh Dynamo DB
+00:31:06.279 which is a database service and then SNS
+00:31:08.760 simple notification service were some of
+00:31:10.760 the first ads service offerings where
+00:31:13.200 customers didn't have to put any effort
+00:31:14.799 into the configuration of underlying
+00:31:17.320 resources or ongoing maintenance for the
+00:31:19.960 resources that support these Services if
+00:31:22.440 you don't know what serverless is you've
+00:31:23.799 never heard of it before a serverless
+00:31:25.440 architecture is a way of building
+00:31:27.919 applications and services without ever
+00:31:29.919 having to manage any of the underlying
+00:31:32.320 it infrastructure so your application
+00:31:35.000 for example still runs on it
+00:31:37.279 infrastructure it runs on servers it
+00:31:39.320 relies on Hardware in a data center
+00:31:41.080 somewhere but you don't have to worry
+00:31:42.600 about that all of that underlying
+00:31:44.279 infrastructure is abstracted away from
+00:31:45.960 you in this case it's managed by AWS and
+00:31:49.200 you as the customer don't spend any time
+00:31:51.240 on configuration or ongoing maintenance
+00:31:54.240 that's a very simplified explanation but
+00:31:56.480 one of the really important things and
+00:31:57.960 this is part of what's mentioned here to
+00:31:59.519 understand about serverless is typically
+00:32:02.159 when you're using serverless services in
+00:32:05.159 AWS to build a serverless application
+00:32:08.519 you do not pay any cost for your
+00:32:10.200 application when the application is Idle
+00:32:12.440 so in a traditional model where you're
+00:32:14.000 running your application on a server
+00:32:15.440 that you manage you are paying at least
+00:32:17.760 something to have that server up and
+00:32:19.519 running all the time server list
+00:32:21.639 Services typically the model is
+00:32:23.279 infrastructure is spun up ad hoc for you
+00:32:25.880 only when your application needs to do
+00:32:27.440 something only when it needs to respond
+00:32:28.960 to a request or an event trigger has
+00:32:31.159 gone off and now your application needs
+00:32:32.679 to do something and you're going to pay
+00:32:34.159 for the resources that the application
+00:32:36.000 uses to do the job it needs to do and
+00:32:38.840 then once the application is Idle again
+00:32:40.399 you're not paying for anything you don't
+00:32:41.840 need to worry about patching the server
+00:32:43.399 nothing AWS does all of that for you you
+00:32:46.120 simply worry about whatever the
+00:32:47.480 functionality of your application is
+00:32:49.039 whatever the job it's supposed to be
+00:32:50.200 doing is you don't worry about any of
+00:32:52.120 the underlying infrastructure and that
+00:32:54.159 was a very different that was a big
+00:32:55.399 change it was a huge deal when server
+00:32:57.159 started becoming a thing and in a lot of
+00:32:59.120 use cases it's very cost effective
+00:33:01.480 because you don't have a situation where
+00:33:02.880 all your servers are running at the same
+00:33:04.519 cost to you no matter of how much
+00:33:06.080 traffic is coming in then it says here
+00:33:08.200 these benefits were immediately clear
+00:33:10.360 and I'm a big Ser list fan so I mean I
+00:33:12.240 would agree with that and then yeah just
+00:33:14.519 goes on to elaborate on how there are
+00:33:16.320 now a vast range of adabs services and
+00:33:19.360 tools to build using a serverless
+00:33:22.360 architecture then this is a nice
+00:33:24.120 sentence for a developer there are few
+00:33:26.320 ways to go from an initial idea to a
+00:33:28.200 functional scalable and publicly
+00:33:30.320 accessible application faster than using
+00:33:32.559 AWS serverless capabilities isn't that
+00:33:35.360 nice and if this is the first time
+00:33:36.960 you're ever hearing these terms this is
+00:33:38.279 your first exposure to the idea of
+00:33:40.200 serverless and serverless architecture
+00:33:41.760 patterns I know one of the modules in
+00:33:43.840 this learning path is serverless
+00:33:46.320 Technologies specifically Lambda and API
+00:33:48.679 Gateway I think we just saw so it'll
+00:33:50.639 make more sense I think when we're knee
+00:33:52.200 deep in it so don't worry and then that
+00:33:54.960 was section one section two low code and
+00:33:57.159 no code Solutions the traditional
+00:33:59.679 whenever I see low code or no code like
+00:34:01.600 what I immediately think of is drag and
+00:34:03.440 drop so a low code or no code solution
+00:34:06.480 abstracts away some of the more
+00:34:08.440 technical details of implementing
+00:34:10.199 something and in this case implementing
+00:34:12.119 something in the cloud and allows
+00:34:13.520 somebody who maybe doesn't have a ton of
+00:34:15.040 programming skills or some sort of
+00:34:16.440 certain technical skill to point and
+00:34:18.760 click or interact in some other
+00:34:20.480 userfriendly way and then all the
+00:34:22.520 technical stuff is implemented on the
+00:34:23.960 back end so that's like that's what I
+00:34:26.359 always envision is like when I see no
+00:34:28.399 code I'm thinking some drag and drop
+00:34:30.119 interface where you're dragging and
+00:34:31.719 dropping you're building something and
+00:34:33.280 then the program constructs for you all
+00:34:35.399 the code it's all abstracted away from
+00:34:37.000 you so let's see what examples we have
+00:34:39.399 here we have AWS honey code is an
+00:34:41.440 example of a pure no code solution
+00:34:43.599 offering a drag and drop interface for
+00:34:45.719 building web applications and static
+00:34:47.359 websites I've actually never used honey
+00:34:48.918 code let's see what this is about oh
+00:34:52.560 okay Amazon honey code which is in beta
+00:34:55.639 oh oh and then it says effective
+00:34:58.320 February 29th uh they're going to be
+00:35:00.480 discontinuing it so don't get attached
+00:35:01.960 to Amazon honey code but but apparently
+00:35:03.599 that was a good example of a no code
+00:35:05.480 solution where you did the drag and drop
+00:35:07.040 to build static websites and then the
+00:35:09.359 other example here is AWS amplifi which
+00:35:11.480 I have used before and amplify I would
+00:35:14.000 say is more of an example of a low code
+00:35:16.320 solution you are going to need to have
+00:35:17.720 some technical skills some technical
+00:35:19.200 knowhow but amplify abstracts away for
+00:35:22.240 you some of the technical details of
+00:35:24.000 building out a backend for an
+00:35:25.320 application so it helps you build out
+00:35:27.760 your application backend things like
+00:35:29.240 your database and stuff using AWS
+00:35:31.440 services but without you having to do
+00:35:33.320 all the implementation yourself that's
+00:35:34.880 what amplify is about if I recall
+00:35:36.400 correctly so honey code was their
+00:35:38.520 example of no code amplify was their
+00:35:40.160 example of a low code solution the point
+00:35:42.280 being some of the technical
+00:35:43.320 implementation is abstracted away then
+00:35:46.200 the conclusion while still in the early
+00:35:47.760 stages AWS and other Cloud providers are
+00:35:50.119 working to create software development
+00:35:51.440 workflows that don't inherently require
+00:35:53.760 programming skills I think this is so
+00:35:55.640 true so I was at reinvent which like the
+00:35:57.640 big AWS annual convention this year it's
+00:36:00.119 my first time ever got to go it was
+00:36:01.240 really fun and that was one thing myself
+00:36:03.599 and some of my colleagues that I was
+00:36:04.880 there with really commented on was it
+00:36:06.640 seems like no Code and low code is more
+00:36:09.560 popular than ever it seems like AWS is
+00:36:11.440 coming up with a ton of Innovations in
+00:36:12.960 this area so I'm sure there will be more
+00:36:14.480 to come now here is the question for
+00:36:17.119 task n does server list cost more or
+00:36:19.359 less when running idle than traditional
+00:36:21.680 servers so the answer here is less and
+00:36:24.200 in fact serverless often costs nothing
+00:36:26.560 with running Idol which is lovely so
+00:36:28.560 let's hit submit whoop whoop that is
+00:36:31.560 Task n complete and now we can move on
+00:36:33.560 to the final task which is Task 10 okay
+00:36:35.960 so now we're here on task 10 which is
+00:36:37.880 the summary task during this room you
+00:36:40.520 have learned some history about Cloud
+00:36:42.440 technology and the basic benefits of
+00:36:43.960 using the cloud we should Now understand
+00:36:46.480 how technology limitations in the 90s
+00:36:48.680 and 2000s drove the development of cloud
+00:36:51.839 Technologies how capabilities associated
+00:36:54.319 with reliability and scalability are
+00:36:56.680 Hallmarks of cloud service providers how
+00:36:59.280 companies may see cost and it agility
+00:37:01.520 benefits from using the cloud how an API
+00:37:04.040 first approach was powerful but also had
+00:37:06.000 drawbacks how AWS provides various
+00:37:08.400 Services capabilities code and
+00:37:10.040 documentation for free so this all
+00:37:11.960 pretty glowing this background knowledge
+00:37:14.000 should serve as helpful context as you
+00:37:16.079 further explore Cloud Technologies and
+00:37:18.079 our other ads rooms let's have a small
+00:37:21.319 test click the view site button at the
+00:37:24.160 top of this task so I already clicked it
+00:37:25.839 view site and that's open this to launch
+00:37:28.640 the static site in split view what is
+00:37:30.880 the flag after completing the exercise
+00:37:33.040 okay awesome so now we're getting into
+00:37:34.560 more like a traditional like CTF Capture
+00:37:37.119 the Flag type of exercise so here's our
+00:37:39.680 instructions you have been tasked to
+00:37:41.680 develop a social media interaction
+00:37:43.359 website where users can communicate with
+00:37:45.079 each other with features more or less
+00:37:47.000 like those on Twitter or Facebook your
+00:37:49.079 tasked to get input from all the teams
+00:37:50.960 prepare a feasibility report and present
+00:37:52.760 it to the
+00:37:53.839 CEO you will visit each department and
+00:37:56.400 you will be asking certain questions we
+00:37:58.240 will only get 30 seconds to answer each
+00:38:00.640 question in case of running out of time
+00:38:02.839 you get a penalty and your game will be
+00:38:04.680 over after three penalties okay we're
+00:38:06.359 not messing around okay all right so I
+00:38:09.280 got my drink ready before I hit starts
+00:38:11.960 Cloud themed and
+00:38:13.640 everything let's see what this game is
+00:38:15.680 all about let's
+00:38:17.319 go click on the department to visit it
+00:38:20.880 okay so let's see we've
+00:38:24.839 got soft all right so we got software
+00:38:29.359 engineering
+00:38:32.599 CEO
+00:38:34.200 devops
+00:38:36.119 Finance I see so maybe we're going to
+00:38:38.160 kind of talk about cloud in the way that
+00:38:40.680 motivates each of these different
+00:38:41.960 populations let's start with
+00:38:45.800 devops it's kind of hard to click on let
+00:38:47.920 me keep trying all
+00:38:49.800 right the website will be accessible
+00:38:52.040 from all over the world shall we deploy
+00:38:54.200 all the infrastructure on our premises
+00:38:55.920 or go for cloud services okay so this is
+00:38:58.160 that kind of like I think we talked
+00:38:59.480 about this in the latency section if
+00:39:00.920 we're going to be all around the world
+00:39:02.040 it'll be easier to
+00:39:03.560 replicate in the cloud what is the most
+00:39:06.440 practical reason for selecting the cloud
+00:39:08.280 services model lesser latency rate for
+00:39:11.599 website users and easy scalability as
+00:39:13.880 the user base grows on Prem
+00:39:16.000 infrastructure cannot host a website
+00:39:17.599 well websites existed before the cloud
+00:39:20.200 in fact they launched the cloud via a
+00:39:21.760 website I'm sure so lesser latency rate
+00:39:24.280 is what we will go for our all right so
+00:39:27.400 seems like we convinced devops let's go
+00:39:29.480 see what the software Engineers want to
+00:39:31.640 hear about the software engineering team
+00:39:34.560 mentioned that the complete team is
+00:39:36.119 housed in California therefore they need
+00:39:38.000 a high availability server in that
+00:39:40.000 region if AWS is selected as cloud
+00:39:42.920 service provider what would be the
+00:39:44.359 naming convention for that region oh
+00:39:47.160 okay I didn't really dive into these in
+00:39:49.040 the video but what they're looking for
+00:39:50.920 here is US the naming convention for the
+00:39:52.960 region Us East one if you're familiar or
+00:39:55.800 Us East 2 or us West one or us West 2
+00:39:58.640 California would be us West one I guess
+00:40:01.520 which of the following service will be
+00:40:03.440 used which of the following services
+00:40:05.960 will be used to Route traffic based on
+00:40:07.760 users geolocation ec2 so that's compute
+00:40:11.560 no the traffic will get routed to
+00:40:14.040 compute Services probably RDS is
+00:40:15.640 databases so we're going to go with
+00:40:16.880 Route
+00:40:19.160 53 inline with Jeff bezos's model at
+00:40:22.359 Amazon each developer of our software
+00:40:24.240 team will expose the data to other
+00:40:25.640 members through a service interface
+00:40:27.160 called let's go with API which stands
+00:40:29.440 for application programming interface
+00:40:32.200 all right now over to
+00:40:34.359 finance I I'm saving the CEO for last
+00:40:37.160 just in case like the final boss type of
+00:40:39.240 situation the payment will be made to
+00:40:41.440 cloud service providers on a pay as youo
+00:40:43.520 model and infrastructure will be
+00:40:45.040 expanded per the needs which of the
+00:40:47.000 following expenses is optimally used in
+00:40:50.280 this case so pay as you go and the
+00:40:54.160 infrastructure so I mean they're looking
+00:40:55.760 for OPC so I'm going to go with
+00:40:58.480 operational oh no okay that was wrong
+00:41:01.520 the payment will be made to cloud
+00:41:03.160 service providers on a pay as you go
+00:41:05.040 model and the infrastructure will be
+00:41:07.599 expanded per the needs which of the
+00:41:09.760 following expenses is optimally used in
+00:41:12.839 this case see this I'm not a finance
+00:41:15.160 person but I guess operational was wrong
+00:41:17.119 so let's go with
+00:41:18.440 optional all right that was it and then
+00:41:21.800 over to the CEO let's see how it
+00:41:25.240 goes
+00:41:26.760 feasibility report okay so this is
+00:41:29.640 summarizing what we told the devops
+00:41:32.160 people what we told the software
+00:41:34.079 engineer people and then
+00:41:36.160 Finance which of the following I still
+00:41:38.760 don't really get the way that question
+00:41:39.800 is phrased but I have faith that it's
+00:41:41.400 right and I was wrong let's hit next and
+00:41:44.560 the flag so we got our feasibility
+00:41:46.920 report we convinced the CEO so now we
+00:41:49.319 get our try hackme
+00:41:51.480 flag let's paste
+00:41:54.000 submit and awesome we finished our first
+00:41:56.720 room yay this is so exciting it's been
+00:41:58.200 so long since I've done a try hackme
+00:41:59.480 room so I'm on a roll I think I'm just
+00:42:02.599 going to continue on to next room ads
+00:42:05.520 basic concepts but I will make that into
+00:42:07.319 a separate video so hopefully if you
+00:42:09.160 watched this one you enjoyed it Cloud
+00:42:11.240 101 was a very nice overview to the
+00:42:13.800 basics of cloud computing if you're not
+00:42:15.440 familiar thank you for watching and
+00:42:17.280 perhaps I will see you in this next AWS
+00:42:19.559 basic concepts room

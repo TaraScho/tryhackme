@@ -1,8 +1,13 @@
 ---
+layout: ../../../../../layouts/MarkdownLayout.astro
 roomName: AWS Basic Concepts
+title: 'THM - AWS Basic Concepts'
+description: 'Walkthrough of the Try Hack Me AWS Basic Concepts room'
 learningPath: Attacking and Defending AWS
 pubDate: Tod
-img: https://fakeimg.pl/640x360
+image:
+  url: '/blog-images/aws-basic-concepts.png'
+  alt: 'Cloud graphic with AWS Basic Concepts room name and TryHackMe logo.'
 ---
 
 Coming soon

@@ -1,0 +1,1007 @@
+# tactiq.io free youtube transcript
+# TryHackMe Room Walkthrough: IAM Permissions - Attacking and Defending AWS Learning Path
+# https://www.youtube.com/watch/PLg_yEca7_g
+
+00:00:00.080 hi everyone it's Tara welcome to my
+00:00:02.360 channel I have been playing through the
+00:00:04.880 attacking and defending AWS path in try
+00:00:08.320 hackme and making some video
+00:00:09.679 walkthroughs I'm currently in the middle
+00:00:11.840 of the module focus on I am identity and
+00:00:14.280 access management in AWS in my most
+00:00:16.920 recent video I played through the room
+00:00:18.720 that's focused on I am principles which
+00:00:20.400 is kind of like the who typically you
+00:00:21.880 can think of it that way in AWS I am and
+00:00:24.519 now the next room is focused on I am
+00:00:26.840 permissions so I'd like to think I'm
+00:00:28.920 pretty good at writing I am permission
+00:00:30.800 policies and understanding them but in
+00:00:32.840 my experience I have seen that even the
+00:00:34.840 greatest I am Pros out there can
+00:00:36.719 definitely have some humbling moments so
+00:00:38.879 I'm excited to play through this room
+00:00:40.239 see what it's all about hopefully learn
+00:00:42.280 some new things and get some practice
+00:00:44.079 with I am permission policies so let's
+00:00:46.480 go check it out and see how it
+00:00:48.830 [Music]
+00:00:56.199 goes here we are in the introduction to
+00:00:58.879 I am module and the next room is I am
+00:01:02.120 permissions the description for this
+00:01:03.960 room says learn how authorization is
+00:01:06.240 handled in AWS I am so I am principles
+00:01:10.000 was about the different types of actors
+00:01:12.080 in I am that do actions and now we're
+00:01:14.479 going to learn how actions are
+00:01:15.759 authorized via permissions let's jump in
+00:01:19.640 now I am in the I am permissions room
+00:01:21.920 the first task is called structure of an
+00:01:23.680 IM IM policy an I am principal can have
+00:01:26.479 multiple policies attached to it these
+00:01:28.600 policies determine what the principal is
+00:01:30.600 authorized to do in your account so
+00:01:33.280 remember when you hear principal we're
+00:01:34.759 talking about things like I am users and
+00:01:36.520 I am roles that's what's meant by
+00:01:38.079 principle each policy consists of one or
+00:01:40.880 more statements that consist of an
+00:01:43.280 optional statement identifier so that's
+00:01:45.280 the Sid an action which is a list of the
+00:01:48.040 things that the policy either allows or
+00:01:49.840 denies the principal to do resources
+00:01:53.119 which is the Arn or ARS of resources in
+00:01:56.079 AWS that the statement applies to an
+00:01:58.799 effect which can only ever be allow or
+00:02:01.320 deny that's the only two options and
+00:02:03.680 then lastly conditions so you can use
+00:02:05.439 optional conditions in the policy and
+00:02:07.280 those conditions must be satisfied for
+00:02:09.399 the policy to actually Grant permission
+00:02:11.400 and conditions in IM policies are very
+00:02:14.000 powerful hopefully we'll be seeing that
+00:02:15.480 in this learning path but once you know
+00:02:17.120 how to do conditions in a permission
+00:02:18.599 policy you can really do a lot with that
+00:02:20.680 this provides many ads manage policies
+00:02:23.080 that contain a list of actions that
+00:02:24.599 usually map to a specific job function
+00:02:27.120 however AWS customers can also create
+00:02:29.239 custom policies that are more fine
+00:02:31.120 grained for example you could use like
+00:02:33.160 this resources clause in a permission
+00:02:35.280 policy to say they're only allowed
+00:02:37.000 permission to this one specific resource
+00:02:39.120 this one S3
+00:02:40.519 bucket customer policies can be either
+00:02:43.280 customer managed policies or inline
+00:02:45.400 policies directly attached to a specific
+00:02:47.879 principle inline policies are attached
+00:02:50.800 to one principle inline hence the name
+00:02:53.640 and they can't be shared or reused
+00:02:55.680 whereas customer manage policies exist
+00:02:57.920 as their own thing as a policy and then
+00:02:59.879 you attach it to different principles as
+00:03:01.720 needed so customer managed policies are
+00:03:04.319 better for reuse they're better for
+00:03:05.959 editing at scale and typically customer
+00:03:08.120 managed policies are the best practice
+00:03:10.040 as opposed to using an inline policy
+00:03:11.879 anyway I'm in here like three minutes
+00:03:13.159 I'm already on a tangent so let's see
+00:03:14.519 what we're supposed to be doing here
+00:03:16.000 inline policies are best to ensure a
+00:03:18.319 direct relationship between a principle
+00:03:20.239 and the policies granted in contrast
+00:03:22.760 managed policies can reuse the policy
+00:03:24.480 across multiple principles y exactly so
+00:03:26.280 just think customer manage policies
+00:03:28.319 better for reuse the most powerful AWS
+00:03:31.480 managed policy is the administrator
+00:03:33.159 access policy shown below so this is the
+00:03:35.599 managed policy AWS creates it and
+00:03:37.560 manages it you don't edit it and the
+00:03:39.840 administrator access policy is
+00:03:41.280 essentially like God mode in AWS if you
+00:03:43.799 have this policy attached to your user
+00:03:45.920 or to the role that you've assumed you
+00:03:47.360 can literally do anything in that AWS
+00:03:49.720 account with the exception I think of if
+00:03:51.360 the account is in an organization but
+00:03:53.760 typically when you see administrator
+00:03:55.200 access that is full permissions in AWS
+00:03:57.519 this is a very significant permission to
+00:03:59.840 have attached to somebody and let's see
+00:04:01.959 this is just an example of what that
+00:04:03.480 policy actually looks like so you can
+00:04:05.079 see the effect is allow the action is
+00:04:08.519 this asterisk wild card so this means
+00:04:10.799 everything everything matches this wild
+00:04:13.040 card and then a resource is also the
+00:04:14.959 asterisk Wild Card meaning again
+00:04:17.120 everything so every action is allowed on
+00:04:19.839 every resource that's what makes this
+00:04:21.478 such a powerful policy so this is saying
+00:04:23.919 kind of the same thing point out that
+00:04:25.600 really important part this is called the
+00:04:27.040 statement allow on everything in the
+00:04:30.360 remaining tasks in this room we will go
+00:04:32.520 through all different elements of an IM
+00:04:34.120 statement in more depth there is another
+00:04:36.440 managed policy called readon access this
+00:04:38.520 is a very nice managed policy using the
+00:04:40.840 commands above go look at the
+00:04:42.479 permissions granted to the readon access
+00:04:44.720 user at the time of this writing the
+00:04:46.759 version ID was version 83 use the AWS
+00:04:49.639 CLI as shown above to answer the
+00:04:51.280 following questions okay so they want us
+00:04:52.639 to mimic these commands that were shown
+00:04:54.880 in the example to assess what the policy
+00:04:58.039 looks like for the readon access AWS
+00:05:00.280 manag policy so I not logged into my
+00:05:02.759 cloud sandbox yet so that'll be the next
+00:05:04.479 step so that we can run commands and
+00:05:06.000 this is very exciting because I have
+00:05:07.240 been wanting to see if the cloud
+00:05:09.560 sandboxes here in try hackme are a
+00:05:12.120 persistent account we're using more than
+00:05:13.600 once or if a new account is spun up for
+00:05:15.600 us every time we come in here and do a
+00:05:17.560 new room so this will be our opportunity
+00:05:19.280 to solve that mystery let me just pull
+00:05:22.080 up the cloud details here my environment
+00:05:24.759 is finished spinning up remember that's
+00:05:26.400 what that active State means and I have
+00:05:28.240 my credentials here to get into my my
+00:05:29.680 sandbox environment all right I switched
+00:05:31.639 over to sharing my entire screen here so
+00:05:34.000 that we can see the terminal and the web
+00:05:35.639 browser and I did a little investigation
+00:05:38.120 and I determined that this is indeed the
+00:05:40.160 same sandbox 8 OBS account that I was
+00:05:42.080 using a couple days ago in the I am
+00:05:44.319 principal room so if you're curious how
+00:05:46.240 I confirmed that there's a couple ways
+00:05:48.440 so first of all you might remember if
+00:05:49.919 you watched my I think it was the I am
+00:05:51.720 principles video that I set up an AWS
+00:05:54.720 command line profile with my credentials
+00:05:57.600 for the cloud sandbox that tryck me had
+00:05:59.479 given me in that other room and that was
+00:06:01.039 like 2 or 3 days ago that I was doing
+00:06:02.759 that so first to see if that sandbox
+00:06:05.000 environment was still up and running and
+00:06:06.880 accessible with the same credentials I
+00:06:08.880 just tried to run a simple command using
+00:06:11.160 the AWS CLI targeting that account using
+00:06:14.319 the profile I set up a couple days ago
+00:06:17.120 with the credentials that trackme gave
+00:06:18.680 me so I just ran this AWS S3 LS command
+00:06:22.199 that is like one of my favorite commands
+00:06:23.759 to have in my back pocket I always use
+00:06:25.240 this to see what account I'm logged into
+00:06:27.280 this is the profile I set up a couple
+00:06:28.759 days ago and I can see that this command
+00:06:31.599 returns a try hackme bucket so the
+00:06:33.400 credentials I was using a couple days
+00:06:34.840 ago are still valid which made me think
+00:06:37.280 okay so this is probably the same
+00:06:38.400 environment and then when I navigated
+00:06:40.720 over to the credentials tab here I'm not
+00:06:43.199 going to show it to you because now that
+00:06:44.639 I know these credentials are going to be
+00:06:45.880 reused throughout the path I want to
+00:06:47.599 make sure and keep them private but I
+00:06:50.400 also did a quick check of the
+00:06:51.960 credentials file that the adws CLI
+00:06:54.400 creates when you configure a profile and
+00:06:56.720 the credentials in this credentials file
+00:06:59.479 for the AWS CLI do match the credentials
+00:07:02.160 that trackme is giving me in this room
+00:07:04.680 so anyway all that to say very
+00:07:06.080 long-winded explanation this is the same
+00:07:08.000 ads account I was using before it's not
+00:07:09.960 a fresh account every new room that I'm
+00:07:11.800 in so that's interesting knowledge to
+00:07:13.360 learn now with that all being examined
+00:07:16.520 let's go back to the actual task of the
+00:07:18.160 room I tried to arrange this a little
+00:07:19.759 bit better so hopefully it's a little
+00:07:20.960 bit readable let's clear the terminal
+00:07:22.960 and I believe our task here was to
+00:07:26.039 examine the read only managed AWS I
+00:07:29.440 policy I believe what we were trying to
+00:07:31.360 do was we want to reuse these commands
+00:07:34.080 that it looks like our friend Chris was
+00:07:35.400 running here in these examples but
+00:07:37.360 instead of examining the contents of the
+00:07:39.560 administrator access manage policy in IM
+00:07:42.919 we want to learn about the readon access
+00:07:45.560 manage policy so I'm just going to reuse
+00:07:48.319 Chris's command here hopefully I can
+00:07:49.759 copy and
+00:07:53.520 paste but instead of the administrator
+00:07:56.360 access I'm going to do read
+00:08:01.240 only access hopefully that's the correct
+00:08:03.520 name and Chris didn't do this because he
+00:08:05.840 was probably had his uh CLI configured
+00:08:08.240 differently or was using his default
+00:08:10.479 profile or something like that but I'm
+00:08:11.720 going to use this profile flag to Target
+00:08:14.120 my try hackme
+00:08:16.159 profile okay let's see if this let's see
+00:08:18.360 if I got this
+00:08:21.080 right perfect so here's what that
+00:08:23.479 command returns for the readon access
+00:08:26.199 policy so we can see different policy
+00:08:27.800 name different policy ID the RN the
+00:08:30.280 reason we were able to run that command
+00:08:31.960 so easily just changing only the policy
+00:08:34.200 name is because Arns are constructed the
+00:08:36.360 same way every time and for IM policies
+00:08:39.120 the only thing that really changes is
+00:08:40.799 that uh policy name there and then um we
+00:08:44.600 can see the version so it looks like
+00:08:46.440 this is quite a bit ahead of the version
+00:08:48.720 they were using when the time this was
+00:08:50.360 written and then the description
+00:08:52.560 provides read only access to ads
+00:08:54.680 services and resources so that's the
+00:08:56.760 First Command Chris ran and then let's
+00:08:58.680 run this second one so we can
+00:09:01.600 do oh and this is why they gave us the
+00:09:03.760 version so we can get the exact version
+00:09:05.440 here so we're going to do
+00:09:09.600 um so instead of get policy now we're
+00:09:12.480 going to do get policy version is the
+00:09:14.680 actual command and then once again we
+00:09:16.720 just need to change this to read
+00:09:19.880 only X I'm going to use oh and then I
+00:09:22.800 think there's a version flag I need here
+00:09:25.399 yep perfect okay so let's see what they
+00:09:26.880 said it
+00:09:28.120 was
+00:09:31.920 v83 so we
+00:09:35.600 want
+00:09:37.160 v83 and then once again I need to use
+00:09:39.880 that profile
+00:09:46.440 flag oh oops what I do oh case I'm so
+00:09:50.480 aren't I so proper trying to capitalize
+00:09:52.320 everything let's try this
+00:09:56.560 okay all right and there we have
+00:09:59.640 the policy contents so we can see this
+00:10:02.519 is quite a long policy as opposed to the
+00:10:05.640 administrator access that just had those
+00:10:07.079 wild cards for everything but the effect
+00:10:09.279 here is allow and the action is for all
+00:10:12.360 these different Services basically a lot
+00:10:13.920 of these get and list actions the idea
+00:10:16.920 is this policy lets you go into AWS look
+00:10:20.079 at everything read things but you can't
+00:10:22.320 actually uh update delete create that
+00:10:25.519 kind of
+00:10:27.600 thing so if you're following along you
+00:10:30.560 could definitely take the time to parse
+00:10:31.720 through this but hopefully you get the
+00:10:33.240 idea and that was interesting to see the
+00:10:35.440 actual contents of that policy back over
+00:10:37.959 to the
+00:10:38.959 room let's see what the question is for
+00:10:41.920 this task one what is the policy ID of
+00:10:44.600 the read only access managed policy okay
+00:10:47.560 hopefully I didn't just close my
+00:10:48.959 terminal I don't think I did um oh but I
+00:10:52.839 did clear my output so let's see I think
+00:10:55.600 that First Command gave us the policy ID
+00:10:58.760 so I'm I'm going to run AWS IM get
+00:11:00.639 policy again and let's see if I can get
+00:11:02.480 the policy ID from
+00:11:06.480 this policy
+00:11:08.680 ID hopefully this is the correct
+00:11:13.639 value and whoop whoop okay so that is
+00:11:16.360 Task one complete and now I'm going to
+00:11:17.839 move on to task
+00:11:19.720 two looks like this is a reminder of how
+00:11:22.160 to access our Cloud sandbox so we were
+00:11:24.320 looking at that a moment ago here's a
+00:11:26.440 reminder that if we need to generate an
+00:11:29.079 environment for this room if we need to
+00:11:30.800 like probably spin up infrastructure for
+00:11:32.320 this room there will be a generate
+00:11:34.279 environment button so let's scroll up
+00:11:36.160 and double check if there is a generate
+00:11:37.639 environment button okay so that's what I
+00:11:39.399 thought so no need to generate anything
+00:11:41.519 it looks like we're just using the AWS
+00:11:43.880 account and we already know how to
+00:11:45.800 access that here's an example of what
+00:11:47.320 the credentials tab does look like for
+00:11:49.720 the ads account and nothing we need to
+00:11:52.600 do so we can just hit completed and move
+00:11:54.480 on to task three here task three focuses
+00:11:57.440 on the action part part of the IM policy
+00:12:01.240 actions consist of a service and an API
+00:12:03.720 call some examples are ec2 stop instance
+00:12:07.120 S3 get object STS assume role I am list
+00:12:10.760 users so this first Clause is the
+00:12:13.360 service ec2 S3 STS I are all ad TOS
+00:12:16.720 services and then the second Clause I
+00:12:19.680 don't even know if I'm using the word
+00:12:20.720 Clause right but hopefully you get the
+00:12:22.240 idea um is the action or the specific
+00:12:25.519 API call oh so this is saying the same
+00:12:29.440 thing um which part is the service and
+00:12:31.959 which part is the API call actions are
+00:12:35.199 case insensitive however service names
+00:12:37.279 are almost always written in the lower
+00:12:39.079 case and API calls match the camel case
+00:12:42.079 in the ads documentation I actually
+00:12:44.720 don't think I really knew that spelled
+00:12:46.320 out that way so let me read that again
+00:12:47.480 because I want to lock that to memory
+00:12:49.360 actions are case insensitive however
+00:12:52.240 service names are almost always written
+00:12:53.720 in the lower case okay that tracks and
+00:12:56.959 API calls match the camel case case in
+00:12:59.120 the ads documentation I'm going to
+00:13:00.680 remember that actions support wild cards
+00:13:03.600 so to permit all the actions for the S3
+00:13:05.720 service you would use that asterisk wild
+00:13:08.120 card that we talked about before and to
+00:13:10.360 scope read only actions you could say S3
+00:13:13.040 get and then Wild Card which would allow
+00:13:14.920 all the actions that start with get
+00:13:17.600 which translates to read only does not
+00:13:19.760 enforce consistency across services for
+00:13:21.839 API calls I think we learned about that
+00:13:23.320 in one of the introductory rooms because
+00:13:24.720 of like the whole two Pizza team idea so
+00:13:27.959 some services use describe While others
+00:13:30.000 use get or list and those are all read
+00:13:32.839 type of calls the complete list of I am
+00:13:35.639 actions can be found here if you write I
+00:13:38.199 am policies on a regular basis you will
+00:13:40.680 probably want to bookmark this link or
+00:13:42.399 just be like me and Google it clumsily
+00:13:44.440 every time before we move on to the
+00:13:47.279 question let's go ahead and open this
+00:13:49.160 link this is the service authorization
+00:13:51.920 reference document so this is basically
+00:13:54.000 like the documentation you can refer to
+00:13:55.839 as you're trying to write your I am
+00:13:57.519 policies and let's see probably like a
+00:13:59.880 good example here would be S3 so this is
+00:14:03.680 the Amazon S3 service but you can see
+00:14:05.279 this is a list of all the AWS services
+00:14:08.040 and when we click on S3 we can see in
+00:14:11.199 this actions table this is a list of all
+00:14:13.720 the different actions within S3 and then
+00:14:17.560 a description of what that action is so
+00:14:19.880 sorry I'm scrolling around kind of fast
+00:14:21.800 but you can see this is the action abort
+00:14:23.839 multipart upload sorry the first one on
+00:14:26.120 the list is not like the most
+00:14:27.199 illustrative but I want to be able to
+00:14:29.040 see the headings so this is the action
+00:14:30.959 you can do in as three this is a
+00:14:32.360 description of what that action is and
+00:14:35.360 then this is the access level so this
+00:14:36.880 would be a right action create bucket is
+00:14:39.279 maybe like a more graspable example
+00:14:41.040 right off the top so create bucket if
+00:14:43.720 this is included in an IM policy it
+00:14:46.079 grants permission to create a new bucket
+00:14:48.240 and it's an example of a right action so
+00:14:50.240 that's that's what this document is and
+00:14:52.079 it's very useful and they're right I
+00:14:53.240 probably should bookmark it let's go
+00:14:55.279 back and see the question for task three
+00:14:59.000 what action grants permission to create
+00:15:02.000 access key and secret access key for the
+00:15:03.880 specified I am user I'm not sure that's
+00:15:07.440 written corre I'm not sure that's
+00:15:08.880 written correctly but the quotes make me
+00:15:10.199 think it's probably like right from
+00:15:11.360 documentation so it's probably not try
+00:15:13.199 hack me fault anyway you can find a hint
+00:15:15.320 in the service authorization docs for I
+00:15:17.240 am so I think that's kind of what we
+00:15:18.600 were just looking at but instead of S3
+00:15:21.040 we want the I am service I think this is
+00:15:25.120 um we're looking for like probably
+00:15:27.639 create access key here but let's just
+00:15:29.759 double check the docs to make sure so
+00:15:32.600 here is AWS identity and access
+00:15:35.839 management I am and let's see if there
+00:15:38.480 is a action here we can scroll down to
+00:15:40.920 the action table let's see if there's an
+00:15:42.959 action here like create access key yep
+00:15:45.560 okay create access key grants permission
+00:15:47.800 to create access key and secret access
+00:15:49.880 key for the specified I user and this is
+00:15:52.240 a right action I think this is going to
+00:15:54.279 be the answer to the question let's
+00:15:57.600 see
+00:15:59.199 okay and looks like we can tell by these
+00:16:01.120 placeholders here that we want that same
+00:16:02.920 format we saw earlier so we want I am
+00:16:05.199 and then the action let's give it a try
+00:16:09.160 whoop whoop okay so I am create access
+00:16:11.120 key was the answer here we learned how
+00:16:12.839 to reference the actions table and the
+00:16:14.759 docs to find the permission that we're
+00:16:16.800 looking for and that's the end of task
+00:16:18.800 three let's move on to task four task
+00:16:21.199 four is called resource we're going to
+00:16:23.519 focus on the resource part of the policy
+00:16:26.440 a resource is always in the RN format
+00:16:28.600 app or a wild card which would represent
+00:16:30.880 any resource resources in IM policies
+00:16:33.720 are essential to achieving the principle
+00:16:35.440 of lease privilege that we learned about
+00:16:37.199 in I think the intro to IM room Suppose
+00:16:40.160 there are multiple applications or teams
+00:16:41.800 in a single account in that case lease
+00:16:43.920 privilege would dictate that application
+00:16:45.800 a cannot access the data belonging to
+00:16:47.880 application B unless there's some
+00:16:49.959 business need to do so to share that
+00:16:51.880 data so we could craft for example a
+00:16:54.480 policy that only permits application a
+00:16:57.040 to access S3 buckets that belong to
+00:16:59.199 application a and deny them permission
+00:17:01.639 to buckets that don't contain data for
+00:17:03.759 application a even if all those buckets
+00:17:05.559 are in the same account so that's an
+00:17:06.919 example of why resources is useful in
+00:17:08.880 the policy recall that the RNs include
+00:17:11.760 the AWS region account ID and resource
+00:17:14.520 name as part of the ARs ARS that are
+00:17:17.079 Global like I am for example have an
+00:17:19.439 empty value for the region you might
+00:17:20.880 have noticed that above when we were
+00:17:22.520 running those commands to examine the IM
+00:17:24.760 policies that those ARS we were using
+00:17:27.000 for the policy did not have a region
+00:17:29.280 because I am is a global Service because
+00:17:32.120 I am cannot identify what resources a
+00:17:34.720 customer may have all ads manag policies
+00:17:38.160 the wild
+00:17:39.240 card I think there's a typo there
+00:17:41.559 because ads cannot identify what
+00:17:43.679 resources a customer may have that's an
+00:17:46.080 unknown all ads managed policies use the
+00:17:49.480 wild card as the resource value so that
+00:17:52.480 makes sense right when they create their
+00:17:54.039 managed policies for everyone they don't
+00:17:55.559 know what everyone's bucket in the world
+00:17:57.840 is going to be called or all the future
+00:17:59.240 S3 buckets that are going to be created
+00:18:00.919 so they can only use those wild card and
+00:18:03.960 that gives you an example of why it's
+00:18:05.640 challenging for those manage policies to
+00:18:07.840 be least privileged policies and you
+00:18:10.039 might want to use them as a base to then
+00:18:12.120 create your own customer manage policies
+00:18:14.559 that do use resources to scope down the
+00:18:16.840 permissions given and in the case of the
+00:18:18.840 Arn for an ABS managed policy since
+00:18:21.400 these are managed by adws and not owned
+00:18:23.720 by anyone's AWS account the account ID
+00:18:26.200 field in the policy AR is an empty value
+00:18:29.480 so let's see if we can see an example of
+00:18:31.200 that up here before this is what they're
+00:18:32.960 talking about so in this AWS IM get
+00:18:36.000 policy command we're sending the policy
+00:18:38.520 AR to the command to get the information
+00:18:41.240 and you can see this is the Arn uh the
+00:18:44.159 resource number for the IM policy and
+00:18:47.919 because this is an AWS managed policy
+00:18:50.520 this AR does not have a region in it and
+00:18:53.159 it does not have an account ID in it as
+00:18:55.880 well that's what they're getting at here
+00:18:57.200 and that's an example of that let's see
+00:18:59.320 oh that was it straight to the question
+00:19:01.840 in your account there is a bucket that
+00:19:03.679 begins with try hackme bucket and ends
+00:19:05.559 with your unique account ID what is the
+00:19:07.679 Arn of that bucket excluding the last
+00:19:09.880 12-digit account ID that'll be different
+00:19:12.600 that because that account ID will be
+00:19:14.039 different for everyone so that's
+00:19:15.120 probably why that question is formatted
+00:19:16.400 that way now actually you might remember
+00:19:18.679 I jumped the gun here because earlier
+00:19:20.880 when I was just trying to like
+00:19:22.120 investigate the environment a little bit
+00:19:24.200 I already ran a command that can give us
+00:19:26.760 the answer to that question so so I'm
+00:19:28.520 going to run it
+00:19:30.280 again so I'm going to run AWS S3 LS uh
+00:19:34.400 I'm going to Target my tryhackme profile
+00:19:36.440 as I've mentioned before and let's see
+00:19:38.440 what that bucket is
+00:19:40.120 called Okay so we've got try hackme
+00:19:44.360 bucket and we want the Arn of this
+00:19:47.480 bucket so this is our bucket name let's
+00:19:50.080 see how S3 uh ARS are
+00:19:57.240 formatted
+00:20:00.159 all right perfect I could have tried to
+00:20:01.679 do this from memory but I would
+00:20:02.760 embarrass myself so here is an example
+00:20:05.000 of how S3 RS are formatted so I'm going
+00:20:08.640 to get the first part of that here and
+00:20:11.520 then I'm going to looks like we just
+00:20:14.000 need the bucket name
+00:20:18.280 there and they said without the account
+00:20:20.919 ID I don't know if they want this last
+00:20:23.240 trailing Dash or not but let's give it a
+00:20:27.159 try
+00:20:29.440 okay let's see if I get it right all
+00:20:30.760 right awesome so that's task four and
+00:20:32.400 now on to task five I am having a lot of
+00:20:34.480 fun in this room so far because I like
+00:20:36.200 running these different commands let's
+00:20:38.240 see what task five has task five is
+00:20:40.559 about the effect part of a policy so
+00:20:42.320 remember effect only has two options
+00:20:44.919 allow or deny effect can be either allow
+00:20:47.760 or deny with AWS IM there is a default
+00:20:50.880 implicit deny we talked about that in
+00:20:52.720 earlier all policy statements that match
+00:20:54.720 the requests action resource and
+00:20:56.600 condition are evaluated if if there is
+00:20:58.679 any explicit deny anywhere in the policy
+00:21:01.200 evaluation logic flow then the action is
+00:21:03.880 denied otherwise if there is an explicit
+00:21:05.880 allow the action is allowed nothing will
+00:21:08.120 ever be allowed without an explicit
+00:21:09.799 allow somewhere in a policy otherwise if
+00:21:13.000 neither like an allow or deny exist
+00:21:15.240 anywhere the final decision is always to
+00:21:17.279 deny the request because the implicit
+00:21:18.960 deny kicks in and here is a diagram
+00:21:22.400 explaining that same thing this is cool
+00:21:24.080 I've never seen this one before I don't
+00:21:25.279 think or maybe I've just never seen it
+00:21:26.559 with this little cartoon cop on it but
+00:21:28.520 the decision starts at deny AWS is going
+00:21:31.240 to find all the policies associated with
+00:21:33.400 the user and the resource and then
+00:21:35.679 evaluate all the applicable policies
+00:21:37.640 there could be multiple if any of those
+00:21:39.760 policies have a deny anywhere in them
+00:21:41.760 that's an explicit deny in the policy
+00:21:43.840 and the final decision is a deny even if
+00:21:46.200 the allow exists somewhere else if
+00:21:48.640 there's no explicit deny then we check
+00:21:51.000 is there an allow somewhere if there's
+00:21:53.240 an explicit allow written in the policy
+00:21:56.240 the final decision is allow and then if
+00:21:59.039 neither the deny or the allow is there
+00:22:01.320 the final decision is to deny because
+00:22:03.360 deny is the default now we're going to
+00:22:05.880 answer a question for the following
+00:22:07.400 question and then we're going to look at
+00:22:09.559 a policy and answer a question it looks
+00:22:11.559 like so this is an example I am policy
+00:22:14.600 for the statement it looks like to me we
+00:22:17.400 have two statements right so we have so
+00:22:21.440 this whole part is the statement block
+00:22:24.799 and then this is one statement here and
+00:22:28.320 then this is a second statement here
+00:22:30.760 okay so the first statement we have
+00:22:32.960 three actions easy to describe actions
+00:22:36.720 Secrets manager list secrets secrets
+00:22:38.640 manager get secret value and the
+00:22:40.520 resource has this wild card so that
+00:22:42.440 would be any resource in ec2 or any
+00:22:45.600 resource in Secrets manager and then the
+00:22:47.919 effect is allow and then we have a
+00:22:50.320 second statement and this statement is a
+00:22:53.480 deny statement for one resource in
+00:22:56.760 Secrets manager so so this second
+00:22:58.559 statement says you cannot do anything
+00:23:01.200 with this one particular secret it's
+00:23:03.000 using the resource part of the policy to
+00:23:04.919 say this one secret is off limit because
+00:23:07.039 the effect is deny given the policy
+00:23:10.279 above can this user get the HR password
+00:23:13.960 yes or no okay so the secret we're
+00:23:15.880 looking at is this HR password they're
+00:23:18.080 referencing and even though this
+00:23:23.360 user has sorry I paused so many times oh
+00:23:27.480 sorry I'm like starts speaking in slow
+00:23:28.880 motion okay so even though this user has
+00:23:32.840 permission for get secret value for any
+00:23:36.039 resource because there is an explicit
+00:23:38.799 deny in the second statement that
+00:23:40.919 overrules this explicit allow the answer
+00:23:43.600 is no so because of this deny in the
+00:23:46.679 second statement the uh user cannot get
+00:23:49.279 this one particular password so the
+00:23:51.559 answer is no we're going to do n and
+00:23:54.520 whoop whoop that's correct sorry you
+00:23:56.039 can't have the password this is a great
+00:23:57.640 example example of how explicit deny
+00:23:59.480 Works explicit deny always beats an
+00:24:01.320 explicit allow let's move on to task six
+00:24:04.640 which is principle we learned a lot
+00:24:06.320 about principles in the other room only
+00:24:08.600 required for resource policies not
+00:24:10.679 identity-based policies the principal
+00:24:13.039 element specific the principle that is
+00:24:15.000 allowed or denied access to a resource
+00:24:17.480 so remember resource policies are not
+00:24:19.760 attached to a principle like a user or
+00:24:21.840 role a resource policy is attached to a
+00:24:24.279 resource in adabs so S3 bucket is a
+00:24:26.360 great example S3 buckets can have
+00:24:28.840 resource policies attached to them that
+00:24:31.360 govern access to that bucket and
+00:24:33.960 resource policies require a principle in
+00:24:36.559 the statement if the principle is star
+00:24:39.799 the policy applies to anyone or all AWS
+00:24:42.399 customers depending on the service and
+00:24:44.440 we're going to learn more about resource
+00:24:45.880 policies in the Next Room the following
+00:24:47.520 resource policy grants public access to
+00:24:49.919 read a bucket and only allows user Snape
+00:24:53.760 so Snape must be like an example name
+00:24:55.480 here the ability to write to the bucket
+00:24:58.159 okay so let's look at this example
+00:24:59.760 policy so this is a resource policy this
+00:25:01.720 would be attached to an S3 bucket I
+00:25:04.559 believe the first statement says allow
+00:25:07.440 public read although the ID I think has
+00:25:09.159 a typo in it here so the effect is allow
+00:25:12.159 the principal is the star so that means
+00:25:14.200 anyone and that's why this is like a
+00:25:15.559 public access policy so you want to be
+00:25:18.039 really knowledgeable when you're using
+00:25:19.399 this type of policy with an S3 bucket
+00:25:21.039 because this is going to allow anyone in
+00:25:22.919 the world to access the objects in your
+00:25:24.880 S3 bucket if they have access to the
+00:25:26.679 internet and and the resource is let's
+00:25:30.480 see this S3 bucket that's called dark
+00:25:32.960 arts class notes and this uh star here
+00:25:36.200 means any object in the bucket and then
+00:25:38.760 this second statement even though it has
+00:25:40.240 the same statement ID this has the
+00:25:43.000 effect of allow for one particular
+00:25:46.480 principal so instead of the star we have
+00:25:48.679 this one particular principal which is
+00:25:50.320 the ads principal which is an AWS user
+00:25:53.080 we can tell from this AR and that's the
+00:25:55.039 Snape user and the Snape user has
+00:25:57.840 permission for two actions put object
+00:26:00.600 and put object ACL which stands for I
+00:26:03.320 believe Access Control list so this
+00:26:05.279 means that this user could update the
+00:26:08.159 access control list for an object in
+00:26:10.679 this bucket and once again it's the same
+00:26:12.720 resource statement so we could have any
+00:26:15.399 object in the dark arts class notes
+00:26:17.960 bucket all right so we can specify any
+00:26:20.840 of the following principles in a policy
+00:26:22.480 we can specify a specific AWS account
+00:26:24.520 and the root user in that account we can
+00:26:26.600 specify an IM role a role session I am
+00:26:30.600 users which is what we saw here this is
+00:26:32.520 an example of um an I am user Federated
+00:26:36.520 user sessions AWS services and then all
+00:26:40.360 principles which I believe is what we
+00:26:42.399 saw here with the the Wild Card okay so
+00:26:46.799 look in your account what is the
+00:26:48.440 principle that is allowed to assume the
+00:26:51.279 organization account access role all
+00:26:53.880 right I do have my profile set up at the
+00:26:55.520 command line but I'm not logged in in
+00:26:57.000 the console yet otherwise this is like a
+00:26:58.799 direct link to the console I bet um just
+00:27:01.919 like to shake it up let me log into the
+00:27:03.960 console and then I'll be right back okay
+00:27:06.080 so now I am logged into the AWS console
+00:27:08.159 for my tryck me sandbox account and I
+00:27:10.919 believe we wanted to look for um a
+00:27:13.399 specific IM role so let's see what that
+00:27:15.679 IM role was
+00:27:19.880 called organization account access rule
+00:27:22.679 we want to know what principal is
+00:27:23.960 allowed to assume the rule so we need to
+00:27:25.880 look at the trust policy for that rule
+00:27:28.000 so here we are in the I am service if
+00:27:30.120 you don't know how to get to different
+00:27:31.399 services in AWS you can use this search
+00:27:33.960 bar to search for I am as well and we
+00:27:36.640 want to look at a role we want to look
+00:27:38.679 at the organization account access role
+00:27:41.480 and we want to know what principle is
+00:27:43.640 allowed to assume the role so that is
+00:27:45.600 governed by the trust policy so we're
+00:27:47.360 going to click trust relationships and
+00:27:49.279 then the principal is this uh the root
+00:27:52.760 user in this account that is identified
+00:27:55.240 by this ads account ID here so let's
+00:27:57.519 let's copy and paste
+00:27:59.440 that probably I'm going to regret let's
+00:28:02.159 see what is the
+00:28:14.960 principal I'm trying to figure out how
+00:28:17.000 I've gone wrong with the formatting here
+00:28:19.200 but okay maybe that's going to be okay
+00:28:21.480 after
+00:28:23.080 all going to regret these quotes knew it
+00:28:26.240 and let's see what happens if do that no
+00:28:29.480 what is the principle that is allowed to
+00:28:32.240 assume the role
+00:28:35.120 allow
+00:28:38.440 principle perhaps it's this perhaps we
+00:28:41.120 need the whole
+00:28:45.000 thing all right so
+00:28:47.000 it's so we want to indicate it's an AWS
+00:28:50.519 principle
+00:28:51.919 specifically and there we go okay
+00:28:53.960 awesome so they wanted the whole Clause
+00:28:56.120 that was task six and now I'm going to
+00:28:57.840 move on to task seven which looks like
+00:28:59.559 is focused on conditional logic in IM
+00:29:02.320 policies task seven
+00:29:05.840 conditions conditions are optional
+00:29:07.799 elements that users can add to an IM
+00:29:09.960 policy they evaluate against specific
+00:29:12.000 keys and values in the context of the
+00:29:14.080 request the context of the request is
+00:29:16.679 specific to the action and resource type
+00:29:19.640 for example the condition Keys available
+00:29:21.480 for S3 can be found in the S3 actions
+00:29:23.960 table that I think we actually looked at
+00:29:25.720 before as an example
+00:29:31.120 and so here's the actions table and then
+00:29:33.600 we can scroll to the right and we can
+00:29:35.840 see there are here's the condition Keys
+00:29:38.000 column and notice that there are
+00:29:40.240 different condition keys for each of the
+00:29:42.480 actions even though I'm sure there's a
+00:29:43.880 lot of overlaps for example if we wanted
+00:29:45.760 to find the get object action let's see
+00:29:49.200 what some of the condition keys are here
+00:29:51.600 so a good example here is like S3 off
+00:29:54.120 type you could use the S3 off type
+00:29:56.799 condition key to determine oh maybe
+00:29:59.000 users can only have access to an object
+00:30:01.120 in your S3 bucket if they have a certain
+00:30:03.399 sort of off type and we can click here
+00:30:05.399 to even learn more about it so we could
+00:30:07.840 say so we could require a specific
+00:30:10.600 authentication method to access an
+00:30:13.159 object in S3 using this condition key
+00:30:15.799 and a common application of this is
+00:30:18.240 requiring two- factor or multiactor
+00:30:20.440 authentication to be able to access a S3
+00:30:23.080 bucket that is like a that's a common
+00:30:25.919 example of how these condition keys are
+00:30:27.440 used back to the content here this is
+00:30:30.120 like an example of condition block logic
+00:30:32.399 so this would be a condition Block in an
+00:30:34.159 I am policy this particular condition
+00:30:36.000 block has two conditions condition one
+00:30:38.559 and condition two this and here means
+00:30:41.880 that condition one needs to evaluate to
+00:30:44.039 true and condition two needs to evaluate
+00:30:46.480 to true for the condition block itself
+00:30:48.799 to evaluate to true in condition one
+00:30:51.600 there are two keys so for condition one
+00:30:54.720 to evaluate to true we would need to
+00:30:56.880 have a matching value for key1 and there
+00:30:59.639 are three different choices so if the
+00:31:01.679 value matches any of these three values
+00:31:04.600 in the policy key1 will be a match and
+00:31:08.200 key2 needs to have a matching value so
+00:31:10.279 the relationship here is and key1 and
+00:31:12.480 key2 both need to have values that match
+00:31:14.799 those keys but within each key there are
+00:31:18.120 multiple values and the relationship
+00:31:20.639 there becomes or so value 1 a or value 1
+00:31:24.639 b or value 1 C meets the CR IIA for key1
+00:31:28.960 and then same with key2 value 2 a or
+00:31:31.639 value 2 B will satisfy the requirement
+00:31:34.080 for key2 so that's a good example
+00:31:36.360 breaking it down condition statements
+00:31:38.760 have specific operators that are used to
+00:31:41.159 evaluate the conditions examples are
+00:31:43.559 string equals string not equals string
+00:31:46.039 not like string like if exists Etc and
+00:31:49.279 then there are a number of global
+00:31:51.240 condition context keys and this is what
+00:31:53.440 I would say I see use most frequently is
+00:31:55.840 the global condition keys that you can
+00:31:57.880 add to your statement based on the
+00:31:59.480 attributes of the API call so one of the
+00:32:01.919 most common ones is AWS Source IP you
+00:32:04.720 can use as a condition key and that's
+00:32:06.799 not specific to the action like we saw
+00:32:08.519 in the action table that's a global
+00:32:10.519 condition key so you can allow or deny
+00:32:12.720 an action based on the IP address that
+00:32:15.000 the request is coming from to the API
+00:32:17.760 another popular context key is AWS
+00:32:20.320 resource tag tag key so in adabs you can
+00:32:23.679 tag resources and we can use a condition
+00:32:26.360 key to Grant or deny access to a
+00:32:28.799 resource based on the tags that are
+00:32:30.679 attached to the resource so this is an
+00:32:32.720 example statement here so we would allow
+00:32:36.039 requests to the ec2 service to terminate
+00:32:38.919 an ec2 instance this resource Clause
+00:32:42.919 references any instance in this specific
+00:32:45.639 account so the way we know that is
+00:32:47.559 because we've got RN AWS ec2 so that's
+00:32:50.159 the ec2 service and then we've got the
+00:32:52.960 account ID number here and then instance
+00:32:55.919 so that's how we know we're only only
+00:32:57.200 talking about ec2 instance resources and
+00:32:59.559 then the Wild Card means any instance in
+00:33:01.519 the account and then the condition is
+00:33:04.000 what's really powerful here so this
+00:33:06.240 policy would only allow the instance to
+00:33:08.440 be terminated if this condition is met
+00:33:11.720 and the condition is that the tag
+00:33:14.399 attached to the ec2 instance the
+00:33:16.080 resource tag uh the key for that tag
+00:33:19.279 would be Hogwarts house and then the
+00:33:21.159 value would be Hufflepuff so if the ec2
+00:33:24.840 instance has a tag a attached to it with
+00:33:27.960 a key of hogwart's house and a value of
+00:33:29.519 Hufflepuff then this policy would give
+00:33:32.120 permission for that ec2 instance to be
+00:33:33.880 terminated for a request to terminate
+00:33:35.519 that instance if the machine were tagged
+00:33:37.880 with Hogwarts house griffer the I just
+00:33:41.240 said it said gryff so weird Hogwarts
+00:33:43.639 house griffindor the allow effect would
+00:33:46.360 not apply because this string equals
+00:33:48.639 condition would not be true the use of
+00:33:50.679 ads resource tag is a fundamental
+00:33:52.519 building block of attribute based Access
+00:33:54.600 Controller ABAC and in the next we will
+00:33:57.360 see a global context key AWS principal
+00:33:59.519 or ID which is used to ensure only
+00:34:01.919 members of the try hackme Community are
+00:34:03.760 able to invoke a certain Le of the
+00:34:05.279 function that'll be a great example and
+00:34:07.279 then we have another example I am policy
+00:34:10.239 here so this is a policy that denies any
+00:34:13.918 principal the ability to put an object
+00:34:17.040 to S3 to an S3 bucket and this is
+00:34:20.280 controlling access to uh this S3 bucket
+00:34:23.800 my logs bucket and then these are S3
+00:34:26.159 prefixes so you can kind of think of
+00:34:27.760 this as like a specific location in that
+00:34:30.480 S3 bucket and then we have this
+00:34:33.480 condition Clause string not equals
+00:34:36.719 Source VPC and then a VPC ID and then
+00:34:40.399 AWS principal service name if the
+00:34:42.918 request had context values that match
+00:34:46.119 these that would actually nullify right
+00:34:48.560 this deny policy here this is a good so
+00:34:51.839 this is a good example of a type of
+00:34:53.399 policy that's often used for lease
+00:34:55.040 privilege because this is denying every
+00:34:57.640 put object action except for from the
+00:35:00.240 glue service which glue is a data
+00:35:02.320 analytics type service in um ads it's
+00:35:05.920 denying every put object except for
+00:35:09.160 those put object requests coming from
+00:35:11.200 the glue service in this one specific
+00:35:13.880 VPC now the question is the glue service
+00:35:18.119 running in vpc1 2 3 45 can write an
+00:35:21.640 object to the my logs bucket all right
+00:35:24.359 well first of all we can see that
+00:35:29.800 the VPC here the VPC ID here VPC 1 2 3 4
+00:35:33.359 5 is not the same as VPC ABD I can't
+00:35:37.320 even say the alphabet ABCDE e f all
+00:35:40.320 right so this condition string not
+00:35:44.040 equals would evaluate to True right
+00:35:46.800 because this VPC ID does not match this
+00:35:49.680 bpci ID so string not equals is true
+00:35:52.560 they do not equal each other and that
+00:35:54.520 would trigger the deny so
+00:35:57.359 uh the glue service running from that
+00:35:58.960 VPC would not be able to write an object
+00:36:01.200 also another thing I noticed is that the
+00:36:03.760 question is referencing the entire S3
+00:36:06.040 bucket whereas this policy is only
+00:36:08.560 talking about one specific prefix in the
+00:36:10.079 S3 bucket so that's might also be
+00:36:12.040 relevant but anyway I believe the answer
+00:36:13.839 here is
+00:36:16.800 false and that is correct so that's a
+00:36:19.280 great example and let's see what's going
+00:36:20.839 on in task 8 task 8 not action not
+00:36:23.839 resource not principle AWS IM has the
+00:36:26.720 cep of not action not resource and not
+00:36:28.760 principle these can be used in more
+00:36:31.079 complex cases but be careful o exciting
+00:36:34.040 be careful doing an allow on all
+00:36:36.000 principles except one would allow all
+00:36:38.520 ads customers to access the resource and
+00:36:41.000 I got to say I don't I'm not sure I've
+00:36:42.599 ever used not action and not principle I
+00:36:45.160 think I have used not resource before
+00:36:46.720 but I'm not super familiar with these
+00:36:48.640 Concepts you can use not action to Grant
+00:36:52.079 broad access to an account while
+00:36:53.760 reserving sensitive actions for special
+00:36:55.680 administrators this is one way to allow
+00:36:57.920 someone to administer an account but not
+00:36:59.560 modify a network for example not
+00:37:01.839 principle is useful for explicitly
+00:37:03.800 denying access to a resource except for
+00:37:05.720 a small number of users for example this
+00:37:08.119 policy will explicitly deny access to a
+00:37:10.359 Dynamo database table Forbidden Forest
+00:37:13.119 to all users of this account except for
+00:37:15.720 Hagrid so that's like an efficient way
+00:37:17.319 to do that which makes sense so we can
+00:37:18.680 see this statement the effect is deny
+00:37:21.680 for every principle except for the
+00:37:23.359 Hagrid user another way of protecting
+00:37:26.240 access is something would be via not
+00:37:28.400 resource the same policy prevents most
+00:37:30.800 users in this account from accessing The
+00:37:32.800 Forbidden Forest table so this is what
+00:37:35.119 I've used before uh the not resource
+00:37:37.240 where you need to explicitly deny except
+00:37:39.599 like to some very specific principle a
+00:37:41.880 certain resource I've seen it used with
+00:37:43.400 S3 buckets before now all students in
+00:37:46.079 this policy have access to put to any
+00:37:48.880 Dynamo DB table except the Forbidden
+00:37:51.520 Forest table and that's because we are
+00:37:54.400 allowing any user because it's any IM
+00:37:57.680 user because of the use of the wild card
+00:37:59.280 there the action of put item to a Dynamo
+00:38:02.440 DB table except for this Forbidden
+00:38:06.119 Forest Dynamo DB table this allow will
+00:38:09.040 not work on this Forbidden Forest table
+00:38:11.680 now all the students at Hogwarts have
+00:38:13.520 access to put
+00:38:14.880 any that okay we already said that now
+00:38:17.800 here is our question for the last task
+00:38:19.640 in this room as Headmaster Dumbledore's
+00:38:22.880 IM policy is affect allow action
+00:38:27.640 Wild Card everything resource everything
+00:38:30.240 would he have access to the Forbidden
+00:38:32.160 Forest if the second policy were in
+00:38:34.560 place so basically the question is would
+00:38:37.040 this policy override um Dumbledore's I
+00:38:41.440 am policy that he has like God mode in
+00:38:43.319 the ads account okay so first of all
+00:38:46.480 let's see what we can figure out about
+00:38:47.520 this policy so we see the principle here
+00:38:49.400 again right so this means this is a
+00:38:50.760 resource policy attached to the Dynamo
+00:38:52.920 table probably and another thing I
+00:38:55.280 noticed in this resource policy here is
+00:38:57.880 that there is not an explicit deny right
+00:38:59.880 there is an allow and then there's a not
+00:39:02.599 resource but there's not an explicit
+00:39:04.839 deny and there is an explicit allow in
+00:39:07.800 Dumbledore I am policy for any action or
+00:39:10.440 any resource so that makes me think the
+00:39:12.520 answer is yes and let's see if I'm right
+00:39:15.319 about
+00:39:18.839 that okay correct so again no explicit
+00:39:22.520 deny that was a good question and a good
+00:39:24.800 example of no IIT deny and an explicit
+00:39:27.920 allow should equal to permission to do
+00:39:30.560 the action so that is the I am
+00:39:33.319 permissions room done I really liked
+00:39:34.920 that room I think it Illustrated those
+00:39:36.400 Concepts quite well and now I'm going to
+00:39:38.800 go ahead and move on to the next room in
+00:39:41.720 the I am module so hopefully I will see
+00:39:44.440 you in the next video walk through and
+00:39:46.040 thanks for watching

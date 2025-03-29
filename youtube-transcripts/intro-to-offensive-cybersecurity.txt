@@ -1,0 +1,598 @@
+# tactiq.io free youtube transcript
+# TryHackMe Intro to Offensive Security room walkthrough + Random thoughts cybersecurity career paths
+# https://www.youtube.com/watch/S1t0cn5rVDw
+
+00:00:00.120 hi everyone I'm Tara welcome to my
+00:00:02.760 channel this video is going to walk
+00:00:05.240 through the very first room on the
+00:00:06.960 pre-security learning path in try hackme
+00:00:09.880 so that's the learning path for complete
+00:00:12.120 cyber security beginners who are just
+00:00:14.200 starting to learn I'm not a beginner I
+00:00:16.560 work in the cyber security field but I'm
+00:00:18.160 having a lot of fun going through all
+00:00:19.760 these tracky rooms and making
+00:00:21.840 walkthroughs so this walkthrough is for
+00:00:24.000 the intro to offensive security room we
+00:00:26.160 learn a little bit about some of the
+00:00:27.400 different types of jobs that are
+00:00:28.679 available in cyber security and we do
+00:00:30.920 our very first uh ethical hack we attack
+00:00:33.840 a web app so it's a fun little room it's
+00:00:36.239 pretty quick and this is my walkthrough
+00:00:38.360 so I hope you enjoy
+00:00:40.010 [Music]
+00:00:47.360 it all right so I'm here on the
+00:00:49.280 pre-security learning path and this
+00:00:51.199 video is going to focus on the
+00:00:52.960 introduction to cyber security module
+00:00:55.199 the description for this module says
+00:00:57.000 understanding what is offensive and
+00:00:58.440 defensive security and to learn about
+00:01:00.840 different careers available in cyber
+00:01:02.920 sounds great the first room is called
+00:01:05.080 intro to offensive security so let's
+00:01:08.000 jump in and see what this is all about
+00:01:10.799 the description for this room says hack
+00:01:12.560 your first website parentheses legally
+00:01:15.159 in a safe environment so that's good and
+00:01:17.439 experience and ethical hackers jobs so
+00:01:19.560 this is like getting your feet wet your
+00:01:20.960 first exposure to offensive security and
+00:01:23.079 offensive hacking and the first task is
+00:01:26.200 called what is offensive security I like
+00:01:28.759 this animation a a lot so looks like
+00:01:31.280 we've got like a red team blue team
+00:01:33.320 introduction thing going on in short
+00:01:35.240 offensive security is the process of
+00:01:37.040 breaking into computer systems
+00:01:38.720 exploiting software bugs and finding
+00:01:40.960 loopholes in applications to gain
+00:01:43.600 unauthorized access to them to beat a
+00:01:46.200 hacker you need to behave like a hacker
+00:01:48.600 finding vulnerabilities and recommending
+00:01:50.799 patches before a cyber criminal does you
+00:01:53.200 want to find the vulnerability before
+00:01:54.799 the Cyber criminal finds the
+00:01:56.439 vulnerability so you can fix it and
+00:01:58.799 that's what we're going to do in this
+00:01:59.960 room on the flip side there is also
+00:02:02.079 defensive security so red team is
+00:02:04.360 offensive security that's what the red
+00:02:06.200 visual here and blue team is defensive
+00:02:08.758 security defensive security is the
+00:02:10.800 process of protecting an organization's
+00:02:12.560 Network and computer systems by
+00:02:14.319 analyzing and securing any potential
+00:02:16.680 digital threats and we'll learn more
+00:02:18.599 about that in the digital forensics room
+00:02:20.680 remember red team is like offensive
+00:02:22.599 hackers and blue team is often referred
+00:02:24.840 to as the Defenders another way to
+00:02:26.480 remember this or terminology you'll hear
+00:02:27.959 quite a lot is red team is a hackers and
+00:02:31.080 blue team is Defenders and I've seen
+00:02:33.319 that terminology in try hackme before so
+00:02:35.760 be good to be exposed to that in a
+00:02:37.440 defensive cyber role you could be
+00:02:39.280 investigating infected computers or
+00:02:41.319 devices to understand how the device was
+00:02:43.680 hacked you could be tracking down cyber
+00:02:45.640 criminals or monitoring infrastructure
+00:02:48.040 for malicious activity so in this
+00:02:50.400 description incident forensics which is
+00:02:52.280 like investigating what happened after
+00:02:54.319 the fact is being grouped in with blue
+00:02:56.280 team defens of security here is the
+00:02:58.400 question for task one which of the
+00:03:00.599 following options better represents the
+00:03:02.840 process where you simulate a hacker's
+00:03:04.840 actions to find vulnerabilities in a
+00:03:07.280 system so that would be offensive
+00:03:09.959 security where you are acting as a
+00:03:12.200 hacker to find
+00:03:14.799 vulnerabilities whoop whoop okay that's
+00:03:17.280 task one and let's see what task two has
+00:03:20.319 in
+00:03:21.519 store task two is called hacking your
+00:03:24.480 first machine before going into cyber
+00:03:27.360 security careers oh I think the might
+00:03:29.200 might be a little typo there before
+00:03:30.519 going into cyber security careers and I
+00:03:32.680 think learning what offensive security
+00:03:34.480 is let's get hacking and yes it's all
+00:03:36.840 legal all the exercises are fake
+00:03:38.640 simulation so we're going to start the
+00:03:40.760 try hackme machine that we're going to
+00:03:42.840 hack and my machine has been started you
+00:03:45.760 might need a few minutes to be able to
+00:03:47.560 access it from a tack boox or open VPN
+00:03:50.080 click the start machine button once
+00:03:51.840 loaded in split view in your browser
+00:03:53.560 you'll have access to a machine that
+00:03:55.079 you'll use to hack a fake Bank
+00:03:56.879 application called fake bank love the
+00:03:59.760 name very creative if you don't see the
+00:04:01.640 machine appear use the blue show split
+00:04:03.760 view button on the top right of the page
+00:04:05.519 we will use a command line application
+00:04:07.640 called gobster to Brute Force fake Banks
+00:04:10.720 website to find hidden directories and
+00:04:12.799 pages gobster will take a list of
+00:04:15.400 potential page or directory names and
+00:04:17.680 then the gobster program tries accessing
+00:04:20.040 a website with each of them and that's
+00:04:21.918 why it's called Brute Force is because
+00:04:23.240 it's just sending a ton of requests over
+00:04:25.400 and over again trying all these
+00:04:26.600 different possible combinations if the
+00:04:28.680 page exists gobster will tell you all
+00:04:31.639 right so step one we are going to open a
+00:04:33.840 terminal also known as the command line
+00:04:36.320 which allows us to interact with a
+00:04:38.280 computer without using a graphic
+00:04:39.919 interface on the machine open the
+00:04:41.880 terminal using the terminal icon okay so
+00:04:43.759 I think the
+00:04:44.919 machine uh looks like is ready so we can
+00:04:48.440 see it in our split view here so here is
+00:04:52.240 fake
+00:04:53.360 bank.com and we can open the terminal
+00:04:55.960 using this logo here for
+00:04:58.400 terminal and and all right let's see so
+00:05:02.639 we can scroll down back to what we were
+00:05:04.960 doing oh and if this is your first time
+00:05:07.360 doing this here's another video that's
+00:05:08.840 just walking through the same thing
+00:05:10.280 that's very nice all right find the
+00:05:12.919 hidden website pages so we're going to
+00:05:14.479 run gobster most companies will have an
+00:05:17.039 admin portal page giving their staff
+00:05:19.360 access to basic admin controls for
+00:05:21.199 day-to-day operations for a bank an
+00:05:23.840 employee might need to transfer money to
+00:05:25.880 and from client accounts often these
+00:05:28.319 pages are not made private allowing
+00:05:30.479 attackers to find hidden pages that show
+00:05:33.000 or give access to admin controls or
+00:05:35.160 sensitive data type the following
+00:05:37.440 command into the terminal to find
+00:05:39.319 potentially hidden pages on fake Banks
+00:05:42.000 website using gobster and they describe
+00:05:44.680 gobster here as a command line Security
+00:05:47.120 application all
+00:05:48.880 right so we're going to run gobster to
+00:05:51.360 see if we can find fake Banks private
+00:05:53.520 pages so we can just copy and paste the
+00:05:56.520 command might be a little laggy here
+00:05:58.840 hopefully won't be too too bad okay so
+00:06:00.199 we have gobster command we're sending
+00:06:02.800 fake bank.com as the URL input and then
+00:06:06.000 we have a we must have a word list here
+00:06:08.000 locally that we're going to use that
+00:06:09.759 gobster is going to run through as it
+00:06:11.319 tries these addresses all right let's
+00:06:13.759 run it and I'm actually not sure in gost
+00:06:15.720 through what the different modes are so
+00:06:17.840 I wonder if we'll learn a little bit
+00:06:18.840 more about this in the room but looks
+00:06:20.800 like we got the expected output oh and
+00:06:23.080 then perfect it's going to walk through
+00:06:24.840 what these different flags are so in the
+00:06:26.560 command we use the U flag the U flag I
+00:06:28.800 always call them Flags but you can call
+00:06:29.919 them like options as well the anyway
+00:06:32.039 dasu is used to State the website we're
+00:06:34.360 scanning and then DW takes the list of
+00:06:37.160 words to iterate through to find hidden
+00:06:39.599 pages and we could even look at what
+00:06:41.960 that word list file looks like so we
+00:06:44.960 could do like a cat command and we can
+00:06:47.280 see it's just using all these random
+00:06:48.880 words to try different addresses fake
+00:06:58.400 bank.com
+00:07:04.039 okay I jumped back in time for a minute
+00:07:05.639 because I was going through this video
+00:07:07.120 before I was going to post it I realized
+00:07:09.000 even though we found out uh what the U
+00:07:10.759 and W options are all about I never got
+00:07:13.160 to figure out what exactly D dur mode is
+00:07:15.960 or directory mode I'm assuming it's
+00:07:17.440 directory mode and I thought oh that's
+00:07:19.120 kind of a good learning experience for
+00:07:20.520 anyone who's more of a beginner watching
+00:07:22.240 this video by any chance because it's a
+00:07:24.960 good chance to practice doing what you
+00:07:26.759 would normally do if you're using a
+00:07:28.360 command and you don't understand all the
+00:07:29.840 parts of it or you're trying to learn a
+00:07:31.160 new command line tool or anything like
+00:07:32.960 that so what I would do in that
+00:07:35.560 situation normally would be try to find
+00:07:37.680 the manual or the help information so
+00:07:39.520 you could run something like gobster and
+00:07:41.800 then ttac help and that will probably
+00:07:45.560 give us all of the information about the
+00:07:49.000 different Go Buster options and what
+00:07:50.759 they mean so we can see there's a lot of
+00:07:52.680 different options we were only using a
+00:07:54.159 couple of them so you could read through
+00:07:56.199 this and learn um some of the different
+00:07:58.039 ways that you can configure this tool
+00:08:00.159 and we can see right here so one of the
+00:08:02.440 options is mode uh and that's the m flag
+00:08:05.759 and there is directory or file mode so
+00:08:07.720 that's just I think listing any exposed
+00:08:10.360 directory or file that it finds using
+00:08:12.639 that word list and then DNS mode which
+00:08:15.280 be which I imagine is probably more
+00:08:17.319 focused on listing uh subdomains for the
+00:08:19.840 domain that you pointed at and it looks
+00:08:22.360 like it defaults to directory mode so
+00:08:24.680 let's see if I can keep scrolling up
+00:08:26.319 here and I'm not sure if that's the only
+00:08:28.479 two modes
+00:08:30.240 I think gobster has a
+00:08:32.760 S3 enumeration uh functionality as well
+00:08:36.000 S3 is one of the Amazon web services
+00:08:38.159 service so
+00:08:41.440 um let's see this uh my this my try
+00:08:46.519 hackme VM is like really lagging so let
+00:08:48.480 me see if I can um I don't have gobster
+00:08:51.640 installed locally but maybe I'll install
+00:08:53.920 locally really fast and then just do it
+00:08:55.519 that way instead okay I am back I went a
+00:08:58.160 little bit farther down the RAB hole I
+00:08:59.680 wanted to get gobster just set up on my
+00:09:01.800 local machine so I could run these
+00:09:03.480 commands a little bit more smoothly and
+00:09:05.680 I found this really great tutorial from
+00:09:07.360 free code Camp about how to set up
+00:09:09.720 gobster and how to use it it has a lot
+00:09:11.399 of really good information and I think
+00:09:13.320 the version of gobster that is running
+00:09:15.000 on the try hackme VM is probably like an
+00:09:16.920 older version so you'll notice if you
+00:09:19.880 try to play around with this a little
+00:09:21.000 bit more yourself or you follow this
+00:09:22.800 tutorial some of the output looks pretty
+00:09:24.880 different but I did find this list of
+00:09:26.800 the different types of commands you can
+00:09:28.440 use with gobest
+00:09:29.640 so you can use uh dur mode which is
+00:09:31.760 directory and file enumeration you can
+00:09:34.000 use DNS mode where you would point
+00:09:36.200 gobster at a specific domain and then
+00:09:38.240 gobster could enumerate the subdomains
+00:09:40.440 for you there's a fuzzing mode which
+00:09:42.360 fuzzing is about uh like inputting data
+00:09:44.920 into websites into forums and stuff like
+00:09:46.920 that there is the S3 enumeration mode
+00:09:49.839 that would list prefixes and objects in
+00:09:51.959 an S3 bucket I'm in imagining if you're
+00:09:53.920 looking at an AWS environment and then I
+00:09:56.519 also uh looked at the codebase for
+00:09:58.640 gobusters
+00:09:59.720 and the GitHub read me explains that I
+00:10:02.120 do think they have support for uh Google
+00:10:04.600 Cloud Storage buckets now as well so
+00:10:06.000 I've never tried that but that's pretty
+00:10:07.240 cool and anyway this output is all from
+00:10:11.040 running this gobster H command and I do
+00:10:14.440 have gobster set up locally now so let
+00:10:17.120 me uh pull up my terminal here let me
+00:10:19.839 make it a little bit bigger so you can
+00:10:22.040 see what I would do in a typical real
+00:10:23.600 world situation instead of a try hackme
+00:10:26.040 walk through where you're going step by
+00:10:27.800 step and they're giving you the exact
+00:10:29.079 command is I would just do something
+00:10:30.279 like gobster TCT TX help and see that
+00:10:34.079 exact same thing that we're seeing in
+00:10:35.440 the screenshots if you want to learn a
+00:10:37.160 little bit more about gobster I'll
+00:10:38.360 definitely link to this free code Camp
+00:10:39.839 guide it's really quite good and also
+00:10:41.839 I'm just am noticing right here so the
+00:10:44.200 version the free code Camp guide was
+00:10:46.880 written in 2022 I think it's now 2024
+00:10:49.959 and so you can see this is an even newer
+00:10:52.000 version yet that I just installed and
+00:10:53.839 here you can see there is indeed the
+00:10:56.040 support for Google Cloud Storage buckets
+00:10:58.279 so that's really cool that tool is
+00:10:59.560 growing I hadn't used it since I was in
+00:11:01.560 school so it was good to get refreshed
+00:11:03.200 on it and anyway with that little insert
+00:11:05.480 let's get back to what we're actually
+00:11:06.639 supposed to be doing in the try hackme
+00:11:08.079 room anyway back I had to run the
+00:11:09.839 command again to get my output back here
+00:11:12.079 so we will see gobusters scans the
+00:11:14.120 website with each word in the list and
+00:11:15.800 finds any pages that exist on the site
+00:11:18.120 even if they're hidden pages gobster
+00:11:20.279 will have told you the pages it found in
+00:11:22.240 the list of the page SL directory names
+00:11:25.800 and that's indicated by the 200 status
+00:11:28.040 so we can see it found this bank
+00:11:29.519 transfer page and got a 200 status which
+00:11:32.279 200 is the okay status so we got some
+00:11:34.360 very valuable information from that now
+00:11:36.600 step three we're going to hack the bank
+00:11:38.760 so this is the exciting part you should
+00:11:40.600 have found a secret bank transfer page
+00:11:43.000 that allows you to transfer money
+00:11:44.639 between Accounts at the bank okay that's
+00:11:47.320 what the bank transfer page is type the
+00:11:49.920 hidden page into the fake Bank website
+00:11:52.639 on the machine and this page allows an
+00:11:55.440 attacker to steal money from any bank
+00:11:57.680 account uh which which is a critical
+00:11:59.720 risk for the bank I would say so as an
+00:12:02.360 ethical hacker you would with permission
+00:12:04.959 find the vulnerabilities in the
+00:12:06.399 application and report them to the bank
+00:12:08.600 to fix before a hacker exploits them
+00:12:11.240 okay and maybe they might even pay you
+00:12:12.519 like a bug bounty to tell them that they
+00:12:14.040 have this problem with their website so
+00:12:15.519 let's see if we can do this so we're
+00:12:16.639 going to do to we're going to go to fake
+00:12:19.000 bank.com and we're going to put in the
+00:12:21.120 hidden page we found so we can do bank
+00:12:26.639 transfer all right and here so this is
+00:12:29.800 our it looks like you haven't started
+00:12:31.920 Firefox in a while okay don't worry
+00:12:33.399 about Firefox so here is the hidden page
+00:12:36.120 the bank transfer page and we can you
+00:12:40.079 and looks like it's an admin portal so
+00:12:42.000 that's why it's not listed on their
+00:12:43.240 website so we can use this information
+00:12:46.440 and the instructions say transfer $2,000
+00:12:48.920 from the bank account
+00:12:51.120 2276 to my account 8881 I'm about to get
+00:12:55.639 a Payday and we want to do $2,000
+00:13:01.760 all right success so we successfully
+00:13:04.560 hacked them if the transfer was
+00:13:06.920 successful we should now be able to see
+00:13:09.120 our new balance reflected on the account
+00:13:10.760 page which we can so I think we can
+00:13:14.240 return to our account to see our balance
+00:13:16.880 oh and I'm Mrs G
+00:13:19.160 Benjamin so let's see here's my
+00:13:22.880 transaction here so here's my
+00:13:24.160 transaction I just did Fast Food Apple I
+00:13:26.639 got a nice new computer anyway I digress
+00:13:29.760 you should be able to go to your new so
+00:13:31.240 you should be able to see your new
+00:13:32.279 balance reflected on your account page
+00:13:34.000 go there now and confirm you got the
+00:13:35.480 money so we might need to do a
+00:13:43.399 refresh I don't know I'm not seeing any
+00:13:49.519 bank I don't know so maybe my account
+00:13:51.639 was in the B was in the negative because
+00:13:54.120 now I only have
+00:13:55.320 $767 in my account so that's less than
+00:13:57.440 2,000 but anyway that's that's okay I'm
+00:13:59.160 not going to get too deep into my Mrs G
+00:14:01.040 Benjamin character above your account
+00:14:03.120 balance you should now see a message
+00:14:04.639 indicating the answer to this question
+00:14:06.839 can you find the answer you
+00:14:08.959 need so I think that the answer to the
+00:14:13.680 question is right here and that's Bank
+00:14:17.279 hacked all right awesome if you were a
+00:14:20.639 penetration tester or security
+00:14:22.160 consultant this is an exercise you would
+00:14:24.279 perform for companies to test for
+00:14:25.959 vulnerabilities in their web
+00:14:27.320 applications so exercise you would do
+00:14:29.680 you would find hidden pages to
+00:14:31.079 investigate for vulnerabilities all
+00:14:32.959 right and we can terminate the machine
+00:14:35.079 we're done now with this by clicking the
+00:14:37.399 red terminate button at the top of the
+00:14:39.240 page so this is how you terminate try
+00:14:41.399 hackme machine when we're done we can be
+00:14:43.240 nice and save them some running cost and
+00:14:45.959 let's see so we terminated the
+00:14:48.320 machine now that we're done with the
+00:14:50.399 virtual machine I went back to full
+00:14:52.199 screen here and looks like task three is
+00:14:54.639 just a conclusion to this first room so
+00:14:57.480 the first heading here says how can I
+00:14:59.240 start learning people often wonder how
+00:15:01.800 others become hackers and then in
+00:15:03.600 parenthesis it says security consultant
+00:15:05.440 so I guess maybe that's meant to be like
+00:15:07.040 the polite name or Defenders security
+00:15:09.560 analysts fighting cyber crime and to try
+00:15:11.800 have me says that the answer is simple
+00:15:13.759 break it down learn an area of cyber
+00:15:16.240 security that you're interested in and
+00:15:17.920 then regularly practice using Hands-On
+00:15:20.440 exercises and I do think that's true in
+00:15:23.240 my experience the key to any technical
+00:15:25.880 skill that you want to build or learn
+00:15:27.880 really is just practice and getting your
+00:15:30.120 hands dirty and doing a little bit more
+00:15:32.160 with it each day that you can practice
+00:15:34.440 and putting in the time really is the
+00:15:35.959 way to get there and that's why you
+00:15:37.319 especially want to kind of figure out
+00:15:38.880 what areas of tech or what areas of
+00:15:40.440 cyber security interest you the most
+00:15:42.360 because then the practicing is fun and
+00:15:44.160 you can enjoy it and it's win-win then
+00:15:46.560 the other thing like just in general
+00:15:48.079 while I'm on this tangent about learning
+00:15:50.160 technical skills that I think is really
+00:15:51.680 important is you have to figure out how
+00:15:53.680 to take big complex Concepts and then
+00:15:55.800 just break them up into little pieces do
+00:15:58.160 it one little bit at a time let your
+00:16:00.040 knowledge build as it grows and that's
+00:16:02.480 the way you get there everybody starts
+00:16:03.959 somewhere It's Not Unusual to be
+00:16:05.600 intimidated at the beginning and even
+00:16:07.519 when you're years into your career in
+00:16:09.600 cyber security or in Tech you'll
+00:16:11.440 probably be intimidated as there's
+00:16:13.040 always something new to learn there's
+00:16:14.279 always something you don't know but I am
+00:16:15.959 a True Believer if you figure out what
+00:16:17.440 interests you the most if you stay
+00:16:19.560 consistent with it you do a little bit
+00:16:21.040 more each day you get as much Hands-On
+00:16:22.800 practice or hands-on experience as you
+00:16:24.399 can that's how you build subject matter
+00:16:26.959 expertise in a technical topic and it
+00:16:29.240 really can take you places in your
+00:16:31.079 career so that's my opinion I think
+00:16:33.040 there's still a lot of opportunity out
+00:16:34.279 there but I've gone on a tangent now so
+00:16:36.440 let's go back and see what's actually
+00:16:38.040 going on in this try hackme room okay so
+00:16:40.519 we were talking about uh practice so
+00:16:42.639 that's what got me off on one and then
+00:16:44.360 it says break it down learn an area of
+00:16:46.399 cyber security you're interested in and
+00:16:48.040 then regularly practice using Hands-On
+00:16:50.160 exercises build a habit of learning a
+00:16:52.639 little bit each day they say here on try
+00:16:54.959 hackme which try hackme would tell you
+00:16:56.680 to go to try hackme every day uh but but
+00:16:58.600 I do really like tryck me and I think
+00:17:00.000 that's a great starting point and that
+00:17:02.079 is how you acquire the knowledge to get
+00:17:03.519 your first job in the industry and then
+00:17:05.839 they say trust us you can do it just
+00:17:07.839 look at some of the people who have used
+00:17:09.199 try hackme to get their first security
+00:17:11.199 job and this is pretty cool you can come
+00:17:12.799 read some stories about people who um
+00:17:15.319 transitioned from other careers into
+00:17:17.439 cyber security and tryck me was part of
+00:17:20.000 their Journey so that's awesome that's
+00:17:21.599 me I've worked in a different career for
+00:17:23.280 several years out of so I worked in a
+00:17:25.319 different career for several years
+00:17:28.039 that's to me I worked in a different
+00:17:29.520 career for several years before I went
+00:17:32.120 back to grad school for it and cyber
+00:17:34.520 security during the pandemic and I used
+00:17:36.240 to use trackme when I was in school all
+00:17:38.400 the time just to like practice and
+00:17:39.760 reinforce what we were learning in the
+00:17:41.679 classes and I found it to be a great
+00:17:43.640 resource and honestly no regrets yet so
+00:17:46.240 I guess that's good and then lastly what
+00:17:49.039 careers are there the Cyber careers room
+00:17:51.480 goes into more depth about the different
+00:17:53.160 careers in cyber however there is a
+00:17:55.280 short description here of a few
+00:17:56.760 different offensive security rooms so so
+00:17:58.760 remember this is the intro to offensive
+00:18:00.760 security room so this would be a couple
+00:18:03.039 examples of offensive security roles
+00:18:05.440 let's see we've got penetration tester
+00:18:07.640 and that is somebody who is responsible
+00:18:09.280 for testing technology products and
+00:18:11.559 finding exploitable security
+00:18:13.360 vulnerabilities so that would be the
+00:18:15.200 pentester I do feel like a pentester is
+00:18:17.320 a lot of times stereotypically what
+00:18:18.760 people think of when they think of
+00:18:20.159 somebody who works in cyber somebody who
+00:18:21.960 is hacking you on purpose trying to find
+00:18:24.320 the vulnerabilities in your product and
+00:18:26.360 then red teamer similar to pen ation
+00:18:28.720 tester plays the role of an adversary
+00:18:30.840 attacking an organization and providing
+00:18:33.320 feedback from the enemy's perspectives
+00:18:35.360 the thing about really good red teamers
+00:18:37.159 and really good penetration testers is
+00:18:39.679 really that enemies perspective part so
+00:18:41.559 it's not only just like the technical
+00:18:43.000 hacking skills although those are very
+00:18:45.000 important it's that ability to really
+00:18:47.360 think like a hacker or think like a true
+00:18:49.679 attacker would and I think that's why
+00:18:50.960 you always hear so many stories about
+00:18:52.760 people who've gotten arrested for
+00:18:54.360 hacking or for cyber attacks and then
+00:18:56.440 end up going straight in companies hire
+00:18:58.640 them to be ethical hackers and be red
+00:19:01.799 teamers because they want somebody who
+00:19:03.400 thinks just like the real bad actors
+00:19:05.320 would and then lastly security engineer
+00:19:08.320 so this would be somebody who designs
+00:19:10.400 monitors and maintains security controls
+00:19:12.480 networks and systems to help prevent
+00:19:14.960 cyber attacks and a lot of that is what
+00:19:17.039 a defender or a blue team person would
+00:19:19.720 do as well so this is just like very
+00:19:21.400 broad overview of some of the careers
+00:19:23.000 that are out there and then I think
+00:19:24.039 there will be some more in the intro to
+00:19:26.280 defensive security room I think in
+00:19:28.440 general if you're watching this video
+00:19:30.120 because you are playing tryck me and
+00:19:31.919 you're on these introductory rooms
+00:19:33.280 because you're thinking about a career
+00:19:35.000 in cyber security something that I'd
+00:19:37.559 like to say when I have the opportunity
+00:19:39.000 to talk to like for example students in
+00:19:41.000 my former program or anything like that
+00:19:42.600 is there really are a lot of different
+00:19:44.840 types of jobs in the field of cyber
+00:19:46.720 security so people think cybercity they
+00:19:49.679 think pentester they think red teamer
+00:19:52.280 and those roles are very important but
+00:19:54.080 there are a lot of other important roles
+00:19:55.640 out there like researcher information
+00:19:57.919 security auditor like incident managers
+00:20:00.440 program managers so it's not just the
+00:20:02.720 hardcore like hacker guys um that are
+00:20:05.360 needed in cyber security it's a lot of
+00:20:06.720 different kinds of people and I think
+00:20:08.159 that's good to keep in mind I've worked
+00:20:09.960 in cyber security related roles for a
+00:20:11.799 couple of years now and I've never been
+00:20:13.400 a pentester or red teamer and I don't
+00:20:15.600 think I ever will be even though I think
+00:20:17.520 they're very cool and I like to like
+00:20:19.000 live by Carle through their Adventures
+00:20:20.840 but I'm in a job that doesn't really fit
+00:20:22.240 into any of these categories but I still
+00:20:23.919 do cyber every day so I just say that
+00:20:25.919 because I do really think there's still
+00:20:27.200 a lot of opportunity out there in cyber
+00:20:29.120 security and a lot of different types of
+00:20:31.120 rules as you go through these type of
+00:20:32.640 trackme trainings or other trainings
+00:20:34.640 that are out there you'll really see
+00:20:36.440 there's a lot of different niches you
+00:20:37.919 could make your own so I think that's
+00:20:39.159 really exciting and then lastly now that
+00:20:41.919 I'm like literally gone on a rampage for
+00:20:44.480 two paragraphs of text for no reason to
+00:20:46.760 wrap up this room and wrap up I think
+00:20:48.480 it's task three we don't have an answer
+00:20:50.960 or anything we were just learning a
+00:20:52.000 little bit more about careers in cyber
+00:20:53.640 security that are out there and we hit
+00:20:55.640 completed and that is the intr uction to
+00:20:58.679 cyber security room done we finished it
+00:21:01.960 and next on this path will be intro to
+00:21:04.280 defensive security I'm like kind of in
+00:21:06.600 my chaotic era I'm just bouncing around
+00:21:08.799 doing walkthroughs of different rooms on
+00:21:10.360 this YouTube channel So eventually I'll
+00:21:12.200 get through this whole path I don't know
+00:21:13.440 when I'll do the intro to defensive
+00:21:14.840 security room if you enjoyed this video
+00:21:17.240 definitely check out some of the other
+00:21:18.520 try hackme walkthroughs on my channel
+00:21:20.559 and thank you so much for watching

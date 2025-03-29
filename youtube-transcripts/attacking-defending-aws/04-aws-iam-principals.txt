@@ -1,0 +1,813 @@
+# tactiq.io free youtube transcript
+# TryHackMe Room Walkthrough: IAM Principals - Attacking and Defending AWS Learning Path
+# https://www.youtube.com/watch/bqayurUj1bU
+
+00:00:00.650 [Music]
+00:00:09.120 this is the I am principal room an
+00:00:10.719 overview of the different types of
+00:00:12.000 actors in I am I noticed here so this
+00:00:14.519 little hard hat looking icon just so you
+00:00:17.560 know if you're new to AWS and you start
+00:00:19.279 learning how to read AWS architecture
+00:00:21.680 diagrams this is usually used to
+00:00:23.519 indicate an I am role so it's very
+00:00:25.480 appropriate for the header of this room
+00:00:27.199 for task one introduction to I am
+00:00:29.199 principles I am identities sometimes
+00:00:31.599 referred to as I am principles provide
+00:00:33.600 access to an AWS account and its
+00:00:35.480 resources I'm curious what this links to
+00:00:38.280 let's
+00:00:39.280 see nice so this is the AWS I am
+00:00:42.320 documentation and looks like this page
+00:00:44.120 is about I am identities and this header
+00:00:47.039 is identifying three types of IM
+00:00:48.800 identities users user groups and rules
+00:00:52.160 we learned about all three of these in
+00:00:53.600 that room we were just in so go back and
+00:00:55.600 watch that if you're curious to learn
+00:00:57.280 more now back to try hack me so it's
+00:00:59.640 talking about how principles or
+00:01:01.879 identities typically provide for
+00:01:03.600 authentication or validate
+00:01:05.319 authentication was performed before you
+00:01:07.720 can do anything principles are a core
+00:01:10.159 concept for resource policies that are
+00:01:12.080 attached to resources such as an S3
+00:01:14.320 bucket is an example of an AWS resource
+00:01:16.439 which is a storage resource and Define
+00:01:19.560 who is allowed to act on the resource so
+00:01:22.040 I am principles are the who typically
+00:01:24.759 this room will explain the multiple
+00:01:26.280 types of principles and their
+00:01:27.759 significance for attack and defense stcs
+00:01:31.000 all right no need to enter an answer
+00:01:33.079 let's hit completed okay whoop whoop
+00:01:35.200 we're correct we didn't have to do
+00:01:36.240 anything except read but reading is very
+00:01:38.439 important next we're going to access the
+00:01:40.520 environment awesome so I bet we are
+00:01:42.119 about to log into a Sandbox AWS account
+00:01:44.719 for the first time and this learning
+00:01:46.719 path does come with sandbox AWS
+00:01:48.759 environments that you actually get to go
+00:01:50.119 in and play in but let me not get ahead
+00:01:52.159 of myself let's see what this actually
+00:01:53.360 says okay where needed generate the
+00:01:55.799 environment required for the room the
+00:01:57.280 generate environment button will appear
+00:01:59.200 if the room contains an environment that
+00:02:01.640 needs to be generated any issues with
+00:02:03.520 the environment select the reset
+00:02:04.880 environment button oh that's very cool
+00:02:07.119 and we can read this article I think to
+00:02:08.878 learn some more information about how
+00:02:10.199 their AWS environments work which I will
+00:02:12.480 definitely be doing because I'm very
+00:02:13.720 curious about that to view the
+00:02:15.080 credentials required for the environment
+00:02:16.640 we have a credentials tab you can use
+00:02:18.720 these credentials to access the
+00:02:19.879 environment in various ways more
+00:02:21.800 information can be found here okay so
+00:02:24.560 there's a couple little parts of
+00:02:26.519 tryhackme documentation I'm going to
+00:02:28.319 dive into but before we do that let's
+00:02:30.440 make sure we know how to actually do
+00:02:31.840 this and generate the environment so it
+00:02:33.879 looks like we scroll up we hit Cloud
+00:02:35.720 details right here this is the generate
+00:02:38.280 environment button I'm very eager to see
+00:02:41.239 how long the environment generation
+00:02:43.640 takes I don't know how we count down or
+00:02:46.200 anything like that let's see what
+00:02:47.319 happens when I hit Cloud details again
+00:02:50.000 so we are in a generating State and I
+00:02:53.239 wonder if we have credentials already
+00:02:55.360 okay so we do have credentials but looks
+00:02:57.159 like we are still generating so let's
+00:02:59.120 see what happens if I try to log in nice
+00:03:01.080 and when our environment is actually
+00:03:02.680 ready we get this little pop up your
+00:03:04.360 environment is now ready then when we do
+00:03:06.200 see that we can come back over to
+00:03:07.760 environment State environment state is
+00:03:09.480 active and we have access to an
+00:03:10.680 environment for the following rooms so
+00:03:12.400 it looks like this is going to be a
+00:03:13.599 common environment we're going to use
+00:03:14.879 for a bunch of these different IM rooms
+00:03:17.560 so that's exciting using these
+00:03:19.680 credentials from this credentials tab
+00:03:21.440 here I went ahead and logged into the
+00:03:23.760 console so now I am here in the AWS
+00:03:26.879 console for this try hackme environment
+00:03:28.560 for the I IM rooms I'm very interested
+00:03:30.920 to learn a little bit more about how
+00:03:32.560 they organize this and how they manage
+00:03:34.720 that reset functionality they talked
+00:03:36.239 about which is really cool so if we mess
+00:03:37.840 this up we can press that reset button
+00:03:39.799 three times a day up to three times a
+00:03:41.879 day and get our environment fresh and
+00:03:44.799 get our environment back to stage one
+00:03:46.720 for us which is very cool and I am
+00:03:48.879 curious to see what kind of permissions
+00:03:50.159 our user has in this environment so I'm
+00:03:51.920 going to go right before I even do
+00:03:53.120 anything in this room I'm going to go
+00:03:54.120 right over to I am this is the I am
+00:03:56.000 dashboard in this AWS account I don't
+00:03:58.280 know if this is the same a best account
+00:04:00.280 that I will use for the entirety of the
+00:04:02.519 learning path or if I will get new
+00:04:04.519 account so I'll be able to tell that
+00:04:05.879 from the account number as we go on but
+00:04:08.079 right now I'm interested to see how it
+00:04:09.360 all works so looks like we've got two
+00:04:11.280 users in this account we've got this
+00:04:13.560 user which is the user I logged into the
+00:04:15.439 console with and then we've got this try
+00:04:17.720 hackme I am user let's see what kind of
+00:04:20.160 permissions this user
+00:04:21.800 has Okay so we've got cloudshell full
+00:04:25.120 access Cloud shell we could use to run
+00:04:26.560 commands if we wanted we have the needed
+00:04:28.680 permissions for the module so this might
+00:04:30.360 be an example of leasee privilege here
+00:04:32.720 which is an inline policy with only a
+00:04:35.440 few permissions and then we've got the
+00:04:37.080 readon access policy which is an AWS
+00:04:39.440 managed policy that lets us basically
+00:04:41.080 see a bunch of things in the account but
+00:04:42.600 not make changes just read only okay and
+00:04:45.800 we've are part of one group The I am
+00:04:48.000 module group let's see what the other
+00:04:50.160 user has going on so I bet this try Happ
+00:04:52.680 me I am user is something try hackme
+00:04:56.280 uses to manage and administrate these
+00:04:58.199 accounts because this user has admin
+00:05:01.680 because this user has admin access
+00:05:04.479 invalid action okay and then this policy
+00:05:07.960 is called what admin giveth inline
+00:05:09.960 policy taketh away what admin giveth
+00:05:12.240 inline policy taketh away so I bet
+00:05:14.000 that's part of an activity coming up and
+00:05:15.919 they are also in the triack IM group
+00:05:19.039 let's see what the trackme IM am group
+00:05:22.240 has attached
+00:05:24.520 so the try hackme I am group has the
+00:05:27.919 administrator access policy
+00:05:30.080 attached which means that's like God
+00:05:32.160 mode in AWS and that means both of those
+00:05:34.520 users we saw are part of this group and
+00:05:36.600 then same thing this group has these
+00:05:38.280 same permission policies so that would
+00:05:40.880 indicate if we click on this user that
+00:05:44.479 these permissions are all being derived
+00:05:46.319 from the group Yep they're attached via
+00:05:48.639 the try hackme IM group and then one
+00:05:50.759 more thing and then I promise we'll go
+00:05:52.080 back and actually do the room so this
+00:05:54.080 user that I get to log in as um is part
+00:05:58.160 of a different IM module group
+00:06:00.000 okay so they're demonstrating here a
+00:06:01.319 best practice which is rather than
+00:06:02.639 attaching policies directly to users you
+00:06:04.600 want to put users in groups and then
+00:06:06.280 attach policies to groups which is a
+00:06:08.280 better user management practice okay now
+00:06:11.800 that I've done a little bit of
+00:06:12.919 exploration in here I do also want to
+00:06:14.720 just go see if I can figure out if we
+00:06:16.080 are part of an organization so we can
+00:06:18.280 navigate to this AWS organizations conso
+00:06:20.520 and we can see we are part of an
+00:06:22.360 organization and the management account
+00:06:24.319 for the organization we are part of this
+00:06:26.479 is the account ID number this is the
+00:06:28.360 owner email address for the account that
+00:06:30.080 manages the organization I'm going to
+00:06:32.039 click this leave the organization button
+00:06:34.120 but I predict I'm going to get an access
+00:06:35.880 denied error because I don't have any
+00:06:37.720 policy because I don't have any
+00:06:39.440 permission policy that gives me
+00:06:40.680 permission to leave the organization so
+00:06:42.319 let's see what happens if I do that yeah
+00:06:44.960 see I don't have permission to take that
+00:06:46.919 action I do not have an i policy
+00:06:49.280 attached to my user that gives me
+00:06:51.199 permission for the leave organization
+00:06:53.319 action whatever it's actually called all
+00:06:55.759 right so that was just like a little bit
+00:06:57.160 of exploration now I'm going to to go
+00:06:59.919 back to try hack me and actually walk
+00:07:01.479 through the steps in the room so thank
+00:07:03.080 you for indulging me on that tangent
+00:07:05.160 okay so back to the actual room we can
+00:07:07.319 scroll down we figured out how to access
+00:07:09.120 the environment so we can hit completed
+00:07:11.240 here we're into the account I'm going to
+00:07:14.080 close that and next we're going to focus
+00:07:16.680 on task three which is about I am users
+00:07:19.360 I am users are the most basic form of an
+00:07:21.280 I am principal they represent a person
+00:07:23.280 or an application typically I'm sure
+00:07:26.400 we're going to read about this typically
+00:07:27.800 you would want to use an IM rule for
+00:07:29.440 application just keep that in mind I IM
+00:07:31.759 users exist in a single AWS account and
+00:07:34.080 AWS acts as both the authentication and
+00:07:36.680 identity store for IM users take a look
+00:07:39.479 at the users that exist in your try
+00:07:41.280 hackme account via this console link
+00:07:43.199 okay so I jumped the gun a little bit
+00:07:44.479 that's what I was doing a minute ago but
+00:07:46.280 we can come to I am they gave us a
+00:07:47.879 direct link and we can see we have two
+00:07:49.520 users this user this number user who is
+00:07:52.360 me that I'm logged in as and then the
+00:07:54.120 try have me I am user I am users can
+00:07:57.120 have both a login profile and up to two
+00:07:59.360 access Keys the login profile is a
+00:08:01.639 password that grants users access to the
+00:08:03.560 AWS web console access keys are AWS
+00:08:06.240 generated and consist of a key ID and
+00:08:07.919 secret all right and this is giving us
+00:08:09.599 some screenshots so this is an example
+00:08:11.479 of access Keys let's see if my user has
+00:08:13.240 any access keys so we could come here to
+00:08:14.919 security
+00:08:15.919 credentials and my user does have an
+00:08:18.560 access key and it was created 17 days
+00:08:21.720 ago and it has never been used so I'm
+00:08:24.400 curious to see what we're going to end
+00:08:25.400 up doing with that in my actual adabs
+00:08:27.879 usage and I have some other videos about
+00:08:29.440 this on my channel I do not use access
+00:08:32.399 keys I really really try not to use them
+00:08:34.120 I use identity Center and single sign on
+00:08:36.240 instead and just always use temporary
+00:08:37.919 credentials these long-term access Keys
+00:08:39.799 you really want to avoid creating them
+00:08:41.360 whenever possible okay and then the ads
+00:08:44.159 CLI we can also use to see these users
+00:08:47.279 so I'm going to authenticate with the
+00:08:48.600 CLI really quick I already have it
+00:08:50.000 installed locally but if you didn't have
+00:08:52.320 the AWS CLI installed locally you could
+00:08:56.480 use uh cloudshell in the adabas console
+00:08:58.800 so this and that's why we saw that
+00:09:00.240 permission policy attached earlier too
+00:09:02.360 so there's Cloud shell which is a
+00:09:03.760 browser based CLI that's already
+00:09:05.760 configured with the ads CLI um but I I
+00:09:09.399 prefer to use my local terminal so let
+00:09:11.120 me get configured here we're using the
+00:09:14.120 credentials for this try hackme sandbox
+00:09:16.800 one moment this is going to be a little
+00:09:18.399 bit jumpy because I do not want to show
+00:09:21.560 any of my credentials on the screen
+00:09:22.800 because I haven't figured out yet uh if
+00:09:25.079 these are ephemeral accounts or if this
+00:09:26.600 is an account I'll be using over time
+00:09:28.399 and also it's just gross to see
+00:09:30.200 credentials naked on the screen but if
+00:09:32.200 you wanted to configure your local CLI
+00:09:34.680 to use these sandbox credentials and you
+00:09:36.920 already have the AWS CLI set up just as
+00:09:39.120 a reminder you can run this AWS
+00:09:40.920 configure command and follow these
+00:09:43.440 prompts then as you're following those
+00:09:45.519 prompts for the aabis configure command
+00:09:47.800 you can use these access key ID and
+00:09:49.560 secer access key to configure the CLI or
+00:09:52.240 if you already really know your stuff
+00:09:53.279 with the iTab CLI you can do what I'm
+00:09:55.360 actually going to do and you can add a
+00:09:56.839 profile to the CLI so that you don't
+00:09:58.360 have to mess with your other profiles
+00:10:00.000 you might have configured then fun fact
+00:10:02.360 what happens when you run that AWS
+00:10:04.399 configure command is that the AWS CLI
+00:10:06.560 creates this credentials file so let's
+00:10:08.320 see I can run
+00:10:10.320 cap AWS I think this will be credentials
+00:10:14.360 here's the credentials file that just
+00:10:16.200 got created when I ran that configure
+00:10:17.920 command now because I use identity
+00:10:20.320 Center and SSO I don't use long-term
+00:10:22.440 access keys I don't have any actual
+00:10:25.040 profiles for my account here but if I
+00:10:27.839 did what I could do be edit this file
+00:10:30.680 and I could rename this profile to
+00:10:33.279 something like try hack me then it could
+00:10:36.680 coexist with other profiles I might have
+00:10:38.240 in place there anyway that's probably
+00:10:39.600 overkill for what a lot of you are doing
+00:10:41.320 but I'm going to do that to but I want
+00:10:43.880 to be able to run commands locally
+00:10:45.440 cloudshell would make it so you don't
+00:10:47.120 have to do any of this anyway let's see
+00:10:49.320 if I can run this example command so I
+00:10:52.079 can do ad ofs IM am list users and
+00:10:54.040 because I configured a profile I need to
+00:10:55.920 do the
+00:10:56.959 try hackme profile and I can see the
+00:11:00.959 same thing as what's described in the
+00:11:02.279 screenshot so there's our two users so
+00:11:04.399 those are our same two users we just saw
+00:11:06.399 in the AWS console let's see I'm so
+00:11:09.279 sorry I've gone on so many tangents but
+00:11:10.600 now we're getting into like the really
+00:11:11.680 fun nerd out stuff I am users are the
+00:11:14.040 most common way that ads accounts are
+00:11:15.760 compromised usually due to careless
+00:11:17.800 handling of the IM access Keys generated
+00:11:19.839 see that's why I just said I really try
+00:11:21.760 not to use these access Keys these are a
+00:11:23.360 big problem the access keys are often
+00:11:25.600 committed to GitHub stored in config
+00:11:27.399 files insecurely or shared via other
+00:11:29.639 insecurities so there are two AWS users
+00:11:32.279 in our account the one you're using is
+00:11:34.320 the 12-digit account ID what is the name
+00:11:36.720 of the other user okay so we saw that in
+00:11:38.920 the console so remember you could come
+00:11:40.600 to I am and then users and we could get
+00:11:43.560 it here or we also have it as the output
+00:11:46.839 from this command we just run so we're
+00:11:48.920 going to do the
+00:11:50.040 username and that's our flag let's
+00:11:53.519 see all right awesome now on to I am
+00:11:57.959 rolles
+00:12:00.000 for task four we're tackling IM roles an
+00:12:03.160 IM rooll is an ad ofs principal intended
+00:12:05.360 to be assumed by a person's service or
+00:12:07.480 resource for example an ec2 instance
+00:12:09.959 might require permissions to an S3
+00:12:11.839 bucket where your objects are stored
+00:12:14.279 with I am an ec2 instance is permitted
+00:12:16.560 to assume a specific role that has
+00:12:18.839 access to S3 so often times a OBS so
+00:12:22.680 often times IM roles are used to give
+00:12:25.440 one service permission to do something
+00:12:27.079 with another ads service with ads an ec2
+00:12:31.120 instance is permitted to assume a
+00:12:32.600 specific role that has access to S3
+00:12:34.839 roles are also used when larger
+00:12:36.680 organizations use an external identity
+00:12:38.839 provider to access AWS so this might be
+00:12:42.360 so an example of that might be like an
+00:12:45.160 identity provider could be like Google
+00:12:47.279 so maybe you somehow want to let users
+00:12:49.480 use their identity with Google to access
+00:12:51.880 services in AWS the way that that
+00:12:53.920 actually happens and I imagine we might
+00:12:55.399 get further into it is that these users
+00:12:57.760 would be able to use their Google
+00:12:59.120 identity to gain access to assume an IM
+00:13:01.519 am rule that has permissions to whatever
+00:13:03.360 they need to do in ads roles are also
+00:13:05.240 required when ads itself wants to take
+00:13:07.360 action on your account so let's take a
+00:13:09.079 look at the roles in our try hackme
+00:13:11.000 account via this AWS console
+00:13:14.399 link looks like we've got 10 roles here
+00:13:17.720 we've got oh okay we've got this stack
+00:13:19.959 sets exec rule so okay nerd out moment
+00:13:22.279 that would indicate that they use cloud
+00:13:23.959 formation to deploy which makes a lot of
+00:13:26.000 sense that's what a lot of these
+00:13:26.800 learning environments do so let's see
+00:13:28.639 what we can see over here real
+00:13:31.000 quick yes okay so we've got these are
+00:13:33.519 our cloud formation Stacks that they use
+00:13:35.199 to deploy the infrastructure in these
+00:13:37.199 environments now what else do we have
+00:13:40.880 now what else do we have we have a
+00:13:42.519 tryhackme budget Lambda execution rle
+00:13:45.360 try hackme and foke event try hackme I
+00:13:47.519 am rooll I digress let's see what we're
+00:13:50.639 supposed to be doing I IM roles have
+00:13:53.120 what is known as an assume roll trust
+00:13:54.639 policy this trust policy specifies what
+00:13:57.399 principles are permitted to assume R
+00:13:59.199 click on any of the roles in your
+00:14:00.480 account to see the trust policy all
+00:14:02.880 right so let's look at this one for
+00:14:04.360 example so this trust policy allows the
+00:14:07.000 AWS event service to assume this role
+00:14:09.800 and it looks like what it's allowed to
+00:14:11.279 do is put events to a certain event bus
+00:14:14.480 okay interesting all accounts event bus
+00:14:18.240 all right so in this screenshot we can
+00:14:20.160 see the role can be assumed via the
+00:14:22.839 effect allow by the AWS service support.
+00:14:25.639 Amazon aws.com so this is a different
+00:14:27.839 rule they're using as an example let's
+00:14:29.920 run this command
+00:14:39.440 now oh okay so this is because I forgot
+00:14:42.320 to use my profile flag earlier now I'm
+00:14:44.160 making things more complicated than they
+00:14:45.519 need to be
+00:14:50.480 um all right so now we can see these are
+00:14:53.120 the roles that we these are the same
+00:14:54.480 roles we saw in the console and we can
+00:14:56.680 see the assume R policy document for
+00:14:58.920 each of these roles that determines what
+00:15:01.079 principal is allowed to assume the role
+00:15:03.839 we can see the description we can see
+00:15:05.240 Max session duration so that would be
+00:15:07.320 when an entity assumes the role how long
+00:15:09.800 they can use that role for before they
+00:15:11.440 would need to create a new session all
+00:15:13.519 sorts of things okay the IM service API
+00:15:17.320 call assume role is the operation that
+00:15:19.519 leverages this trust policy we will
+00:15:21.560 discuss how that is used and how you can
+00:15:23.160 leverage that in an attack scenario in
+00:15:25.160 the room discussing AWS credentials more
+00:15:27.360 foreshadowing and here's our question
+00:15:30.199 there are several roles in your account
+00:15:31.759 what is the trusted entity for the
+00:15:33.240 organization account access role rule
+00:15:36.480 all right so I used the CLI output last
+00:15:38.839 time maybe I'll use the console this
+00:15:40.319 time so let's go back to rules and we
+00:15:42.440 want the organization account access
+00:15:46.639 role and what was the question I already
+00:15:48.959 forgot what is the trusted entity okay
+00:15:51.360 so we need to go to the trust policy
+00:15:53.440 this is the trusted entity that is
+00:15:55.000 allowed to assume this role the
+00:15:57.720 principle that's allowed to assume the
+00:15:59.000 role is an AWS based principal and and
+00:16:01.959 this is the rn4 I believe an i IM user
+00:16:03.680 so it looks like to me this the root
+00:16:05.160 user of this other AWS account is
+00:16:07.240 allowed to assume this role all right
+00:16:10.120 let's see if that's
+00:16:11.959 correct okay brilliant task five is
+00:16:15.279 about root user and the AWS account the
+00:16:17.959 root user is a special form of I am
+00:16:19.920 principal meant to represent the
+00:16:21.199 accounts owner root users have full
+00:16:23.480 privileges in the ads account so if I
+00:16:25.240 can compromise your account root user I
+00:16:27.360 can do absolutely anything that is very
+00:16:29.240 bad now if the account is part of an ads
+00:16:31.839 organization the root user in the
+00:16:33.680 account is subject to any service
+00:16:35.199 control policies that we're going to
+00:16:36.360 learn about later so if the account is
+00:16:38.519 in an organization the root user is a
+00:16:39.880 little bit different but still the
+00:16:41.680 username for the root user in AWS is
+00:16:43.600 always the email address used to create
+00:16:45.399 the account we we learned a little bit
+00:16:47.519 about this earlier you will rarely
+00:16:49.199 encounter the root user in day-to-day
+00:16:50.839 ads development that is if you are doing
+00:16:53.399 it correctly if you're implementing the
+00:16:54.800 security best practice you might be
+00:16:55.959 surprised how often you actually would
+00:16:57.560 encounter the root user are being used
+00:16:59.680 as a Defender you want to ensure the
+00:17:01.279 root mailboxes for all your AWS accounts
+00:17:03.319 are monitored right exactly because not
+00:17:05.559 only does AWS send alerts to that root
+00:17:08.240 user email but also think about it if I
+00:17:10.919 can get access to that email account
+00:17:13.400 that is the email for the root user of
+00:17:15.079 an ads account if I can compromise the
+00:17:17.319 email I can pretty easily probably
+00:17:19.520 compromise the root user for the ads
+00:17:21.400 account so you really want to make sure
+00:17:23.199 especially you know if you're learning
+00:17:24.280 ads and you're thinking about maybe
+00:17:26.039 practice ads accounts you've set up or
+00:17:27.720 something like that how secure is the
+00:17:29.559 email account that you used when you
+00:17:31.120 created your AWS account does it have
+00:17:33.039 multiactor authentication how complex is
+00:17:35.160 the password as an how easy would it be
+00:17:38.160 for an attacker to compromise that email
+00:17:39.880 and then make a jump to the and then
+00:17:41.919 make a jump to the ads account root
+00:17:44.559 user um oh spoiler okay so again so it's
+00:17:49.320 saying the same thing here as an
+00:17:50.480 attacker if you have access to the email
+00:17:51.960 box for the root user you can
+00:17:53.000 potentially reset the password and take
+00:17:54.919 control of the AWS account and looks
+00:17:56.559 like we're going to practice doing that
+00:17:57.799 in a future room to fun fact before
+00:17:59.480 20177 AWS accounts and Amazon retail
+00:18:02.320 accounts that shared the same email
+00:18:03.679 address were linked this created what's
+00:18:05.159 known as the underwear prom where a
+00:18:07.559 startup's AWS account had the same
+00:18:09.880 account as the founder was using to buy
+00:18:11.559 their underwear on Amazon that's a very
+00:18:14.520 Vivid example but this is important
+00:18:16.919 because full access to the account could
+00:18:18.320 be shared if an Amazon retail account
+00:18:20.559 was shared when they say Amazon retail
+00:18:22.520 they mean like amazon.com where you go
+00:18:24.159 shopping now now that's just kind of
+00:18:25.919 like an anecdote but the important thing
+00:18:27.720 once again we're getting reminded ads
+00:18:29.280 recommends do not use the root user
+00:18:31.240 account for day-to-day activities you
+00:18:33.080 should always use an IM user or role
+00:18:35.600 unless you are doing one of those few
+00:18:37.120 operations only the rot user can do it
+00:18:39.679 is not possible as an IM am user to
+00:18:41.720 identify the root email address of the
+00:18:43.480 account you're in however if the ads
+00:18:45.360 account is a member of the ads
+00:18:46.679 organization you can discover the email
+00:18:48.520 address of the organization's master
+00:18:49.880 account and I don't know if you remember
+00:18:51.520 but we actually just did this a minute
+00:18:53.240 ago when my nosy ass wanted to know if
+00:18:54.880 this account is part of an organization
+00:18:57.120 because we went to the organization
+00:18:58.679 console and we could see the
+00:19:01.480 organization we're part of and one of
+00:19:02.880 the organization details here is the
+00:19:04.600 management email address so we can see
+00:19:07.200 this is the root email for the
+00:19:08.360 management account of this
+00:19:09.919 organization very interesting and I bet
+00:19:12.320 I should have guessed that this is going
+00:19:13.880 to be the flag for this question all
+00:19:16.159 right so and looks like we can get it
+00:19:17.760 from the CLI as well so here is that
+00:19:21.120 master account email for the try hackme
+00:19:24.039 account yep whoop whoop CRA that cracks
+00:19:27.280 me up whoop whoop we got that right
+00:19:29.120 looks like task six is about I am groups
+00:19:32.520 IM am groups are collections of I am
+00:19:34.200 users groups are useful in that you can
+00:19:36.000 apply policies to the group and users in
+00:19:37.960 the group inherit those permissions we
+00:19:39.640 saw that in the console just a moment
+00:19:41.360 ago poking around only granting
+00:19:43.760 permissions via IM groups is considered
+00:19:45.880 a best practice in many circles so we
+00:19:48.159 saw the groups before but just as a
+00:19:49.640 reminder we can go see them again H we
+00:19:52.600 can go see them
+00:19:55.080 again oh interesting they have some some
+00:19:58.360 sort of uh perhaps logic problem in the
+00:20:00.679 group name here try hack me User Group
+00:20:02.840 let's just try and go there by hand so
+00:20:06.400 you we can go to user groups
+00:20:10.440 and so we can go to user groups and here
+00:20:13.080 that is here so now I'm curious try hack
+00:20:15.880 me User Group yeah so that's that's why
+00:20:18.080 that didn't work so they must have built
+00:20:19.799 that redirect URL when the group was
+00:20:21.720 called try hackme User Group um but now
+00:20:25.280 I'm imagine maybe we're trying to go to
+00:20:26.720 the try hackme am group anyway
+00:20:28.480 throughout your tryhackme ads Journey
+00:20:30.240 your IM user will be granted the proper
+00:20:31.880 permissions for the room you're using
+00:20:33.679 this will be done by adding your IM user
+00:20:35.520 to an IM group that matches the room
+00:20:37.520 you're in oh okay very clever so we can
+00:20:41.600 also see our groups from the CLI with
+00:20:45.520 looks like AWS I list groups profile try
+00:20:51.760 hack me nice so we can see those two
+00:20:53.280 groups there as
+00:20:54.679 well technically I am groups are not
+00:20:57.320 principles of oh okay I might have
+00:20:59.080 misspoke on that earlier because they're
+00:21:00.480 only grouping of privileges not the
+00:21:02.480 actual authenticated entity so the user
+00:21:04.400 would be the actual authenticated entity
+00:21:06.679 inheriting permissions from the group
+00:21:08.760 what is the name of the IM group your IM
+00:21:10.840 user is currently a member of I wonder
+00:21:13.279 if I can get this from the list users
+00:21:15.480 command let's
+00:21:17.640 see okay I
+00:21:20.240 cannot okay so to find this we can go
+00:21:22.520 back to the IM console we can find our
+00:21:24.559 user again and we can navigate to groups
+00:21:28.440 here well we can see it a couple ways so
+00:21:30.120 we can see our permission policies we
+00:21:32.440 have attached to us we can see they are
+00:21:34.200 attached via the group that we're part
+00:21:35.960 of which is this I am module group or we
+00:21:39.240 can go to groups here and we can see we
+00:21:41.400 are part of the I am module group so
+00:21:43.080 let's copy that
+00:21:47.679 name whoop whoop all right another
+00:21:50.400 correct answer task 7 is about AWS
+00:21:53.799 services from an API and IM perspective
+00:21:56.600 AWS has several services these services
+00:21:58.919 do not always align with how they appear
+00:22:00.720 in the ads console or the marketing name
+00:22:02.840 use for example ads VPC the softwar
+00:22:06.320 defined Network construct is part of the
+00:22:08.559 ec2 namespace this has thrown me off
+00:22:10.799 before so this is cool that they're
+00:22:11.919 calling this out the call to create a
+00:22:14.000 VPC is called ec2 create VPC and not VPC
+00:22:17.320 create VPC Amazon cloudwatch is a
+00:22:19.559 combination of several services
+00:22:20.960 including cloudwatch events metrics and
+00:22:23.600 logs because of the AWS 2 Pizza team
+00:22:26.440 organizational structure there is not
+00:22:28.360 consistency between services around how
+00:22:30.400 API calls are named some services use
+00:22:33.200 get for describing resources While
+00:22:34.720 others use describe so that's why they
+00:22:36.000 were telling us that lore before about
+00:22:37.960 the two Pizza teams is to set us up to
+00:22:40.000 understand this a little bit better
+00:22:40.960 about the API calls the AWS python SDK
+00:22:45.200 documentation is an excellent source for
+00:22:47.440 understanding the AWS API service calls
+00:22:49.640 I don't even have to click this link
+00:22:50.880 because the boto3 documentation and me
+00:22:52.720 are best friends we spend a lot of time
+00:22:54.320 together and it is very Illuminating I
+00:22:56.640 do agree from the the perspective of IM
+00:22:59.039 principles ads Services can act on
+00:23:01.279 resources in your account often a
+00:23:03.440 service like Lambda or ec2 will assume a
+00:23:06.120 role for your application to access
+00:23:08.600 resources in the context so will assume
+00:23:12.799 a role for your application to access
+00:23:14.760 resources that's that example we were
+00:23:16.159 talking about before where maybe
+00:23:17.720 something running on your ec2 virtual
+00:23:19.640 machine needs to read an object in your
+00:23:22.240 S3 bucket they would use an IM role to
+00:23:24.279 do that in the context of AWS IM
+00:23:27.279 services are always in the form of a DOT
+00:23:30.000 Amazon ads.com and ads services are
+00:23:33.679 often represented in the assume Ro trust
+00:23:35.720 policies of IM rules which we saw that
+00:23:37.880 before poking around in the console 2
+00:23:39.320 where we saw I believe it was the event
+00:23:41.400 service in the assume rule trust policy
+00:23:44.200 all right so what ads service is trusted
+00:23:48.200 to assume the role ads service role for
+00:23:50.360 cloud formation STX setss org member
+00:23:52.799 well my guess just based on the rle name
+00:23:55.480 would be cloud formation the cloud
+00:23:57.120 formation of service let's copy the r
+00:23:59.520 name and let's navigate oh we're already
+00:24:03.320 in I am perfect so let's navigate to
+00:24:06.080 roles and let's find that role name
+00:24:08.279 remember role names are unique in the
+00:24:09.799 account so there will only be one role
+00:24:11.919 with this
+00:24:13.200 name and the question was what's what
+00:24:16.960 ads servic is trusted to assume the role
+00:24:18.919 so let's look at the trust
+00:24:22.240 policy and the service is uh cloud
+00:24:26.360 formation so we've got member .org stack
+00:24:28.720 sets cloud formation all right let's
+00:24:31.000 copy that I assume it wants the whole
+00:24:34.520 thing submit all right so the cloud
+00:24:38.080 formation service is allowed to assume
+00:24:39.840 that
+00:24:42.440 role let's see what task 8 everyone is
+00:24:45.799 about there is a unique principle the
+00:24:48.600 asterisk the Wild Card which represents
+00:24:50.960 everyone depending on the AWS service
+00:24:53.559 the everyone principal could mean anyone
+00:24:55.480 on the Internet or any AWS customer
+00:24:58.440 the everyone principle is how resources
+00:25:00.320 are made public either on purpose or by
+00:25:03.039 accident so that's why it's very
+00:25:04.480 important to understand how this works
+00:25:06.000 because it does happen by accident
+00:25:07.480 sometimes the everyone principal is
+00:25:09.399 typically used in AWS resource policies
+00:25:12.000 which we are going to discuss in a
+00:25:13.320 future room just agree you're going to
+00:25:15.520 do your best not to win a bucket
+00:25:17.320 negligence award that's a joke but
+00:25:19.840 that's because a lot of times what
+00:25:21.200 you'll see is these wild cards in S3
+00:25:23.520 bucket policies and a misplaced wild
+00:25:25.480 card in S3 bucket policy makes your S3
+00:25:28.200 bucket public to anyone on the whole
+00:25:29.799 internet can read things in your bucket
+00:25:31.720 or download them and sometimes uh as is
+00:25:35.159 alluded to here you might want to make a
+00:25:37.240 bucket public on purpose I imagine we
+00:25:39.120 might explore that use case further but
+00:25:41.039 when you have that wild card in there by
+00:25:43.080 accident bucket negligence does indeed
+00:25:45.679 occur so we're going to avoid that we're
+00:25:47.080 going to hit completed I like the sense
+00:25:48.919 of humor task nine is called Federated
+00:25:51.720 identities most companies in AWS have
+00:25:54.320 adopted a multiac account strategy AWS
+00:25:57.200 accounts are created according to
+00:25:58.640 application team or environment so
+00:26:00.799 examples of environment would be Dev
+00:26:02.600 development QA so that's like a testing
+00:26:05.000 environment and then production each
+00:26:07.200 employee having multiple IM users
+00:26:09.159 becomes an untenable situation true that
+00:26:12.000 preach most Enterprises leverage a
+00:26:14.320 centralized identity store like uh
+00:26:16.360 active directory for example and samle
+00:26:19.240 authentication and samle authentication
+00:26:21.640 services with a couple examples here or
+00:26:24.159 open ID to Grant employees access to
+00:26:26.240 assume a specific IM role in specific
+00:26:28.039 accounts they are authorized to access
+00:26:29.640 we were touching on that a little bit
+00:26:30.799 before with the Google example so this
+00:26:32.679 is rather than having an user in the
+00:26:34.880 account that you would use you would
+00:26:36.279 have your employees use an identity from
+00:26:38.000 some sort of external identity store to
+00:26:40.320 assume a role in the AWS account to do
+00:26:42.840 only what they need to do in that adabas
+00:26:44.600 account an identity provider is created
+00:26:46.360 with a samle metadata document once
+00:26:49.159 authenticated by the corporate identity
+00:26:50.840 system a samle assertion document is
+00:26:52.679 passed to ads and the assertion lists
+00:26:55.440 the accounts and roles that that user is
+00:26:58.159 permitted to assume so here's a diagram
+00:27:00.279 talking a little bit about how it works
+00:27:02.080 so this is the external identity
+00:27:03.880 provider the user logs into a portal the
+00:27:07.120 user authenticates against that external
+00:27:09.200 identity store in this example it's
+00:27:10.840 active directory it looks like then the
+00:27:13.640 browser interface gets a response with
+00:27:15.520 the samle assertion the samle assertion
+00:27:18.240 then gets passed to AWS to sign in with
+00:27:20.600 the security token service that's how
+00:27:22.880 they assume the IM IM role which has the
+00:27:24.679 IM policy attached to it that has the
+00:27:26.840 permissions to do do things in AWS STS
+00:27:29.840 sends back temporary credentials to that
+00:27:31.720 same browser interface and then the user
+00:27:34.000 is redirected to the AWS Management
+00:27:35.840 console and you can't see it in this
+00:27:37.399 picture but up here on the right it
+00:27:38.760 would say the role that this user has
+00:27:41.080 assumed so they're not logged in to AWS
+00:27:43.320 as a user like we are in the sandbox
+00:27:45.320 right now they've assumed a temporary
+00:27:46.919 role using temporary credentials and
+00:27:49.399 this is a very good architecture pattern
+00:27:51.720 and a very common architecture pattern
+00:27:53.440 it's really good to understand this then
+00:27:55.440 it says with Federated access the
+00:27:57.039 authentic a system provides multiactor
+00:27:58.960 authentication Federated access just
+00:28:00.799 means like using one identity provider
+00:28:02.600 to govern access to more than one uh
+00:28:04.760 like domain or application resource Etc
+00:28:08.039 Federated access requires that one or
+00:28:10.200 more IM roles trust the saml identity
+00:28:12.720 provider created in your account if you
+00:28:14.720 look at the try hackme I am Ro in your
+00:28:16.760 account and I close these other windows
+00:28:18.720 let's follow this direct link so we come
+00:28:21.519 here this is the trust policy we've got
+00:28:25.320 the action STS assume role with samel is
+00:28:28.320 allowed and we've got the principal
+00:28:31.440 which is the samel provider here try
+00:28:33.840 hack me I am samel provider let's see
+00:28:36.279 what the question is what is the name of
+00:28:39.519 the sample samle identity provider in
+00:28:41.240 the account so the name is probably this
+00:28:43.279 last part of the Arn here and notice the
+00:28:47.559 Sam provider does have its own AR so
+00:28:50.080 let's see if that is
+00:28:53.200 correct okay awesome and oh God it oh
+00:28:56.960 God it became came midnight again um my
+00:28:59.240 streak increased to four so I'm going to
+00:29:01.080 do this last task and I'm going to go to
+00:29:02.960 bed now that we have defined the various
+00:29:05.760 actors in The AWS IM space the next room
+00:29:08.519 I am permissions will go into how those
+00:29:10.440 actors are authorized to operate on
+00:29:12.120 cloud resources as we dive into the
+00:29:15.000 structure of a im am policy statement
+00:29:17.000 sounds very fun I will be looking
+00:29:18.600 forward to doing that hopefully tomorrow
+00:29:20.360 and for now we have finished the I am
+00:29:22.679 principal room hit complete and awesome
+00:29:26.760 so that is four rooms done in the
+00:29:29.120 attacking and defending ads path
+00:29:31.080 hopefully I will see you in the Next
+00:29:32.480 Room

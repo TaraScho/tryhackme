@@ -1,0 +1,1559 @@
+# tactiq.io free youtube transcript
+# TryHackMe *New* DevSecOps Learning Path - Intro to DevSecOps Room Walkthrough
+# https://www.youtube.com/watch/NnQDOd2AEI0
+
+00:00:00.080 hi everyone it's Tara welcome to my
+00:00:02.159 little YouTube channel so recently I got
+00:00:05.759 really into playing try hack me again I
+00:00:08.280 hadn't really touched it for a couple of
+00:00:09.559 years and they came out with an
+00:00:10.880 attacking and defending AWS learning
+00:00:13.400 path which I really wanted to try
+00:00:14.799 because Cloud AWS and cloud computing is
+00:00:16.960 what I'm really into and love to do so I
+00:00:19.880 got back into to try hackme so that I
+00:00:21.400 could play that and now I'm just really
+00:00:23.240 enjoying playing through a bunch of
+00:00:24.320 different rooms I'm really into it again
+00:00:25.640 I think it's a lot of fun and it's a
+00:00:27.359 good way to refresh yourself on things
+00:00:28.840 you already know about or learn new
+00:00:30.720 things as well obviously so I started
+00:00:32.759 playing some different rooms and I've
+00:00:33.920 been making little video walkthroughs
+00:00:35.239 just for fun and I've been really
+00:00:36.280 enjoying it and then something amazing
+00:00:38.559 happened because not only was the
+00:00:40.320 attacking and defending AWS path right
+00:00:42.719 in my area of interest and I was really
+00:00:44.079 having fun with it but just this week a
+00:00:46.160 couple of days ago I got like a
+00:00:48.680 marketing email from try hackme that
+00:00:50.879 they just dropped a totally new learning
+00:00:52.719 path for Dev SEC Ops which is also very
+00:00:55.520 relevant to what I do a huge area of
+00:00:57.199 interest for me and I couldn't believe
+00:00:59.079 it I just always have like the most
+00:01:00.320 lucky timing as soon as I get back into
+00:01:02.320 try hack me it's like they're releasing
+00:01:04.319 content just like they made it for me
+00:01:05.640 but anyway of course I have to play
+00:01:06.960 through some of these new devc Ops rooms
+00:01:09.720 and see what they got here see what it's
+00:01:11.320 all about and I know people kind of have
+00:01:13.200 mixed feelings on the term devc Ops it's
+00:01:15.119 definitely like a buzzy term and some
+00:01:17.320 people roll their eyes at it but the
+00:01:19.320 concepts of Dev SEC Ops as far as like
+00:01:21.759 cicd secure deployment code analysis
+00:01:25.159 dependency vulnerability scanning all
+00:01:27.159 that kind of stuff is very interesting
+00:01:28.960 and I hope that's kind of stuff we're
+00:01:30.040 going to get to play around with in
+00:01:31.119 these Dev SEC Ops rooms and maybe learn
+00:01:32.880 some new tools and everything like that
+00:01:35.079 in this video this is going to be a bit
+00:01:36.640 of like an introduction so I'm going to
+00:01:39.040 go through the learning path quickly and
+00:01:40.479 just give an overview of what the
+00:01:42.079 different rooms are what the path
+00:01:43.479 contains I skimmed it a little bit but
+00:01:45.040 haven't really looked in depth and then
+00:01:46.960 I'm going to play through the first room
+00:01:48.439 which I believe is just called intro to
+00:01:50.079 Dev SEC Ops or something like that oh no
+00:01:51.880 this keeps happening to me I need to be
+00:01:54.520 like less enthusiastic because the
+00:01:55.600 thumbs up keeps triggering uh but anyway
+00:01:58.479 I believe that first room is called
+00:02:00.159 intro to Dev SEC Ops so this video will
+00:02:02.719 mostly be a walkthrough of that I
+00:02:03.960 promise I'll stop just gushing about
+00:02:05.640 things I haven't even seen yet so
+00:02:07.200 without further Preamble let's check out
+00:02:09.479 the new devs Ops learning path and then
+00:02:12.239 we will play through the first
+00:02:15.010 [Music]
+00:02:22.319 room here's the announcement and
+00:02:24.280 everything our new Dev SEC Ops learning
+00:02:26.440 path has landed a new era has arrived
+00:02:30.360 it's time to ditch tradition and shift
+00:02:32.400 to the left because Dev SEC Ops is here
+00:02:34.800 to stay this is like a very like banging
+00:02:37.400 announcement lots of Pizzaz so we're
+00:02:39.680 delighted to share our new Dev SEC Ops
+00:02:41.480 learning path which shows you how to
+00:02:42.879 secure modern software development
+00:02:44.440 environments with Hands-On learning
+00:02:46.239 around secure development cicd which is
+00:02:48.879 continuous integration and continuous
+00:02:50.599 deployment and automation security and
+00:02:54.120 with a clear Gap in training around Dev
+00:02:55.640 psychop and a lack of practical Hands-On
+00:02:57.959 Real World Learning on this topic this
+00:03:00.640 path promises to be a GameChanger for
+00:03:03.319 those looking to advance in devs Ops
+00:03:06.080 gosh they are really building the Hypes
+00:03:07.840 without any more Ado let's go see what's
+00:03:09.560 going on in this new Dev SE Ops learning
+00:03:12.120 path this kind of similar to what I did
+00:03:13.519 in the attacking and defending AWS try
+00:03:15.920 hackme learning path little playlist of
+00:03:18.480 video walkthroughs I have I'm going to
+00:03:19.840 do something similar here with this new
+00:03:21.799 Dev SEC Ops learning path where I'm
+00:03:23.440 first going to just give a quick
+00:03:24.680 overview of the content because I
+00:03:26.400 haven't looked at it yet want to see
+00:03:27.760 what all the learning path includes and
+00:03:29.959 then in this video I'll play through the
+00:03:32.200 first room and then make other videos as
+00:03:34.799 I play through hopefully the other rooms
+00:03:36.159 as well so this is the devc OBS learning
+00:03:39.000 path and looks like it's going to focus
+00:03:41.120 on securing pipelines and introducing
+00:03:43.799 infrastructure as code and
+00:03:45.400 containerization security techniques so
+00:03:47.760 infrastructure as code is like that's
+00:03:49.400 like my number one Tech Obsession love
+00:03:51.760 of my life that's what I love to do is
+00:03:53.239 write infrastructure as code so I'm
+00:03:54.640 really excited to see how they are
+00:03:56.560 featuring that in this learning path and
+00:03:58.239 what I can learn about I AC security and
+00:04:01.200 we're going to learn the tools and best
+00:04:02.760 practices to ensure robust development
+00:04:05.200 processes and secure software deployment
+00:04:08.040 workflows and and a minute ago the
+00:04:10.920 tryhackme Learning Materials reference
+00:04:13.079 shifting left hopefully my hand is left
+00:04:14.959 I don't know how mirring Works in
+00:04:17.279 cameras I'm like such a novice but
+00:04:19.040 anyway shifting left is something you
+00:04:20.959 always hear associated with Dev SEC Ops
+00:04:22.919 and shifting security left in the
+00:04:24.600 process means shifting security earlier
+00:04:27.120 in the software development process so
+00:04:28.880 rather than finding out what's
+00:04:30.600 vulnerable in our applications once
+00:04:32.120 we've already deployed them and they're
+00:04:33.639 running them and that's where we learn
+00:04:34.919 where our vulnerabilities are how can we
+00:04:37.280 stop the vulnerabilities from ever even
+00:04:39.160 getting deployed in the first place or
+00:04:40.759 getting deployed to production in the
+00:04:42.440 first place how can we use tools like
+00:04:44.479 for example code analysis and
+00:04:47.240 vulnerability scanning in our cicd
+00:04:49.560 pipelines to catch security risks and
+00:04:52.720 vulnerabilities as early as possible
+00:04:54.960 that's what everyone is talking about
+00:04:56.440 and those Concepts aren't new but those
+00:04:58.680 buzzwords around them Dev Ops and
+00:05:00.600 shifting left are certainly all the rage
+00:05:03.520 right now and I buy into the hype just
+00:05:05.120 as much as anyone else all right anyway
+00:05:07.199 enough of the monologue for now so this
+00:05:09.960 is the new learning path devc Ops and
+00:05:13.080 try hackme divides the learning paths
+00:05:14.919 into modules which I personally really
+00:05:16.440 like because I can get like a nice
+00:05:17.600 little dopamine hit each time I finish
+00:05:19.400 one of them and the first module is
+00:05:21.880 about secure software development so
+00:05:24.120 we're going to learn about the software
+00:05:25.759 development life cycle is what sdlc
+00:05:28.120 stands for and how to integrate security
+00:05:31.000 into software development practices so
+00:05:33.400 it looks like the first room is going to
+00:05:34.639 be introduction to Dev SEC Ops probably
+00:05:37.039 a overview and more about shifting left
+00:05:39.840 they promise we're going to talk about
+00:05:40.960 shifting left um and that's the room I'm
+00:05:43.039 going to play through in this video and
+00:05:45.080 then sdlc we're going to learn about and
+00:05:47.800 then the third room will be SS DLC which
+00:05:50.120 is secure software development life
+00:05:51.919 cycle very good and then the next module
+00:05:54.199 will be security of the pipeline so that
+00:05:55.800 would be like a cicd pipeline we're
+00:05:58.039 going to learn intro to pipeline
+00:05:59.960 automation uh source code security so
+00:06:02.680 that's typically almost as left as you
+00:06:04.240 can get as the source code and then a
+00:06:06.120 room about cicd and build security a lot
+00:06:08.960 of times like a traditional cicd
+00:06:11.080 pipeline has different stages in it
+00:06:13.319 different phases and you would typically
+00:06:14.840 see like a source phase a build phase
+00:06:17.680 test phase and then a deployment phase
+00:06:19.639 so the build phase is looks like is what
+00:06:21.280 we're going to focus on here and then
+00:06:24.880 and that's just kind of like a
+00:06:25.720 simplification but that's high level and
+00:06:27.880 then next will be Security in the
+00:06:29.520 pipeline so we're going to have security
+00:06:31.440 of the pipeline and then Security in the
+00:06:33.960 pipeline that reminds me of a shared
+00:06:36.199 responsibility model in cloud computing
+00:06:38.080 where you have security of the cloud and
+00:06:39.880 Security in the cloud so this is going
+00:06:41.759 to be about making sure your pipeline
+00:06:44.199 itself is secure and then Security in
+00:06:46.759 the pipeline I'm assuming will probably
+00:06:48.240 be about how we use the pipeline to make
+00:06:51.240 our code more secure okay Security in
+00:06:54.360 the pipeline module looks like focuses
+00:06:55.960 on securing the code encompassing SAS
+00:06:58.520 which is static what is it again static
+00:07:00.560 application security testing I think and
+00:07:02.120 then Dynamic D the D is dynamic the S is
+00:07:05.120 static so this would be dynamic
+00:07:06.759 application security testing code
+00:07:08.720 analysis challenges and dependency
+00:07:10.560 management for robust devc Ops practices
+00:07:13.360 that's awesome and then we got this room
+00:07:14.840 called mother's secret exploit flaws
+00:07:17.840 found in mother's code to revealed
+00:07:19.400 secrets so that sounds like it's going
+00:07:21.319 to be pretty fun and then container
+00:07:23.800 security so we're going to have a room
+00:07:25.759 about just like containerization in
+00:07:27.560 general if you're not familiar with
+00:07:29.360 containers intro to Docker intro to
+00:07:31.919 kubernetes which I know almost next to
+00:07:33.680 nothing about kubernetes I've just
+00:07:35.360 started to learn a little bit about it
+00:07:36.720 so that will be really beneficial for me
+00:07:38.919 we're going to learn about container
+00:07:40.599 vulnerabilities and then container
+00:07:42.520 hardening how to make our containers
+00:07:44.599 more secure that sounds like a really
+00:07:46.360 good module and then lastly the one I'm
+00:07:50.159 really enthusiastic about infrastructure
+00:07:52.080 is code so this will be great this will
+00:07:53.800 be like my reward at the end of The
+00:07:55.360 Learning path to get to do the IAC
+00:07:57.720 module so we're going to have an
+00:07:59.560 introduction to infrastructure as code
+00:08:01.800 we're going to learn about on premises
+00:08:03.479 infrastructure as code and then
+00:08:04.639 cloud-based infrastructure as code which
+00:08:06.560 I practically like what I spend 95% of
+00:08:09.000 my time doing and I already know when I
+00:08:11.479 get to this module the videos are just
+00:08:13.120 going to be insufferable because I'm
+00:08:14.440 going to want to talk about it all day
+00:08:15.919 so feel free to skip them if you can't
+00:08:17.520 handle it but anyway I swear I don't
+00:08:20.360 work for tryck I'm just really
+00:08:21.919 enthusiastic and I was really excited to
+00:08:24.039 see they rolled out this learning task
+00:08:25.520 so I'm very excited to play through it
+00:08:27.080 and let's get started with the first
+00:08:28.400 room
+00:08:30.280 okay so here we are in the first room on
+00:08:32.679 the path and this room is called
+00:08:34.440 introduction to Dev secc Ops learn more
+00:08:37.519 about the story of Dev secc Ops software
+00:08:39.599 development models and shifting left all
+00:08:42.799 right so task one is the introduction in
+00:08:45.920 this lab you will get introduced to the
+00:08:47.600 different styles of software development
+00:08:49.320 and their evolution throughout the years
+00:08:51.399 it's essential to understand how things
+00:08:52.920 have improved over the years and their
+00:08:55.040 impact on the security industry so seems
+00:08:57.480 like we're going to learn a little bit
+00:08:58.480 about the history of these things to
+00:08:59.800 contextualize why things are the way
+00:09:01.880 they are now and let's see learning
+00:09:04.079 objectives the history behind software
+00:09:06.079 development practices and how they have
+00:09:07.880 evolved over the years the importance of
+00:09:09.959 this field and concepts of what makes
+00:09:12.320 devc Ops and then I believe we can click
+00:09:14.440 here and see tryck me's definition this
+00:09:17.120 is like a vocabulary feature so devc Ops
+00:09:20.640 Fosters the same culture and principles
+00:09:22.560 as devops with the addition of security
+00:09:24.519 into the development process ensuring
+00:09:26.680 security is integrated from an early
+00:09:28.800 stage so devops was all about bringing
+00:09:31.160 together the development side which is
+00:09:33.040 like software developers coding
+00:09:35.000 traditional coding like writing the
+00:09:36.560 applications and then Ops which is like
+00:09:39.160 operations system reliability Engineers
+00:09:41.800 system admins who keep the platforms and
+00:09:44.120 the systems running devops was about
+00:09:46.519 breaking down the barriers between those
+00:09:48.240 two entities and then Dev SEC Ops is
+00:09:50.680 about bringing security into the fold
+00:09:53.079 and breaking down the barriers there
+00:09:54.800 even further to get security integrated
+00:09:57.519 throughout Dev Ops learning path this is
+00:10:00.440 the first room in a new Dev SEC Ops
+00:10:02.320 learning path being developed the New
+00:10:04.279 Path will cover I promise I won't just
+00:10:05.880 read it again but let's see this like
+00:10:08.399 but this a bunch of the stuff we just
+00:10:09.560 saw in the path overview and then this
+00:10:11.600 part is pretty interesting so we've got
+00:10:13.880 attacking the pipeline exploiting
+00:10:15.560 vulnerabilities in the pipeline
+00:10:16.959 defending the pipeline and then this
+00:10:19.040 part which I'm so excited about
+00:10:20.399 infrastructu ased code so we're going to
+00:10:21.720 cover Cloud devop secret management
+00:10:24.000 exploiting terraform very excited about
+00:10:25.920 that exploiting vagrant and exploiting
+00:10:28.040 docker so for task one that's just the
+00:10:30.480 introduction we just read we don't have
+00:10:32.000 a flag or any questions or anything and
+00:10:33.839 we hit complete it to move on hi I'm
+00:10:35.959 jumping back really quick because I
+00:10:37.360 meant to mention that this is one of the
+00:10:40.480 free rooms in try hackme so you do not
+00:10:42.800 have to have the try hackme subscription
+00:10:44.880 to play through this room if you come
+00:10:46.680 across this video and you want to play
+00:10:48.639 along I'll make sure to put the link
+00:10:50.560 below so you can play this on tryck me
+00:10:52.720 even if you don't subscribe all right
+00:10:55.360 devops A New Hope I'm just I'm
+00:10:57.920 absolutely loving the drama in this room
+00:11:00.440 the language is like topnotch and I
+00:11:02.320 believe this is a Star Wars reference I
+00:11:04.600 shouldn't even try to say that but I do
+00:11:07.200 think that is what it is since its
+00:11:09.360 Inception developer operations or devops
+00:11:12.519 has become a significant influence in
+00:11:14.360 modern software development deployment
+00:11:16.240 and operations but where did the term
+00:11:18.760 come from the story of Dev Ops a long
+00:11:22.839 time ago there were waterfalls in a
+00:11:24.880 galaxy far far away so that's definitely
+00:11:27.360 Star Wars right and waterfall model is
+00:11:31.360 this is the name given to how project
+00:11:32.920 management was approached back in the
+00:11:34.440 day and then by back in the day I guess
+00:11:35.839 they mean the 70s the cycle constituted
+00:11:38.800 and relied on a hierarchy where every
+00:11:41.079 member had a specific responsibility for
+00:11:43.240 example system admins worked tirelessly
+00:11:45.320 to keep everything running smoothly and
+00:11:47.320 afloat developers build and add as many
+00:11:49.560 features as possible to the applications
+00:11:51.600 and finally QA quality assurance
+00:11:53.839 Engineers test the systems functionality
+00:11:56.600 ensuring everything works as expected
+00:11:59.040 and if anything troubles the servers or
+00:12:00.920 something needs deployment CIS admins
+00:12:02.800 jump on it if it's a code problem devs
+00:12:05.200 put out the fire if there's anything to
+00:12:07.040 do with testing functionality and
+00:12:09.000 feedback the QA team takes care of it
+00:12:11.800 but what if there is a flaw a bug who
+00:12:14.320 fixes it these situations lead to many
+00:12:17.120 blame games and passing the Baton around
+00:12:19.320 that created friction things would get
+00:12:21.320 backlogged and the symbiosis between
+00:12:24.160 teams would not end up working anymore
+00:12:26.480 as the number of customer expectations
+00:12:28.279 grew features and new releases increased
+00:12:31.279 responsibilities and tasks became an
+00:12:33.720 accumulative giant mess bugs and
+00:12:36.760 security flaws were backlogged plenty of
+00:12:38.680 these went unresolved and more releases
+00:12:40.720 scheduled and everything just got worse
+00:12:42.440 and it wasn't scalable and it wasn't as
+00:12:43.880 basically they don't have a kind word to
+00:12:45.600 say about the waterfall method so fair
+00:12:48.160 enough this is really describing a lot
+00:12:49.880 about like the team Silo aspect of the
+00:12:52.639 waterfall methodology but and I and I've
+00:12:55.560 never worked in an environment that used
+00:12:57.880 waterfall software development or never
+00:13:00.000 been on a team or project that really
+00:13:01.839 did that so the extent of my knowledge
+00:13:03.920 here is that in grad school I took a
+00:13:06.240 class about software development
+00:13:07.920 methodologies where we learned about the
+00:13:10.040 waterfall methodology so my knowledge
+00:13:12.600 isn't practical it's just theoretical
+00:13:14.639 but one thing that I would add here that
+00:13:17.320 I think is very distinct of the
+00:13:18.920 waterfall methodology is not just like
+00:13:21.360 the team Silo part but also the part
+00:13:23.519 where there's one phase and you do that
+00:13:25.160 entire phase and then you start the next
+00:13:27.760 and then you start the next phase only
+00:13:29.360 when that first phase is done so first
+00:13:31.279 we do the analysis and get requirements
+00:13:33.600 then only after that do we start
+00:13:35.399 designing the software then only after
+00:13:37.680 the design is done and we have like a
+00:13:39.120 bunch of documents do we start actually
+00:13:40.680 making the software then only when the
+00:13:42.680 software is totally done all the
+00:13:44.040 features are done do we start testing
+00:13:45.920 the software so it's all so it's all
+00:13:48.360 like big monolithic steps and they're
+00:13:50.560 all dependent on each other that's
+00:13:52.040 really like what I associate with
+00:13:54.000 waterfall software development so what
+00:13:56.399 was once the popular problem solving
+00:13:58.040 strategy and syst system became a root
+00:13:59.839 cause of ineffectiveness in flexibility
+00:14:02.519 and communication across teams so
+00:14:04.360 doesn't seem like they're recommending
+00:14:05.480 waterfall model and then came along
+00:14:07.759 agile so now it's all about agile and
+00:14:10.360 with the challenges teams were facing
+00:14:12.079 with waterfall businesses started
+00:14:13.959 developing ways that allowed more
+00:14:15.360 flexibility and adaptability so in the
+00:14:17.800 early 2000s the agile methodology was
+00:14:20.320 coined soon a Manifesto was released the
+00:14:23.040 agile Manifesto emphasizing four values
+00:14:26.079 for Agile development those four values
+00:14:28.880 for Agile development individuals and
+00:14:30.839 interactions over processes and tools
+00:14:33.279 working software over comprehensive
+00:14:35.519 documentation customer collaboration
+00:14:37.759 over contract negotiation responding to
+00:14:40.560 change versus following a plan so that's
+00:14:42.519 probably a big one more of that like
+00:14:44.199 adaptive getting little pieces of
+00:14:45.839 feedback implementing it versus waiting
+00:14:47.519 till the very end versus creating a plan
+00:14:50.440 at the beginning following it all the
+00:14:51.759 way to the end without changing and
+00:14:53.920 companies now value team collaboration
+00:14:56.199 and rely on self-organizing teams
+00:14:58.639 focusing on clients and plenty of room
+00:15:00.320 for Change and flexibility so that all
+00:15:02.720 sounds pretty good but something was
+00:15:05.399 still missing and that was seems like
+00:15:07.720 devops a New Hope okay so it was Star
+00:15:10.680 Wars and let's see this is so cute um so
+00:15:13.279 we got like a little theme going on in
+00:15:16.279 2008 a conversation between Andrew Clay
+00:15:19.000 and Patrick deoy led to something quite
+00:15:22.000 revolutionary while discussing the
+00:15:23.839 drawbacks of agile devops was born after
+00:15:26.880 an event in Belgium the following year
+00:15:28.680 called devops days devops was the next
+00:15:31.000 buzzword it was the next hot thing and
+00:15:32.880 the popularity
+00:15:35.319 increased devops is quite different from
+00:15:37.720 the previous methodologies because it
+00:15:39.399 focuses on driving cultural change to
+00:15:41.319 increase efficiency it does this by
+00:15:43.279 uniting the magic of all teams working
+00:15:45.920 on a project using integration and
+00:15:47.920 automation with these ingredients you
+00:15:50.000 get a cross integration across all
+00:15:52.000 departments QA plus CIS admins plus
+00:15:55.240 Developers for example ensuring
+00:15:57.440 developers can now be involved involved
+00:15:58.880 in deployment and CIS admins can now
+00:16:00.759 write scripts QA can figure out how to
+00:16:03.040 fix flaws versus constantly testing for
+00:16:05.959 functionality so the example I would
+00:16:08.279 imagine here right would be like imagine
+00:16:09.959 you're the software developer and you
+00:16:11.560 write the code for the application and
+00:16:13.360 when you're done writing the code for
+00:16:14.759 your part you hand it off to the Ops
+00:16:17.920 Team and the Ops team is responsible for
+00:16:19.800 figuring out what system to run that
+00:16:21.680 code on uh maybe managing like the
+00:16:23.600 database that the code interacts with
+00:16:25.600 all the different kind of like platform
+00:16:27.120 stuff and making sure that the system is
+00:16:29.199 running the code reliably and then you
+00:16:30.920 have the QA the testers they test your
+00:16:32.880 code once it's up and running and the
+00:16:35.240 thing that devops is trying to avoid
+00:16:36.880 right is like okay the developers hand
+00:16:39.040 off their code but they don't really
+00:16:40.240 know anything about the system that it
+00:16:41.600 runs on and maybe the Ops team is always
+00:16:44.480 annoyed with the developers team because
+00:16:46.360 they get the code and it's hard to make
+00:16:47.800 it run and maybe the dev team is always
+00:16:49.880 annoyed with the testing team because
+00:16:51.759 the testers the dev team doesn't
+00:16:54.079 understand the way they write their
+00:16:55.120 reports and they feel like there's not
+00:16:56.319 enough detail just all that little stuff
+00:16:58.079 that happens happens when the teams are
+00:16:59.920 doing their job completely separately
+00:17:01.759 independently of each other rather than
+00:17:03.720 having everybody working together from
+00:17:06.439 the beginning for the whole process so
+00:17:09.439 anyway that's what I think of when I
+00:17:11.000 think of devops by introducing
+00:17:13.319 Automation and integration of systems
+00:17:15.599 these Engineers can now have the same
+00:17:17.280 visibility at all times and interact
+00:17:19.439 accordingly we will dive more into how
+00:17:21.640 devops does this in the latter rooms as
+00:17:23.599 we will talk about pipelines Automation
+00:17:26.160 and continuous integration and
+00:17:27.520 continuous delivery which is cicd now I
+00:17:30.480 have to stop here one time at my old job
+00:17:32.799 me and a few of my friends got like in a
+00:17:35.120 very spirited discussion about what the
+00:17:37.559 CD actually stands for in cicd and
+00:17:41.039 there's three terms that you I think
+00:17:43.200 will hear kind of as the CD and cicd so
+00:17:46.720 continuous delivery is one of them which
+00:17:49.000 continuous delivery being like the
+00:17:50.320 delivery of the software to the end user
+00:17:52.600 continuous deployment is the other one
+00:17:55.120 and then the third one that you hear a
+00:17:56.679 lot less frequently is continuous
+00:17:58.760 development and in my opinion they're
+00:18:00.520 all three accurate the two that I really
+00:18:02.919 use would be continuous delivery and
+00:18:05.039 continuous deployment but hey if you're
+00:18:06.919 one of the people out there that likes
+00:18:07.919 to say continuous development I support
+00:18:10.880 you as well uh but don't be surprised if
+00:18:12.880 you hear those three terms used pretty
+00:18:15.240 much interchangeably and I'm sure some
+00:18:17.600 people feel very passionate about what
+00:18:19.400 is the right one so maybe someday they
+00:18:20.880 can have like a battle to the death over
+00:18:22.799 it or something all right so why is
+00:18:25.000 devops important devops builds a
+00:18:27.880 philosophy that emphasizes building
+00:18:29.760 trust and better liasing between
+00:18:31.640 developers and other teams this helps
+00:18:34.120 the organization align projects to
+00:18:36.240 business requirements increasing the
+00:18:38.200 impact and the value to the business as
+00:18:40.000 projects become more efficient and are
+00:18:41.799 prioritized accordingly changes rolled
+00:18:44.000 out are usually small and reversible so
+00:18:46.480 I would say that's a pretty important
+00:18:48.280 thing to pull out and that would be very
+00:18:51.039 and that would be very opposite to what
+00:18:52.960 I think would be the traditional
+00:18:54.080 waterfall model and then changes are
+00:18:56.840 visible to all teams involved this
+00:18:59.000 ensures better contribution and
+00:19:00.840 communication that helps with the pace
+00:19:03.080 and an increased competency when
+00:19:04.720 delivering work so in summary thanks to
+00:19:07.880 the Advent of devops today's development
+00:19:09.960 infrastructure is fully automated and
+00:19:11.840 operates on a self-service basis
+00:19:14.039 developers can provide resources to
+00:19:15.880 public clouds and the public clouds
+00:19:17.400 would be like AWS Microsoft Azure uh gcp
+00:19:21.000 without depending on it to provision
+00:19:23.039 infrastructure which in the past which
+00:19:25.440 in the past was a Slowdown led to weeks
+00:19:27.520 or months of delays continuous
+00:19:29.640 integration and deployment so see we're
+00:19:31.240 already using um a different term there
+00:19:33.640 processes automatically set up testing
+00:19:35.679 staging and production environments in
+00:19:37.600 the oncloud OR on premises they can be
+00:19:40.159 decommissioned scaled or reconfigured as
+00:19:42.400 needed infrastructure as code is widely
+00:19:45.280 used to deploy environments
+00:19:47.080 declaratively using tools like terraform
+00:19:49.480 and vagrant and not technically all
+00:19:51.960 infrastructure as code tools are
+00:19:53.400 declarative but um most of them are most
+00:19:56.200 of the most popular ones are and then
+00:19:57.960 Oran organizations can now provision
+00:19:59.919 containerized workloads dynamically
+00:20:01.600 using automated adaptive processes that
+00:20:03.720 doesn't all just sound wonderful and
+00:20:06.000 then oh and then here's a note about
+00:20:07.880 what they mean by declarative so the
+00:20:09.440 declarative approach requires that the
+00:20:11.360 users specify the end state of the
+00:20:13.640 infrastructure for example deploy these
+00:20:15.880 machines in a running State directly
+00:20:17.480 into an environment automating the
+00:20:19.320 configuration choices throughout the
+00:20:21.200 workflow the software builds it and
+00:20:23.320 releases it with no human interaction
+00:20:25.080 and I would and I would think of it like
+00:20:26.679 you're declaring your order almost
+00:20:28.280 you're declaring I'm going to have this
+00:20:29.520 size machine and it's going to use this
+00:20:31.400 machine image and we're going to have
+00:20:33.240 this kind of database you're laying it
+00:20:35.000 all out and then the infrastructure ased
+00:20:36.840 code tool runs code to bring your vision
+00:20:40.240 into reality the imperative procedural
+00:20:43.000 approach takes action to configure
+00:20:44.720 systems in a series of actionable steps
+00:20:47.080 for example you might declare to deploy
+00:20:49.200 a new version of the software and
+00:20:50.760 automate a series of steps to get a
+00:20:52.840 deployment ready State you choose when
+00:20:55.200 to apply these changes at the End by
+00:20:56.840 adding a gate so an example of a gate
+00:20:59.200 could be a button to release changes
+00:21:01.159 like a deploy changes button after all
+00:21:03.320 the automated checks have passed and
+00:21:05.280 then it can pass the deploy changes gate
+00:21:07.080 in such a workflow even a tiny problem
+00:21:09.200 could create a mess moreover as a number
+00:21:11.480 of new releases increases the whole
+00:21:13.559 matter may turn disastrous once again
+00:21:16.320 living for the drama in this room thing
+00:21:18.960 things would surely go out of hand with
+00:21:20.760 an issue still unresolved and plenty of
+00:21:22.559 features scheduled to be released okay
+00:21:25.120 so on that nice note looks like we wrap
+00:21:27.000 up task
+00:21:28.760 with some questions here so what
+00:21:30.960 methodology relies on self-organizing
+00:21:33.240 teams that focus on constructive
+00:21:35.240 collaboration so we learned that was the
+00:21:37.880 agile methodology I'm pretty sure and
+00:21:40.559 then what methodology relies on
+00:21:42.840 Automation and integration to drive
+00:21:45.320 cultural change and unite teams I
+00:21:47.679 believe that would be devops the word of
+00:21:49.440 the
+00:21:52.159 hour what traditional approach to
+00:21:54.559 project management led to mistrust and
+00:21:56.559 poor communication between development
+00:21:58.799 teams so just on traditional approach
+00:22:01.360 alone I think that's
+00:22:03.159 waterfall and then what does devops
+00:22:06.440 emphasize okay well we could probably
+00:22:08.360 answer that with a few different things
+00:22:10.720 so let's look at our little set of
+00:22:12.880 practices and tools in a cultural
+00:22:15.559 philosophy okay I think that's it so
+00:22:18.360 what does devops emphasize let's scroll
+00:22:20.440 back
+00:22:21.880 up oh all right so why is devops
+00:22:25.559 important and then they have this part
+00:22:27.400 devops a philosophy that emphasizes
+00:22:29.600 building trust so I bet it's that let's
+00:22:31.640 try
+00:22:34.640 that devops
+00:22:36.840 emphasizes building trust let's see if
+00:22:39.679 that's right okay awesome so that is
+00:22:42.039 Task two complete and now we can move on
+00:22:44.039 to task three task three is called the
+00:22:47.080 infinite Loop in the previous task we
+00:22:49.440 learned about the different software
+00:22:50.799 development styles through the years and
+00:22:52.520 how these played a big part in the
+00:22:54.200 Inception of devops this task will
+00:22:56.600 introduce you to key Concepts tools and
+00:22:58.760 how they all work together so how does
+00:23:01.000 devops work devops is visualized as an
+00:23:03.640 infinite Loop describing all the
+00:23:05.799 comprising phases so as opposed to the
+00:23:08.400 waterfall image which you might remember
+00:23:10.000 was kind of like plan design and then
+00:23:12.440 actually write the code and then test
+00:23:14.799 the code and then release the code and
+00:23:16.400 then maintain the code it's not that
+00:23:18.600 it's like an continual process that's
+00:23:21.000 just always going on so you have plan
+00:23:23.320 and code and build test release deploy
+00:23:27.000 operate monitor but the stages are a lot
+00:23:29.799 more fluid they're always going on you
+00:23:31.919 typically want to have small features
+00:23:34.559 that you're coding and you're building
+00:23:36.159 and testing those small features and
+00:23:37.520 you're releasing all the time so that
+00:23:39.200 you can get user feedback more quickly
+00:23:40.880 and as you're operating and monitoring
+00:23:42.559 you're learning more about what the next
+00:23:44.200 feature should be how it should be built
+00:23:45.960 it's just that infinite Loop like they
+00:23:47.400 said following the infinite Loop of
+00:23:49.480 devops let's expand on some devops tools
+00:23:52.279 and processes that we will look at as we
+00:23:54.279 follow this path and learn how those
+00:23:56.480 tools help an organization
+00:23:58.640 number one cicd in the previous task we
+00:24:01.880 mentioned cicd cicd deals with the
+00:24:04.760 frequent merging of code and adding
+00:24:06.600 testing in an automated manner to
+00:24:08.640 perform checks as new code is pushed and
+00:24:10.880 merged we can test code as we push and
+00:24:13.400 merge thanks to a new Dynamic and
+00:24:15.640 routine in deployment which takes the
+00:24:17.960 form of minor code changes
+00:24:19.640 systematically and routinely all right
+00:24:22.000 I'm not quite understanding that
+00:24:23.039 sentence but the point is instead of
+00:24:24.799 waiting all the way till a feature or
+00:24:26.440 application is developed and then
+00:24:27.840 testing it with cicd every time you make
+00:24:30.399 a little change to your code base you
+00:24:32.360 can automate tests you can build the
+00:24:35.000 code and test it so every Small Change
+00:24:37.200 is vetted via automated pipeline rather
+00:24:39.640 than having to wait all the way till the
+00:24:40.840 end to test things and things are being
+00:24:42.440 tested and integrated all the time as
+00:24:44.240 developers are working thanks to this
+00:24:46.039 change in Dynamic cicd helps detect bugs
+00:24:49.240 early and decreases the effort of
+00:24:50.960 maintaining modular code massively which
+00:24:53.640 introduces reliable rollbacks of
+00:24:55.520 versions and code so because you're
+00:24:57.000 doing smaller releases all the time it's
+00:24:58.520 a lot easier to roll back to a stable
+00:25:01.520 version if needed without missing like
+00:25:03.520 you know months of work or whatever
+00:25:05.880 infrastructure as code is a way to
+00:25:07.799 manage and provision infrastructure
+00:25:09.520 through code and automation thanks to
+00:25:11.640 this approach we can reuse code used to
+00:25:13.399 deploy infrastructure so for example
+00:25:15.600 Cloud instances is the classic example
+00:25:17.480 so that's your servers running in the
+00:25:19.080 cloud which helps inconsistent resource
+00:25:21.520 creation and management standard tools
+00:25:23.760 for I are terraform vagrant Etc I use
+00:25:26.399 terraform quite a lot my favorite
+00:25:28.000 infrastructure as code tool is the AWS
+00:25:30.360 cdk for deploying AWS applications and
+00:25:33.360 this is a great topic you can get into
+00:25:34.919 with any infrastructure as code nerd
+00:25:38.080 which tool they like best what they
+00:25:39.600 think about the different tools so in
+00:25:41.240 addition to terraform cloud formation is
+00:25:43.520 the big one uh aw cdk I think is the big
+00:25:46.039 one anible you hear about a lot so you
+00:25:48.159 can really start like some this is like
+00:25:49.720 a great conversation starter at a party
+00:25:51.240 what infrastructure as code tool you
+00:25:53.159 like the best and then we will use these
+00:25:55.440 tools further in the pathway as we
+00:25:57.200 experiment with with IAC security so I
+00:25:59.080 think we're going to have a room about
+00:26:00.480 terraform and a room about vagrant which
+00:26:02.320 I've never used vagrant so I don't know
+00:26:04.120 very much about it and then
+00:26:05.679 configuration management this is where
+00:26:07.600 the state of infrastructure is managed
+00:26:09.399 constantly and applying changes
+00:26:11.039 efficiently making it more maintainable
+00:26:13.760 so thanks to this a lot of time is saved
+00:26:16.000 and more visibility into how
+00:26:17.960 infrastructure is configured you can use
+00:26:20.320 I for configuration management all right
+00:26:24.000 and number four orchestration is the
+00:26:26.159 automation of workflows it helps achieve
+00:26:28.760 stability for example by automating the
+00:26:30.799 planning of resources we can have fast
+00:26:33.039 responses Whenever there is a problem
+00:26:34.799 for example you can have health checks
+00:26:36.799 and then when health checks are failed
+00:26:39.039 we have automated response so rather
+00:26:40.880 than waiting for a human to realize that
+00:26:42.919 something's not working or a server is
+00:26:44.640 not healthy we're just checking all the
+00:26:46.520 time and then we're have automation
+00:26:48.159 flows that kick into action when a
+00:26:50.120 health check fails monitoring focuses on
+00:26:52.440 collecting data about the performance
+00:26:54.080 and stability of services and
+00:26:55.760 infrastructure this enables FAS recovery
+00:26:58.520 and helps with cross team visibility
+00:27:00.520 provides more data to analyze for better
+00:27:02.240 root cause analysis and also generates
+00:27:04.799 an automated response as mentioned
+00:27:06.279 earlier so it's all about monitoring
+00:27:08.120 monitoring lets you be proactive it gets
+00:27:09.799 everyone visibility into what's going on
+00:27:11.960 monitoring is critical and then lastly
+00:27:14.640 microservices microservice architectures
+00:27:17.000 break an application into many different
+00:27:19.080 small services and this has some
+00:27:21.640 benefits over what's called like a
+00:27:23.120 monolith application so microservices
+00:27:25.880 lets you have more flexibility they're
+00:27:28.240 typically thought to be more scalable so
+00:27:30.960 you kind of have these different
+00:27:31.919 building blocks and rather having and
+00:27:33.919 then rather than having to scale one
+00:27:35.279 huge application you just have to make
+00:27:36.840 sure each of the building blocks is
+00:27:38.440 scaling appropriately they're less
+00:27:40.720 complex in some ways and then more
+00:27:42.960 options for choosing technology across
+00:27:45.240 the different microservices so again the
+00:27:47.519 different components of an application
+00:27:49.240 like for example like I'm thinking about
+00:27:51.039 a retail application maybe you have like
+00:27:52.880 inventory you have user management you
+00:27:55.760 have user authentication you have
+00:27:57.159 payment and these are all managed as
+00:27:59.120 their own different services that know
+00:28:01.679 how to talk to each other but a change
+00:28:03.559 to one shouldn't impact a change to the
+00:28:05.559 other that's kind of like what
+00:28:06.840 microservices is all about in a poorly
+00:28:09.399 thought out example and we will look at
+00:28:11.880 microservices in more detail in the dev
+00:28:14.679 SE Ops pathway well thank God for that
+00:28:17.000 because like I said my example wasn't
+00:28:18.559 very good so answer the questions below
+00:28:21.760 what helps in adding tests in an
+00:28:23.640 automated Manner and deals with the
+00:28:25.360 frequent merging of small code changes I
+00:28:27.679 think that would be our friend cic CD
+00:28:31.039 and it's physically impossible for me to
+00:28:32.840 write that in lowercase so I'm going to
+00:28:34.480 write it in all an uppercase what
+00:28:38.000 focuses on collecting data to analyze
+00:28:40.360 the performance and stability of
+00:28:42.480 services I think this is monitoring yep
+00:28:47.320 okay all right and then what is a way to
+00:28:52.080 provision infrastructure through
+00:28:53.399 reusable and consistent pieces of code
+00:28:56.200 all right so that will be I or
+00:28:58.640 infrastructure as code that I cannot
+00:29:00.760 stop talking about and then let's see
+00:29:03.960 that's task three done awesome so let's
+00:29:06.519 go right into task four task four is
+00:29:09.600 called shifting left security can now be
+00:29:12.799 easily integrated because of the
+00:29:14.200 visibility and flexibility that devops
+00:29:16.240 introduces you might have heard of the
+00:29:18.240 concept shifting left I I would say if
+00:29:21.559 you've been watching this video you've
+00:29:22.799 heard of it you should definitely that
+00:29:24.440 should definitely be like a drinking
+00:29:26.120 game take a drink every time you hear
+00:29:27.720 shifting left in this learning path
+00:29:29.679 although don't actually really do that
+00:29:32.159 because I think we would probably die on
+00:29:34.080 that note this means that devops teams
+00:29:36.559 focus on instilling security from the
+00:29:38.480 earliest stages in the development life
+00:29:40.559 cycle and introducing a more
+00:29:42.360 collaborative culture between
+00:29:44.120 development and security sometimes
+00:29:45.519 traditionally security and development
+00:29:46.880 can kind of be thought of as having
+00:29:48.840 almost like an adversarial relationship
+00:29:51.600 because sometimes there's this idea that
+00:29:53.320 like development is trying to get things
+00:29:55.120 done and security is like the people
+00:29:56.880 just like constantly waving the finger
+00:29:58.279 and saying you can't do that or you have
+00:29:59.880 to jump through all these hoops to do
+00:30:01.080 what you need to do and one of the goals
+00:30:03.480 of Dev SEC Ops is to improve that
+00:30:05.360 dynamic as well since security can now
+00:30:07.799 be introduced early risks are reduced
+00:30:10.960 massively in the past you would find out
+00:30:13.559 about security flaws and bugs at very
+00:30:15.320 late stages even in production and this
+00:30:17.080 part of what I'm getting at early
+00:30:18.720 imagine you've done all this work you've
+00:30:20.399 coded your application and then the
+00:30:22.640 security team comes back to you and like
+00:30:24.320 you know we need to change this this and
+00:30:25.840 this like everything's wrong obviously
+00:30:27.440 that's not a good experience for either
+00:30:28.919 party this leads to stress roll backs
+00:30:31.159 economic losses chaos and catastrophe
+00:30:33.720 everywhere you look and integrating code
+00:30:35.760 analysis tools and automated tests
+00:30:38.039 earlier in the process can now identify
+00:30:39.960 these security flaws during early
+00:30:41.880 development and that makes everything
+00:30:43.799 better for everyone so shifting left in
+00:30:47.080 the past security testing was
+00:30:48.519 implemented at the end of the
+00:30:49.720 development cycle as the industry
+00:30:51.919 evolved and security functions were
+00:30:53.440 introduced security teams would perform
+00:30:55.760 various analysis and security testing in
+00:30:57.799 the final stages of the life cycle
+00:30:59.960 depending on the results of security
+00:31:01.519 testing it would either permit the
+00:31:03.320 application to proceed for deployment
+00:31:04.919 into production or reject the
+00:31:06.880 application and pass it back to
+00:31:08.480 developers and tell them they had to
+00:31:10.080 remediate the flaws this resulted in
+00:31:12.840 long days in development and like I said
+00:31:15.120 bad feeling between teams implementing
+00:31:17.399 security measures during all stages of
+00:31:19.120 the development life cycle then in
+00:31:21.000 parentheses shifting left just in case
+00:31:22.519 you didn't get that shifting left rather
+00:31:24.760 than at the end of the cycle will ensure
+00:31:26.679 the software is designed with security
+00:31:28.960 best practices built in by detecting
+00:31:31.399 security flaws early in development
+00:31:33.360 remediation costs are lower and there
+00:31:35.600 will be no need to roll back changes
+00:31:37.440 because they'll be being addressed
+00:31:39.200 before it even gets that point this
+00:31:41.399 reduces cost builds trust and improves
+00:31:43.799 the security and quality of the
+00:31:45.799 product why are we shifting left back in
+00:31:48.760 the day before agile developers would
+00:31:50.639 request infrastructure from it and
+00:31:52.360 receive servers weeks or months later
+00:31:55.000 nowadays the provisioning of
+00:31:56.360 infrastructure in the cloud is automated
+00:31:58.440 so almost always and this shift has
+00:32:00.519 improved development productivity and
+00:32:02.120 speed however the increased velocity can
+00:32:04.960 also spark security concerns and lead to
+00:32:07.279 flaws that go un noticed so because we
+00:32:08.760 can move at a faster velocity because of
+00:32:11.600 the cloud we can also uh introduce new
+00:32:14.840 flaws and because we're moving faster
+00:32:16.919 we're introducing more flaws and they're
+00:32:18.480 making it to production faster before
+00:32:20.080 someone catches them because the whole
+00:32:21.480 process is moving at a faster pace so
+00:32:23.919 here is a nice graph so we've got plan
+00:32:27.440 and design develop and build test deploy
+00:32:31.360 and release Monitor and
+00:32:34.200 analyze and we're looking at on the and
+00:32:37.440 that's the x- axis the different phases
+00:32:39.240 and then on the y- AIS attention to
+00:32:41.519 Quality and in which of these phases is
+00:32:43.760 the attention to Quality highest and so
+00:32:46.120 in the traditional model it's not until
+00:32:48.679 the later phases that we start paying
+00:32:51.120 attention to Quality and including
+00:32:53.519 quality is security and then the shift
+00:32:56.320 left model just means we're paying
+00:32:58.559 attention to Quality a lot earlier so
+00:33:00.480 that we don't have to wait until we're
+00:33:01.720 almost done to catch the problems all
+00:33:04.200 right the shift left approach ensures
+00:33:05.760 the flaws are caught early that's what
+00:33:07.600 it's all about and in the fast-paced
+00:33:09.360 environment post-development Security
+00:33:11.120 reviews of new software versions or
+00:33:13.480 analysis of cloud infrastructure
+00:33:15.440 configuration so that would probably be
+00:33:16.960 your infrastructure as code become a
+00:33:19.039 bottleneck so even when the proms are
+00:33:21.399 discovered there is not enough time to
+00:33:22.960 remediate them before we need to release
+00:33:25.000 the next version or the next feature to
+00:33:27.240 keep up with customer needs they need a
+00:33:29.399 fast-paced environment for scaling and
+00:33:31.279 growth security is at the risk of being
+00:33:33.360 left behind instilling security in the
+00:33:35.799 beginning and adapting security testing
+00:33:37.720 to become flexible and adapted to the
+00:33:40.200 development life cycle increases the
+00:33:42.360 chance of catching things and addressing
+00:33:44.080 them promptly and that is Dev SEC Ops
+00:33:47.600 with Dev SEC Ops security is introduced
+00:33:49.919 early in the development cycle and this
+00:33:51.559 minimizes the risks massively we
+00:33:53.880 integrate code analysis tools and
+00:33:55.799 automated tests earlier in the process
+00:33:58.000 which can lead to better identification
+00:34:00.039 and elimination of security loopholes
+00:34:02.360 and as the security gets to the
+00:34:03.919 deployment stage everything is already
+00:34:05.519 working smoothly as anticipated and
+00:34:07.279 we've already checked for all the things
+00:34:08.599 we can check for so security is not an
+00:34:10.719 add-on it's not like that last checkbox
+00:34:13.000 it's a must have right from the
+00:34:14.480 beginning and we're avoiding a lot of
+00:34:16.560 the bottlenecks and the bad feelings and
+00:34:19.199 then lastly with a rise in the frequency
+00:34:21.440 of cyber threats and tightening
+00:34:23.079 regulations adding security to devops is
+00:34:25.520 not a choice now but indeed an
+00:34:27.119 obligation so basically it's like trust
+00:34:29.199 is worth it all right so here we have a
+00:34:31.719 couple questions what term is used to
+00:34:33.879 describe accounting for security from
+00:34:35.960 the earliest stages in the development
+00:34:38.199 lifestyle I do declare I think the
+00:34:40.918 answer here is probably our favorite two
+00:34:42.918 words to use together ship left and then
+00:34:46.159 what is the development approach where
+00:34:47.800 security is introduced from the early
+00:34:50.000 stages of a development life cycle until
+00:34:51.960 the final stages and that is I believe
+00:34:54.918 Dev SEC Ops and once again it's
+00:34:57.960 unnatural for me to write it without
+00:34:59.720 those capitalizations those capital
+00:35:01.359 letters that's task 4 and I do think
+00:35:03.800 that was all really good information
+00:35:04.920 even though I poke fun a little bit at
+00:35:06.599 the shift left buzzword um but all good
+00:35:09.920 content so let's move on to task five
+00:35:13.359 and task five we're back to our nice
+00:35:15.720 Star Wars theme so we've got devop
+00:35:18.839 security Strikes Back Dev SEC Ops is an
+00:35:22.599 approach that relies heavily on
+00:35:24.240 Automation and platform design that
+00:35:26.200 integrates security as a shared
+00:35:27.760 responsibility it's a culture-driven
+00:35:29.640 development style and it normalizes
+00:35:31.720 Security in day-to-day operations we
+00:35:33.599 don't want security to be an add-on we
+00:35:35.119 just want it to be part of what we're
+00:35:36.160 doing every day as we develop what is
+00:35:38.599 the value Dev SEC Ops brings down
+00:35:41.160 vulnerabilities maximizes test coverage
+00:35:43.160 and intensifies the automation of
+00:35:44.720 security Frameworks and a lot of Dev SEC
+00:35:47.119 Ops tools that you will see are built um
+00:35:49.960 with mappings to the popular cyber secur
+00:35:52.680 framework so that's another benefit
+00:35:54.359 especially if you're trying to achieve
+00:35:55.480 compliance Dev SEC op tooling can help
+00:35:57.839 you do that and this risk this reduces
+00:36:01.800 risk massively this reduces risk Mas
+00:36:06.079 this reduces risk Mass oh my God you
+00:36:09.440 guys I just tried to say this word
+00:36:10.800 massively like probably six times this
+00:36:13.839 reduces risk massively assisting
+00:36:16.839 organizations in preventing brand
+00:36:18.599 reputation damage and economic losses
+00:36:20.800 due to security flaw incidents making
+00:36:23.040 life easier for auditing and monitoring
+00:36:25.720 how do we implement this efficiently
+00:36:28.000 culture is key it does not work without
+00:36:30.440 open communication and trust it only
+00:36:32.079 works with Collective effort devc op
+00:36:34.440 should aim to bridge the security
+00:36:35.880 knowledge gaps between teams for
+00:36:37.760 everyone to think and be accountable for
+00:36:39.520 security they first need the tools and
+00:36:41.079 knowledge to drive the autonomy
+00:36:42.839 efficiently and confidently all right so
+00:36:45.400 basically like we need to do it in a way
+00:36:47.040 that people will actually want to do it
+00:36:48.880 not in a way that it's box checking and
+00:36:50.720 everyone's going to roll their eyes and
+00:36:52.319 pretend they're doing it but they're not
+00:36:53.400 actually doing it we want Buy in and we
+00:36:54.960 want something that the Developers and
+00:36:56.800 the op teams will actually want to do
+00:36:58.480 not something that makes their lives
+00:36:59.960 harder and here's some of the challenges
+00:37:02.119 we see in Dev SEC Ops security silos
+00:37:04.920 it's common for many security teams to
+00:37:06.640 be left out of devops processes and
+00:37:09.200 portray security as a totally separate
+00:37:11.079 entity they're their own thing where
+00:37:13.040 only the specialized security people can
+00:37:15.079 maintain and Lead security practices
+00:37:17.800 this creates a silo around security and
+00:37:19.960 prevents Engineers from understanding
+00:37:22.000 the necessity of security or applying
+00:37:23.920 security measures from the beginning so
+00:37:25.280 you want everyone to feel empowered to
+00:37:27.359 implement security practices be part of
+00:37:29.680 the security conversation you don't want
+00:37:31.520 to have this air about well only the
+00:37:33.119 security team can do security things
+00:37:35.040 that's not good this model of the silo
+00:37:38.040 is not scalable it's not flexible
+00:37:40.079 security should be a supportive function
+00:37:41.640 to help other teams scale and build
+00:37:44.040 without security teams being a blocker
+00:37:45.880 without the security teams being the
+00:37:47.160 ones like no no no you can't do that
+00:37:49.560 making work harder that's what Dev SEC
+00:37:51.640 Ops is trying to avoid but rather we
+00:37:54.400 want a ramp to promote Secure Solutions
+00:37:56.640 and decisions the best practice is to
+00:37:58.520 share these responsibilities across all
+00:38:00.240 team members instead of having a
+00:38:02.200 specialized security engineer lack of
+00:38:05.319 vision and prioritization is another
+00:38:07.359 challenge we want to aim to create a
+00:38:09.520 culture where security and other
+00:38:11.040 essential application components treat
+00:38:13.040 security as a regular aspect of the
+00:38:14.920 application developers can then focus on
+00:38:17.160 development with confidence about the
+00:38:19.280 security instead of security departments
+00:38:21.280 playing police and Flame game so we want
+00:38:24.280 trust between the teams and we want
+00:38:25.960 security that
+00:38:27.040 promotes the autonomy of teams by
+00:38:29.160 establishing processes that instill
+00:38:31.800 security everywhere okay and then lastly
+00:38:34.760 uh another challenge is stringent
+00:38:36.359 processes I would definitely say this is
+00:38:37.960 a big thing that contributes to the idea
+00:38:40.520 of security teams as a blocker so every
+00:38:44.000 new experiment or piece of software must
+00:38:45.920 not go through a complicated process and
+00:38:47.880 verification against security
+00:38:49.599 compliances before being used by
+00:38:51.160 developers so that's what we don't want
+00:38:53.560 procedures should be flexible to account
+00:38:55.280 for these scenarios where lower level
+00:38:56.960 tasks are treated differently and higher
+00:38:59.400 risk tasks and changes are targeted to
+00:39:01.560 go through that more stringent process
+00:39:03.680 we don't want a culture where developers
+00:39:05.079 have to jump through a million Hoops to
+00:39:06.520 like do a little experiment that's never
+00:39:08.000 going to see production we want to have
+00:39:10.119 awareness that some things require more
+00:39:12.680 attention in process than others so
+00:39:15.319 developers need environments to test new
+00:39:16.960 software without common security
+00:39:18.520 limitations these environments are known
+00:39:20.480 as a Sandbox there is nothing I like
+00:39:22.079 better than a good sandbox and they're
+00:39:24.319 isolated environments that are built for
+00:39:27.280 experimentation and they don't have
+00:39:29.119 access to customer data or production
+00:39:31.319 networks things like that all right so
+00:39:34.000 what devc Ops challenge can lead to a
+00:39:37.359 siloed culture all right so that is
+00:39:41.599 security silos let's see if that's the
+00:39:43.560 correct
+00:39:45.839 answer guess the answer was right there
+00:39:47.839 in the name what devs Ops challenge can
+00:39:50.560 affect not prioritizing the right tasks
+00:39:52.599 at the right times I was it just going
+00:39:54.960 to go like right in order let's
+00:39:58.760 see no so that is not going to be the
+00:40:01.880 right
+00:40:02.960 answer so maybe it's lack of visibility
+00:40:06.079 lack of perhaps it's lack of
+00:40:07.760 prioritization since the question says
+00:40:10.000 what challenge can affect not
+00:40:11.319 prioritizing let's see if that's right
+00:40:13.760 nope all
+00:40:19.560 right security s so I'll try lack of
+00:40:22.680 visibility perhaps that's
+00:40:25.359 right
+00:40:28.359 okay so lack of visibility can affect
+00:40:30.720 not prioritizing the right risks at the
+00:40:32.319 right times and then lastly what Dev SEC
+00:40:34.599 Ops challenge stems from needlessly over
+00:40:37.119 complicated security processes and that
+00:40:39.720 is stringent
+00:40:41.680 processes so again just good information
+00:40:45.760 and we are cruising through we're
+00:40:47.200 learning a lot and then I think when we
+00:40:48.760 get to the later rooms in the path I
+00:40:50.760 imagine we're going to be uh putting all
+00:40:52.520 this into practice so that is Task five
+00:40:55.800 and then we will move on to task six
+00:40:58.119 task six is about Dev secc Ops culture
+00:41:01.440 devc Ops culture looks like we got three
+00:41:04.280 sections here promote autonomy of teams
+00:41:07.280 whether it is a large organization or a
+00:41:09.599 startup in hypergrowth the only way to
+00:41:12.200 not leave security behind is by
+00:41:14.040 promoting the autonomy of teams this can
+00:41:16.440 be done by automating processes that fit
+00:41:18.760 seamlessly with the development pipeline
+00:41:21.200 until security tests become just another
+00:41:23.200 type of tests like your unit testing
+00:41:25.280 smoke bombs whatever kind of testing
+00:41:27.200 you're already doing in your pipeline
+00:41:29.400 and leading by example and promoting
+00:41:31.760 education like creating playbooks or
+00:41:33.800 runbooks to spot flaws and then fix them
+00:41:37.040 understand the risk that these flaws
+00:41:38.440 cause and build confidence in Engineers
+00:41:41.440 to make secure decisions independently
+00:41:44.280 the ratio of developers platform
+00:41:46.640 Engineers infrastructure Engineers Etc
+00:41:49.000 all those other types of roles won't be
+00:41:51.240 the same as security engineers and we
+00:41:53.319 must understand that they meaning I
+00:41:55.319 think the security engine engers can't
+00:41:57.119 be in every conversation so the security
+00:41:59.599 Engineers on their own won't be enough
+00:42:01.160 to do it you need to be able to get
+00:42:02.599 people in other roles
+00:42:04.319 involved security should act as a
+00:42:06.839 supporting function that focuses on
+00:42:08.640 building trust and creating as much
+00:42:10.599 overlap in knowledge between teams as
+00:42:13.880 possible and then we have visibility and
+00:42:16.680 transparency so these are like the
+00:42:18.240 components of a culture that promotes
+00:42:20.240 devc Ops I think and so the first one
+00:42:21.960 was promoting the autonomy of different
+00:42:23.680 teams and then now we have visibility
+00:42:26.240 and transparency and this says for every
+00:42:28.440 tool being introduced or practice there
+00:42:30.400 needs to be a supporting process that
+00:42:32.880 provides visibility and promotes
+00:42:34.480 transparency to other teams this means
+00:42:36.720 that if we want to build autonomy in
+00:42:38.440 groups as mentioned earlier they need to
+00:42:40.280 have visibility on the security state of
+00:42:42.280 the service that they own or maintain
+00:42:44.480 for example a dashboard visualizes the
+00:42:46.599 number of security Flaws by the
+00:42:48.400 criticality of the service this helps
+00:42:50.760 prioritize accordingly so tasks don't
+00:42:52.800 get lost in the backlog or noise and
+00:42:55.480 flaws can be tackled at the right time
+00:42:57.559 so we want to make sure that teams have
+00:43:00.599 visibility into the security status of
+00:43:02.720 the services that they own makes sense
+00:43:05.599 how you want to measure Security State
+00:43:07.640 depends on the company but it could be
+00:43:10.319 that the number of high findings a
+00:43:12.480 service might or might not have
+00:43:14.359 determines if that particular service is
+00:43:16.720 in a good Security State and then again
+00:43:18.520 you want people to have visibility into
+00:43:20.520 the different Services the kind of
+00:43:21.920 security flaws that are going on there
+00:43:23.760 Etc get everyone on the same page and
+00:43:26.240 and transparency refers to introducing
+00:43:29.160 tools and practices that are accessible
+00:43:31.119 to the teams for example if you present
+00:43:33.480 a check before merging code and the
+00:43:35.559 review doesn't pass and shows a message
+00:43:37.960 that says signature of possible code
+00:43:40.119 injection flaw detected please remediate
+00:43:42.280 so that would be the message of why the
+00:43:44.040 new commit the new code isn't passing
+00:43:46.160 the security test the developer or the
+00:43:48.440 engineer should have access to the tool
+00:43:50.720 that's flagging the message usually
+00:43:53.079 these analysis tools that flag those
+00:43:54.920 alerts have a UI that specifies the line
+00:43:57.760 of code where this security flaw is and
+00:44:01.200 the tools also include a definition and
+00:44:03.079 a remediation suggestion with steps to
+00:44:05.599 fix the flaw so in this example a
+00:44:07.920 developer role should be created for
+00:44:10.000 that security tool so that the developer
+00:44:12.319 would have access to all the information
+00:44:14.160 about the security flaw what the problem
+00:44:15.760 is the instructions for fixing it you
+00:44:17.880 don't want the developers to be gated
+00:44:20.079 out of um the full functionality of the
+00:44:22.359 tool and this promotes education and
+00:44:25.280 autonomy by extending transparency that
+00:44:28.200 traditionally was only accessible by the
+00:44:30.160 security teams so even if you just were
+00:44:32.280 to give the developer some sort of read
+00:44:33.839 only access to that tool so that they
+00:44:35.960 can see all the information that would
+00:44:37.760 be a good step towards transparency
+00:44:39.920 which would then be a good step towards
+00:44:41.200 your Dev secops culture and then lastly
+00:44:44.920 last section here account for
+00:44:46.359 flexibility thanks to understanding and
+00:44:48.800 empathy as mentioned earlier instilling
+00:44:51.480 Security in devops processes with
+00:44:53.400 visibility and transparency is no easy
+00:44:55.640 task
+00:44:56.559 there is a factor that can determine
+00:44:58.200 success and that's the level of
+00:45:00.359 understanding and empathy this means
+00:45:02.359 that the definition of risk for security
+00:45:04.240 teams is unequivocal but for other teams
+00:45:06.960 risk can be different and just as
+00:45:08.680 precise for them this doesn't only apply
+00:45:11.640 to risk but an umbrella of things it
+00:45:13.520 ramifies into what teams prioritize how
+00:45:16.119 they work what they might think is
+00:45:18.280 important enough to drop everything and
+00:45:20.680 set aside a project even if they're on a
+00:45:22.240 tight deadline to fix a bug what Rises
+00:45:24.240 to that level of importance think the
+00:45:26.400 empathy piece here is kind of about
+00:45:29.000 understanding security risks are very
+00:45:30.559 important and then there are also other
+00:45:32.720 types of risks that are also very
+00:45:34.359 important to different types of teams
+00:45:36.119 and so you want to be empathetic for
+00:45:37.760 those other types of risks that those
+00:45:39.280 other teams care about and understand
+00:45:40.680 that those risks are really important to
+00:45:42.079 them too so there's no magic tool or
+00:45:45.280 process for everyone it's essential to
+00:45:47.760 understand how developers and Engineers
+00:45:49.319 work what they know to be a risk and
+00:45:51.440 what they prioritize if you know their
+00:45:53.440 perspective it's easier to build a
+00:45:55.079 process that finds common ground and has
+00:45:57.319 a higher chance to work versus adding
+00:45:59.559 another tool that creates just more
+00:46:01.319 noise and stress for everyone the
+00:46:03.640 understanding builds perspective which
+00:46:05.079 accounts for empathy for how other teams
+00:46:06.720 work and build a process that accounts
+00:46:08.640 for flexibility this is needed because
+00:46:10.760 every situation might be different
+00:46:12.240 deadlines might be different and
+00:46:13.680 people's bandwidth can change over time
+00:46:15.640 so just in general I it's always good
+00:46:17.440 advice when you're trying to do anything
+00:46:18.920 try and instill any sort of cultural
+00:46:21.079 change in an organization you want to
+00:46:22.880 have empathy for the other teams where
+00:46:24.520 they're coming from what their
+00:46:25.880 priorities are and start from there and
+00:46:28.559 then lastly as a defsec Ops engineer
+00:46:31.240 suppose you took the time to understand
+00:46:32.760 how a team owns a service in that case
+00:46:35.880 that will have a security scanner added
+00:46:37.760 to its development process worked and
+00:46:40.079 viewed priority all right I don't if I'm
+00:46:42.119 honest I don't understand how we got
+00:46:43.359 from that sentence to this one but let's
+00:46:44.800 keep going um so it will be easier to
+00:46:48.200 get so I think we're talking about a
+00:46:50.319 team oh that owns a service okay so the
+00:46:52.760 service is going to have a security
+00:46:54.520 scanner added to its development process
+00:46:57.240 let me start over I got it now as a desc
+00:46:59.599 Ops engineer suppose that you took the
+00:47:01.800 time to really understand how a certain
+00:47:04.079 team and that team owns a service that
+00:47:06.200 is about to get a security scanner added
+00:47:08.079 to its development process you're going
+00:47:09.880 to really understand how that team works
+00:47:12.160 and how they view priority it will be
+00:47:14.160 easier to get the teams Buy in and then
+00:47:16.040 demonstrate value to them for example if
+00:47:18.559 it's a platform team and they own an
+00:47:20.319 internal service that's a core service a
+00:47:23.000 risk to them that they would really care
+00:47:24.559 about would be a bug that disrupts that
+00:47:26.800 service that's what they're going to be
+00:47:27.960 worried about they're going to be less
+00:47:29.520 worried about a potential injection that
+00:47:31.800 lives behind a proxy because it's not
+00:47:33.559 like a external facing service so you
+00:47:35.720 could tune the scanners or add a
+00:47:37.240 triaging process that tackles the
+00:47:39.359 questions that team is going to care
+00:47:40.800 about and ask themselves and then this
+00:47:42.839 would in turn build trust with that team
+00:47:45.400 that owns the internal service versus
+00:47:47.319 giving them some noisy scanner that uh
+00:47:49.559 cries wolf and waste their time and then
+00:47:51.880 makes them question why they're doing
+00:47:53.720 the security processes in the first
+00:47:55.520 place
+00:47:56.319 and then looks like we have some cool
+00:47:58.119 examples here read about Dev SEC op
+00:48:00.079 success stories let's see what's going
+00:48:01.520 on with this so this takes a article I
+00:48:04.520 think that is about three different
+00:48:06.960 success stories of how maybe looks like
+00:48:09.680 three companies Microsoft Verizon and
+00:48:12.040 Pokemon oh that's cool Pokemon do people
+00:48:14.200 still play Pokemon go is that over um
+00:48:17.520 anyway these three companies got Dev SEC
+00:48:20.359 Ops cultures off the ground so I'm not
+00:48:21.760 going to read it now but that looks
+00:48:22.839 interesting and I'll probably save it to
+00:48:24.359 read later and then here are our
+00:48:26.640 questions for task six first one is how
+00:48:29.559 can you make security scalable so it's
+00:48:31.960 not left behind when startups based
+00:48:34.040 hyper growth or in large corporations
+00:48:37.720 all right so if I had to think about it
+00:48:41.559 I wonder if this is just going to once
+00:48:43.079 again go down the line so the question
+00:48:45.760 was how do we make it scalable so it's
+00:48:47.440 not left behind and this looks like
+00:48:50.680 perhaps we are looking for this first
+00:48:52.280 section header so that's promoting
+00:48:54.359 autonomy of teams and then it says right
+00:48:56.599 here whether it's in a large
+00:48:57.559 organization or startup in hypergrowth
+00:48:59.559 the way to not leave security behind is
+00:49:01.200 by promoting the autonomy of teams so
+00:49:03.400 let's try
+00:49:07.839 that okay whoop whoop and my try half me
+00:49:11.000 streak just increased by one so yay and
+00:49:13.280 how can you support teams in
+00:49:15.520 understanding risk and educating on
+00:49:18.000 security flaws all right so that was
+00:49:20.520 transparency right and visibility so
+00:49:23.760 visibility and transparency
+00:49:26.280 see
+00:49:28.559 okay and then what key factors to
+00:49:31.720 successfully instill Security in the
+00:49:33.640 development process by accounting for
+00:49:35.079 flexibility so that was EMP I think it
+00:49:37.000 was
+00:49:39.240 understanding and empathy
+00:49:42.440 right that's the one we just talked okay
+00:49:45.400 great so that is the three questions for
+00:49:47.280 task six and now we will move on to task
+00:49:49.200 seven which looks like is more of a
+00:49:50.920 Hands-On exercise finally so that would
+00:49:53.119 be a great way to wrap up this room
+00:49:56.319 all right so we are going to wrap up
+00:49:58.720 this room with an exercise and it looks
+00:50:01.000 like that exercise is called fuel
+00:50:03.160 trouble so I think we're still rocking
+00:50:04.559 our theme here and we've got a static
+00:50:07.280 site to pull up so I do I love the way
+00:50:10.799 that they're um static skite goes right
+00:50:13.520 into split screen and it looks very cool
+00:50:15.960 and I know for sure we're doing Star
+00:50:17.119 Wars because I see the font here so
+00:50:18.359 we've got try hackme comics and let's
+00:50:21.880 see so it looks like this is going to be
+00:50:22.920 about software development models so
+00:50:25.160 we've got SEC 3PO I don't I'm not sure
+00:50:28.680 but I I'm just going to say SE 3PO a Dev
+00:50:31.280 SEC Ops engineer part Android so that
+00:50:34.839 would probably be this right because the
+00:50:36.040 Androids are like robots and then X
+00:50:38.440 fighter Dev and chuba QA and then S2 A2
+00:50:43.000 have been assigned to discover minerals
+00:50:45.040 in nearby planets in the galaxy wat the
+00:50:47.960 bug is funding the mission by providing
+00:50:50.040 equipment and fuel to carry out the
+00:50:52.119 project okay so I don't know which one's
+00:50:54.200 wat yeah maybe he's not in there they
+00:50:57.119 are tasked to set a course and research
+00:50:59.880 these planets can you guess which
+00:51:02.200 software development model they have
+00:51:04.079 used in each case to achieve their
+00:51:06.200 mission all right so we opened the site
+00:51:08.920 and then we're going to figure out which
+00:51:10.160 approach was taken in each comic snippet
+00:51:13.480 and here's some background so the
+00:51:15.559 mission is to travel to the planet with
+00:51:17.760 the least amount of risk possible we
+00:51:19.640 have enough fuel for 130 Lighty years of
+00:51:22.000 travel all right and our models are
+00:51:25.040 water fall agile and devop so we're
+00:51:27.160 trying to figure out which approach
+00:51:28.319 they're using in each comic I know I
+00:51:30.040 already said that now I'm saying it
+00:51:31.319 again and let's see comic one some tests
+00:51:34.920 have passed to go to Testo oh my God
+00:51:38.680 which was the initial decision by xid
+00:51:40.799 Dev okay so I'm assuming this is Comic
+00:51:42.720 one and then it said code is ready let's
+00:51:45.319 go to tesin so that's X fider devs ready
+00:51:47.760 to go and it's decided that this is the
+00:51:50.680 next planet to visit okay so devx says
+00:51:55.640 so X fighter Dev says let's go and then
+00:51:59.880 um and then this guy I think this is
+00:52:02.079 chuba QA says the tests have passed so
+00:52:04.200 let's go and then the systems have been
+00:52:06.799 deployed so I think this is going to be
+00:52:08.720 waterfall software development because
+00:52:11.319 we see first the code is ready then we
+00:52:14.000 have the next phase they're doing tests
+00:52:15.760 then we have the next phase the systems
+00:52:17.160 have been deployed so it's that very
+00:52:19.720 like linear waterfall kind of one then
+00:52:22.079 one then one um so I'm going to draft
+00:52:25.359 waterfall as my answer for Comic 1 but
+00:52:28.280 then let's see what comic 2 has Comic 2
+00:52:31.040 says some tests indicated that it is a
+00:52:33.920 high risk to travel to test point I'm so
+00:52:36.119 sorry I don't know how you're supposed
+00:52:37.119 to be saying this first some test passed
+00:52:39.720 for Naboo but sd2 has decided the course
+00:52:42.799 should be changed to ha okay so Les Ln
+00:52:45.760 looks like they're like considering
+00:52:47.000 other options more iteratively so uh the
+00:52:50.839 dev says everything is ready built for
+00:52:52.960 Testo and then chuba QA says the test
+00:52:55.640 failed but they pass if we go to hackoo
+00:52:58.119 so let's do that instead so they're just
+00:52:59.920 kind of changing the design I guess
+00:53:01.359 changing the course and then the new
+00:53:03.680 version has been deployed but this
+00:53:05.520 version is for is this one another oh
+00:53:07.000 yeah but this plan but this version is
+00:53:09.240 for try Hoff me the other planet um and
+00:53:13.680 then I think this elephant guy is the
+00:53:15.200 bug because he just keeps asking how
+00:53:16.720 it's going to get paid for so there's
+00:53:18.920 one in every crowd I guess but um okay
+00:53:21.880 so this is either going to be agile or
+00:53:24.440 um devops but I'm not quite sure which
+00:53:26.200 one yet and then comic
+00:53:28.160 three the initial decision based on
+00:53:30.520 analysis by X fider Dev is to travel to
+00:53:32.920 hawk cost were questioned and although
+00:53:35.000 Hoth is one of the closest C SEC 3PO has
+00:53:38.440 analyzed the trajectory and has set new
+00:53:40.319 parameters for the test Cuba QA has
+00:53:43.000 concluded to change the orbit to dagoba
+00:53:46.000 based on further tests so I don't have
+00:53:48.440 much Rhyme or Reason to this but the
+00:53:49.760 reason why I think comic 3 is devops is
+00:53:53.559 because um of this part
+00:53:56.359 about um the SEC 3PO has analyzed the
+00:54:00.000 trajectory and has set new parameters
+00:54:02.280 for the test oh and I forgot to read the
+00:54:03.960 comic so everything is built for trith
+00:54:07.480 me and then the bug saying who's going
+00:54:09.280 to pay for this again and now they're
+00:54:11.160 ejecting from the spaceship and okay and
+00:54:13.640 then they're doing more tests whatever
+00:54:15.200 but I but I think comic 3 is
+00:54:18.880 describing um devops because of this
+00:54:22.760 part that says analyze the trajectory
+00:54:25.160 and set new parameters for the test so I
+00:54:27.440 think because of those like
+00:54:28.280 configuration parameters being changed
+00:54:31.160 uh that makes me think it's devop so I'm
+00:54:33.040 going to try that and then what software
+00:54:36.319 development model did the team in comic
+00:54:38.000 2 Follow well the last one left is agile
+00:54:41.400 if I'm right and um I guess they're
+00:54:44.640 showing they're showing agility and
+00:54:46.160 flexibility they're changing course
+00:54:47.640 Midway through based on the tests and I
+00:54:50.359 guess that agile of them I don't know
+00:54:52.640 it's not that clear-cut to me but I'm
+00:54:54.160 going to try a waterfall agile and then
+00:54:56.240 devop so let's see if that is right okay
+00:54:59.599 so we see finish and then here's the
+00:55:02.200 flag okay so here is the flag try hack
+00:55:05.920 me one two
+00:55:07.280 three and one two three like blast off I
+00:55:10.480 think so let's oh so we should do
+00:55:13.839 waterfall that is
+00:55:15.880 right agile that is right and then um
+00:55:19.599 dead Bops is number three and then we
+00:55:21.520 can submit the flag and that wraps up up
+00:55:25.680 the intro to Dev seop's room I think our
+00:55:27.920 total shift left count ended around like
+00:55:31.039 19 these rooms are always kind of tough
+00:55:33.119 because it's just a lot of reading a lot
+00:55:34.359 of exposition but the concepts that this
+00:55:36.760 goes over and the emphasis really has me
+00:55:38.640 excited for the later more Hands-On room
+00:55:41.039 in the path I think there's going to be
+00:55:42.359 a lot of good stuff ahead so thank you
+00:55:44.599 for watching if you did watch this one
+00:55:46.520 and I'm really excited to tackle the
+00:55:48.039 rest of the rooms in this Dev SEC Ops
+00:55:50.079 learning path so maybe I will see you in
+00:55:51.839 another room walkthrough soon

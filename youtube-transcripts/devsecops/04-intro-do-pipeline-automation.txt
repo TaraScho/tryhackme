@@ -1,0 +1,1435 @@
+# tactiq.io free youtube transcript
+# TryHackMe *New* DevSecOps Learning Path - Intro to Pipeline Automation  Room
+# https://www.youtube.com/watch/V0ahcVvxpjY
+
+00:00:00.120 hi everyone it's Tara welcome to my
+00:00:02.159 little YouTube channel where I like to
+00:00:03.919 goof around this video is another room
+00:00:07.399 walkthrough for try hackme on the devc
+00:00:09.559 Ops learning path this video is a room
+00:00:11.719 walk through of the intro to pipeline
+00:00:13.920 automation room I just got done playing
+00:00:15.920 it it is a good room it's another
+00:00:17.359 introductory room with a lot of reading
+00:00:19.160 a lot of terminology a lot of that kind
+00:00:21.199 of thing but definitely getting into
+00:00:22.760 topics that I personally like and find
+00:00:25.119 very interesting and then there is one
+00:00:27.519 little Hands-On activity at the end this
+00:00:30.080 is the first room in the security of the
+00:00:33.079 pipeline module for the learning path
+00:00:35.719 and with all of that said I hope you
+00:00:37.960 enjoy the video and here's just a quick
+00:00:39.640 reminder of the dev SEC Ops learning
+00:00:41.480 path so we finished the secure software
+00:00:44.280 development module and there are videos
+00:00:46.520 for all three of these rooms on the
+00:00:47.960 channel now and then now we're going
+00:00:50.399 into the security of the pipeline module
+00:00:52.719 this video covers the intro to pipeline
+00:00:54.399 automation room which was great fun and
+00:00:56.199 the other two rooms in this module are
+00:00:57.600 going to be source code security room
+00:00:59.640 and then the CI CD and build security
+00:01:02.559 room so the intro to pipeline automation
+00:01:04.559 Room walk through a lot of terminology
+00:01:06.119 and stuff like that and then these rooms
+00:01:07.439 I think are going to have more like the
+00:01:08.799 activities and then there are three more
+00:01:11.200 modules to come after that so let's get
+00:01:13.320 to
+00:01:14.590 [Music]
+00:01:22.000 work I successfully made it into the
+00:01:25.000 intro to pipeline automation room so
+00:01:26.920 that's step one I guess this room
+00:01:28.960 provides an introduction to devops
+00:01:30.799 pipeline Automation and the associated
+00:01:33.280 potential security concerns task one of
+00:01:35.840 course is our introduction humans are
+00:01:38.560 always looking for simpler and more
+00:01:40.280 efficient ways to do things just as we
+00:01:42.479 started programming and developing
+00:01:43.920 software we were looking for ways to
+00:01:45.680 automate some of the tasks today
+00:01:48.000 automation is heavily ingrained in the
+00:01:49.759 software development life cycle the SCLC
+00:01:51.680 which now we know all about thec and
+00:01:55.000 devops processes while this is
+00:01:57.360 incredibly good for production allowing
+00:01:59.360 for faster development and deployment it
+00:02:01.640 does however introduce new security
+00:02:03.759 risks when these processes are manual
+00:02:06.479 meaning like different processes
+00:02:08.080 associated with software development and
+00:02:09.800 deployment an attacker would have to
+00:02:12.000 compromise the credentials or
+00:02:13.480 workstation of the individual that
+00:02:15.560 performed that manual part of the
+00:02:17.519 process however with automation an
+00:02:20.200 attacker can now just go after the
+00:02:21.920 pipeline itself there's no human stage
+00:02:23.760 they have to worry about this room will
+00:02:26.120 teach you about the following concepts
+00:02:28.160 introduction to devops pipeline
+00:02:30.120 introductions to devops tools and
+00:02:32.239 Automation and introduction to security
+00:02:34.680 principles for the devops pipeline all
+00:02:36.519 sounds interesting this is the
+00:02:38.319 introduction room as such most of these
+00:02:40.239 Concepts will only be introduced in this
+00:02:42.040 room and then will be covered in more
+00:02:43.879 detail in the rest of the rooms in the
+00:02:45.560 module and the pattern seems to be so
+00:02:47.440 far that the introduction rooms have a
+00:02:49.400 lot more reading and then answering
+00:02:51.040 questions not that there's nothing wrong
+00:02:52.480 with reading but and then as we get past
+00:02:54.480 the introduction rooms we get into like
+00:02:55.920 more of the Hands-On activities so
+00:02:57.959 anyway we are ready to learn about
+00:02:59.480 pipeline Automation and how to make sure
+00:03:01.239 is secure exclamation point so I will
+00:03:04.000 hit completed and move on to task two
+00:03:08.640 before learning about automation
+00:03:11.319 security we should start by first
+00:03:13.159 defining the pipeline and showing where
+00:03:15.120 automation can take place the diagram
+00:03:17.360 below shows what a typical pipeline can
+00:03:19.159 look like as well as the software that
+00:03:21.040 could be used for this purpose so this
+00:03:23.319 is their uh stunning visual graphic I
+00:03:25.879 like the colors a lot that shows what a
+00:03:28.159 typical they use the term devops
+00:03:30.239 pipeline but like I'm thinking cicd
+00:03:32.120 pipeline could look like so starts with
+00:03:34.640 dependency management and then you have
+00:03:36.680 your source code storage in your Version
+00:03:38.439 Control you have continuous integration
+00:03:40.920 which involves a lot of automated
+00:03:42.680 testing as you're integrating new code
+00:03:45.000 into the code base and then you deploy
+00:03:47.200 your code to the different environments
+00:03:49.280 so this would be like a test environment
+00:03:50.760 a staging environment production
+00:03:52.120 environment for example for each of
+00:03:54.200 these items we will look at what they
+00:03:55.840 are the common tools used for them an
+00:03:58.560 introduction to their security and a
+00:04:00.239 case study of what can happen when
+00:04:01.760 security fails nice I like the sound of
+00:04:03.560 that structure because I like um case
+00:04:05.640 studies because I'm a nerd each of these
+00:04:08.599 components will be reviewed in depth in
+00:04:10.560 the coming rooms of the module where in
+00:04:12.920 the pipeline is our end product deployed
+00:04:15.159 so I think this would be in this context
+00:04:17.600 um environments here let's see if that's
+00:04:19.918 right
+00:04:22.079 environments I don't know why I had to
+00:04:23.840 sing it all right so that is Task two
+00:04:26.759 and let us move on to task three which
+00:04:29.720 which looks like it's about source code
+00:04:31.440 and Version Control so this part of the
+00:04:33.400 pipeline the source code and Version
+00:04:35.199 Control all right so it says let's take
+00:04:37.440 a look at source code and Version
+00:04:39.320 Control this is the start of our
+00:04:41.199 pipeline we need a location where we can
+00:04:43.360 store our code furthermore we often want
+00:04:46.240 to keep several versions of our code
+00:04:48.039 since we're continuously making
+00:04:49.479 improvements and adding features to the
+00:04:51.240 code base so we need to think about
+00:04:53.240 source code storage we need to consider
+00:04:55.600 several things when deciding where to
+00:04:57.160 store our code how can we perform access
+00:04:59.680 control for our source code how can we
+00:05:01.639 make sure that change has made are
+00:05:03.280 tracked can we integrate our source code
+00:05:05.960 storage system with our development
+00:05:07.440 tools can we store and actively use
+00:05:10.160 multiple different versions of our
+00:05:11.560 source code should we host our source
+00:05:13.880 code internally or can we use an
+00:05:16.320 external thirdparty to host our code
+00:05:18.600 which I think I imagine most teams are
+00:05:20.360 probably opting uh for this are using
+00:05:22.600 thirdparty Solutions such as GitHub the
+00:05:24.600 answers to these questions will help us
+00:05:26.199 choose the correct storage code solution
+00:05:28.319 for our project let's talk about Version
+00:05:30.479 Control everyone's favorite topic we
+00:05:32.240 need Version Control for two reasons
+00:05:34.479 we're often integrating new features in
+00:05:36.360 our software modern development
+00:05:38.240 approaches such as agile means we're
+00:05:39.960 constantly updating our code to keep all
+00:05:42.039 these updates in check we need Version
+00:05:43.919 Control an entire development team is
+00:05:46.360 working on the code not just one
+00:05:48.039 developer so like in a typical project
+00:05:50.039 it's not just you making updates to the
+00:05:52.280 code and saving them you're making
+00:05:53.880 updates while the other developer on
+00:05:55.639 your team is making updates while the
+00:05:57.120 other developer on your team is making
+00:05:58.400 updates and you need a way to all all
+00:06:00.000 work together as you do that to ensure
+00:06:02.720 that we can integrate the changes from
+00:06:04.440 multiple developers Version Control is
+00:06:06.599 required Version Control allows us to
+00:06:09.000 keep multiple versions of the code so
+00:06:11.120 this could be specific versions that
+00:06:12.560 each developer is working on but it
+00:06:14.319 could also be completely different
+00:06:16.680 working versions of our application
+00:06:18.680 including minor and major versions and
+00:06:20.440 then we have common tools the two most
+00:06:23.000 common source code storage and Version
+00:06:24.840 Control Systems are git and subversion
+00:06:27.199 SPN git is a distributed source control
+00:06:29.960 tool meaning that each contributor will
+00:06:32.120 have their own copy of the source code
+00:06:34.319 on the other hand SPN is a centralized
+00:06:36.960 Source control tool meaning the control
+00:06:39.000 of the repo is managed centrally so
+00:06:41.360 that's what centralized means so me I've
+00:06:43.759 always just used git I think git pretty
+00:06:45.800 much like makes the world go around at
+00:06:47.160 this point uh and I don't know if I'm
+00:06:49.240 alone in this or if this is embarrassing
+00:06:51.240 to admit but I'm going to say it anyway
+00:06:53.120 I do really feel that when I was first
+00:06:56.039 learning programming when I was learning
+00:06:58.240 um cyber and it and learning how to
+00:07:00.479 really code I feel like git and Version
+00:07:03.879 Control was one of the things that was
+00:07:06.160 the hardest to like learn conceptually
+00:07:09.039 until you are actually just doing it
+00:07:10.840 until you have experience using git and
+00:07:13.240 using Version Control in a team setting
+00:07:16.080 where more than one developer is working
+00:07:17.840 on a shared project I think it is really
+00:07:20.360 hard to learn get until you have been in
+00:07:22.360 that situation at least once at least
+00:07:24.479 for me it really was where usually I
+00:07:25.960 don't have so much trouble grasping
+00:07:27.759 something before I've done it get I
+00:07:30.000 always tried to understand what it was
+00:07:31.639 but I didn't really learn it well until
+00:07:33.680 I was committing code to a shared
+00:07:36.000 repository with different developers
+00:07:37.639 different branches Etc and one time like
+00:07:40.160 when I used to work at Amazon I remember
+00:07:41.840 I spoke on a panel of advice for
+00:07:44.400 incoming interns who are going to be in
+00:07:46.159 like technical roles and I remember one
+00:07:48.159 thing I said on that panel was I think
+00:07:50.520 it's a really good idea to learn git as
+00:07:53.080 early as you can and to get as good at
+00:07:55.360 git as you can sorry for the tongue
+00:07:57.199 twister because if you are the person on
+00:07:59.240 the team who is really good at git and
+00:08:01.360 can solve git problems when they come up
+00:08:03.400 you can very easily become like a go-to
+00:08:05.400 person so the sooner you actually start
+00:08:07.759 just Hands-On practicing using it um the
+00:08:10.840 better don't try to like understand it
+00:08:12.360 just by reading it find a way to
+00:08:14.039 practice doing it Hands-On and if you're
+00:08:15.720 new to all this you definitely can learn
+00:08:17.520 Version Control and you will learn it
+00:08:19.720 and it's one of those things where once
+00:08:20.879 you just start using it every day it
+00:08:22.759 quickly goes from you didn't understand
+00:08:24.560 how it works to now you have like way
+00:08:26.159 more git commands and git routines
+00:08:28.680 memorized in your head than you would
+00:08:30.319 care to admit you'll definitely pick it
+00:08:32.240 up but Hands-On practice is like really
+00:08:34.440 the way to go if you're learning Git inv
+00:08:36.039 Version Control for the first time but
+00:08:38.360 you know what when is Hands-On practice
+00:08:39.839 really not the answer now that I think
+00:08:41.519 about it so now we are going to talk
+00:08:43.839 about GitHub GitHub is by far the
+00:08:46.800 largest provider of internet hosting for
+00:08:48.839 software development and Version Control
+00:08:50.399 using git you can create a GitHub
+00:08:52.440 account and use that to manage your
+00:08:54.120 source code repositories or repo as we
+00:08:56.480 like to abbreviate it however you could
+00:08:59.560 also host your own git server using
+00:09:01.200 software such as gitlab for SBN the two
+00:09:03.760 most popular tools are tortoise SBN and
+00:09:06.120 Apache SBN it should be noted that
+00:09:08.440 source code Storage Solutions such as
+00:09:10.200 gitlab provide much more features than
+00:09:12.399 simple storage and verion control today
+00:09:14.760 these tools can be used for almost your
+00:09:16.640 entire pipeline meaning I think these
+00:09:18.320 tools meaning GitHub and gitlab and this
+00:09:20.880 is a topic I could like honestly talk
+00:09:23.600 about GitHub and gitlab for far too long
+00:09:25.920 so I will try to control myself but I
+00:09:28.279 have used both GitHub and gitlab in
+00:09:30.440 professional settings and for personal
+00:09:32.079 projects I really like both of them I
+00:09:34.839 think to have a GitHub account
+00:09:36.279 especially is is not really optional um
+00:09:38.839 you you definitely want to have one and
+00:09:40.680 there are things I really like about
+00:09:41.720 each of the platforms I personally think
+00:09:43.920 that what is going to differentiate one
+00:09:45.560 from the other GitHub versus gitlab
+00:09:47.680 isn't going to be the function like
+00:09:49.360 they're saying here like Version Control
+00:09:51.480 and just basic like git functions and
+00:09:53.160 shared code repositories it's the
+00:09:55.160 different cicd and Dev SEC Ops features
+00:09:57.920 and functionality that different iate
+00:09:59.680 the two platforms now especially if you
+00:10:01.839 are starting to learn about gitlab one
+00:10:03.760 thing you will really notice about
+00:10:04.920 gitlab at least at the time I'm making
+00:10:06.959 this video is that gitlab is all in
+00:10:09.959 branding wise on they want to be the dev
+00:10:12.560 SEC Ops platform so since we're learning
+00:10:15.000 about Dev SEC Ops in this learning path
+00:10:16.959 like I bet even if I go to their website
+00:10:19.040 right right now like see so right here
+00:10:21.360 this is the first thing it says gitlab
+00:10:23.160 is the most comprehensive AI powered
+00:10:25.200 devc Ops Cloud oh so they're AI powered
+00:10:27.279 as well but they this is the branding
+00:10:29.320 I've always seen for them the last few
+00:10:30.640 years is that they want to be associated
+00:10:32.760 with Dev SEC Ops platform in your head
+00:10:36.519 um balancing speed and Security in a
+00:10:38.639 single platform Etc GitHub has a lot of
+00:10:40.720 the exact same like Dev SEC Ops
+00:10:42.760 functionality but gitlab really wants
+00:10:45.399 you to associate them in your head with
+00:10:47.320 devc Ops platform so that is the play
+00:10:49.600 that they're making and then also just
+00:10:51.760 totally sty of side note I absolutely
+00:10:53.600 love gitlab's color scheme and their
+00:10:55.920 branding and their design and I love
+00:10:57.360 their fourpoint stars that they use on
+00:10:59.320 everything I think their branding is
+00:11:00.800 really beautiful but now mostly in my
+00:11:03.200 day-to-day I use GitHub most frequently
+00:11:05.839 anyway I like both of them I don't have
+00:11:07.320 a strong feeling one is better than the
+00:11:08.880 other so that was already like second
+00:11:10.959 tangent for this room and then let's
+00:11:12.959 move on to security considerations our
+00:11:15.560 source code is often our secret sauce as
+00:11:18.720 such we want to make sure it is not
+00:11:20.399 exposed this is why authentication and
+00:11:22.839 access control for our source code is so
+00:11:24.959 important we also want to make sure that
+00:11:27.279 changes in updates are adequately
+00:11:28.920 tracked
+00:11:29.839 allowing us to always go back to
+00:11:31.560 previous versions if something happens
+00:11:33.560 right so that's part of the beauty of
+00:11:34.720 Version Control is that we have all
+00:11:36.760 these different versions and so when
+00:11:38.240 something goes wrong and something new
+00:11:39.639 we're doing or whatever we have a
+00:11:41.320 different version readily available to
+00:11:43.279 revert back to however we also need to
+00:11:46.000 be careful about what we store as part
+00:11:47.959 of our source code source code cannot be
+00:11:50.320 fully secret since developers need to
+00:11:52.200 access it or as such we should be
+00:11:54.800 careful not to confuse source code
+00:11:57.399 storage with secret management we need
+00:11:59.880 to make sure not to store Secrets such
+00:12:01.720 as our database connection strings and
+00:12:03.399 our database credentials in our source
+00:12:05.440 code since we keep all versions of our
+00:12:07.680 source code even if we remove the
+00:12:09.760 secrets in a newer version they will
+00:12:11.440 still be exposed in the previous
+00:12:13.079 versions so what this looks like a lot
+00:12:14.959 like a common trap people fall into
+00:12:16.880 including myself many times is that we
+00:12:19.680 kind of like do something hacky or like
+00:12:21.600 cheat when we're just starting to work
+00:12:23.320 on a project it's not near production
+00:12:25.199 yet we're trying to test something
+00:12:26.639 really quick and we want to save time so
+00:12:28.800 we may like put the database connection
+00:12:30.560 string right into the code and then we
+00:12:32.920 forget right like our brain moves on we
+00:12:34.959 forget somehow we we never meant to
+00:12:37.240 commit that secret to the code
+00:12:38.720 repository but we do and then we realize
+00:12:41.440 our mistake or like another thing that
+00:12:42.800 happens often is maybe you accidentally
+00:12:44.399 commit a local file that is meant only
+00:12:47.160 to stay on your workstation you
+00:12:48.680 accidentally commit that file to the
+00:12:50.040 shared repository and then you realize
+00:12:52.040 your mistake so you try to fix it by
+00:12:54.120 deleting the string out of the code or
+00:12:56.680 by deleting the file out of the
+00:12:58.160 Repository and then the new the most
+00:13:00.639 current version of the code does not
+00:13:02.480 have the secret however anybody that has
+00:13:04.760 access to that repository could simply
+00:13:06.839 revert back or pull that old commit that
+00:13:09.120 had the bad thing in it and then it's
+00:13:10.800 the same as if it had never been deleted
+00:13:12.959 so that is the thing about git you can't
+00:13:14.639 fix a leaked secret just by making a new
+00:13:17.160 commit it's going to take like a more
+00:13:18.800 nuclear solution than that and here's a
+00:13:21.120 perfect case study get never forgets as
+00:13:23.720 mentioned before Version Control can end
+00:13:25.800 badly for us if we make a mistake this
+00:13:27.839 is a common problem when using the
+00:13:29.360 Version Control tools such as git there
+00:13:31.760 is a saying git never forgets code is
+00:13:34.800 committed to a git repo when this
+00:13:37.519 happens git determines the changes made
+00:13:39.440 to the files and creates a new version
+00:13:41.120 based on those changes any user with
+00:13:43.480 access to the repo can look at your
+00:13:45.240 historical commits and all the changes
+00:13:47.120 that were made so they could still see
+00:13:48.480 the old Secrets what often happens is a
+00:13:51.279 developer accidentally commits Secrets
+00:13:53.279 such as credentials or database
+00:13:54.720 connection strings to a git repo
+00:13:56.680 realizing their mistake they delete the
+00:13:58.399 secret and create another commit however
+00:14:00.440 the repo will not have both commits I'm
+00:14:02.000 laughing because I realized I
+00:14:03.519 accidentally once again jumped the gun
+00:14:05.560 if an attacker gets access to the repo
+00:14:07.600 they could use a tool such as giddy leak
+00:14:09.600 which would scan through the commit for
+00:14:10.959 sensitive information even if the
+00:14:13.000 information no longer exists in the
+00:14:14.399 current version of your application the
+00:14:16.279 tools can scan through all the previous
+00:14:17.959 versions and find your secrets so good
+00:14:20.480 case study good little task there and
+00:14:22.320 here are our questions for task three
+00:14:24.199 who is the largest online provider of
+00:14:26.000 git so that would be GitHub what popular
+00:14:29.160 git product is used to host your own git
+00:14:31.440 server and that is git lab and then what
+00:14:34.639 tool can be used to scan the commits of
+00:14:37.079 a repo for sensitive information and
+00:14:39.160 there's a lot of tools out there that
+00:14:40.600 could do that but I think in this
+00:14:41.959 context they're referring to Giddy leaks
+00:14:44.680 all right so that is Task three and then
+00:14:47.120 we'll jump right into task four which is
+00:14:48.839 about dependency
+00:14:50.519 management let's see what we got here
+00:14:52.880 okay oh beautiful colorful graphic I
+00:14:55.839 love it so much let's talk about
+00:14:58.040 dependencies although we may think we
+00:15:00.279 are writing a large amount of code when
+00:15:02.000 we develop the truth is that it's only
+00:15:04.600 the tip of the iceberg unless you are
+00:15:06.040 coding in binary which you're probably
+00:15:07.440 not chances are you are actually only
+00:15:09.839 writing a fraction of the actual code
+00:15:11.800 that your application uses this is
+00:15:13.880 because a lot of the code has already
+00:15:15.480 been written for us in the form of
+00:15:17.440 libraries or software development kits
+00:15:19.680 or sdks for example I almost daily use
+00:15:23.240 the AWS stks which is a bunch of
+00:15:25.519 libraries they've already put together
+00:15:27.639 um I'm not writing any of the code I'm
+00:15:29.160 just importing it into my application
+00:15:30.680 and then writing a tiny bit of code to
+00:15:32.720 use their existing code and even
+00:15:35.440 variables like string in an application
+00:15:37.560 have an entire Library behind them the
+00:15:39.800 management of these dependencies is a
+00:15:41.560 vital part of the pipeline so we have
+00:15:43.959 external versus internal dependencies
+00:15:46.800 external dependencies are publicly
+00:15:48.519 available libraries and sdks these are
+00:15:51.120 hosted on external dependency managers
+00:15:53.360 such as piie for python net foret and
+00:15:57.000 gems for Ruby libraries internal
+00:15:59.680 dependencies are libraries and stks that
+00:16:03.000 an organization develops and maintains
+00:16:05.199 internally for example an organization
+00:16:07.880 might develop an authentication Library
+00:16:10.199 this Library can then be used for all
+00:16:12.759 applications developed by the
+00:16:14.160 organization and the authentication
+00:16:16.000 Library might have like its own team
+00:16:17.639 that that's what they work on and your
+00:16:19.160 team just uses that library in whatever
+00:16:21.720 application you own and are responsible
+00:16:23.720 for there are different security
+00:16:25.240 concerns for internal and external
+00:16:27.240 dependencies so some concern concerns
+00:16:29.160 for internal dependencies would be
+00:16:31.279 libraries can often become Legacy
+00:16:33.079 software since they no longer receive
+00:16:34.959 updates or the original developer who
+00:16:36.959 really knows about them and made them
+00:16:38.720 has left the company the security of the
+00:16:41.160 package manager is our responsibility
+00:16:43.120 for internal libraries a vulnerability
+00:16:45.920 in an internal Library could affect
+00:16:47.480 several of our applications since we use
+00:16:49.160 it in all them for example if every
+00:16:50.959 application in our company uses that
+00:16:52.680 authentication library and something is
+00:16:55.040 wrong with it there's something insecure
+00:16:57.240 then the blast radius is really big and
+00:17:00.000 then external security concerns since we
+00:17:02.880 do not have full control over an
+00:17:04.599 external dependency we must perform our
+00:17:07.119 due diligence to ensure that the library
+00:17:09.199 is secure if a package manager or
+00:17:11.959 content distribution Network a CDN is
+00:17:14.760 compromised it could lead to a supply
+00:17:17.000 chain attack and then external libraries
+00:17:19.880 can be researched by attackers to
+00:17:21.919 discover zero day vulnerabilities if
+00:17:23.919 such a vulnerability is found it could
+00:17:25.760 lead to the compromise of several
+00:17:27.720 organizations at the same time so not
+00:17:30.080 only do you have to worry about zero
+00:17:31.400 days and newly exploited vulnerabilities
+00:17:33.640 in your own code that you're writing any
+00:17:35.360 external libraries that you use could
+00:17:37.960 also have uh vulnerabilities that
+00:17:40.240 hackers find and exploit and then so
+00:17:43.400 here are some common tools a dependency
+00:17:45.720 manager is also called a package
+00:17:47.960 manager and it is required to manage
+00:17:50.720 libraries and sdks as mentioned before
+00:17:54.000 tools such as piie nugat and gems are
+00:17:56.600 used for external dependencies the
+00:17:58.960 management of internal dependencies is a
+00:18:00.840 little bit more tricky for these we
+00:18:02.760 might use tools such as jrog artifactory
+00:18:05.480 or Azure artifacts to manage our
+00:18:07.559 internal dependencies security
+00:18:09.360 considerations some of the security
+00:18:11.120 considerations have been mentioned
+00:18:12.440 before however the primary security
+00:18:14.919 concern is that dependencies are code
+00:18:17.880 outside of our control especially in
+00:18:20.200 modern times when so many different
+00:18:22.200 dependencies are used in a project it is
+00:18:24.600 incredibly hard to track dependencies if
+00:18:27.720 there are any vulnerabil in these
+00:18:29.280 dependencies it could lead to
+00:18:30.559 vulnerabilities in our applications and
+00:18:32.720 then we have a case study here so the
+00:18:35.400 case study is log for Shell a zero day
+00:18:38.200 vulnerability was discovered in log for
+00:18:40.240 J dependency in 2021 called log for
+00:18:42.720 Shell log for J is a javab based logging
+00:18:45.640 utility is part of the Apache logging
+00:18:48.440 services and a project of the Apache
+00:18:50.600 software foundation so I bet this is in
+00:18:53.080 a lot of code in a lot of places the
+00:18:56.280 vulnerability could allow an
+00:18:57.720 unauthenticated attack hacker to gain
+00:18:59.679 remote code execution on a system that
+00:19:02.200 makes use of this particular logger the
+00:19:04.480 true issue this small little dependency
+00:19:07.360 was used almost literally everywhere I
+00:19:09.559 bet it was as shown by the XK CD cartoon
+00:19:13.120 so this like all modern digital
+00:19:15.480 infrastructure and then it's all propped
+00:19:17.960 up on this one looks like a project some
+00:19:20.039 random person in Nebraska has been
+00:19:22.159 thanklessly maintaining since 2003 and
+00:19:24.919 this like the foundation of everything
+00:19:26.559 this happens a lot this is not an overex
+00:19:28.760 exaggeration have a look here to see how
+00:19:31.760 many products were vulnerable since they
+00:19:33.720 use this
+00:19:35.799 dependency all right log for J affected
+00:19:38.720 DB and oh my God this is oh wow this is
+00:19:42.280 just literally a bunch of different
+00:19:43.720 lists of organizations and companies
+00:19:45.880 that were made vulnerable because they
+00:19:47.320 were using this external dependency the
+00:19:49.159 log forj library and there was so many
+00:19:51.720 of them they literally had to split it
+00:19:53.200 up into different lists by letter and
+00:19:56.200 look how long just the a list and we got
+00:19:59.240 like Amazon Amazon Amazon a bunch of the
+00:20:01.440 AWS Services it's actually really crazy
+00:20:04.880 um and this just shows the impact of
+00:20:07.240 what can happen the Rippling impact when
+00:20:09.360 a vulnerability is discovered in a
+00:20:11.440 dependency that all these other things
+00:20:13.360 depend on so what do we call the type of
+00:20:16.440 dependency that was created by our
+00:20:18.280 organization so that would be internal
+00:20:21.080 what type of dependency is jQuery that
+00:20:23.159 would be
+00:20:24.600 external what is the name of Python's
+00:20:26.799 public dependency repo that is p pi and
+00:20:30.400 what dependency zero day vulnerability
+00:20:32.640 set the world Ablaze in 2021 I love the
+00:20:35.760 dramatic language it'll always get me so
+00:20:37.960 the vulnerability was in log for J but
+00:20:40.280 the vulnerability was called log for
+00:20:42.400 Shell so I
+00:20:44.600 think oh maybe not oh but it's only five
+00:20:47.760 letters so the answer must be uh log for
+00:20:50.360 J all right and that is Task four so we
+00:20:54.240 will move right into task five which is
+00:20:56.679 about automated testing let's take a
+00:20:58.919 closer look at automated testing in the
+00:21:01.360 old days testing was quite a tedious and
+00:21:03.320 manual process a tester would have to
+00:21:05.679 manually run and document every test
+00:21:07.720 case and hope that the coverage was
+00:21:09.679 sufficient to ensure that the
+00:21:11.480 application or service worked and would
+00:21:13.559 remain stable in production however in
+00:21:15.880 modern pipelines automated testing does
+00:21:18.039 a significant portion of this so we have
+00:21:20.440 different types of testing here so unit
+00:21:22.320 testing when we're talking about
+00:21:24.279 automated testing in a pipeline unit
+00:21:26.760 testing will be the first type of
+00:21:27.919 testing that most most developers and
+00:21:29.600 software Engineers know and are familiar
+00:21:31.679 with a unit test is a test case for a
+00:21:34.880 small part of the application or service
+00:21:37.080 so the idea is to test the application
+00:21:38.919 in a lot of smaller parts to ensure each
+00:21:41.720 functionality works the way we expect it
+00:21:44.200 to the way that it should in modern
+00:21:46.480 pipelines unit testing can be used as a
+00:21:48.880 quality gate so test cases can be
+00:21:51.120 integrated into the continuous
+00:21:52.559 integration and continuous deployment
+00:21:54.559 cicd part of the pipeline where the
+00:21:56.919 build will be stopped from progressing
+00:21:58.760 the pipeline will fail if certain test
+00:22:01.000 cases fail however unit testing is
+00:22:03.480 usually focused on functionality and not
+00:22:05.919 security another common testing method
+00:22:08.360 is integration testing where unit tests
+00:22:10.840 focus on small parts of the application
+00:22:12.679 integration testing focuses on how all
+00:22:14.960 these small parts work together similar
+00:22:17.080 to unit tests testing will be performed
+00:22:19.400 for each of the Integrations and can
+00:22:21.000 also be integrated into the cicd part of
+00:22:23.480 the pipeline a subset of integration
+00:22:25.720 testing is regression testing which aims
+00:22:28.080 to ensure that new features do not
+00:22:30.320 adversely impact existing features in
+00:22:32.440 functionality so that's really important
+00:22:34.039 obviously however similar to unit
+00:22:36.559 testing integration testing including
+00:22:38.320 regression testing is not usually
+00:22:40.360 performed for security purposes it's
+00:22:42.039 focused on functionality of the
+00:22:44.240 application and then we have security
+00:22:46.000 testing so if the first two types of
+00:22:47.640 automated testing are not for security
+00:22:49.360 testing which are where are our security
+00:22:52.520 tests there are two primary types of
+00:22:55.120 automated security testing and so looks
+00:22:56.960 like we're going to talk about SASS and
+00:22:58.200 D which we covered in quite detail in
+00:23:00.640 the most recent room which was like the
+00:23:02.600 S sdlc room so static application
+00:23:05.720 security testing or sass works by
+00:23:07.960 reviewing the source code of the
+00:23:09.440 application or service to identify known
+00:23:11.919 sources of vulnerabilities in your code
+00:23:14.120 so sass tools can be used to scan the
+00:23:16.559 source code for vulnerabilities they
+00:23:17.919 literally just like read your code this
+00:23:20.320 can be integrated into the development
+00:23:22.159 process to already highlight potential
+00:23:24.279 issues to developers as they're writing
+00:23:26.559 the code we can also integrate the into
+00:23:28.840 the cicd process not as quality Gates
+00:23:31.960 but as security gates preventing the
+00:23:33.960 pipeline from continuing if the sast
+00:23:35.919 tool still detects vulnerabilities in
+00:23:38.279 the code that you have not somehow
+00:23:40.360 flagged as a false positive so a SAS
+00:23:42.760 tool will have some sort of mechanism
+00:23:45.200 you can use to bypass a certain
+00:23:47.360 vulnerability in the code or a certain
+00:23:49.159 something whatever the SAS tool doesn't
+00:23:51.120 like there's a mechanism to say actually
+00:23:53.240 this one thing like we're going to leave
+00:23:54.559 it in here even though you're flagging
+00:23:55.960 it and you want to obviously be using
+00:23:57.720 that as little as possible but in
+00:23:59.640 general what you can do is set up your
+00:24:01.080 pipeline so that as you're trying to add
+00:24:03.159 new code to the repository it goes
+00:24:05.480 through SAS testing oh that's like a
+00:24:08.039 that's one of those things where the
+00:24:09.000 last word of the T in sast is testing so
+00:24:11.120 it goes through sast and if sast and if
+00:24:14.080 it doesn't pass SAS you can fail the
+00:24:16.120 pipeline before the code even ever makes
+00:24:18.760 it into the repository in the first
+00:24:20.440 place and then we have Dash which is the
+00:24:23.120 dynamic application security testing D
+00:24:25.679 is similar to SAS but performs Dynamic
+00:24:27.960 testing by executing the code so as we
+00:24:30.120 know D happens your application is
+00:24:32.039 actually running this allows D tools to
+00:24:34.960 detect additional vulnerabilities that
+00:24:37.000 maybe wouldn't be possible to detect
+00:24:38.640 just with the source code review you
+00:24:40.480 need to have the application running to
+00:24:42.039 understand that they're there one method
+00:24:44.120 that Das tools use to find additional
+00:24:46.600 vulnerabilities such as a a cross-side
+00:24:48.720 scripting vulnerability is by creating
+00:24:50.840 sources and syncs when a Das tool
+00:24:53.360 provides input to a field in the
+00:24:55.000 application it marks it as a source when
+00:24:57.480 data is returned by the application it
+00:24:59.840 looks for this specific parameter again
+00:25:02.000 and if it finds that parameter again it
+00:25:04.080 marks that as a sync it can then send
+00:25:06.600 potentially malicious data to the source
+00:25:08.559 and depending on what is displayed in
+00:25:10.200 the sync determine if there is a
+00:25:12.399 vulnerability such as cross-side
+00:25:14.360 scripting similar to sast dast tools can
+00:25:17.559 be integrated into the cicd pipeline as
+00:25:20.000 security gates and I hope we're going to
+00:25:21.320 get hands- on with this I think we are
+00:25:22.880 because I think there's a dast room and
+00:25:25.279 then penetration testing so we know
+00:25:26.960 about penetration testing sadly SAS and
+00:25:29.679 Das tools cannot fully replace manual
+00:25:31.880 testing such as pen tests and there have
+00:25:33.960 been significant advancements in
+00:25:35.480 automated testing and even in some cases
+00:25:37.799 techniques were combined with more
+00:25:39.080 modern approaches to create new testing
+00:25:41.440 Technologies such as is interactive
+00:25:43.960 application security testing and runtime
+00:25:46.720 application self- protection rasp
+00:25:48.399 there's so many acronyms and it will
+00:25:50.520 never stop there will always just be
+00:25:51.760 more however the main issue remains that
+00:25:54.919 these tools including these modern
+00:25:56.919 testing techniques do not perform well
+00:25:59.200 against contextual vulnerabilities take
+00:26:01.520 the process flow of a payment for
+00:26:03.200 example a common vulnerability is when
+00:26:05.880 part of the process can be bypassed for
+00:26:08.159 example the credit card validation step
+00:26:10.679 this is an easy test case to perform
+00:26:12.520 manually but since it requires context
+00:26:15.279 even D tooling will find it hard to
+00:26:17.679 discover the bypass because it's part of
+00:26:19.200 like a chain of events a bunch of
+00:26:20.440 different components working together
+00:26:22.200 it's harder to spot the vulnerability
+00:26:23.919 unless you're seeing it in the big
+00:26:25.360 picture context similarly business logic
+00:26:28.600 and access control flaws are hard to
+00:26:30.559 discover using automated tools whereas
+00:26:32.840 manual testing can discover them fairly
+00:26:34.600 quickly it is not that automated tooling
+00:26:36.799 will never be able to find these flaws
+00:26:38.799 it is just simply more cost effective to
+00:26:41.240 use manual testing because manual
+00:26:42.880 testing is better at it so far anyway
+00:26:44.840 that's probably changing more and more
+00:26:46.559 though and then let's see common tools
+00:26:49.440 there are several common tools that can
+00:26:51.520 be used for automated testing both
+00:26:53.559 GitHub and gitlab have built-in SAS
+00:26:55.600 tooling for example and then let's see
+00:26:57.960 here is our case study she cannot take
+00:27:00.840 oh my gosh I'm sure this is like a
+00:27:02.120 reference I'm already blowing it here
+00:27:04.120 but case study she cannot take any more
+00:27:06.240 Captain she's going to blow a common
+00:27:08.640 issue with SASS and D tooling is that
+00:27:10.640 the tool is simply deployed into the
+00:27:12.360 pipeline even simply for appr proof of
+00:27:14.600 concept however you need to take several
+00:27:16.960 things into consideration performance
+00:27:19.279 cost integration points calibration of
+00:27:21.640 results quality and security gate
+00:27:24.039 implementation would be things that you
+00:27:25.640 want to think about the first and last
+00:27:27.840 point is very important and can be
+00:27:29.559 costly if ignored the initial proof of
+00:27:32.320 concept of the tool should probably
+00:27:34.320 occur after hours since it will have to
+00:27:36.679 scan through all your codes so when you
+00:27:38.279 first Implement SAS tool right it's
+00:27:40.679 going to have a ton of code to catch up
+00:27:42.480 on so you don't want to do that like
+00:27:43.799 during your Peak business hours where
+00:27:45.919 people are trying to work on the code
+00:27:47.399 because the process could impact
+00:27:48.960 performance of your source code control
+00:27:50.679 tool significantly it's going to slow it
+00:27:52.240 down while it's trying to do all that
+00:27:53.519 scanning imagine this happening just
+00:27:55.679 before a big release and developers
+00:27:57.399 cannot stage and push their latest
+00:27:59.399 commits the developers will probably be
+00:28:01.559 kind of pissed off at you and you'll be
+00:28:04.000 pissed off at yourself as well and then
+00:28:05.919 furthermore as more organizations move
+00:28:08.320 to a more agile approach to software
+00:28:10.240 development most repos receive several
+00:28:12.600 hundred comments daily if you introduce
+00:28:14.960 a new security gate even just for a
+00:28:17.039 proof of concept that scans each merge
+00:28:19.440 request for vulnerabilities before
+00:28:20.960 approval if we were to try to introduce
+00:28:22.760 a new security gate that scans each of
+00:28:24.960 those merge requests this can have
+00:28:26.720 drastic performance costs on your your
+00:28:28.240 infrastructure and the speed at which
+00:28:29.840 developers can perform their reviews and
+00:28:31.880 their merge requests when introducing
+00:28:34.039 new automated testing tooling careful
+00:28:36.640 consideration should be given to have a
+00:28:38.640 proof of concept should be performed to
+00:28:41.360 ensure that no disruptions are caused
+00:28:43.519 but also to ensure that the proof of
+00:28:45.080 concept is representative of how the
+00:28:47.360 tooling is actually going to be used and
+00:28:48.960 how it will actually interact when you
+00:28:50.600 have it integrated into your company I
+00:28:52.960 was just going to say it's not easy to
+00:28:54.120 do a find balance to try and Achieve but
+00:28:58.159 you don't want to start off on the wrong
+00:28:59.960 foot by um like ruining all the
+00:29:02.080 developers day when you first Implement
+00:29:04.519 your tool so you want to be really
+00:29:06.399 thoughtful about it what type of tool
+00:29:09.320 scans code to look for potential
+00:29:11.679 vulnerabilities so that's
+00:29:13.519 SAS what type of tool runs code and
+00:29:16.640 injects test cases to look for potential
+00:29:18.640 vulnerabilities so that is uh Das D
+00:29:21.519 Dynamic application security testing can
+00:29:25.399 sast and dast be used as replacement for
+00:29:28.679 penetration test so I think we know the
+00:29:30.760 answer they're looking for here is nay
+00:29:33.399 but that doesn't mean that that doesn't
+00:29:35.679 happen or that's not what some um
+00:29:37.640 organizations are doing because I think
+00:29:39.240 it probably is so that was task five and
+00:29:43.440 now we will move on to task six which is
+00:29:45.880 about continuous integration and
+00:29:47.519 delivery CI CD now we're really getting
+00:29:49.799 into it so let's go in modern pipelines
+00:29:52.880 software isn't manually moved between
+00:29:54.840 different environments instead an
+00:29:56.720 automated process can be used to compile
+00:29:59.200 build integrate and deploy new software
+00:30:01.720 features this process is called cicd and
+00:30:04.880 that says note the term cicd has changed
+00:30:07.640 quite a bit in recent years initially
+00:30:09.720 the primary focus was just on making
+00:30:11.600 sure that development was performed
+00:30:13.640 using an agile approach while delivery
+00:30:16.080 of the product still occurred using the
+00:30:18.000 waterfall model of only deploying first
+00:30:20.399 releases however during this time it was
+00:30:23.360 common for cicd to mean continuous
+00:30:26.159 integration and continuous development
+00:30:28.519 quickly it was realized that deployment
+00:30:31.000 itself could also be made agile and the
+00:30:33.559 acronym changed to mean continuous
+00:30:35.720 integration and continuous deployment
+00:30:38.120 with development now becoming part of
+00:30:40.080 the integration components since you're
+00:30:41.880 always just developing and integrating
+00:30:44.240 new code and then continuous deployment
+00:30:46.880 and then finally they realized it is not
+00:30:49.279 just the deployment but all aspects
+00:30:51.399 around the delivery of the solution and
+00:30:53.120 how we monitor it after delivery and the
+00:30:55.720 acronym was again changed to finally
+00:30:58.120 mean continuous integration and
+00:30:59.519 continuous delivery wow I had no idea
+00:31:01.639 about that so I don't know anyone who
+00:31:03.039 watched I can't remember I think it was
+00:31:04.600 maybe like the intro to devops room or
+00:31:06.720 something like that where I was talking
+00:31:07.960 about debating with my colleagues what
+00:31:10.360 cicd stands for I did not realize it was
+00:31:13.519 like a historical Evolution with
+00:31:16.519 continuous development being first
+00:31:18.440 iteration and then now continuous
+00:31:20.399 delivery being the last iteration of the
+00:31:22.639 term so wow that is very good to know
+00:31:24.720 I'm going to sound a lot more educated
+00:31:26.840 next time I talk about that now so you
+00:31:29.360 might hear these terms used
+00:31:30.639 interchangeably but they all actually
+00:31:32.240 refer to the same thing that's true all
+00:31:34.039 right so now that we talked about at
+00:31:36.279 nauseum what what cicd stands for let's
+00:31:38.880 talk about what it is since we are
+00:31:40.600 constantly building new features for our
+00:31:43.080 system or service we need to ensure that
+00:31:45.440 these features will work with the
+00:31:46.720 current application instead of waiting
+00:31:49.120 until the end of the development life
+00:31:50.679 cycle when all features will be
+00:31:52.480 integrated we can now continuously
+00:31:54.519 integrate new features and then test
+00:31:56.440 them as they're being developed so a
+00:31:58.600 feature is one part of what the
+00:32:00.480 application does a good example would be
+00:32:02.360 like Instagram or any application as
+00:32:04.840 even when your application is already
+00:32:06.200 existing out in the world you're
+00:32:07.559 continuously adding new features like
+00:32:10.039 when Instagram wanted to compete with
+00:32:11.440 Tik Tok it added reals or whatever when
+00:32:13.559 it wanted to compete with Snapchat it
+00:32:15.200 added stories those are new features
+00:32:16.760 they're building integrating to their
+00:32:18.799 existing product and then doing a new
+00:32:21.279 release of a new version of the product
+00:32:23.519 we can create what is called a cicd
+00:32:25.880 pipeline these pipelines usually have
+00:32:28.320 the following distinct elements a
+00:32:30.440 starting trigger the action that kicks
+00:32:32.519 off the pipeline process for example a
+00:32:35.120 push request is made to a specific
+00:32:37.000 branch and those are git terms so you're
+00:32:39.200 working on something on your git Branch
+00:32:41.360 you do a push to that Branch push some
+00:32:43.399 new code and that would trigger the
+00:32:45.000 pipeline to start and then we have
+00:32:47.559 building actions taken to both build the
+00:32:50.279 product and the new feature so build is
+00:32:52.559 like compile the code and then we have
+00:32:54.720 testing actions actions that will test
+00:32:57.360 the project to ensure that the new
+00:32:58.919 feature does not interfere with any of
+00:33:01.360 the current features of the application
+00:33:03.880 and then deployment actions should the
+00:33:06.039 pipeline succeed the pipeline progressed
+00:33:08.399 through the building actions and the
+00:33:09.799 testing actions it passed any Gates that
+00:33:11.720 were there should the pipeline succeed
+00:33:14.120 the deployment actions detail what
+00:33:16.240 should happen with the build for example
+00:33:18.559 if the build succeeded it should then be
+00:33:20.279 pushed to a testing environment and then
+00:33:22.799 delivery actions as cicd processes have
+00:33:26.080 evolved the focus is now no longer just
+00:33:28.679 on deployment itself but all aspects of
+00:33:31.399 the delivery of the solution this
+00:33:33.240 includes actions such as monitoring the
+00:33:35.279 deployed solution cicd pipelines require
+00:33:38.600 build infrastructure to execute the
+00:33:40.480 actions of these elements we usually
+00:33:42.639 refer to this infrastructure as build
+00:33:44.519 orchestrators and agents a build
+00:33:46.799 orchestrator directs the various agents
+00:33:48.760 to perform the actions of the cicd
+00:33:50.840 pipelines as required these cicd
+00:33:54.000 pipelines are usually where the largest
+00:33:55.519 portion of automation can be found as
+00:33:57.519 such this is usually the largest attack
+00:33:59.600 surface and the biggest chance for
+00:34:01.600 misconfigurations to creep in and create
+00:34:04.000 vulnerabilities and then common tools so
+00:34:06.399 GitHub and gitlab provide cicd pipeline
+00:34:08.719 capabilities that are very popular
+00:34:10.960 GitHub provides build agents whereas
+00:34:13.040 gitlab provides a gitlab runner
+00:34:15.000 application that can be installed on a
+00:34:17.239 host to make it a build agent for more
+00:34:20.119 complex builds build orchestrator
+00:34:22.119 software such as junkins could also be
+00:34:24.000 used we will explore these tools and
+00:34:26.199 their common misconfigurations in later
+00:34:28.000 room I think I did see that we have a
+00:34:30.000 Jenkins room so that will be good and
+00:34:32.040 then here's our case study a tangle
+00:34:34.119 between Dev and prod one common
+00:34:36.960 misconfiguration with cicd pipelines is
+00:34:39.280 using the same build agents for both Dev
+00:34:41.719 and prod builds this creates an
+00:34:44.040 interesting problem since most
+00:34:45.839 developers will have access to the
+00:34:47.560 starting trigger for a Dev build but not
+00:34:50.040 a prod build so typically there should
+00:34:52.159 not be a lot of access points for a prod
+00:34:54.960 build but probably all of your
+00:34:57.240 developers almost all your developers
+00:34:58.920 would have access to do a Dev build if
+00:35:00.960 one of these developers were compromised
+00:35:03.280 an attacker could leverage their access
+00:35:05.200 to cause a malicious Dev build that
+00:35:07.440 would then compromise the build agent
+00:35:09.720 this would not be a big issue if the
+00:35:11.280 build agent was just used for Dev builds
+00:35:14.040 however if you're using the same agent
+00:35:15.680 for Dev and prod Builds an attacker can
+00:35:18.440 easily just persist on the build agent
+00:35:20.839 until a prod build is actioned and then
+00:35:23.920 they can inject their malicious code
+00:35:25.560 into the build which would allow them to
+00:35:27.400 comp compromise the production build of
+00:35:29.520 the applications as always the more
+00:35:31.079 separation the better between your
+00:35:32.280 different environments in my opinion so
+00:35:35.240 what does the CI and CI CD stand for so
+00:35:38.520 that is oh my God I'll never be able to
+00:35:39.960 spell it let's just copy and paste
+00:35:43.560 um continuous integration is the answer
+00:35:46.200 though so
+00:35:48.359 here's continuous
+00:35:52.079 integration what does the CD and cicd
+00:35:55.000 stand for so in this case they told us
+00:35:56.720 uh continuous Del delivery is kind of
+00:35:58.480 the most modern term so let's try
+00:36:01.599 that all right and then what do we call
+00:36:04.520 the build infrastructure elements that
+00:36:06.800 controls all builds and what do we call
+00:36:10.359 the build infrastructure element that
+00:36:12.440 performs the build so that would be the
+00:36:14.319 build agent and what's the is this
+00:36:17.359 orchestrator maybe let's
+00:36:24.440 see build in oh so maybe build
+00:36:27.079 infrastructure
+00:36:28.160 and then there's build or so if it's not
+00:36:30.880 so I think so I think the answer here is
+00:36:34.680 build orchestrators let me see the
+00:36:36.359 question again what do we call the build
+00:36:37.960 infrastructure element that controls all
+00:36:39.680 the builds build orchestrators all right
+00:36:43.280 awesome and we're going to see that in
+00:36:44.760 action I'm almost certain in future
+00:36:46.720 rooms and then let's see task seven is
+00:36:50.200 about environment so here's a reminder
+00:36:51.640 of our nice little environments graphic
+00:36:53.760 let's zoom in a bit on the pipeline
+00:36:55.359 section of environments most Pipelines
+00:36:57.720 have several environments each of these
+00:36:59.640 environments has a specific use case and
+00:37:01.599 their security posture differs and the
+00:37:03.560 security requirements differ let's take
+00:37:05.560 a look at some of the common ones common
+00:37:07.800 environment would be Dev or development
+00:37:09.880 and this is usually a playground for
+00:37:11.560 developers this is the environment that
+00:37:13.640 is most unstable as developers are
+00:37:15.520 constantly pushing new code testing it
+00:37:17.680 maybe doing like experiments in it from
+00:37:19.720 a security standpoint this environment
+00:37:22.040 typically would have the weakest
+00:37:23.640 security access control would be LAX and
+00:37:26.319 developers often have direct access to
+00:37:28.560 the infrastructure itself again think
+00:37:31.119 just like minimum restrictions maximum
+00:37:33.960 freedom but there are often some
+00:37:36.520 guidelines in place in a Dev environment
+00:37:38.200 as well the likelihood of the
+00:37:39.760 development environment being
+00:37:40.839 compromised is high but if there is
+00:37:43.119 adequate segregation and separation the
+00:37:45.280 impact of the compromise would be low
+00:37:47.880 and then here we have unstable stability
+00:37:50.280 weakest security posture may it contain
+00:37:52.839 customer data no hopefully like the
+00:37:55.480 answer to that will be no everywhere but
+00:37:57.160 prod but let's see what we find and then
+00:37:59.400 we have a user acceptance testing
+00:38:01.440 environment the user acceptance testing
+00:38:03.480 environment is used to test the
+00:38:04.800 application or select features before
+00:38:06.640 they get pushed to production this
+00:38:08.440 includes unit tests that ensure the
+00:38:10.319 developed feature behaves the way we
+00:38:11.960 expect this can and should include
+00:38:14.160 security test as well although this
+00:38:16.280 environment is more stable than Dev it
+00:38:18.640 can still often be fairly unstable and
+00:38:21.480 similarly certain security hardening
+00:38:23.599 controls would have been introduced for
+00:38:25.640 user acceptance testing but it's not as
+00:38:28.000 hardened as pre-prod or prod so it's
+00:38:30.480 semi-stable it has the second weakest
+00:38:33.520 security posture and no customer data no
+00:38:36.839 production data the pre-prod environment
+00:38:39.280 or pre-production environment is used to
+00:38:41.119 mimic production without actual customer
+00:38:43.880 user data so I would so you would often
+00:38:46.000 maybe hear this as the staging
+00:38:47.680 environment as well and you want staging
+00:38:49.880 to be as similar to production as it can
+00:38:51.839 be but sometimes that's not really
+00:38:53.400 possible because you're running lean
+00:38:55.040 cost Effectiveness Etc this environment
+00:38:57.480 is kept stable and used to perform the
+00:38:59.440 final test before the new feature is
+00:39:01.760 pushed to the production environment
+00:39:03.440 from a security standpoint pre-prod
+00:39:05.880 security should technically mirror prod
+00:39:08.040 although this is not always how it goes
+00:39:10.599 usually I would say deploying to
+00:39:13.000 pre-prod or staging at that point that
+00:39:15.319 should be automated that shouldn't be a
+00:39:16.920 developer just pushing right to pre-prod
+00:39:19.359 so this is a stable environment it's the
+00:39:21.240 second strongest security posture and no
+00:39:24.160 customer data would be the thing that
+00:39:25.839 differentiates it from production
+00:39:28.160 and then we have prod which is
+00:39:29.800 production the prod environment is the
+00:39:31.800 most sensitive this is the current
+00:39:33.480 active environment that serves users or
+00:39:35.400 customers to ensure that our users have
+00:39:37.880 the best experience this environment
+00:39:39.920 must be kept stable if prod isn't stable
+00:39:42.960 you are certainly losing money or losing
+00:39:45.520 time towards your mission or whatever
+00:39:46.720 you're doing no update should be
+00:39:48.800 performed here without proper change
+00:39:50.480 management to enforce this the security
+00:39:52.880 of this environment is always the
+00:39:54.599 strongest only a select few employees or
+00:39:57.640 services so Services would be like
+00:39:59.319 something automated will'll have the
+00:40:01.200 ability to make changes here furthermore
+00:40:04.160 since we may have malicious users the
+00:40:06.520 security has to be hardened to prevent
+00:40:09.079 Outsider threats as well and production
+00:40:11.280 should always be stable it has the
+00:40:13.119 strongest security posture and it does
+00:40:15.160 have customer data and then we have a
+00:40:17.240 disaster recovery or high availability
+00:40:19.400 environment ideally you have this so
+00:40:21.520 depending on the criticality of the
+00:40:23.000 system there might be a Dr ha
+00:40:25.359 environment and the idea here is this is
+00:40:27.480 an environment you can fall back to
+00:40:29.440 right away if there is some sort of
+00:40:30.839 problem with production if switch over
+00:40:33.000 is instantaneous it is usually called a
+00:40:35.720 high availability environment and this
+00:40:37.880 is often used for critical applications
+00:40:39.839 such as online banking where the bank
+00:40:41.960 would have to pay large penalties and
+00:40:44.560 basically have a gigantic like
+00:40:46.880 storm if the website were to go down or
+00:40:49.079 if their one of their systems were to go
+00:40:50.480 offline in the event where some but very
+00:40:53.119 minimal downtime is acceptable the
+00:40:55.480 environment is called a disaster
+00:40:56.720 recovery environment and that's meant to
+00:40:58.880 be used to recover from a disaster in
+00:41:00.480 production an ha environment should be
+00:41:02.319 the exact mirrors of prod in both
+00:41:05.359 stability and security and again that's
+00:41:07.240 ideal that it would be an exact mirror
+00:41:09.079 but if you're a really small lean
+00:41:10.480 organization that might not really be
+00:41:12.119 how you're doing it all right and then
+00:41:14.079 other notable environments there are
+00:41:15.599 some other notable environments you
+00:41:17.440 might hear about when you're talking
+00:41:18.960 devops green and blue environments so
+00:41:21.640 green blue environments are used for
+00:41:23.319 what's called a a blue green deployment
+00:41:25.400 strategy where when you're push an
+00:41:27.560 update to prod instead of having a
+00:41:29.560 single prod instance there are two the
+00:41:32.480 blue environment is running the current
+00:41:34.280 application version and the green
+00:41:35.800 environment runs the newer version that
+00:41:37.760 you're just deploying and then you use a
+00:41:40.040 proxy or a router you first deploy to
+00:41:43.079 green and then all the traffic can be
+00:41:45.280 switched to the green environment when
+00:41:46.800 the team is ready however the blue
+00:41:48.800 environment you keep it up and running
+00:41:50.280 just as it was for sometime so that if
+00:41:52.520 there are any unforeseen issues with
+00:41:54.520 your new green deployment you can just
+00:41:56.319 roll back to blue and you can switch all
+00:41:58.520 the traffic back to Blue we think of
+00:42:00.560 this as a high availability backup of
+00:42:02.200 prod during during a new deployment to
+00:42:04.280 use for a roll back if something goes
+00:42:05.800 wrong which is faster than having to
+00:42:07.760 perform a roll back of your actual whole
+00:42:10.280 production environment so blue green
+00:42:12.480 deployment is very common and then we
+00:42:14.599 have Canary environments which is
+00:42:16.359 similar to green and blue environments
+00:42:18.280 the goal of canary environments is to
+00:42:20.160 smooth the prod deployment process again
+00:42:23.000 two environments are created and users
+00:42:24.880 are gradually moved to a new environment
+00:42:27.520 for example at the start 10% of your
+00:42:29.720 users maybe would be migrated their
+00:42:31.520 traffic directed to the new environment
+00:42:33.880 if the new environment remains stable
+00:42:35.880 another 10% migrated until 100% of the
+00:42:38.920 users are in the new environment with
+00:42:40.839 the example of 10% of users this would
+00:42:43.640 help you hopefully flag any problems
+00:42:45.440 with your new deployment with 90% of the
+00:42:48.160 users remaining unimpacted so that would
+00:42:50.440 be the benefit of canary these are
+00:42:52.359 usually classified under prod
+00:42:53.760 environments but are used to reduce the
+00:42:55.880 risk associated with upgrading making
+00:42:58.200 updates to your prod environment you
+00:42:59.760 want to limit any potential issues and
+00:43:01.599 any downtime with new deployments
+00:43:03.880 obviously for common tools we have
+00:43:06.000 environments have changed significantly
+00:43:07.640 in modern times breakthroughs such as
+00:43:09.880 virtualization and containerization have
+00:43:12.040 changed the landscape they've change the
+00:43:13.599 game instead of environments simply
+00:43:15.400 being computers we can now have virtual
+00:43:17.760 computers created through tools like
+00:43:19.480 vagrant or terraform we could also move
+00:43:22.040 away from host entirely to things like
+00:43:23.960 containers using Docker or pods or using
+00:43:27.119 kubernetes which I know that this
+00:43:28.839 learning path has a Docker room and a
+00:43:30.640 kubernetes room these tools can make use
+00:43:32.760 of processes such as infrastructu ised
+00:43:34.599 code which also a room in this learning
+00:43:36.480 path to even create software that can
+00:43:38.839 create and manage your different
+00:43:40.400 environments for you and this is
+00:43:41.720 definitely like the modern way of doing
+00:43:43.359 it as mentioned before the security
+00:43:46.000 considerations become more important the
+00:43:47.720 closer the environment is to prod the
+00:43:50.000 underlying infrastructure of an
+00:43:51.599 application also forms part of the
+00:43:53.480 attack surface of any actual application
+00:43:56.319 any vulnerability ities in this
+00:43:57.640 infrastructure could allow an attacker
+00:43:59.720 to take control of the host and the
+00:44:01.440 application as such the infrastructure
+00:44:03.559 must be hardened against attacks this
+00:44:06.000 hardening process usually requires
+00:44:07.559 things like the following removing
+00:44:09.240 unnecessary Services updating the host
+00:44:11.839 and applications keeping everything up
+00:44:13.359 to date and then using a firewall to
+00:44:15.680 block any unused ports you should only
+00:44:17.800 have open the ports that are being used
+00:44:20.440 so here's our case study developer
+00:44:22.319 bypasses in prod one of the common
+00:44:24.800 issues that can happen with different
+00:44:26.280 environments is that often things that
+00:44:28.079 should stay in Dev don't developer
+00:44:30.599 bypasses are common in the dev
+00:44:32.359 environments for features like the
+00:44:33.760 following MFA multiactor authentication
+00:44:36.720 captas password resets login portals
+00:44:40.200 developer bypasses might be in place to
+00:44:42.640 allow developers to quickly test
+00:44:44.599 different application features by
+00:44:46.119 bypassing timec consuming features like
+00:44:48.079 your MFA prompt so a common example is
+00:44:50.680 having a specific onetime pin code in
+00:44:53.319 Dev that's always accepted regardless of
+00:44:55.800 the OTP code that would be sent by the
+00:44:57.760 application so the example here in Dev
+00:44:59.640 is that you just have one OTP you can
+00:45:01.319 just reuse over and over again so that
+00:45:03.280 developers can move as quickly as
+00:45:05.040 possible in the development environment
+00:45:07.280 rather than doing things like going
+00:45:08.559 through the MFA prompts however if there
+00:45:11.040 is an inadequate sanitization of these
+00:45:13.400 bypasses before the application is moved
+00:45:15.760 to the next environment it could lead to
+00:45:18.040 a developer bypass making its way all
+00:45:20.160 the way into prod so now in that
+00:45:22.599 situation that OTP bypass it can now be
+00:45:25.000 leveraged by an attacker toy bypass MFA
+00:45:28.280 in your production environment and then
+00:45:30.440 compromise your user accounts this is
+00:45:32.880 why it's so important that environments
+00:45:34.480 must be segregated and similar to
+00:45:36.599 Quality Gates security gates must be
+00:45:38.760 implemented to ensure a clean
+00:45:40.839 application is moved to the next
+00:45:42.599 environment which environment usually
+00:45:44.559 has the weakest security configuration
+00:45:46.640 so that's Dev which environment is used
+00:45:50.240 to test the application so in the model
+00:45:52.240 they gave us I think that was uh user
+00:45:53.800 acceptance testing and then which
+00:45:56.400 environment similar to prod but is used
+00:45:58.559 to verify that everything is working
+00:46:01.359 before is pushed to prod so I usually
+00:46:03.000 call this staging but I think the term
+00:46:04.520 they used was
+00:46:05.720 preprod and then what is a common class
+00:46:08.680 of vulnerabilities that is discovered in
+00:46:10.599 prod due to insecure code creeping in
+00:46:14.920 from Dev so that was the uh development
+00:46:18.319 bypass what's the exact term developer
+00:46:21.400 bypasses let's try
+00:46:25.359 that yep all right so that is Task seven
+00:46:28.599 and then we're going to move on to task
+00:46:29.880 eight which we can see here includes a
+00:46:31.680 static website so this is going to be
+00:46:33.200 like some sort of more Hands-On thing so
+00:46:34.640 that will be good let's see what this
+00:46:36.119 Challenge and task eight is all about so
+00:46:38.119 we have our static website here that we
+00:46:40.960 are going to O open and says open the
+00:46:44.040 site and build your own pipeline to get
+00:46:45.960 your flag use what you have learned to
+00:46:48.440 determine which concerns are valid at
+00:46:50.400 which stages of the pipeline what is the
+00:46:52.440 flag received after successfully
+00:46:54.240 building your pipeline okay and we got
+00:46:55.599 like a drag and drop thing going on
+00:46:58.599 here all right so okay so we're going to
+00:47:01.280 just rebuild our pipeline so we know it
+00:47:05.119 ends with deployment to the environments
+00:47:08.119 and then what is a potential security
+00:47:10.640 concerned with environments hardening
+00:47:12.400 your environments based on their use
+00:47:13.880 case having too many different
+00:47:16.160 environments a developer bypass making
+00:47:18.160 its way into a prod environment well can
+00:47:20.599 we select more than one because I would
+00:47:23.119 say I guess depends how you define
+00:47:24.960 security concern but I'm going to go
+00:47:26.520 with a developer bypass making its way
+00:47:29.319 into a prod environment okay and then so
+00:47:32.079 we know the pipeline begins with source
+00:47:35.480 code storage and Version Control what is
+00:47:38.160 a potential security concern with source
+00:47:40.040 code storage and Version Control
+00:47:41.920 developers committing code to the
+00:47:43.280 storage see no that's like the point of
+00:47:46.079 what's going on Secrets being committed
+00:47:48.280 to the source code yes developers
+00:47:50.240 pulling code from the storage no once
+00:47:51.760 again that's what's supposed to be
+00:47:52.880 happening so Secrets being committed to
+00:47:55.119 source code and then in our original
+00:47:57.760 pipeline diagram I remember dependency
+00:48:00.319 management was right here um associated
+00:48:03.359 with source code storage and Version
+00:48:05.400 Control so what is a potential security
+00:48:07.760 concern with dependency management an
+00:48:09.920 outdated dependency that has a known
+00:48:11.839 vulnerability is being used that's
+00:48:13.400 definitely true that's definitely a big
+00:48:15.319 concern and something that happens a lot
+00:48:17.200 the application having two little
+00:48:18.720 dependencies no the dependencies being
+00:48:21.119 developed internally no no so this is
+00:48:23.599 our concern an outdated dependency
+00:48:25.760 within known vulnerability
+00:48:27.640 all right and then from the source code
+00:48:29.839 storage inversion control we go to the
+00:48:31.800 continuous
+00:48:33.359 integration let's see a potential
+00:48:35.680 security concern here an automated code
+00:48:38.720 testing tool being used as a replacement
+00:48:40.640 for penetration testing well that
+00:48:43.400 certainly isn't ideal but I don't know
+00:48:45.040 if that's the security concern an
+00:48:47.040 automated code testing tool finding a
+00:48:49.119 vulnerability no that is good that's
+00:48:51.319 what you would want to be happening I
+00:48:52.799 think and then using an automated
+00:48:55.000 testing tool to perform static or
+00:48:57.119 dynamic analysis of the application so
+00:48:58.799 no once again that's what you want to be
+00:49:00.240 happening so I'm going to go with an
+00:49:02.240 automated code testing tool being used
+00:49:05.160 as a replacement for pen testing all
+00:49:07.319 right and then lastly uh well not really
+00:49:11.520 lastly but the last one I'm doing
+00:49:13.880 associated with continuous integration
+00:49:15.480 is the automated testing and the
+00:49:17.760 potential concerns here having more than
+00:49:19.799 two build agents no that's okay and in
+00:49:21.960 fact if you have a lot of different
+00:49:23.400 environments like they were explaining
+00:49:24.559 you want to have a lot of different
+00:49:25.720 build agents a developer triggering a
+00:49:28.200 Dev build for a new feature no that's
+00:49:30.000 what's supposed to be happening and then
+00:49:32.280 a build agent building code for both Dev
+00:49:34.319 and PR yes this would be bad and a
+00:49:36.960 concern all right so that was all right
+00:49:39.880 clearly because we got our flag pipeline
+00:49:42.960 automation is fun I agree with this I
+00:49:44.839 think it is really fun I think it's like
+00:49:46.400 one of the most fun things about devops
+00:49:49.440 and let's see all right so task eight
+00:49:53.000 our challenge is complete and task nine
+00:49:55.359 is the conclusion this says Automation
+00:49:58.160 in the pipeline has significantly
+00:50:00.000 increased the capability of stlc
+00:50:02.400 processes it has enabled developers to
+00:50:05.040 rapidly create and deploy updates to
+00:50:07.920 Applications however these new
+00:50:09.760 automation I think supposed to say
+00:50:11.720 automations can also lead to an
+00:50:14.240 increased attack surface since an
+00:50:16.480 attacker can now indirectly attack the
+00:50:18.559 application by compromising its pipeline
+00:50:21.319 implementing secure automation is
+00:50:23.319 therefore needed to ensure that the
+00:50:25.400 automated pipeline does not increase the
+00:50:27.960 risk of application compromise
+00:50:29.559 throughout the various rooms in this
+00:50:31.119 module we will take a deeper dive into
+00:50:33.240 the elements that make up a pipeline and
+00:50:35.599 show how security can be applied to each
+00:50:38.480 element of the pipeline to create a more
+00:50:40.520 secure automated pipeline so that was
+00:50:43.040 our introduction and then now we're
+00:50:44.280 going to like really get into it so that
+00:50:46.680 completes the introduction to pipeline
+00:50:48.559 automation room that was another good
+00:50:50.400 room a lot of really good information
+00:50:52.440 and the next room on this learning path
+00:50:54.480 is the source code security rooms I will
+00:50:57.319 be looking forward to that thank you so
+00:50:59.799 much for watching this video walkthrough
+00:51:01.440 if you watched I hope you're enjoying
+00:51:03.440 the videos I'm definitely enjoying
+00:51:04.960 making them it's just like a great
+00:51:06.640 little nerdy fun thing to do I'm just
+00:51:09.000 going to keep cranking through this Dev
+00:51:10.920 Ops learning path so maybe I will see
+00:51:13.200 you in another try hackme Room
+00:51:15.280 Walkthrough soon

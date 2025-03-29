@@ -1,0 +1,269 @@
+# tactiq.io free youtube transcript
+# TryHackMe Attacking and Defending AWS: The Quest for Least Privilege
+# https://www.youtube.com/watch/6qNWb09yyK8
+
+00:00:00.080 hi everyone it's Tara welcome back to my
+00:00:02.600 channel I'm going to play another room
+00:00:05.120 in the attacking and defending AWS
+00:00:07.000 learning path for try hack me the room
+00:00:09.080 I'm going to play in this video walk
+00:00:11.160 through is the Quest for lease
+00:00:13.320 privileged which is part of the I IM
+00:00:15.519 module in this AWS learning path and in
+00:00:18.920 the Quest for lease privilege room we
+00:00:21.160 are going to learn how to scope an i IM
+00:00:23.359 policy down to only the necessary
+00:00:25.720 actions and I got my uh little like
+00:00:28.840 Cloud I don't know if you can it my
+00:00:30.720 little like Cloud themed beverage nice
+00:00:32.840 clouds on the can and I'm ready to go so
+00:00:35.320 let's see what this room is all
+00:00:38.390 [Music]
+00:00:45.680 about all right so the first task in
+00:00:48.000 this room is an introduction task one of
+00:00:51.000 the most common tasks for anyone working
+00:00:53.520 in AWS am is to scope I am policies to
+00:00:57.399 include only the necessary privileges
+00:00:59.640 requ required to complete a task and
+00:01:01.840 that's what lease privilege means this
+00:01:04.000 is commonly referred to as following the
+00:01:06.600 principle of lease privilege in this
+00:01:08.759 room we will take a broadly scoped Rule
+00:01:11.960 and Whittle down access to allow the
+00:01:14.280 policy to do three things audit all ec2
+00:01:18.200 settings launch machines in the
+00:01:20.600 Singapore region and access a specific
+00:01:23.880 corporate S3 bucket okay we'll start
+00:01:27.040 with the default administrator access
+00:01:28.799 policies and remember this is like the
+00:01:30.240 God Mode Policy in ads where with the
+00:01:32.439 administrator access manage policy you
+00:01:34.399 have permission for every action on
+00:01:36.880 every resource in the account and looks
+00:01:39.759 like we have a question already if you
+00:01:42.040 are denied access while you have this
+00:01:44.119 policy what type of policy is blocking
+00:01:46.799 you we learned about this in a different
+00:01:48.960 room but if you have this administrator
+00:01:51.439 access policy you have permission to do
+00:01:53.560 everything and the only reason you might
+00:01:55.759 be getting an access denied uh error
+00:01:58.799 trying to do an action in AWS would be
+00:02:01.079 because your account is part of an AWS
+00:02:03.320 organization that has a service control
+00:02:05.719 policy applied and so the answer is
+00:02:08.919 service control policy that would be
+00:02:10.440 kind of the only like trump card over
+00:02:13.120 this administrator access policy so
+00:02:15.800 let's see if I spelled that right and if
+00:02:17.200 I got that right let's see submit all
+00:02:19.040 right awesome so that is Task one task
+00:02:21.519 two is going to be our accessing the
+00:02:23.080 environment task so we're used to this
+00:02:24.760 at this point and if you want to see how
+00:02:27.920 I I suppose you could say set up for
+00:02:30.319 like how I walk through this accessing
+00:02:31.840 the environment instructions in detail
+00:02:34.640 head over to my walkthrough of the
+00:02:36.720 introduction to I am room in this same
+00:02:40.000 playlist the same learning path and in
+00:02:42.480 the introduction to I am room walkth
+00:02:44.080 through I went through all of this but
+00:02:45.560 it's the same every time so we don't
+00:02:47.280 need to redo it in each video so I'm
+00:02:49.400 just going to hit completed and then
+00:02:51.080 we're going to move on to task three so
+00:02:54.280 remember we had three things that this
+00:02:57.720 policy actually needs to allow for the
+00:02:59.840 entity that it's attached to so the
+00:03:01.680 three things that this policy needs to
+00:03:04.080 give permission for is auditing all ec2
+00:03:06.959 settings launching machines in the
+00:03:08.560 Singapore region and accessing a
+00:03:10.879 specific corporate S3 bucket and first
+00:03:14.200 we have limiting by Service as task
+00:03:16.440 three then we're going to limit by read
+00:03:18.159 versus modify so I bet that's going to
+00:03:20.159 be like where the auditing uh action
+00:03:22.080 comes into play and then enumerating
+00:03:24.560 specific resources anyway just wanted to
+00:03:26.480 align we're kind of like breaking down
+00:03:28.200 one by one those three per per missions
+00:03:30.280 and then each task is going to
+00:03:31.400 incrementally get us to the full policy
+00:03:34.080 all right so task three is limiting by
+00:03:36.560 service and the requirement is only to
+00:03:39.760 allow access to ec2 and S3 to do that we
+00:03:43.360 need to restrict the actions by service
+00:03:46.120 and this is an example of how we could
+00:03:47.879 create a policy that only allows actions
+00:03:50.239 in ec2 and S3 although I think they've
+00:03:53.840 obsc S3 here maybe uh so anyway that
+00:03:57.120 would look like this however we probably
+00:03:58.439 want to break this out to support two
+00:04:00.439 different resources so we'll do that now
+00:04:02.760 what action is needed in place of xxs so
+00:04:05.599 I think that is supposed to say S3
+00:04:08.280 because that's the two Services we want
+00:04:10.319 to allow access to so let's see if I got
+00:04:13.120 that
+00:04:14.079 right whoop whoop okay so that's S3 for
+00:04:18.399 task three task four now we need to
+00:04:21.639 limit by read versus modify
+00:04:26.199 so let's see it threw me off that the
+00:04:29.080 sentence started with however however we
+00:04:31.639 probably want to break this out to
+00:04:33.039 support two different resources so we'll
+00:04:35.520 do that now okay so we broke it out by
+00:04:38.759 service like we had mentioned at the end
+00:04:40.800 of task three so now we've got one
+00:04:43.400 statement for the ec2 service and one
+00:04:46.520 statement for the S3 service now we want
+00:04:49.840 to make this a readon audit role we need
+00:04:52.840 to limit the policy to only list
+00:04:55.360 describe and get actions that are read
+00:04:58.479 type actions they wouldn't allow ow you
+00:04:59.800 to modify or delete anything they would
+00:05:01.440 just allow you to look at it all right
+00:05:03.440 let's see what we got here we need to
+00:05:05.120 limit the policy to only list describe
+00:05:07.320 and get actions and it looks like we're
+00:05:10.720 going to use wild cards to do that which
+00:05:12.520 makes sense now we have ec2 uh we need
+00:05:17.360 to figure out what this is ec2 get
+00:05:19.759 actions all allowed S3 get actions all
+00:05:22.840 allowed and S3 XXX actions all allowed
+00:05:26.639 so I'm actually going to do the S3 one
+00:05:28.479 first because this is this is the one I
+00:05:29.880 kind of like know by heart so I think in
+00:05:31.680 place of S3 we want uh S3 get and then
+00:05:35.400 S3 list is the other uh read type action
+00:05:39.560 in S3 so let's try this and let's see I
+00:05:43.160 think we just want list oh I guess um
+00:05:46.600 the little asteris here kind of give
+00:05:47.919 this a way too but this is what I
+00:05:49.479 thought so let's do list and
+00:05:53.479 then what is the redacted ec2 action
+00:05:56.440 required in place of y y y so remember
+00:05:59.240 there are three like read action types
+00:06:03.319 kind of goes back to the two Pizza teams
+00:06:05.960 and the API actions are not consistent
+00:06:08.520 across all services so the read type
+00:06:10.880 actions are list describe and get and
+00:06:13.560 I'm pretty sure the ec2 the what it's
+00:06:17.039 easy to describe and easy to get so I'm
+00:06:20.479 going to try describe here and the
+00:06:22.400 answer format suggest that I'm
+00:06:25.000 right oh if I spell describe correctly
+00:06:29.000 so we got ec2
+00:06:31.720 describe okay so that was correct so
+00:06:33.919 this policy for ec2 we're going to allow
+00:06:36.800 all describe and all get actions and for
+00:06:39.759 S3 we're going to allow all S3 get
+00:06:42.599 actions and all S3 list actions and
+00:06:45.280 right now we have not scoped down the
+00:06:47.919 resources yet so this policy would allow
+00:06:50.199 the principal to uh describe and get all
+00:06:53.800 resources in ec2 and then get and list
+00:06:57.080 all resources in S3 the next thing we
+00:06:59.759 are going to do is scope this down to
+00:07:02.199 only the specific resources and that's
+00:07:04.479 why task five is called enumerating
+00:07:07.400 specific resources finally we will limit
+00:07:10.440 this policy to a subset of resources
+00:07:12.599 using wild cards and prefixes we will
+00:07:15.080 start with a new statement to allow all
+00:07:17.400 actions on instances in Singapore in the
+00:07:19.560 Singapore region we also need to add two
+00:07:22.280 resources to the S3 statement the first
+00:07:25.080 statement refers to all the objects in
+00:07:27.080 the bucket and the second to the bucket
+00:07:29.440 self okay so here are our statement
+00:07:31.800 rules in the policy so we're allowing uh
+00:07:35.199 describe and get for all ec2 resources
+00:07:38.639 and then looks like we're going to add
+00:07:40.639 this rule that is going to allow every
+00:07:43.479 ec2 action and I think judging by stat
+00:07:46.840 ID this is where we're going to
+00:07:47.879 implement the logic to allow all ec2
+00:07:50.039 actions in Singapore and then here's for
+00:07:53.720 S3 where we are going to scope down to
+00:07:57.440 uh the specific S3 bucket okay so there
+00:08:00.639 are two resources needed for the S3
+00:08:03.400 statement Oh I thought this was going to
+00:08:05.639 be building up the question sorry for my
+00:08:06.919 tone all right and then there are two
+00:08:08.520 resources need for the S3 statement
+00:08:10.280 we've seen this before in the learning
+00:08:11.639 path as well but when you're giving
+00:08:12.960 permission for the S3 bucket just the S3
+00:08:15.919 RN gives permission for the bucket
+00:08:18.199 itself so that would be something like
+00:08:19.800 listing the bucket attributes about that
+00:08:22.039 bucket but if you want to give
+00:08:23.639 permission to list and get the objects
+00:08:27.080 in the bucket then you need to give the
+00:08:29.440 AR SL wildcard so that would be access
+00:08:32.799 to all the objects in the bucket so
+00:08:34.799 that's really important remember you
+00:08:35.919 need both of those to give full read
+00:08:38.320 access to a
+00:08:40.120 bucket and then here's the question what
+00:08:43.559 is the element needed in place of XXX to
+00:08:46.080 represent the AWS region Singapore so we
+00:08:48.560 need to add the region here to make this
+00:08:50.360 rule complete to allow the actions only
+00:08:53.640 in Singapore and remember orangs have a
+00:08:56.800 predictable format right so that's what
+00:08:58.360 we're using here so this is AR and then
+00:09:01.200 AWS and then the ec2 service and then
+00:09:03.959 when we put the region here this wild
+00:09:06.760 card after region is going to allow any
+00:09:10.160 action in ec2 in that region so when a
+00:09:14.519 action is requested the ion policy
+00:09:16.760 evaluation is going to match the
+00:09:19.480 resource impacted to this resource rule
+00:09:22.720 in the policy and then these two wild
+00:09:25.320 cards are going to ensure that this
+00:09:27.279 policy matches the EC instances in the
+00:09:30.399 region we put here anyway long-winded
+00:09:32.760 but what we need to do is figure out the
+00:09:34.320 region code for the Singapore region so
+00:09:36.920 let's see if we can just Google that I'm
+00:09:39.399 sure we can so let's do AWS Singapore
+00:09:43.640 region
+00:09:45.200 and let's see if uh AP let's even not
+00:09:48.959 even open the page let's see if AP
+00:09:50.640 Southeast one is
+00:09:55.800 correct AP Southeast one let's see if
+00:09:58.360 that's Singapore and whoop whoop that
+00:10:00.839 was the correct answer so this is a very
+00:10:02.920 short and sweet room but I like it and I
+00:10:04.920 like the message hopefully gets the
+00:10:06.279 point across that was the Quest for
+00:10:08.360 lease privilege and I guess we
+00:10:10.120 successfully fulfilled it but if you
+00:10:12.440 work with i a lot dayto day in ad and if
+00:10:14.800 you work with ads you probably work with
+00:10:16.240 I am a lot you will find yourself doing
+00:10:18.079 this all the time really trying to
+00:10:20.200 understand I am logic how do I scope
+00:10:21.959 down to the least privilege that is
+00:10:24.120 needed for the I am policy I'm
+00:10:26.519 configuring I do this all the time and
+00:10:28.839 you can easily make mistakes when you do
+00:10:30.519 it and mistakes can be pretty serious so
+00:10:33.240 this is a good room to get that point
+00:10:34.600 across like start practicing thinking
+00:10:36.000 about how can I Implement logic that
+00:10:37.720 gives the very least permission needed
+00:10:39.600 while still allowing the I am principal
+00:10:41.680 to get the job done all right I like
+00:10:43.800 that room thank you very much for
+00:10:45.440 watching let me know if you have any
+00:10:46.639 questions or feedback and I'm probably
+00:10:48.959 just going to plow through ahead to the
+00:10:50.639 next room which is going to be STS
+00:10:52.800 credentials so maybe I will see you in
+00:10:54.720 the next video
+00:10:55.959 walkthrough
