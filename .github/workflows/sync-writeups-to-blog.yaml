@@ -3,7 +3,7 @@ name: Sync TryHackMe writeups to Blog
 on:
   push:
     paths:
-      - 'tryhackme-room-writeups/**'
+      - "tryhackme-room-writeups/**"
     branches:
       - main
 
@@ -17,8 +17,8 @@ jobs:
 
       - name: Setup Git
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "Tara"
+          git config --global user.email "Tara@tara.cloud"
 
       - name: Clone Astro Repo
         run: |
