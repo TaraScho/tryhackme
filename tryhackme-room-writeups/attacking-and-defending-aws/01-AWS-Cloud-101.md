@@ -60,8 +60,8 @@ Here is where it starts to get good. We learn more about cloudy things like `EC2
 
 Here we learn about the AWS global infrastructure, specifically `regions` and `availability` zones. You can learn all about these things [straight from the horse's mouth](https://aws.amazon.com/about-aws/global-infrastructure/regions_az/), but here is the TLDR:
 
-- **Regions**: is a physical location somewhere around the world - for example `us-east-1` is on the US east coast, and `eu-west-1` is in Ireland. Regions are made up of 1 or more Availability Zones. (This is straight from the AWS docs, but I have to say if there is really a region out there with only 1 availability zone that would be an extreme edge case.)
-- **Availability Zones (AZs)** are one or more physical data centers (think those server rack pictures I linked to above). In AZs, data centers are distanced up to 60 miles apart from each other. The idea is - if there is a disaster - we want it to take down only one data center instead of the whole AZ.
+&star; **Regions**: is a physical location somewhere around the world - for example `us-east-1` is on the US east coast, and `eu-west-1` is in Ireland. Regions are made up of 1 or more Availability Zones. (This is straight from the AWS docs, but I have to say if there is really a region out there with only 1 availability zone that would be an extreme edge case.)
+&star; **Availability Zones (AZs)** are one or more physical data centers (think those server rack pictures I linked to above). In AZs, data centers are distanced up to 60 miles apart from each other. The idea is - if there is a disaster - we want it to take down only one data center instead of the whole AZ.
 
 You want to build and replicate your stuff across multiple AZs and, when possible, multiple regions.
 
@@ -91,8 +91,8 @@ I haven't watched the video in a while but I bet I also mention that `us-east-1`
 
 When I worked at AWS, we all had to give a presentation as part of onboarding that had it's own slide all about this - OPEX vs CAPEX is very important if you want to understand the business side of cloud (which I don't really 😉 - I just want to write lambda functions and event bridge rules all day - but we don't have a choice, understanding the business language is obviously critical).
 
-- **Capital Expense (CAPEX)** - The old school way, a big up front investment in something you then own. For example, a building full of server racks.
-- **Operational Expense (OPEX)** - Expenses incurred as part of your day-to-day operations - like your utilities (water + electricity). Generally pay-as-you-go.
+&star; **Capital Expense (CAPEX)** - The old school way, a big up front investment in something you then own. For example, a building full of server racks.
+&star; **Operational Expense (OPEX)** - Expenses incurred as part of your day-to-day operations - like your utilities (water + electricity). Generally pay-as-you-go.
 
 > <div class="flag-toggle">🚩 Is a major purchase intended to be used by a business over a long period of time a capital expense or operating expense?</div>
 > <div class="flag-content">
@@ -133,8 +133,8 @@ Of that list, I'm most familiar with `CloudFormation` and `aws-lambda-powertools
 
 We learn about `serverless` and `low-code/no-code`.
 
-- `serverless` - technologies for running code, managing data, and integrating applications, all without managing servers. AWS manages the compute power for you behind the scenes.
-- `low-code/no-code` - tools that abstract away the actual writing of code by giving people things like drag-and-drop user interfaces. The example THM uses is **Honeycode** which is actually a dead AWS service (RIP 🪦) but used to be a tool non-developers could use to build simple apps by essentially writing spreadsheets - and AWS would turn those spreadsheets into working code behind the scenes. A better example nowadays might be something like **[Google Cloud AppSheet](https://cloud.google.com/appsheet?hl=en)**, although obviously that doesn't fit the AWS learning path.
+&star; `serverless` - technologies for running code, managing data, and integrating applications, all without managing servers. AWS manages the compute power for you behind the scenes.
+&star; `low-code/no-code` - tools that abstract away the actual writing of code by giving people things like drag-and-drop user interfaces. The example THM uses is **Honeycode** which is actually a dead AWS service (RIP 🪦) but used to be a tool non-developers could use to build simple apps by essentially writing spreadsheets - and AWS would turn those spreadsheets into working code behind the scenes. A better example nowadays might be something like **[Google Cloud AppSheet](https://cloud.google.com/appsheet?hl=en)**, although obviously that doesn't fit the AWS learning path.
 
 > <div class="flag-toggle">🚩 Does serverless cost more or less when running idle than traditional servers?</div>
 > <div class="flag-content">
@@ -145,10 +145,10 @@ We learn about `serverless` and `low-code/no-code`.
 
 In the last task, you get hands on with a little website showing different rooms in the office. Click on each room in the office to talk to a different department and answer questions about cloud topics.
 
-- DevOps (questions about latency and scalability)
-- Software Engineering (questions about region naming and services)
-- Finance (questions about expenses)
-- CEO (final feasibility report)
+&star; DevOps (questions about latency and scalability)
+&star; Software Engineering (questions about region naming and services)
+&star; Finance (questions about expenses)
+&star; CEO (final feasibility report)
 
 **DevOps Questions**
 

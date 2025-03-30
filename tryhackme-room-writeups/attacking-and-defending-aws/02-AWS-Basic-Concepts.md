@@ -19,11 +19,11 @@ Here is my written walkthrough of the AWS Basic Concepts room in the **[Attackin
 
 In this room we learn about fundamental AWS concepts like:
 
-* AWS account management
-* AWS IAM - Identity and Access Management (IAM will become your life if you want to do cloud security)
-* AWS regions
-* AWS organizations
-* AWS networking at a very high level
+&star; AWS account management
+&star; AWS IAM - Identity and Access Management (IAM will become your life if you want to do cloud security)
+&star; AWS regions
+&star; AWS organizations
+&star; AWS networking at a very high level
 
 It's the second room in the learning path and we start to get a bit more hands-on which is fun.
 
@@ -37,20 +37,26 @@ Provides an intro to the room and explains the learning objectives. All you do i
 
 This task covers basics about AWS accounts - which are the fundamental containers for AWS resources in AWS. We learn that:
 
-* Each account has a unique 12-digit account ID
-* Root user credentials are the only way to access AWS control plane
-* Root user is considered an IAM super user with complete administrative permissions
-* 🚨 Root users don't have MFA enforced by default - it is absolutely critical to set this up in any AWS account you own
-* Root accounts without MFA are susceptible to weak password reset workflow attacks - search for `AWS password reset` on reddit and you will see some people that have been in the trenches!
+&star; Each account has a unique 12-digit account ID
+&star; Root user credentials are the only way to access AWS control plane
+&star; Root user is considered an IAM super user with complete administrative permissions
+&star; 🚨 Root users don't have MFA enforced by default - it is absolutely critical to set this up in any AWS account you own
+&star; Root accounts without MFA are susceptible to weak password reset workflow attacks - search for `AWS password reset` on reddit and you will see some people that have been in the trenches!
 
 > **NOTE ABOUT MFA**
 > In most real-world work environments you will see organizational controls to enforce MFA for AWS root users - if this doesn't exist at your workplace, you should implement it!
 
-🚩 _How many digits in AWS account ID?_
-The answer is `12`. Find this under the **AWS Account** heading.
+> <div class="flag-toggle">🚩 How many digits in AWS account ID?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>12</code>. Find this under the **AWS Account** heading.
+> </div>
 
-🚩 _Does AWS require MFA by default for root user credentials?_
-`nay` - but make sure you implement it!
+> <div class="flag-toggle">🚩 Does AWS require MFA by default for root user credentials?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>nay</code> - but make sure you implement it!
+> </div>
 
 ### Task 3 - Identity and Access Management (IAM)
 
@@ -58,12 +64,12 @@ Identity and Access Management is a fundamental security control in AWS. You wil
 
 Some facts we learn in Task 3:
 
-* IAM is the underlying system for determining access to AWS services and resources
-* IAM principals are identities that AWS recognizes
-* Policy evaluation logic determines access - see the chart below
-* IAM roles can be temporarily assumed/switched by other identities - (NOTE: THM doesn't explicitly say this, but using IAM roles is almost always a better practice than using IAM users - more about this later)
-* Trust policies determine who can assume roles
-* Identity Center (formerly SSO) allows centralized access management
+&star; IAM is the underlying system for determining access to AWS services and resources
+&star; IAM principals are identities that AWS recognizes
+&star; Policy evaluation logic determines access - see the chart below
+&star; IAM roles can be temporarily assumed/switched by other identities - (NOTE: THM doesn't explicitly say this, but using IAM roles is almost always a better practice than using IAM users - more about this later)
+&star; Trust policies determine who can assume roles
+&star; Identity Center (formerly SSO) allows centralized access management
 
 > **NOTE**:
 > I use AWS Identity Center almost daily and overall I think it works well. I have a [cozy little video](https://youtu.be/tz0Yq1heMXw?si=CiDLABsL4oKn7roi) about how I use it on YouTube.
@@ -75,11 +81,17 @@ TryHackMe references the notorious AWS IAM policy evalutation chart which is ess
 > **NOTE**
 > You can (and should!) read all about Policy evaluation logic in the [AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html). Also, if you are just learning about this, I highly recommend the YouTube recording of the [Become an IAM Policy Master in 60 Minutes or Less](https://www.youtube.com/watch?v=YQsK4MtsELU&pp=ygUTaWFtIHBvbGljeSByZWludmVudA%3D%3D) session from re:Invent 2018 - it's a classic for a reason!
 
-🚩 _What logic determines access of an IAM principal?_
-`policy evaluation` which you can find under the **Defining AWS IAM** heading.
+> <div class="flag-toggle">🚩 What logic determines access of an IAM principal?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>policy evaluation</code> which you can find under the **Defining AWS IAM** heading.
+> </div>
 
-🚩 _What policy determines if an IAM principal can gain privileges of a role?_
-`assume-role` which you can find under the **IAM Roles** heading.
+> <div class="flag-toggle">🚩 What policy determines if an IAM principal can gain privileges of a role?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>assume-role</code> which you can find under the **IAM Roles** heading.
+> </div>
 
 ### Task 4 - AWS Region
 
@@ -116,11 +128,17 @@ Almost every AWS service is regional, with a few notable exceptions that are wor
 
 Most regions are enabled by default in new AWS accounts, but some are [disabled by default](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-regions.html) and you have to request them to be enabled.
 
-🚩 _What AWS service has both global and regional API endpoints?_
-`STS` - find this under the **Notable Global Services** heading.
+> <div class="flag-toggle">🚩 What AWS service has both global and regional API endpoints?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>STS</code> - find this under the **Notable Global Services** heading.
+> </div>
 
-🚩 _What was the default region for accounts created before 2017?_
-`us-east-1` find this under the **Default Regions** heading.
+> <div class="flag-toggle">🚩 What was the default region for accounts created before 2017?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>us-east-1</code> find this under the **Default Regions** heading.
+> </div>
 
 ### Task 5 - AWS Organizations
 
@@ -130,20 +148,29 @@ The main point of AWS Organizations is to help you manage multiple AWS accounts.
 
 Anyway, here's a bit of what we learn about AWS Organizations in this THM task:
 
-* Introduced in 2017 to help manage multiple AWS accounts
-* Allows workload segmentation and centralized management of multiple AWS accounts that do different jobs and hold different types of data
-* Uses organizational units (OUs) to group accounts
-* Service Control Policies (SCPs) can restrict access at the account or organizational unit level
-* The Organizational Management Account runs the show, and SCPs do not apply to the Organizational Management Account.
+&star; Introduced in 2017 to help manage multiple AWS accounts
+&star; Allows workload segmentation and centralized management of multiple AWS accounts that do different jobs and hold different types of data
+&star; Uses organizational units (OUs) to group accounts
+&star; Service Control Policies (SCPs) can restrict access at the account or organizational unit level
+&star; The Organizational Management Account runs the show, and SCPs do not apply to the Organizational Management Account.
 
-🚩 _What year was AWS Organizations made GA (Generally Available)?_
-`2017` - find this under the aptly named **2017 — Beginnings of AWS Organizations** heading (LOL).
+> <div class="flag-toggle">🚩 What year was AWS Organizations made GA (Generally Available)?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>2017</code> - find this under the aptly named **2017 — Beginnings of AWS Organizations** heading (LOL).
+> </div>
 
-🚩 _What is the sub-container for accounts in AWS Organizations?_
-`Organizational unit` - find this under the **Organizational Roots, Organization Units, and Accounts** heading.
+> <div class="flag-toggle">🚩 What is the sub-container for accounts in AWS Organizations?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>Organizational unit</code> - find this under the **Organizational Roots, Organization Units, and Accounts** heading.
+> </div>
 
-🚩 _What AWS Organizations account does service control policies not apply to?_
-`Organization management account` - find this under the **Organization Policies** heading.
+> <div class="flag-toggle">🚩 What AWS Organizations account does service control policies not apply to?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>Organization management account</code> - find this under the **Organization Policies** heading.
+> </div>
 
 ### Task 6 - Virtual Private Cloud (VPC)
 
@@ -158,14 +185,23 @@ In this task, we learn about several key concepts like internet gateways, egress
 
 We also get our first exposure to the EC2 and ECS Instance Metadata Services (IMDS) endpoints. These are endpoints your AWS compute resources can talk to retrieve information about themselves. For example, an EC2 instance (server), could query the IMDS endpoint to find out its own public IP address. If you go into cloud security professionally, know that IMDS is a huge deal because attackers use it to steal AWS credentials. Very common part of attack chains in the cloud. The [2019 Capitol One breach](https://www.appsecengineer.com/blog/aws-shared-responsibility-model-capital-one-breach-case-study) is mentioned in the THM room and is probably the most famous example.
 
-🚩 _What AWS service hosts the AWS DNS resolver?_
-`Route 53` - find this under the aptly named **Default VPC Service Capabilities** heading.
+> <div class="flag-toggle">🚩 What AWS service hosts the AWS DNS resolver?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>Route 53</code> - find this under the aptly named **Default VPC Service Capabilities** heading.
+> </div>
 
-🚩 _What VPC feature was used for privilege escalation in 2019 Capital One breach?_
-`Instance metadata service` - find this under the **Default VPC Service Capabilities** heading.
+> <div class="flag-toggle">🚩 What VPC feature was used for privilege escalation in 2019 Capital One breach?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>Instance metadata service</code> - find this under the **Default VPC Service Capabilities** heading.
+> </div>
 
-🚩 _What type of VPC endpoint allows for network traffic inspection?_
-`Gateway Load Balancer` - find this under the **VPC Endpoints** heading. BTW I think this question is phrased kind of weirdly because while it is true, typically when you think of _VPC_ endpoints you think of two types of VPC endpoints: `Gateway endpoints` and `Interface endpoints`. Whereas, `Gateway Load Balancers` are more referenced of as a type of Elastic Load Balancer. NBD but just a note about the language.
+> <div class="flag-toggle">🚩 What type of VPC endpoint allows for network traffic inspection?</div>
+> 
+> <div class="flag-content">
+> The answer is <code>Gateway Load Balancer</code> - find this under the **VPC Endpoints** heading. BTW I think this question is phrased kind of weirdly because while it is true, typically when you think of _VPC_ endpoints you think of two types of VPC endpoints: `Gateway endpoints` and `Interface endpoints`. Whereas, `Gateway Load Balancers` are more referenced of as a type of Elastic Load Balancer. NBD but just a note about the language.
+> </div>
 
 ### Task 7 - Summary
 
