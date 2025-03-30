@@ -70,7 +70,7 @@ Some facts we learn in Task 3:
 
 TryHackMe references the notorious AWS IAM policy evalutation chart which is essentially the bible when it comes to IAM.
 
-![Policy evaluation logic in AWS - every decision starts with a Deny and evaluates policies to see if something should be allowed.](../../image-assets/02-aws-basic-concepts/policy-evaluation-logic.png)
+![Policy evaluation logic in AWS - every decision starts with a Deny and evaluates policies to see if something should be allowed.](../writeup-image-assets/02-aws-basic-concepts/policy-evaluation-logic.png)
 
 > **NOTE**
 > You can (and should!) read all about Policy evaluation logic in the [AWS docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_evaluation-logic.html). Also, if you are just learning about this, I highly recommend the YouTube recording of the [Become an IAM Policy Master in 60 Minutes or Less](https://www.youtube.com/watch?v=YQsK4MtsELU&pp=ygUTaWFtIHBvbGljeSByZWludmVudA%3D%3D) session from re:Invent 2018 - it's a classic for a reason!
@@ -178,25 +178,25 @@ For questions 1 and 2, you simply find the element the question asks for and cli
 
 1. Find the 12 digit AWS Account ID
 
-  ![Find the 12 digit AWS Accound ID in the AWS console.](../../image-assets/02-aws-basic-concepts/find-account-id.png)
+  ![Find the 12 digit AWS Account ID in the AWS console.](../writeup-image-assets/02-aws-basic-concepts/find-account-id.png)
 
 2. Switched regions from North Virginia (`us-east-1` my glorious comfort region) to Asia Pacific Sydney (`ap-southeast-2`)
 
-  ![Switch from us-east-1 to another, less superior region.](../../image-assets/02-aws-basic-concepts/change-regions.png)
+  ![Switch from us-east-1 to another, less superior region.](../writeup-image-assets/02-aws-basic-concepts/change-regions.png)
 
 3. Create a new VPC with CIDR set to the IP range `10.0.0.1/16` and tenancy set as `dedicated`. 
 
   1. Find the VPC service.
 
-    ![Search for VPC in the AWS console.](../../image-assets/02-aws-basic-concepts/vpc-service.png)
+  ![Search for VPC in the AWS console.](../writeup-image-assets/02-aws-basic-concepts/vpc-service.png)
 
   2. Click **Create VPC**.
 
-    ![Create a new VPC.](../../image-assets/02-aws-basic-concepts/create-vpc.png)
+  ![Create a new VPC.](../writeup-image-assets/02-aws-basic-concepts/create-vpc.png)
 
   3. Make sure your **VPC settings** follow the prompt.
 
-    ![Make sure to follow the instructions for the VPC settings.](../../image-assets/02-aws-basic-concepts/vpc-settings.png)
+  ![Make sure to follow the instructions for the VPC settings.](../writeup-image-assets/02-aws-basic-concepts/vpc-settings.png)
 
   4. Click **Create VPC** again. This reveals the 🚩 flag 🚩.
 
