@@ -12,7 +12,7 @@ image:
 
 My first ever attempt to write up a TryHackMe room, let's see how it goes. This recap is about the first room in the **[Attacking and Defending AWS](https://tryhackme.com/path/outline/attackinganddefendingaws)**. I'm a big TryHackMe fan (though I rarely have enough time to play with it these days), and I'm also an obsessive AWS/AWS security person. When the THM made the Attacking and Defending AWS learning path available to individual customers a couple of years ago I was very excited to try it out. I made a series of videos walking through the rooms and I've been wanting to make some write-ups to go along with them. This is the first one!
 
-> **✨📺NOTE📺✨**
+> **✨📺**
 > If you want to see some extremely cringe youtube-ing, check out my [video walkthrough](https://youtu.be/hxosqZzXc7g?si=AfXwj2vPU_J3lgsN) of this room.
 
 ## About this room
