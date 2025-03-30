@@ -43,7 +43,7 @@ This task covers basics about AWS accounts - which are the fundamental container
 * 🚨 Root users don't have MFA enforced by default - it is absolutely critical to set this up in any AWS account you own
 * Root accounts without MFA are susceptible to weak password reset workflow attacks - search for `AWS password reset` on reddit and you will see some people that have been in the trenches!
 
-> **NOTE**
+> **NOTE ABOUT MFA**
 > In most real-world work environments you will see organizational controls to enforce MFA for AWS root users - if this doesn't exist at your workplace, you should implement it!
 
 🚩 _How many digits in AWS account ID?_
