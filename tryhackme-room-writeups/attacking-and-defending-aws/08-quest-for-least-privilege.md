@@ -5,6 +5,7 @@ title: 'THM - The Quest for Least Privilege'
 description: 'Walkthrough of the Try Hack Me AWS Quest for Least Privilege room'
 learningPath: Attacking and Defending AWS
 pubDate: Tod
+published: false
 image:
   url: '/blog-images/quest-for-least-privilege.png'
   alt: 'Cloud graphic with AWS The Quest for Least Privilege room name and TryHackMe logo.'

@@ -102,7 +102,7 @@ mean that any IAM entity in the `116457965582` can assume the role.
 
 ![Role trust policy in the console](../writeup-image-assets/04-aws-iam-principals/trust-policy-console.png)
 
-![Role trust policy in CLI]()
+![Role trust policy in CLI](../writeup-image-assets/04-aws-iam-principals/trust-policy-cli.png)
 > </div>
 
 ### Task 5 Root User & AWS Account
