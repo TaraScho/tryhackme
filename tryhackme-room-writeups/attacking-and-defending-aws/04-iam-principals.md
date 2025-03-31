@@ -6,7 +6,7 @@ description: 'Walkthrough of the AWS IAM Principals room'
 learningPath: Attacking and Defending AWS
 pubDate: Tod
 image:
-  url: '/blog-images/aws-iam-principals.png'
+  url: '/blog-images/iam-principals.png'
   alt: 'Cloud graphic with AWS IAM Principals room name and TryHackMe logo.'
 ---
 
