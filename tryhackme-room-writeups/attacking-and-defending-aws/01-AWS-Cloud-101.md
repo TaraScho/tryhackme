@@ -4,7 +4,6 @@ roomName: AWS Cloud 101
 title: 'THM - AWS Cloud 101'
 description: 'Walkthrough of the Try Hack Me AWS Cloud 101 room'
 learningPath: Attacking and Defending AWS
-pubDate: Tod
 image:
   url: '/blog-images/aws-cloud-101.png'
   alt: 'Cloud graphic with AWS Cloud 101 room name and TryHackMe logo.'

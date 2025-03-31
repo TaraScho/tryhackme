@@ -4,7 +4,6 @@ roomName: AWS IAM Principals
 title: 'THM - AWS IAM Principals'
 description: 'Walkthrough of the AWS IAM Principals room'
 learningPath: Attacking and Defending AWS
-pubDate: Tod
 image:
   url: '/blog-images/iam-principals.png'
   alt: 'Cloud graphic with AWS IAM Principals room name and TryHackMe logo.'
