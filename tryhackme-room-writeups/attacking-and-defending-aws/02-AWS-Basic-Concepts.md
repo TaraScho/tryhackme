@@ -10,7 +10,7 @@ image:
   alt: 'Cloud graphic with AWS Basic Concepts room name and TryHackMe logo.'
 ---
 
-Here is my written walkthrough of the AWS Basic Concepts room in the **[Attacking and Defending AWS](https://tryhackme.com/path/outline/attackinganddefendingaws)** learning path on TryHackMe.
+This is my written walkthrough of the AWS Basic Concepts room in the **[Attacking and Defending AWS](https://tryhackme.com/path/outline/attackinganddefendingaws)** learning path on TryHackMe.
 
 > **✨📺**
 > If you want to see some extremely cringe youtube-ing, check out my [video walkthrough](https://youtu.be/OKIMxLTA-G8?si=Q-AgMS7OQiiA0O5t) of this room.
